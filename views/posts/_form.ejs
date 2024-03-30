@@ -1,16 +1,16 @@
 
     <div class="inputOption">
-        <input type="text" id="title" name="title" placeholder="Título">
+        <input type="text" id="title" name="title" placeholder="Título" required>
     </div>
     <div class="inputOption">
-        <textarea id="body" name="body" placeholder="Mensaje"></textarea>
+        <textarea id="body" name="body" placeholder="Mensaje" required></textarea>
     </div>
     <div class="inputOption">
-        <input type="file" id="image" name="image">
+        <input type="file" id="image" name="image" required>
     </div>
     <div class="inputOption">
         <label for="team">Equipo:</label>
-        <select id="team" name="team">
+        <select id="team" name="team" required>
             <% teams.forEach(team => { %>
                 <option value="<%= team.id %>"><%= team.title %></option>
             <% }); %>

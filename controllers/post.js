@@ -46,27 +46,34 @@ exports.index = async (req, res, next) => {
     }
 };
 
-exports.show = (req, res, next) => {
+exports.show = async (req, res, next) => {
     const { post } = req.load;
     if (post) {
-        // Formatear y mostrar las fechas, o imprimir un mensaje si son null o undefined
-        const formattedPost = {
-            ...post.toJSON(),
-            votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleDateString() : 'No especificada',
-            votingEndDate: post.votingEndDate ? new Date(post.votingEndDate).toLocaleDateString() : 'No especificada',
-            applicationDate: post.applicationDate ? new Date(post.applicationDate).toLocaleDateString() : 'No especificada',
-            vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleDateString() : 'No especificada'
-        };
-        res.render('posts/show', { post: formattedPost });
+        try {
+            let teamName = 'No team assigned';
+            if (post.TeamId) {
+                const team = await models.Team.findByPk(post.TeamId);
+                if (team) {
+                    teamName = team.title;
+                }
+            }
+            const formattedPost = {
+                ...post.toJSON(),
+                votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleDateString() : 'No especificada',
+                votingEndDate: post.votingEndDate ? new Date(post.votingEndDate).toLocaleDateString() : 'No especificada',
+                applicationDate: post.applicationDate ? new Date(post.applicationDate).toLocaleDateString() : 'No especificada',
+                vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleDateString() : 'No especificada',
+                team: teamName,
+                hasVoted: req.session.hasVoted && req.session.hasVoted.includes(post.id) // Comprueba si el usuario ha votado en esta propuesta
+            };
+            res.render('posts/show', { post: formattedPost });
+        } catch (error) {
+            next(error);
+        }
     } else {
-        // Manejar el caso en que el post no existe
         next(new Error('El post no existe'));
     }
 };
-
-
-
-
 
 
 exports.new = async (req, res, next) => {
@@ -136,17 +143,25 @@ const createPostAttachment = async (req, post) =>
     await post.setAttachment(attachment);
 };
 
+
 exports.edit = async (req, res, next) => {
     try {
         const teams = await models.Team.findAll(); 
-        res.render('posts/edit', {...req.load, teams}); 
+        res.render('posts/edit', { ...req.load, teams }); 
     } catch (error) {
         next(error);
     }
 };
 
+
+
 exports.update = async (req, res, next) => {
     const { post } = req.load;
+
+    if (!req.body.title || !req.body.body || !req.body.votingStartDate || !req.body.votingEndDate || !req.body.applicationDate || !req.body.vetoDate) {
+        return res.status(400).send('Por favor, rellena todos los campos obligatorios.');
+    }
+
     post.title = req.body.title;
     post.body = req.body.body;
     post.votingStartDate = req.body.votingStartDate;
@@ -154,7 +169,8 @@ exports.update = async (req, res, next) => {
     post.applicationDate = req.body.applicationDate;
     post.vetoDate = req.body.vetoDate;
     try {
-        await post.save();
+        const updatedPost = await post.save();
+        await updatedPost.setTeam(req.body.team); 
         try {
             if (!req.file) {
                 return;
@@ -202,3 +218,31 @@ exports.adminOrAuthorRequired = (req, res, next) =>
         res.send(403);
     }
 };
+
+exports.vote = async (req, res, next) => {
+    const { post } = req.load;
+    const { vote } = req.body;
+
+    try {
+        if (vote === 'for') {
+            post.votesFor += 1;
+        } else if (vote === 'against') {
+            post.votesAgainst += 1;
+        } else if (vote === 'abstain') { 
+            post.abstentions += 1;
+        }
+        
+        await post.save();
+
+        if (!req.session.hasVoted) {
+            req.session.hasVoted = [];
+        }
+        req.session.hasVoted.push(post.id);
+
+        res.redirect(`/posts/${post.id}`);
+    } catch (error) {
+        next(error);
+    }
+};
+
+  

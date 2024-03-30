@@ -9,30 +9,64 @@
   <p><%= post.body %></p>
 
 <form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
-    <%- include('_form.ejs') %>
+    <div class="inputOption">
+        <input type="text" id="title" name="title" placeholder="Título" required>
+    </div>
+    <div class="inputOption">
+        <textarea id="body" name="body" placeholder="Mensaje" required></textarea>
+    </div>
+    <div class="inputOption">
+        <input type="file" id="image" name="image" required>
+    </div>
 
     <div class="inputOption">
         <label for="votingStartDate">Voting Start Date:</label>
-        <input type="date" id="votingStartDate" name="votingStartDate"
+        <input type="date" id="votingStartDate" name="votingStartDate" required
             value="<%= post.votingStartDate ? post.votingStartDate.toISOString().split('T')[0] : '' %>" />
     </div>
     <div class="inputOption">
         <label for="votingEndDate">Voting End Date:</label>
-        <input type="date" id="votingEndDate" name="votingEndDate"
+        <input type="date" id="votingEndDate" name="votingEndDate" required
             value="<%= post.votingEndDate ? post.votingEndDate.toISOString().split('T')[0] : '' %>" />
     </div>
     <div class="inputOption">
         <label for="applicationDate">Application Date:</label>
-        <input type="date" id="applicationDate" name="applicationDate"
+        <input type="date" id="applicationDate" name="applicationDate" required
             value="<%= post.applicationDate ? post.applicationDate.toISOString().split('T')[0] : '' %>" />
     </div>
     <div class="inputOption">
         <label for="vetoDate">Veto Date:</label>
-        <input type="date" id="vetoDate" name="vetoDate"
+        <input type="date" id="vetoDate" name="vetoDate" required
             value="<%= post.vetoDate ? post.vetoDate.toISOString().split('T')[0] : '' %>" />
     </div>
+
+    <div class="inputOption">
+        <label for="team">Equipo:</label>
+        <select id="team" name="team" required>
+            <% teams.forEach(team => { %>
+                <% if (post.TeamId === team.id) { %>
+                    <option value="<%= team.id %>" selected><%= team.title %></option>
+                <% } else { %>
+                    <option value="<%= team.id %>"><%= team.title %></option>
+                <% } %>
+            <% }); %>
+        </select>
+    </div> 
+    
 
     <input type="submit" name="enviar" id="enviar" value="Save" />
     <a href="/posts">Volver</a>
   </form>
+
+  <script>
+    document.getElementById('postForm').addEventListener('submit', function(event) {
+        const form = event.target;
+        if (!form.checkValidity()) {
+            event.preventDefault(); 
+            alert('Por favor, rellena todos los campos obligatorios.');
+        }
+    });
+</script>
+
+
 </section>

@@ -23,9 +23,23 @@ module.exports = (sequelize, DataTypes) => {
             },
             vetoDate: {
                 type: DataTypes.DATE
+            },
+            votesFor: {
+                type: DataTypes.INTEGER
+            },
+            votesAgainst: {
+                type: DataTypes.INTEGER
+            },
+            abstentions: {
+                type: DataTypes.INTEGER
             }
         }, 
         {sequelize}
     );
+
+    Post.associate = (models) => {
+        Post.belongsTo(models.Team, { foreignKey: 'TeamId', as: 'team' });
+    };
+
     return Post ;
 };

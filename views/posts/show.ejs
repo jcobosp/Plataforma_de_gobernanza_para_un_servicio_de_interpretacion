@@ -1,27 +1,36 @@
 <section>
   <h2>Show Post:</h2>
 
-  <%- include('../attachments/_attachment', { post: post }) %>
+  <% include('../attachments/_attachment', { post: post }) %>
   <article class="postShow">
     <ul>
-      <li>Title: <b> <%= post.title %> </b></li>
-      <li>Body: <b> <%= post.body %> </b></li>
+      <li>Title: <b><%= post.title %></b></li>
+      <li>Body: <b><%= post.body %></b></li>
       <li>Voting Start Date: <%= post.votingStartDate %></li>
       <li>Voting End Date: <%= post.votingEndDate %></li>
       <li>Application Date: <%= post.applicationDate %></li>
       <li>Veto Date: <%= post.vetoDate %></li>
+      <li>Votes For: <%= post.votesFor %></li>
+      <li>Votes Against: <%= post.votesAgainst %></li>
+      <li>Abstentions: <%= post.abstentions %></li>
+      <li>Team: <%= post.team %></li> 
     </ul>
+    <div>
+      <% if (!post.hasVoted) { %>
+        <form action="/posts/<%= post.id %>/vote" method="post">
+          <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
+          <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+          <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+        </form>
+      <% } %>
+    </div>
 
     <div>
-      <small id="author"
-        >By <b> <%= post.author?.username ?? "Anonymous" %> </b>
+      <small id="author">
+        By <b><%= post.author ? post.author.username : "Anonymous" %></b>
       </small>
     </div>
 
-    <a href="/posts">Volver</a>
+    <a href="/posts">Back</a>
   </article>
 </section>
-
-
-
-
