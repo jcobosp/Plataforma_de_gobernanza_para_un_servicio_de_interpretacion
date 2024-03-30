@@ -1,0 +1,56 @@
+
+#main-content {
+  border: 3px solid rgb(125, 81, 1);
+  padding: 16px;
+} 
+.role-badge {
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: #007bff; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  font-size: 12px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+/* Estilos para los roles activos */
+.role-badge.active {
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: #28a745; /* Color de fondo verde para roles activos */
+  color: #fff; /* Color del texto */
+  font-size: 12px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+/* Estilos para los roles inactivos */
+.role-badge.inactive {
+  display: inline-block;
+  padding: 3px 6px;
+  background-color: #6c757d; /* Color de fondo gris para roles inactivos */
+  color: #fff; /* Color del texto */
+  font-size: 12px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+
+
+/* Estilos para los iconos de roles */
+.role-icon {
+  display: inline-block;
+  width: 20px; /* Tamaño del icono */
+  height: 20px; /* Tamaño del icono */
+  border-radius: 50%; /* Hacer el icono redondo */
+  margin: 0 2px; /* Espacio entre los iconos */
+}
+
+/* Estilos para los iconos de roles activos */
+.role-icon.active {
+  background-color: #28a745; /* Color de fondo verde para roles activos */
+}
+
+/* Estilos para los iconos de roles inactivos */
+.role-icon.inactive {
+  background-color: #6c757d; /* Color de fondo gris para roles inactivos */
+}
