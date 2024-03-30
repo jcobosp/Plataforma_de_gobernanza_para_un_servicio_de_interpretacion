@@ -136,19 +136,27 @@ const createPostAttachment = async (req, post) =>
     await post.setAttachment(attachment);
 };
 
-exports.edit = (req, res, next) => 
-{   const postsEdit = 'posts/edit';
-    res.render(postsEdit, req.load);
+exports.edit = async (req, res, next) => {
+    try {
+        const teams = await models.Team.findAll(); 
+        res.render('posts/edit', {...req.load, teams}); 
+    } catch (error) {
+        next(error);
+    }
 };
 
-exports.update = async (req, res, next) => 
-{   const {post} = req.load;
+exports.update = async (req, res, next) => {
+    const { post } = req.load;
     post.title = req.body.title;
     post.body = req.body.body;
+    post.votingStartDate = req.body.votingStartDate;
+    post.votingEndDate = req.body.votingEndDate;
+    post.applicationDate = req.body.applicationDate;
+    post.vetoDate = req.body.vetoDate;
     try {
-        await post.save({fields: ["title", "body"]});
+        await post.save();
         try {
-            if (!req.file) {    
+            if (!req.file) {
                 return;
             }
             if (post.attachment) {
@@ -156,19 +164,23 @@ exports.update = async (req, res, next) =>
                 await post.setAttachment();
             }
             await createPostAttachment(req, post);
-        } catch (error) { next(error);  } 
-        finally {
+        } catch (error) {
+            next(error);
+        } finally {
             res.redirect('/posts/' + post.id);
         }
     } catch (error) {
         if (error instanceof (Sequelize.ValidationError)) {
             console.log('There are errors in the form:');
-            error.errors.forEach(({message}) => console.log(message));
+            error.errors.forEach(({ message }) => console.log(message));
             const postsEdit = 'posts/edit';
             res.render(postsEdit, req.load);
-        } else {next(error);  }
+        } else {
+            next(error);
+        }
     }
 };
+
 
 exports.destroy = async (req, res, next) => 
 {   const attachment = req.load.post.attachment;

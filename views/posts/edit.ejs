@@ -1,17 +1,38 @@
-<section>
-    <h2>Edit Posts:</h2>
-    <h3>Titulo actual:</h3>
-    <p>
-        <%= post.title %>
-    </p>
-    <h3>Descripcion actual:</h3>
-    <p>
-        <%= post.body %>
-    </p>
 
-    <form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
-        <%- include('_form.ejs') %>
-        <input type="submit" name="enviar" id="enviar" value="Save">
-            <a href="/posts">Volver</a>
-    </form>
+
+<section>
+  <h2>Edit Post:</h2>
+
+  <h3>Titulo actual:</h3>
+  <p><%= post.title %></p>
+  <h3>Descripcion actual:</h3>
+  <p><%= post.body %></p>
+
+<form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
+    <%- include('_form.ejs') %>
+
+    <div class="inputOption">
+        <label for="votingStartDate">Voting Start Date:</label>
+        <input type="date" id="votingStartDate" name="votingStartDate"
+            value="<%= post.votingStartDate ? post.votingStartDate.toISOString().split('T')[0] : '' %>" />
+    </div>
+    <div class="inputOption">
+        <label for="votingEndDate">Voting End Date:</label>
+        <input type="date" id="votingEndDate" name="votingEndDate"
+            value="<%= post.votingEndDate ? post.votingEndDate.toISOString().split('T')[0] : '' %>" />
+    </div>
+    <div class="inputOption">
+        <label for="applicationDate">Application Date:</label>
+        <input type="date" id="applicationDate" name="applicationDate"
+            value="<%= post.applicationDate ? post.applicationDate.toISOString().split('T')[0] : '' %>" />
+    </div>
+    <div class="inputOption">
+        <label for="vetoDate">Veto Date:</label>
+        <input type="date" id="vetoDate" name="vetoDate"
+            value="<%= post.vetoDate ? post.vetoDate.toISOString().split('T')[0] : '' %>" />
+    </div>
+
+    <input type="submit" name="enviar" id="enviar" value="Save" />
+    <a href="/posts">Volver</a>
+  </form>
 </section>
