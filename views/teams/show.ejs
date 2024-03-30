@@ -1,0 +1,33 @@
+<section>
+    <h2>Show Team:</h2>
+  
+    <%- include('../attachments/_attachmentTeams', { team: team }) %>
+    <article class="teamShow">
+      <ul>
+        <li>Title: <b><%= team.title %></b></li>
+        <li>Body: <b><%= team.body %></b></li>
+        <li>Created At: <b><%= team.createdAt %></b></li>
+        <li>Updated At: <b><%= team.updatedAt %></b></li>
+        <li>Author: <b><%= team.author?.username ?? "Anonymous" %></b></li>
+        <li>Admin User: <b><%= adminUser?.username ?? 'None' %></b></li>
+        <li>Number of Tokens: <b><%= team.tokens %></b></li>
+        <li>Number of Users: <b><%= team.numUsers %></b></li>
+      </ul>
+      
+      <% if (locals.loginUser && !locals.isMember) { %> 
+      <form method="post" action="/teams/<%= team.id %>/join">
+        <button type="submit">Unirse al Equipo</button>
+      </form>
+      <% } %>
+
+      <% if (locals.loginUser && locals.isMember) { %> 
+        <form method="post" action="/teams/<%= team.id %>/leave">
+            <button type="submit">Abandonar Equipo</button>
+        </form>
+      <% } %>
+      
+  
+      <a href="/teams">Volver</a>
+    </article>
+  </section>
+  

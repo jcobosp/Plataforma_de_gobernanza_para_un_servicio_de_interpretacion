@@ -1,0 +1,19 @@
+
+    <div class="inputOption">
+        <input type="text" id="title" name="title" placeholder="Título">
+    </div>
+    <div class="inputOption">
+        <textarea id="body" name="body" placeholder="Mensaje"></textarea>
+    </div>
+    <div class="inputOption">
+        <input type="file" id="image" name="image">
+    </div>
+    <div class="inputOption">
+        <label for="team">Equipo:</label>
+        <select id="team" name="team">
+            <% teams.forEach(team => { %>
+                <option value="<%= team.id %>"><%= team.title %></option>
+            <% }); %>
+        </select>
+    </div>    
+    <!-- <input type="submit" name="enviar" id="enviar" value="Save"> -->

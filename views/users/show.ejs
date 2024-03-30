@@ -1,0 +1,34 @@
+
+
+<section>
+    <h2>User:</h2>
+    <ul>
+        <li>
+            <span>User name:<b>
+                    <%= user.username %>
+                </b></span>
+                <% if (user.isAdmin) { %>
+                    <span class="role-badge">Admin</span>
+                <% } %>
+                <% if (user.isAdminProposal) { %>
+                    <span class="role-badge">Admin de Propuestas</span>
+                <% } %>
+                <% if (user.isAdminTeam) { %>
+                    <span class="role-badge">Admin de Teams</span>
+                <% } %>
+                <% if (user.isAdminToken) { %>
+                    <span class="role-badge">Admin de Tokens</span>
+                <% } %>
+        </li>
+        <li>
+            <span>Email:<b>
+                    <%= user.email %>
+                </b></span>
+        </li>
+    </ul>
+    <% if(locals.loginUser?.isAdmin || locals.loginUser?.id===user.id){ %>
+        <a href="/users/<%= user.id %>/edit">Editar</a>
+        <a href="/users/<%= user.id %>?_method=DELETE"
+            onClick="return confirm('Delete user: <%= user.username %>');">Borrar</a>
+    <% } %>
+</section>

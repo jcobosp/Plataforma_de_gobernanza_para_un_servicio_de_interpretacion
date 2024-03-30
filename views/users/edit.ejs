@@ -1,0 +1,40 @@
+<!-- <section>
+    <h2>Edit User:</h2>
+    <form method="post" action="/users/<%= user.id %>?_method=PUT">
+        <%- include('_form.ejs') %>
+            <input type="submit" value="Save" onclick="return validPassword()">
+    </form>
+</section> -->
+<section>
+    <h2>Edit User:</h2>
+    <form method="post" action="/users/<%= user.id %>?_method=PUT">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" value="<%= user.username %>" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= user.email %>" required>
+        <br>
+        <label for="password">New Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <% if(locals.loginUser.isAdmin) { %>
+        <label>User Roles:</label>
+        <input type="checkbox" id="isAdmin" name="isAdmin" <%= user.isAdmin ? 'checked' : '' %>>
+        <label for="isAdmin">Admin</label>
+        <input type="checkbox" id="isAdminProposal" name="isAdminProposal" <%= user.isAdminProposal ? 'checked' : '' %>>
+        <label for="isAdminProposal">Admin de Propuestas</label>
+        <input type="checkbox" id="isAdminTeam" name="isAdminTeam" <%= user.isAdminTeam ? 'checked' : '' %>>
+        <label for="isAdminTeam">Admin de Teams</label>
+        <input type="checkbox" id="isAdminToken" name="isAdminToken" <%= user.isAdminToken ? 'checked' : '' %>>
+        <label for="isAdminToken">Admin de Tokens</label>
+        <% } %>
+        <br>
+        <input type="submit" value="Save" onclick="return validPassword()">
+        <!-- <a href="/users/<%= user.id %>" class="button-2">Cancelar</a> -->
+        <% if (previousPage) { %>
+            <a href="/users/<%= user.id %>" class="button-2">Cancelar</a>
+        <% } else { %>
+            <a href="/users" class="button-2">Cancelar</a>
+        <% } %>
+    </form>
+</section>

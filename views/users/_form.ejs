@@ -1,0 +1,30 @@
+<section>
+    <ul>
+        <li>
+            <label for="username" class="rem">email:</label><br>
+            <input type="email" pattern=".+@.+" id="email" name="email" value="<%= user.email %>" autocomplete="off" />
+        </li>
+        <li>
+            <label for="email" class="rem">User name:</label><br>
+            <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off" />
+        </li>
+    </ul>
+    <% if (!user.id) { %>
+        <p class="text-danger">Enter the new password twice</p>
+        <% } else { %>
+            <p class="text-danger">Leave blank to not change the current password</p>
+            <% } %>
+                <ul>
+                    <li>
+                        <label for="user_password" class="rem">Password:</label><br>
+                        <input type="password" id="user_password" name="password" autocomplete="off" />
+                    </li>
+                    <li>
+                        <label for="user_confirm_password" class="rem">Confirm Password:</label><br>
+                        <input type="password" id="user_confirm_password" autocomplete="off" />
+                    </li>
+                </ul>
+                <div>
+                    <a href="/users" class="button-2">Cancel</a>
+                </div>
+</section>

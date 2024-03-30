@@ -1,0 +1,94 @@
+<!-- 
+
+<section>
+    <h2>Users</h2>
+    <table>
+        <% for (let i in users) { %>
+            <tr>
+                <td>
+                    <a href="/users/<%= users[i].id %>">
+                        <%= users[i].username %>
+                    </a>
+                    <span class="role-badge <%= users[i].isAdmin ? 'active' : 'inactive' %>">Admin</span>
+                    <span class="role-badge <%= users[i].isAdminProposal ? 'active' : 'inactive' %>">Admin de Propuestas</span>
+                    <span class="role-badge <%= users[i].isAdminTeam ? 'active' : 'inactive' %>">Admin de Teams</span>
+                    <span class="role-badge <%= users[i].isAdminToken ? 'active' : 'inactive' %>">Admin de Tokens</span>
+                </td>
+                <td>
+                    <a href="/users/<%= users[i].id %>/edit">Editar</a>
+                </td>
+                <td>
+                    <a href="/users/<%= users[i].id %>?_method=DELETE"
+                        onClick="return confirm('Delete user: <%= users[i].username %>');">Borrar</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+    <% if(locals.loginUser?.isAdmin){ %>
+        <a href="/users/new">Crear nuevo usuario</a>
+    <% } %>
+</section> -->
+
+
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <div class="page-header d-flex align-items-center" style="background-image: url('/stylesheets/img/page-header.jpg');">
+          <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+              <div class="col-lg-6 text-center">
+                <h2>Users</h2>
+                <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav>
+          <div class="container">
+            <ol>
+              <li><a href="/">Menu</a></li>
+              <li>Users</li>
+            </ol>
+          </div>
+        </nav>
+      </div>
+      <!-- End Breadcrumbs -->
+    <section>
+    <h2>Users</h2>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Roles</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </tr>
+        <% for (let i in users) { %>
+            <tr>
+                <td>
+                    <a href="/users/<%= users[i].id %>">
+                        <%= users[i].username %>
+                    </a>
+                </td>
+                <td>
+                    <span class="role-badge <%= users[i].isAdmin ? 'active' : 'inactive' %>">Admin</span>
+                    <span class="role-badge <%= users[i].isAdminProposal ? 'active' : 'inactive' %>">Admin de Propuestas</span>
+                    <span class="role-badge <%= users[i].isAdminTeam ? 'active' : 'inactive' %>">Admin de Teams</span>
+                    <span class="role-badge <%= users[i].isAdminToken ? 'active' : 'inactive' %>">Admin de Tokens</span>
+                </td>
+                <td>
+                    <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
+                        <a href="/users/<%= users[i].id %>/edit">Editar</a>
+                    <% } %>
+                </td>
+                <td>
+                    <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
+                        <a href="/users/<%= users[i].id %>?_method=DELETE" onClick="return confirm('Delete user: <%= users[i].username %>');">Borrar</a>
+                    <% } %>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+    <% if(locals.loginUser?.isAdmin){ %>
+        <a href="/users/new">Crear nuevo usuario</a>
+    <% } %>
+</section>

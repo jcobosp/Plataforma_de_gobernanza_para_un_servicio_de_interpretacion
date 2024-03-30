@@ -1,0 +1,26 @@
+<section>
+    <h2>Add post:</h2>
+    <form method="post" action="/posts" enctype="multipart/form-data" >
+        <%- include('_form.ejs') %>
+        
+        <div class="inputOption">
+            <label for="votingStartDate">Voting Start Date:</label>
+            <input type="date" id="votingStartDate" name="votingStartDate" value="<%= post.votingStartDate ? post.votingStartDate.toISOString().split('T')[0] : '' %>">
+        </div>
+        <div class="inputOption">
+            <label for="votingEndDate">Voting End Date:</label>
+            <input type="date" id="votingEndDate" name="votingEndDate" value="<%= post.votingEndDate ? post.votingEndDate.toISOString().split('T')[0] : '' %>">
+        </div>
+        <div class="inputOption">
+            <label for="applicationDate">Application Date:</label>
+            <input type="date" id="applicationDate" name="applicationDate" value="<%= post.applicationDate ? post.applicationDate.toISOString().split('T')[0] : '' %>">
+        </div>
+        <div class="inputOption">
+            <label for="vetoDate">Veto Date:</label>
+            <input type="date" id="vetoDate" name="vetoDate" value="<%= post.vetoDate ? post.vetoDate.toISOString().split('T')[0] : '' %>">
+        </div>
+        
+        <input type="submit" name="enviar" id="enviar" value="Save">
+        <a href="/posts">Volver</a>
+    </form>
+</section>

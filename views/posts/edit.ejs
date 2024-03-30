@@ -1,0 +1,17 @@
+<section>
+    <h2>Edit Posts:</h2>
+    <h3>Titulo actual:</h3>
+    <p>
+        <%= post.title %>
+    </p>
+    <h3>Descripcion actual:</h3>
+    <p>
+        <%= post.body %>
+    </p>
+
+    <form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
+        <%- include('_form.ejs') %>
+        <input type="submit" name="enviar" id="enviar" value="Save">
+            <a href="/posts">Volver</a>
+    </form>
+</section>
