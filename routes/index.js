@@ -52,6 +52,7 @@ router.put('/posts/:postId(\\d+)', upload.single('image'), postController.update
 router.delete('/posts/:postId(\\d+)', postController.adminOrAuthorRequired, postController.destroy); 
 router.post('/posts/:postId/vote', postController.vote);
 router.post('/posts/:postId/change-vote', postController.changeVote);
+router.post('/posts/:postId/veto', postController.adminOrAuthorRequired, postController.veto);
 
 // Pantalla Usuarios
 router.param('userId', userController.load);

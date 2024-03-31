@@ -64,6 +64,7 @@ exports.show = async (req, res, next) => {
                     userId: userId,
                 },
             });
+            const isAdmin = req.session.loginUser ? req.session.loginUser.isAdmin : false;
             const formattedPost = {
                 ...post.toJSON(),
                 votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleDateString() : 'No especificada',
@@ -73,7 +74,7 @@ exports.show = async (req, res, next) => {
                 team: teamName,
                 hasVoted: userPostVote && userPostVote.hasVoted,
             };
-            res.render('posts/show', { post: formattedPost });
+            res.render('posts/show', { post: formattedPost, isAdmin });
         } catch (error) {
             next(error);
         }
@@ -308,3 +309,18 @@ exports.changeVote = async (req, res, next) => {
 };
 
   
+exports.veto = async (req, res, next) => {
+    const { post } = req.load;
+  
+    try {
+      post.votesFor = 0;
+      post.votesAgainst = 0;
+      post.abstentions = 0;
+      post.vetoed = true;
+      await post.save();
+  
+      res.redirect(`/posts/${post.id}`);
+    } catch (error) {
+      next(error);
+    }
+};

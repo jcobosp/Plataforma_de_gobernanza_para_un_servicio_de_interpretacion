@@ -32,6 +32,10 @@ module.exports = (sequelize, DataTypes) => {
             },
             abstentions: {
                 type: DataTypes.INTEGER
+            },
+            vetoed: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: false
             }
         }, 
         {sequelize}
