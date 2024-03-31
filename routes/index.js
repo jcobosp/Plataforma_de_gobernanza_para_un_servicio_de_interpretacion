@@ -51,6 +51,7 @@ router.get('/posts/:postId(\\d+)/edit', postController.adminOrAuthorRequired, po
 router.put('/posts/:postId(\\d+)', upload.single('image'), postController.update);
 router.delete('/posts/:postId(\\d+)', postController.adminOrAuthorRequired, postController.destroy); 
 router.post('/posts/:postId/vote', postController.vote);
+router.post('/posts/:postId/change-vote', postController.changeVote);
 
 // Pantalla Usuarios
 router.param('userId', userController.load);

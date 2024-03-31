@@ -57,6 +57,13 @@ exports.show = async (req, res, next) => {
                     teamName = team.title;
                 }
             }
+            const userId = req.session.loginUser ? req.session.loginUser.id : null;
+            const userPostVote = await models.UserPostVotes.findOne({
+                where: {
+                    postId: post.id,
+                    userId: userId,
+                },
+            });
             const formattedPost = {
                 ...post.toJSON(),
                 votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleDateString() : 'No especificada',
@@ -64,7 +71,7 @@ exports.show = async (req, res, next) => {
                 applicationDate: post.applicationDate ? new Date(post.applicationDate).toLocaleDateString() : 'No especificada',
                 vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleDateString() : 'No especificada',
                 team: teamName,
-                hasVoted: req.session.hasVoted && req.session.hasVoted.includes(post.id) // Comprueba si el usuario ha votado en esta propuesta
+                hasVoted: userPostVote && userPostVote.hasVoted,
             };
             res.render('posts/show', { post: formattedPost });
         } catch (error) {
@@ -222,26 +229,81 @@ exports.adminOrAuthorRequired = (req, res, next) =>
 exports.vote = async (req, res, next) => {
     const { post } = req.load;
     const { vote } = req.body;
-
+    const userId = req.session.loginUser.id;
+  
     try {
-        if (vote === 'for') {
-            post.votesFor += 1;
-        } else if (vote === 'against') {
-            post.votesAgainst += 1;
-        } else if (vote === 'abstain') { 
-            post.abstentions += 1;
-        }
-        
-        await post.save();
-
-        if (!req.session.hasVoted) {
-            req.session.hasVoted = [];
-        }
-        req.session.hasVoted.push(post.id);
-
-        res.redirect(`/posts/${post.id}`);
+      const userPostVote = await models.UserPostVotes.findOne({
+        where: {
+          postId: post.id,
+          userId: userId,
+        },
+      });
+  
+      if (userPostVote && userPostVote.hasVoted) {
+        return res.status(400).send('Ya has votado en esta propuesta.');
+      }
+  
+      if (vote === 'for') {
+        post.votesFor += 1;
+      } else if (vote === 'against') {
+        post.votesAgainst += 1;
+      } else if (vote === 'abstain') {
+        post.abstentions += 1;
+      }
+  
+      if (!userPostVote) {
+        await models.UserPostVotes.create({
+          userId: userId,
+          postId: post.id,
+          hasVoted: true,
+          lastVote: vote,
+        });
+      } else {
+        await userPostVote.update({ hasVoted: true, lastVote: vote });
+      }
+  
+      await post.save();
+  
+      res.redirect(`/posts/${post.id}`);
     } catch (error) {
-        next(error);
+      next(error);
+    }
+  };
+  
+
+
+exports.changeVote = async (req, res, next) => {
+    const { post } = req.load;
+    const userId = req.session.loginUser.id;
+  
+    try {
+      const userPostVote = await models.UserPostVotes.findOne({
+        where: {
+          postId: post.id,
+          userId: userId,
+        },
+      });
+  
+      if (!userPostVote) {
+        res.redirect(`/posts/${post.id}`);
+        return;
+      }
+  
+      if (userPostVote.lastVote === 'for') {
+        post.votesFor -= 1;
+      } else if (userPostVote.lastVote === 'against') {
+        post.votesAgainst -= 1;
+      } else if (userPostVote.lastVote === 'abstain') {
+        post.abstentions -= 1;
+      }
+  
+      await post.save();
+  
+      await userPostVote.destroy();
+  
+      res.redirect(`/posts/${post.id}`);
+    } catch (error) {
+      next(error);
     }
 };
 

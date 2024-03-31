@@ -7,6 +7,7 @@ const Attachment = require('./attachment')(sequelize, Sequelize.DataTypes);
 const User = require('./user')(sequelize, Sequelize.DataTypes);
 const Team = require('./team')(sequelize, Sequelize.DataTypes);
 const UserTeam = require('./userTeam')(sequelize, Sequelize.DataTypes);
+const UserPostVotes = require('./userPostVotes')(sequelize, Sequelize.DataTypes);
 
 Attachment.hasOne(Post, {as: 'post', foreignKey: 'attachmentId'});
 Post.belongsTo(Attachment, {as: 'attachment', foreignKey: 'attachmentId'});
@@ -24,5 +25,11 @@ Team.belongsToMany(User, { through: UserTeam, foreignKey: 'teamId' });
 
 Post.belongsTo(Team, { as: 'team', foreignKey: 'TeamId' });
 Team.hasMany(Post, { as: 'posts', foreignKey: 'TeamId' });
+
+User.belongsToMany(Post, { through: UserPostVotes, foreignKey: 'userId' });
+Post.belongsToMany(User, { through: UserPostVotes, foreignKey: 'postId' });
+
+UserPostVotes.belongsTo(User, { foreignKey: 'userId' });
+UserPostVotes.belongsTo(Post, { foreignKey: 'postId' });
 
 module.exports = sequelize;
