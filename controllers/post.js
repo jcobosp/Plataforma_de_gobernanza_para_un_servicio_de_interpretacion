@@ -67,10 +67,10 @@ exports.show = async (req, res, next) => {
             const isAdmin = req.session.loginUser ? req.session.loginUser.isAdmin : false;
             const formattedPost = {
                 ...post.toJSON(),
-                votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleDateString() : 'No especificada',
-                votingEndDate: post.votingEndDate ? new Date(post.votingEndDate).toLocaleDateString() : 'No especificada',
-                applicationDate: post.applicationDate ? new Date(post.applicationDate).toLocaleDateString() : 'No especificada',
-                vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleDateString() : 'No especificada',
+                votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleString() : 'No especificada',
+                votingEndDate: post.votingEndDate ? new Date(post.votingEndDate).toLocaleString() : 'No especificada',
+                applicationDate: post.applicationDate ? new Date(post.applicationDate).toLocaleString() : 'No especificada',
+                vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleString() : 'No especificada',
                 team: teamName,
                 hasVoted: userPostVote && userPostVote.hasVoted,
             };
@@ -82,7 +82,6 @@ exports.show = async (req, res, next) => {
         next(new Error('El post no existe'));
     }
 };
-
 
 exports.new = async (req, res, next) => {
     try {
@@ -155,12 +154,19 @@ const createPostAttachment = async (req, post) =>
 exports.edit = async (req, res, next) => {
     try {
         const teams = await models.Team.findAll(); 
-        res.render('posts/edit', { ...req.load, teams }); 
+        const { post } = req.load;
+        const formattedPost = {
+            ...post.toJSON(),
+            votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toISOString().slice(0,16) : '', 
+            votingEndDate: post.votingEndDate ? new Date(post.votingEndDate).toISOString().slice(0,16) : '', 
+            applicationDate: post.applicationDate ? new Date(post.applicationDate).toISOString().slice(0,16) : '',
+            vetoDate: post.vetoDate ? new Date(post.vetoDate).toISOString().slice(0,16) : '',
+        };
+        res.render('posts/edit', { ...req.load, teams, post: formattedPost });
     } catch (error) {
         next(error);
     }
 };
-
 
 
 exports.update = async (req, res, next) => {
@@ -172,10 +178,10 @@ exports.update = async (req, res, next) => {
 
     post.title = req.body.title;
     post.body = req.body.body;
-    post.votingStartDate = req.body.votingStartDate;
-    post.votingEndDate = req.body.votingEndDate;
-    post.applicationDate = req.body.applicationDate;
-    post.vetoDate = req.body.vetoDate;
+    post.votingStartDate = new Date(req.body.votingStartDate);
+    post.votingEndDate = new Date(req.body.votingEndDate);
+    post.applicationDate = new Date(req.body.applicationDate);
+    post.vetoDate = new Date(req.body.vetoDate);
     try {
         const updatedPost = await post.save();
         await updatedPost.setTeam(req.body.team); 
@@ -204,7 +210,6 @@ exports.update = async (req, res, next) => {
         }
     }
 };
-
 
 exports.destroy = async (req, res, next) => 
 {   const attachment = req.load.post.attachment;

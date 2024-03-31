@@ -21,23 +21,23 @@
 
     <div class="inputOption">
         <label for="votingStartDate">Voting Start Date:</label>
-        <input type="date" id="votingStartDate" name="votingStartDate" required
-            value="<%= post.votingStartDate ? post.votingStartDate.toISOString().split('T')[0] : '' %>" />
+        <input type="datetime-local" id="votingStartDate" name="votingStartDate" required
+            value="<%= post.votingStartDate instanceof Date ? post.votingStartDate.toISOString().slice(0, 16) : '' %>" />
     </div>
     <div class="inputOption">
         <label for="votingEndDate">Voting End Date:</label>
-        <input type="date" id="votingEndDate" name="votingEndDate" required
-            value="<%= post.votingEndDate ? post.votingEndDate.toISOString().split('T')[0] : '' %>" />
+        <input type="datetime-local" id="votingEndDate" name="votingEndDate" required
+            value="<%= post.votingEndDate instanceof Date ? post.votingEndDate.toISOString().slice(0, 16) : '' %>" />
     </div>
     <div class="inputOption">
         <label for="applicationDate">Application Date:</label>
-        <input type="date" id="applicationDate" name="applicationDate" required
-            value="<%= post.applicationDate ? post.applicationDate.toISOString().split('T')[0] : '' %>" />
+        <input type="datetime-local" id="applicationDate" name="applicationDate" required
+            value="<%= post.applicationDate instanceof Date ? post.applicationDate.toISOString().slice(0, 16) : '' %>" />
     </div>
     <div class="inputOption">
         <label for="vetoDate">Veto Date:</label>
-        <input type="date" id="vetoDate" name="vetoDate" required
-            value="<%= post.vetoDate ? post.vetoDate.toISOString().split('T')[0] : '' %>" />
+        <input type="datetime-local" id="vetoDate" name="vetoDate" required
+            value="<%= post.vetoDate instanceof Date ? post.vetoDate.toISOString().slice(0, 16) : '' %>" />
     </div>
 
     <div class="inputOption">
