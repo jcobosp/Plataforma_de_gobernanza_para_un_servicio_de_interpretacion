@@ -64,6 +64,12 @@ exports.show = async (req, res, next) => {
                     userId: userId,
                 },
             });
+            const userTeams = await models.UserTeam.findAll({
+                where: { userId: userId },
+                attributes: ['teamId']
+            });
+            const belongsToSameTeam = userTeams.some(team => team.teamId === post.TeamId);
+
             const isAdmin = req.session.loginUser ? req.session.loginUser.isAdmin : false;
             const currentDate = new Date();
             const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
@@ -77,7 +83,7 @@ exports.show = async (req, res, next) => {
                 team: teamName,
                 hasVoted: userPostVote && userPostVote.hasVoted,
             };
-            res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled });
+            res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled, belongsToSameTeam });
         } catch (error) {
             next(error);
         }

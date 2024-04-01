@@ -16,21 +16,25 @@
       <li>Team: <%= post.team %></li> 
     </ul>
     <% if (!post.vetoed) { %>
-      <% if (isVotingPeriod) { %>
-        <% if (post.hasVoted) { %>
-          <p>¡Ya has votado en esta propuesta!</p>
-          <form action="/posts/<%= post.id %>/change-vote" method="post">
-            <button type="submit" name="vote" value="change">Cambiar mi voto</button>
-          </form>
+      <% if (belongsToSameTeam) { %> 
+        <% if (isVotingPeriod) { %>
+          <% if (post.hasVoted) { %>
+            <p>¡Ya has votado en esta propuesta!</p>
+            <form action="/posts/<%= post.id %>/change-vote" method="post">
+              <button type="submit" name="vote" value="change">Cambiar mi voto</button>
+            </form>
+          <% } else { %>
+            <form action="/posts/<%= post.id %>/vote" method="post">
+              <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
+              <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+              <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+            </form>
+          <% } %>
         <% } else { %>
-          <form action="/posts/<%= post.id %>/vote" method="post">
-            <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
-            <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
-            <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
-          </form>
+          <p>Las votaciones no están habilitadas en este momento.</p>
         <% } %>
       <% } else { %>
-        <p>Las votaciones no están habilitadas en este momento.</p>
+        <p>Para votar, debes pertenecer al equipo <%= post.team %>.</p>
       <% } %>
     <% } else { %>
       <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
