@@ -67,6 +67,7 @@ exports.show = async (req, res, next) => {
             const isAdmin = req.session.loginUser ? req.session.loginUser.isAdmin : false;
             const currentDate = new Date();
             const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
+            const isVetoEnabled = currentDate < post.vetoDate;
             const formattedPost = {
                 ...post.toJSON(),
                 votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleString() : 'No especificada',
@@ -76,7 +77,7 @@ exports.show = async (req, res, next) => {
                 team: teamName,
                 hasVoted: userPostVote && userPostVote.hasVoted,
             };
-            res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod });
+            res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled });
         } catch (error) {
             next(error);
         }

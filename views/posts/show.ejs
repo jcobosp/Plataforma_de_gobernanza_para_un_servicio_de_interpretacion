@@ -36,13 +36,13 @@
       <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
     <% } %>
 
-    <% if (isAdmin && !post.vetoed) { %>
+    <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
       <form action="/posts/<%= post.id %>/veto" method="post">
         <button type="submit" name="veto" value="veto">Veto</button>
       </form>
     <% } %>
 
-    <div>
+    <div> 
       <small id="author">
         By <b><%= post.author ? post.author.username : "Anonymous" %></b>
       </small>
