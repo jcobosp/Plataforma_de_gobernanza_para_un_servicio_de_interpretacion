@@ -36,9 +36,13 @@ router.get('/reputation', reputationController.index);
 router.post('/reputation/:userId(\\d+)/addPoint', reputationController.addPoint);
 
 // Pantalla Tockens
-router.get('/tokens', tokenController.index); 
-router.post('/tokens/:userId(\\d+)/addToken', tokenController.addToken);
-router.post('/tokens/:userId(\\d+)/removeToken', tokenController.removeToken);
+// router.get('/tokens', tokenController.index); 
+// router.post('/tokens/:userId(\\d+)/addToken', tokenController.addToken);
+// router.post('/tokens/:userId(\\d+)/removeToken', tokenController.removeToken);
+router.get('/wallet', tokenController.index); 
+router.post('/wallet/:userId(\\d+)/addPoint', tokenController.addWalletPoint);
+router.post('/wallet/:userId(\\d+)/removePoint', tokenController.removeWalletPoint);
+
 
 // Pantalla Propuestas
 router.param('postId', postController.load);
