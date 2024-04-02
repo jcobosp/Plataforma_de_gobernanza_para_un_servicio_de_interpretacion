@@ -1,47 +1,70 @@
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-        <div class="page-header d-flex align-items-center" style="background-image: url('/stylesheets/img/page-header.jpg');">
-          <div class="container position-relative">
-            <div class="row d-flex justify-content-center">
-              <div class="col-lg-6 text-center">
-                <h2>Tokens</h2>
-                <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-              </div>
-            </div>
-          </div>
+<!-- ======= Breadcrumbs ======= -->
+<div class="breadcrumbs">
+  <div class="page-header d-flex align-items-center" style="background-image: url('/stylesheets/img/page-header.jpg');">
+    <div class="container position-relative">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h2>Tokens</h2>
+          <p>Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
         </div>
-        <nav>
-          <div class="container">
-            <ol>
-              <li><a href="/">Menu</a></li>
-              <li>Tokens</li>
-            </ol>
-          </div>
-        </nav>
       </div>
-      <!-- End Breadcrumbs -->
+    </div>
+  </div>
+  <nav>
+    <div class="container">
+      <ol>
+        <li><a href="/">Menu</a></li>
+        <li>Tokens</li>
+      </ol>
+    </div>
+  </nav>
+</div>
+<!-- End Breadcrumbs -->
+
+<section>
+  <h2>Wallet y Tokens de Usuarios</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Wallet</h3>
+      <ul>
+        <% users.forEach(user => { %>
+          <li>
+            <%= user.username %>: <%= user.wallet %>
+            <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addPointWallet">
+              <input type="number" name="points" min="1" value="1">
+              <button type="submit">Sumar Puntos</button>
+            </form>
+            <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removePointWallet">
+              <input type="number" name="points" min="1" value="1">
+              <button type="submit" <%= user.wallet === 0 ? 'disabled' : '' %>>Restar Puntos</button>
+            </form>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h3>Tokens</h3>
+      <ul>
+        <% users.forEach(user => { %>
+          <li>
+            <%= user.username %>: <%= user.tokens %>
+            <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addTokenToUser">
+              <input type="number" name="tokens" min="1" value="1">
+              <button type="submit">Sumar Tokens</button>
+            </form>
+            <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removeTokenFromUser">
+              <input type="number" name="tokens" min="1" value="1">
+              <button type="submit" <%= user.tokens === 0 ? 'disabled' : '' %>>Restar Tokens</button>
+            </form>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
+</section>
+
       
-      <section>
-        <h2>Wallet de Usuarios</h2>
-        <ul>
-          <% users.forEach(user => { %>
-            <li>
-              <%= user.username %>: <%= user.wallet %>
-              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addPointWallet">
-                <input type="number" name="points" min="1" value="1">
-                <button type="submit">Sumar Puntos</button>
-              </form>
-              
-              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removePointWallet">
-                <input type="number" name="points" min="1" value="1">
-                <button type="submit" <%= user.wallet === 0 ? 'disabled' : '' %>>Restar Puntos</button>
-              </form>
-              
-            </li>
-          <% }); %>
-        </ul>
-      </section> 
+      
 
 
 

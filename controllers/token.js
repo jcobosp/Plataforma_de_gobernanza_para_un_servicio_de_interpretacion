@@ -3,7 +3,7 @@ const { models } = require('../models');
 
 exports.index = async (req, res) => {
   try {
-    const usersWithWallet = await models.UserTeam.findAll({ attributes: ['userId', 'teamId', 'wallet'] });
+    const usersWithWallet = await models.UserTeam.findAll({ attributes: ['userId', 'teamId', 'wallet', 'tokens'] });
     const usersWithUsername = [];
     for (const user of usersWithWallet) {
       const userInfo = await models.User.findByPk(user.userId);
@@ -12,7 +12,8 @@ exports.index = async (req, res) => {
           userId: user.userId,
           teamId: user.teamId,
           username: userInfo.username, 
-          wallet: user.wallet 
+          wallet: user.wallet,
+          tokens: user.tokens
         });
       }
     }
@@ -118,5 +119,56 @@ exports.removeWalletPoint = async (req, res) => {
   } catch (error) {
     console.error('Error removing wallet points:', error);
     res.status(500).send('Error removing wallet points');
+  }
+};
+
+
+
+exports.addTokenToUser = async (req, res) => {
+  const userId = req.params.userId;
+  const teamId = req.params.teamId;
+  const tokensToAdd = parseInt(req.body.tokens);
+
+  try {
+    const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
+    if (!userTeam) {
+      res.status(404).send('Usuario no encontrado en el equipo');
+      return;
+    }
+
+    userTeam.tokens += tokensToAdd;
+    await userTeam.save();
+
+    res.redirect('/wallet');
+  } catch (error) {
+    console.error('Error adding tokens to user:', error);
+    res.status(500).send('Error adding tokens to user');
+  }
+};
+
+exports.removeTokenFromUser = async (req, res) => {
+  const userId = req.params.userId;
+  const teamId = req.params.teamId;
+  const tokensToRemove = parseInt(req.body.tokens);
+
+  try {
+    const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
+    if (!userTeam) {
+      res.status(404).send('Usuario no encontrado en el equipo');
+      return;
+    }
+
+    if (userTeam.tokens >= tokensToRemove) {
+      userTeam.tokens -= tokensToRemove;
+      await userTeam.save();
+    } else {
+      res.status(400).send('No hay suficientes tokens para eliminar');
+      return;
+    }
+
+    res.redirect('/wallet');
+  } catch (error) {
+    console.error('Error removing tokens from user:', error);
+    res.status(500).send('Error removing tokens from user');
   }
 };
