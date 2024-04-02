@@ -75,6 +75,7 @@ exports.removeToken = async (req, res) => {
 exports.addWalletPoint = async (req, res) => {
   const userId = req.params.userId;
   const teamId = req.params.teamId;
+  const pointsToAdd = parseInt(req.body.points);
 
   try {
     const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
@@ -83,19 +84,20 @@ exports.addWalletPoint = async (req, res) => {
       return;
     }
 
-    userTeam.wallet += 1;
+    userTeam.wallet += pointsToAdd;
     await userTeam.save();
 
     res.redirect('/wallet');
   } catch (error) {
-    console.error('Error adding wallet point:', error);
-    res.status(500).send('Error adding wallet point');
+    console.error('Error adding wallet points:', error);
+    res.status(500).send('Error adding wallet points');
   }
 };
 
 exports.removeWalletPoint = async (req, res) => {
   const userId = req.params.userId;
   const teamId = req.params.teamId;
+  const pointsToRemove = parseInt(req.body.points);
 
   try {
     const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
@@ -104,8 +106,8 @@ exports.removeWalletPoint = async (req, res) => {
       return;
     }
 
-    if (userTeam.wallet > 0) {
-      userTeam.wallet -= 1;
+    if (userTeam.wallet >= pointsToRemove) {
+      userTeam.wallet -= pointsToRemove;
       await userTeam.save();
     } else {
       res.status(400).send('No hay suficientes puntos en el wallet para eliminar');
@@ -114,7 +116,7 @@ exports.removeWalletPoint = async (req, res) => {
 
     res.redirect('/wallet');
   } catch (error) {
-    console.error('Error removing wallet point:', error);
-    res.status(500).send('Error removing wallet point');
+    console.error('Error removing wallet points:', error);
+    res.status(500).send('Error removing wallet points');
   }
 };
