@@ -40,9 +40,8 @@ router.post('/reputation/:userId(\\d+)/addPoint', reputationController.addPoint)
 // router.post('/tokens/:userId(\\d+)/addToken', tokenController.addToken);
 // router.post('/tokens/:userId(\\d+)/removeToken', tokenController.removeToken);
 router.get('/wallet', tokenController.index); 
-router.post('/wallet/:userId(\\d+)/addPoint', tokenController.addWalletPoint);
-router.post('/wallet/:userId(\\d+)/removePoint', tokenController.removeWalletPoint);
-
+router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/addPointWallet', tokenController.addWalletPoint);
+router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/removePointWallet', tokenController.removeWalletPoint);
 
 // Pantalla Propuestas
 router.param('postId', postController.load);

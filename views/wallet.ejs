@@ -21,38 +21,23 @@
         </nav>
       </div>
       <!-- End Breadcrumbs -->
-      <!-- <section>
-    <h2>Tokens de Usuarios</h2>
-    <ul>
-        <% users.forEach(user => { %>
-            <% console.log('Username:', user.username, 'Tokens:', user.tokens); %>
-            <li>
-                <%= user.username %>: <%= user.tokens %>
-                <form method="post" action="/tokens/<%= user.id %>/addToken">
-                    <button type="submit">Sumar Token</button>
-                </form>
-                <form method="post" action="/tokens/<%= user.id %>/removeToken">
-                    <button type="submit" <%= user.tokens === 0 ? 'disabled' : '' %>>Restar Token</button>
-                </form>
-            </li>
-        <% }); %>
-    </ul>
-</section> -->
+      
       <section>
         <h2>Wallet de Usuarios</h2>
         <ul>
-            <% users.forEach(user => { %>
-                <li>
-                    <%= user.username %>: <%= user.wallet %>
-                    <form method="post" action="/wallet/<%= user.userId %>/addPoint">
-                        <button type="submit">Sumar Punto</button>
-                    </form>
-                    <form method="post" action="/wallet/<%= user.userId %>/removePoint">
-                        <button type="submit" <%= user.wallet === 0 ? 'disabled' : '' %>>Restar Punto</button>
-                    </form>
-                </li>
-            <% }); %>
+          <% users.forEach(user => { %>
+            <li>
+              <%= user.username %>: <%= user.wallet %>
+              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addPointWallet">
+                <button type="submit">Sumar Punto</button>
+              </form>
+              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removePointWallet">
+                <button type="submit" <%= user.wallet === 0 ? 'disabled' : '' %>>Restar Punto</button>
+              </form>
+            </li>
+          <% }); %>
         </ul>
       </section>
+
 
 
