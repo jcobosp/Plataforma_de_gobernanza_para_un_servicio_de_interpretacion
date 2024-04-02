@@ -36,6 +36,36 @@ module.exports = (sequelize, DataTypes) => {
             vetoed: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
+            },
+            min_voting: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            max_voting: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            min_users_voted: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            voting_reward: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            voting_failure_penalty: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
+            },
+            voting_success_reward: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0
             }
         }, 
         {sequelize}

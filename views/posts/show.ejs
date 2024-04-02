@@ -3,6 +3,8 @@
 
   <% include('../attachments/_attachment', { post: post }) %>
   <article class="postShow">
+  <div class="row">
+  <div class="col-md-6">
     <ul>
       <li>Title: <b><%= post.title %></b></li>
       <li>Body: <b><%= post.body %></b></li>
@@ -13,7 +15,7 @@
       <li>Votes For: <%= post.votesFor %></li>
       <li>Votes Against: <%= post.votesAgainst %></li>
       <li>Abstentions: <%= post.abstentions %></li>
-      <li>Team: <%= post.team %></li> 
+      <li>Team: <%= post.team %></li>
     </ul>
     <% if (!post.vetoed) { %>
       <% if (belongsToSameTeam) { %> 
@@ -51,7 +53,18 @@
         By <b><%= post.author ? post.author.username : "Anonymous" %></b>
       </small>
     </div>
-
-    <a href="/posts">Back</a>
+   <a href="/posts">Back</a>
+  </div>
+  <div class="col-md-6">
+    <ul>
+      <li>Minimum Voting Score: <%= post.min_voting %></li>
+      <li>Maximum Voting: <%= post.max_voting %></li>
+      <li>Minimum Users Voted: <%= post.min_users_voted %></li>
+      <li>Voting Reward: <%= post.voting_reward %></li>
+      <li>Voting Failure Penalty: <%= post.voting_failure_penalty %></li>
+      <li>Voting Success Reward: <%= post.voting_success_reward %></li>
+    </ul>
+  </div>
+  </div>
   </article>
 </section>

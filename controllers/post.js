@@ -107,7 +107,7 @@ exports.new = async (req, res, next) => {
 
 
 exports.create = async (req, res, next) => 
-{   const { title, body, team, votingStartDate, votingEndDate, applicationDate, vetoDate } = req.body;
+{   const { title, body, team, votingStartDate, votingEndDate, applicationDate, vetoDate, min_voting, max_voting, min_users_voted, voting_reward, voting_failure_penalty, voting_success_reward } = req.body;
     const authorId = req.session.loginUser?.id;
     let post;
     try {
@@ -124,7 +124,13 @@ exports.create = async (req, res, next) =>
             votingStartDate: convertedStartDate,
             votingEndDate: convertedEndDate,
             applicationDate: convertedApplicationDate,
-            vetoDate: convertedVetoDate
+            vetoDate: convertedVetoDate,
+            min_voting,
+            max_voting,
+            min_users_voted,
+            voting_reward,
+            voting_failure_penalty,
+            voting_success_reward
         });
         const savedPost = await post.save();
         await savedPost.setTeam(team);
@@ -191,6 +197,13 @@ exports.update = async (req, res, next) => {
     post.votingEndDate = new Date(req.body.votingEndDate);
     post.applicationDate = new Date(req.body.applicationDate);
     post.vetoDate = new Date(req.body.vetoDate);
+    post.min_voting = req.body.min_voting;
+    post.max_voting = req.body.max_voting;
+    post.min_users_voted = req.body.min_users_voted;
+    post.voting_reward = req.body.voting_reward;
+    post.voting_failure_penalty = req.body.voting_failure_penalty;
+    post.voting_success_reward = req.body.voting_success_reward;
+
     try {
         const updatedPost = await post.save();
         await updatedPost.setTeam(req.body.team); 
