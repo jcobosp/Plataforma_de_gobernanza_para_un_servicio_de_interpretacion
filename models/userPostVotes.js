@@ -21,6 +21,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING, 
         allowNull: true,
       },
+      lastVotePoints: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: null
+      }
     },
     {
       sequelize,

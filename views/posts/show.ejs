@@ -27,10 +27,13 @@
             </form>
           <% } else { %>
             <form action="/posts/<%= post.id %>/vote" method="post">
+              <label for="votePoints">Cantidad de puntos:</label>
+              <input type="number" id="votePoints" name="votePoints" min="1" max="100" required>
               <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
               <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
               <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
             </form>
+            
           <% } %>
         <% } else { %>
           <p>Las votaciones no están habilitadas en este momento.</p>

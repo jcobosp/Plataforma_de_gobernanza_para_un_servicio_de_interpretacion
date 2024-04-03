@@ -26,52 +26,52 @@ exports.index = async (req, res) => {
 
 
 
-// exports.addToken = async (req, res) => {
-//   const userId = req.params.userId;
+exports.addToken = async (req, res) => {
+  const userId = req.params.userId;
 
-//   try {
-//     const user = await models.User.findByPk(userId);
-//     if (!user) {
-//       res.status(404).send('Usuario no encontrado');
-//       return;
-//     }
+  try {
+    const user = await models.User.findByPk(userId);
+    if (!user) {
+      res.status(404).send('Usuario no encontrado');
+      return;
+    }
 
-//     // Incrementar los tokens del usuario
-//     user.tokens += 1;
-//     await user.save();
+    // Incrementar los tokens del usuario
+    user.tokens += 1;
+    await user.save();
 
-//     res.redirect('/tokens'); // Redirigir de vuelta a la página de tokens
-//   } catch (error) {
-//     console.error('Error adding token:', error);
-//     res.status(500).send('Error adding token');
-//   }
-// };
+    res.redirect('/tokens'); // Redirigir de vuelta a la página de tokens
+  } catch (error) {
+    console.error('Error adding token:', error);
+    res.status(500).send('Error adding token');
+  }
+};
 
-// exports.removeToken = async (req, res) => {
-//   const userId = req.params.userId;
+exports.removeToken = async (req, res) => {
+  const userId = req.params.userId;
 
-//   try {
-//     const user = await models.User.findByPk(userId);
-//     if (!user) {
-//       res.status(404).send('Usuario no encontrado');
-//       return;
-//     }
+  try {
+    const user = await models.User.findByPk(userId);
+    if (!user) {
+      res.status(404).send('Usuario no encontrado');
+      return;
+    }
 
-//     // Decrementar los tokens del usuario si hay suficientes
-//     if (user.tokens > 0) {
-//       user.tokens -= 1;
-//       await user.save();
-//     } else {
-//       res.status(400).send('No hay suficientes tokens para eliminar');
-//       return;
-//     }
+    // Decrementar los tokens del usuario si hay suficientes
+    if (user.tokens > 0) {
+      user.tokens -= 1;
+      await user.save();
+    } else {
+      res.status(400).send('No hay suficientes tokens para eliminar');
+      return;
+    }
 
-//     res.redirect('/tokens'); // Redirigir de vuelta a la página de tokens
-//   } catch (error) {
-//     console.error('Error removing token:', error);
-//     res.status(500).send('Error removing token');
-//   }
-// };
+    res.redirect('/tokens'); // Redirigir de vuelta a la página de tokens
+  } catch (error) {
+    console.error('Error removing token:', error);
+    res.status(500).send('Error removing token');
+  }
+};
 
 exports.addWalletPoint = async (req, res) => {
   const userId = req.params.userId;
@@ -123,79 +123,52 @@ exports.removeWalletPoint = async (req, res) => {
 };
 
 
-// Función para actualizar la reputación de un usuario en todos sus equipos
-const updateReputationForUser = async (userId) => {
-    try {
-        // Obtener la lista de equipos en los que el usuario participa
-        const userTeams = await models.UserTeam.findAll({
-            where: { userId },
-            raw: true
-        });
 
-        // Calcular y actualizar la reputación del usuario en cada equipo
-        await Promise.all(userTeams.map(async (userTeam) => {
-            const totalTokensInTeam = await models.UserTeam.sum('tokens', {
-                where: { teamId: userTeam.teamId }
-            });
-            const reputation = (userTeam.tokens / totalTokensInTeam) * 100;
-            await models.UserTeam.update({ reputation }, {
-                where: { userId, teamId: userTeam.teamId }
-            });
-        }));
+exports.addTokenToUser = async (req, res) => {
+  const userId = req.params.userId;
+  const teamId = req.params.teamId;
+  const tokensToAdd = parseInt(req.body.tokens);
 
-        console.log('Reputation updated successfully for user:', userId);
-    } catch (error) {
-        console.error('Error updating reputation for user:', userId, error);
+  try {
+    const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
+    if (!userTeam) {
+      res.status(404).send('Usuario no encontrado en el equipo');
+      return;
     }
+
+    userTeam.tokens += tokensToAdd;
+    await userTeam.save();
+
+    res.redirect('/wallet');
+  } catch (error) {
+    console.error('Error adding tokens to user:', error);
+    res.status(500).send('Error adding tokens to user');
+  }
 };
 
-// Controlador para agregar tokens al usuario en un equipo
-exports.addTokenToUser = async (req, res, next) => {
-    const { userId, teamId } = req.params;
-    const { points } = req.body;
+exports.removeTokenFromUser = async (req, res) => {
+  const userId = req.params.userId;
+  const teamId = req.params.teamId;
+  const tokensToRemove = parseInt(req.body.tokens);
 
-    try {
-        await sequelize.transaction(async (t) => {
-            // Incrementar los tokens del usuario en el equipo
-            await models.UserTeam.increment('tokens', {
-                by: points,
-                where: { userId, teamId },
-                transaction: t
-            });
-
-            // Actualizar la reputación del usuario en todos sus equipos
-            await updateReputationForUser(userId);
-        });
-
-        res.status(200).send('Tokens added successfully.');
-    } catch (error) {
-        console.error('Error adding tokens:', error);
-        res.status(500).send('Error adding tokens.');
+  try {
+    const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
+    if (!userTeam) {
+      res.status(404).send('Usuario no encontrado en el equipo');
+      return;
     }
-};
 
-// Controlador para eliminar tokens del usuario en un equipo
-exports.removeTokenFromUser = async (req, res, next) => {
-    const { userId, teamId } = req.params;
-    const { points } = req.body;
-
-    try {
-        await sequelize.transaction(async (t) => {
-            // Decrementar los tokens del usuario en el equipo
-            await models.UserTeam.increment('tokens', {
-                by: -points,
-                where: { userId, teamId },
-                transaction: t
-            });
-
-            // Actualizar la reputación del usuario en todos sus equipos
-            await updateReputationForUser(userId);
-        });
-
-        res.status(200).send('Tokens removed successfully.');
-    } catch (error) {
-        console.error('Error removing tokens:', error);
-        res.status(500).send('Error removing tokens.');
+    if (userTeam.tokens >= tokensToRemove) {
+      userTeam.tokens -= tokensToRemove;
+      await userTeam.save();
+    } else {
+      res.status(400).send('No hay suficientes tokens para eliminar');
+      return;
     }
-};
 
+    res.redirect('/wallet');
+  } catch (error) {
+    console.error('Error removing tokens from user:', error);
+    res.status(500).send('Error removing tokens from user');
+  }
+};

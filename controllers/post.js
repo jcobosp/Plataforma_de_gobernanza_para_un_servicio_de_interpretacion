@@ -256,7 +256,8 @@ exports.adminOrAuthorRequired = (req, res, next) =>
 
 exports.vote = async (req, res, next) => {
     const { post } = req.load;
-    const { vote } = req.body;
+    const { vote, votePoints } = req.body;
+
     const userId = req.session.loginUser.id;
   
     try {
@@ -271,23 +272,29 @@ exports.vote = async (req, res, next) => {
         return res.status(400).send('Ya has votado en esta propuesta.');
       }
   
-      if (vote === 'for') {
-        post.votesFor += 1;
-      } else if (vote === 'against') {
-        post.votesAgainst += 1;
-      } else if (vote === 'abstain') {
-        post.abstentions += 1;
-      }
-  
       if (!userPostVote) {
         await models.UserPostVotes.create({
           userId: userId,
           postId: post.id,
           hasVoted: true,
           lastVote: vote,
+          lastVotePoints: votePoints,
         });
       } else {
-        await userPostVote.update({ hasVoted: true, lastVote: vote });
+        await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: votePoints });
+      }
+
+      // Verificar si post.teamId está definido antes de decrementar la billetera del usuario
+      if (post.teamId) {
+        await models.UserTeam.decrement('wallet', { by: votePoints, where: { userId: userId, teamId: post.teamId } });
+      }
+      
+      if (vote === 'for') {
+        post.votesFor += votePoints;
+      } else if (vote === 'against') {
+        post.votesAgainst += votePoints;
+      } else if (vote === 'abstain') {
+        post.abstentions += votePoints;
       }
   
       await post.save();
@@ -296,8 +303,8 @@ exports.vote = async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  };
-  
+};
+
 
 
 exports.changeVote = async (req, res, next) => {
@@ -317,12 +324,14 @@ exports.changeVote = async (req, res, next) => {
         return;
       }
   
+      await models.UserTeam.increment('wallet', { by: userPostVote.lastVotePoints, where: { userId: userId, teamId: post.teamId } });
+  
       if (userPostVote.lastVote === 'for') {
-        post.votesFor -= 1;
+        post.votesFor -= userPostVote.lastVotePoints;
       } else if (userPostVote.lastVote === 'against') {
-        post.votesAgainst -= 1;
+        post.votesAgainst -= userPostVote.lastVotePoints;
       } else if (userPostVote.lastVote === 'abstain') {
-        post.abstentions -= 1;
+        post.abstentions -= userPostVote.lastVotePoints;
       }
   
       await post.save();
@@ -334,7 +343,6 @@ exports.changeVote = async (req, res, next) => {
       next(error);
     }
 };
-
   
 exports.veto = async (req, res, next) => {
     const { post } = req.load;
