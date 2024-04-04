@@ -23,6 +23,7 @@
           <% if (post.hasVoted) { %>
             <p>¡Ya has votado en esta propuesta!</p>
             <form action="/posts/<%= post.id %>/change-vote" method="post">
+              <input type="hidden" name="teamId" value="<%= post.TeamId %>">
               <button type="submit" name="vote" value="change">Cambiar mi voto</button>
             </form>
           <% } else { %>

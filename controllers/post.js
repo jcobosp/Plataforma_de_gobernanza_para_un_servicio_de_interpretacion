@@ -309,39 +309,43 @@ exports.vote = async (req, res, next) => {
 exports.changeVote = async (req, res, next) => {
     const { post } = req.load;
     const userId = req.session.loginUser.id;
-  
+    const teamId = req.body.teamId; 
+
     try {
-      const userPostVote = await models.UserPostVotes.findOne({
-        where: {
-          postId: post.id,
-          userId: userId,
-        },
-      });
-  
-      if (!userPostVote) {
+        const userPostVote = await models.UserPostVotes.findOne({
+            where: {
+                postId: post.id,
+                userId: userId,
+            },
+        });
+
+        if (!userPostVote) {
+            res.redirect(`/posts/${post.id}`);
+            return;
+        }
+
+        const lastvotedpoints = userPostVote.lastVotePoints;
+        await models.UserTeam.increment('wallet', { by: lastvotedpoints, where: { userId: userId, teamId: teamId } });
+        
+
+        if (userPostVote.lastVote === 'for') {
+            post.votesFor -= lastvotedpoints;
+        } else if (userPostVote.lastVote === 'against') {
+            post.votesAgainst -= lastvotedpoints;
+        } else if (userPostVote.lastVote === 'abstain') {
+            post.abstentions -= lastvotedpoints;
+        }
+
+        await post.save();
+
+        await userPostVote.destroy();
+
         res.redirect(`/posts/${post.id}`);
-        return;
-      }
-  
-      await models.UserTeam.increment('wallet', { by: userPostVote.lastVotePoints, where: { userId: userId, teamId: post.teamId } });
-  
-      if (userPostVote.lastVote === 'for') {
-        post.votesFor -= userPostVote.lastVotePoints;
-      } else if (userPostVote.lastVote === 'against') {
-        post.votesAgainst -= userPostVote.lastVotePoints;
-      } else if (userPostVote.lastVote === 'abstain') {
-        post.abstentions -= userPostVote.lastVotePoints;
-      }
-  
-      await post.save();
-  
-      await userPostVote.destroy();
-  
-      res.redirect(`/posts/${post.id}`);
     } catch (error) {
-      next(error);
+        next(error);
     }
 };
+
   
 exports.veto = async (req, res, next) => {
     const { post } = req.load;
