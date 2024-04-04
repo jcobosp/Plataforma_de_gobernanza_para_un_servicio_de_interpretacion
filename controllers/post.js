@@ -4,7 +4,8 @@ const {models} = require("../models" ) ;
 exports.load = async (req, res, next, postId) => 
 {   try { const post = await models.Post.findByPk(postId, {
             include: [ {model: models.Attachment, as: 'attachment'},
-            {model: models.User, as: 'author'}]
+            {model: models.User, as: 'author'},
+            { model: models.Team, as: 'team' } ]
         });
         if (post) {
             req.load = {...req.load, post};
@@ -257,54 +258,52 @@ exports.adminOrAuthorRequired = (req, res, next) =>
 exports.vote = async (req, res, next) => {
     const { post } = req.load;
     const { vote, votePoints } = req.body;
-
     const userId = req.session.loginUser.id;
   
     try {
-      const userPostVote = await models.UserPostVotes.findOne({
-        where: {
-          postId: post.id,
-          userId: userId,
-        },
-      });
-  
-      if (userPostVote && userPostVote.hasVoted) {
-        return res.status(400).send('Ya has votado en esta propuesta.');
-      }
-  
-      if (!userPostVote) {
-        await models.UserPostVotes.create({
-          userId: userId,
-          postId: post.id,
-          hasVoted: true,
-          lastVote: vote,
-          lastVotePoints: votePoints,
+        const userPostVote = await models.UserPostVotes.findOne({
+            where: {
+                postId: post.id,
+                userId: userId,
+            },
         });
-      } else {
-        await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: votePoints });
-      }
+  
+        if (userPostVote && userPostVote.hasVoted) {
+            return res.status(400).send('Ya has votado en esta propuesta.');
+        }
+  
+        if (!userPostVote) {
+            await models.UserPostVotes.create({
+                userId: userId,
+                postId: post.id,
+                hasVoted: true,
+                lastVote: vote,
+                lastVotePoints: votePoints,
+            });
+        } else {
+            await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: votePoints });
+        }
 
-      // Verificar si post.teamId está definido antes de decrementar la billetera del usuario
-      if (post.teamId) {
-        await models.UserTeam.decrement('wallet', { by: votePoints, where: { userId: userId, teamId: post.teamId } });
-      }
-      
-      if (vote === 'for') {
-        post.votesFor += votePoints;
-      } else if (vote === 'against') {
-        post.votesAgainst += votePoints;
-      } else if (vote === 'abstain') {
-        post.abstentions += votePoints;
-      }
+        if (post.TeamId) {
+            const teamId = post.TeamId;
+            await models.UserTeam.decrement('wallet', { by: votePoints, where: { userId: userId, teamId: teamId } });
+        }
+        
+        if (vote === 'for') {
+            post.votesFor += votePoints;
+        } else if (vote === 'against') {
+            post.votesAgainst += votePoints;
+        } else if (vote === 'abstain') {
+            post.abstentions += votePoints;
+        }
   
-      await post.save();
+        await post.save();
   
-      res.redirect(`/posts/${post.id}`);
+        res.redirect(`/posts/${post.id}`);
     } catch (error) {
-      next(error);
+        next(error);
     }
 };
-
 
 
 exports.changeVote = async (req, res, next) => {

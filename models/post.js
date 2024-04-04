@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.TEXT,
                 validate: {notEmpty: {msg: "Body must not be empty"}}
             },
+            TeamId: {
+                type: DataTypes.INTEGER
+            },
             votingStartDate: {
                 type: DataTypes.DATE
             },
