@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 // Configuracion de la session para almacenarla en BBDD Redis.
-app.use(session({ secret: "Blog 2022", resave: false, saveUninitialized: true }));
+app.use(session({ secret: "Blog 2024", resave: false, saveUninitialized: true }));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // Este middleware nos permite usar loginUser en las vistas (usando locals.loginUser)

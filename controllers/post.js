@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const {models} = require("../models" ) ;
+const { Op } = require('sequelize');
 
 exports.load = async (req, res, next, postId) => 
 {   try { const post = await models.Post.findByPk(postId, {
@@ -379,6 +380,55 @@ exports.veto = async (req, res, next) => {
         res.redirect(`/posts/${post.id}`);
     } catch (error) {
         next(error);
+    }
+};
+
+exports.grantVotingRewards = async () => {
+    try {
+        // Encontrar todas las propuestas vencidas que aún no han entregado la recompensa de votación
+        const posts = await models.Post.findAll({
+            where: {
+                votingEndDate: {
+                    [Op.lt]: new Date()
+                },
+                votingRewardGiven: false
+            }
+        });
+
+        for (const post of posts) {
+            const votes = await models.UserPostVotes.findAll({
+                where: {
+                    postId: post.id
+                }
+            });
+
+            for (const vote of votes) {
+                const userId = vote.userId;
+
+                const userTeam = await models.UserTeam.findOne({
+                    where: {
+                        userId: userId,
+                        teamId: post.TeamId
+                    }
+                });
+
+                if (userTeam) {
+                    // Agregar la recompensa de votación a la wallet del usuario
+                    await models.UserTeam.increment('wallet', {
+                        by: post.voting_reward,
+                        where: {
+                            userId: userId,
+                            teamId: post.TeamId
+                        }
+                    });
+                }
+            }
+
+            // Marcar la recompensa de votación como entregada para esta propuesta
+            await post.update({ votingRewardGiven: true });
+        }
+    } catch (error) {
+        console.error('Error al otorgar las recompensas de votación:', error);
     }
 };
 
