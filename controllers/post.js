@@ -259,51 +259,57 @@ exports.vote = async (req, res, next) => {
     const { post } = req.load;
     const { vote, votePoints } = req.body;
     const userId = req.session.loginUser.id;
-  
+
     try {
+        const userTeam = await models.UserTeam.findOne({
+            where: { userId: userId, teamId: post.TeamId },
+        });
+
+        if (!userTeam || userTeam.wallet < votePoints) {
+            return res.status(400).send('No tienes suficientes puntos para votar.');
+        }
+
         const userPostVote = await models.UserPostVotes.findOne({
             where: {
                 postId: post.id,
                 userId: userId,
             },
         });
-  
+
         if (userPostVote && userPostVote.hasVoted) {
             return res.status(400).send('Ya has votado en esta propuesta.');
         }
-  
+
         if (!userPostVote) {
             await models.UserPostVotes.create({
                 userId: userId,
                 postId: post.id,
                 hasVoted: true,
                 lastVote: vote,
-                lastVotePoints: votePoints,
+                lastVotePoints: parseInt(votePoints), 
             });
         } else {
-            await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: votePoints });
+            await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: parseInt(votePoints) }); // Convertir a número
         }
 
-        if (post.TeamId) {
-            const teamId = post.TeamId;
-            await models.UserTeam.decrement('wallet', { by: votePoints, where: { userId: userId, teamId: teamId } });
-        }
-        
+        await models.UserTeam.decrement('wallet', { by: parseInt(votePoints), where: { userId: userId, teamId: post.TeamId } }); // Convertir a número
+
         if (vote === 'for') {
-            post.votesFor += votePoints;
+            post.votesFor += parseInt(votePoints); 
         } else if (vote === 'against') {
-            post.votesAgainst += votePoints;
+            post.votesAgainst += parseInt(votePoints); 
         } else if (vote === 'abstain') {
-            post.abstentions += votePoints;
+            post.abstentions += parseInt(votePoints); 
         }
-  
+
         await post.save();
-  
+
         res.redirect(`/posts/${post.id}`);
     } catch (error) {
         next(error);
     }
 };
+
 
 
 exports.changeVote = async (req, res, next) => {
@@ -351,14 +357,28 @@ exports.veto = async (req, res, next) => {
     const { post } = req.load;
   
     try {
-      post.votesFor = 0;
-      post.votesAgainst = 0;
-      post.abstentions = 0;
-      post.vetoed = true;
-      await post.save();
+        const userPostVotes = await models.UserPostVotes.findAll({
+            where: {
+                postId: post.id,
+                hasVoted: true,
+            },
+        });
+
+        for (const userVote of userPostVotes) {
+            const { userId, lastVotePoints } = userVote;
+            const teamId = post.TeamId;
+            await models.UserTeam.increment('wallet', { by: lastVotePoints, where: { userId: userId, teamId: teamId } });
+        }
+
+        post.votesFor = 0;
+        post.votesAgainst = 0;
+        post.abstentions = 0;
+        post.vetoed = true;
+        await post.save();
   
-      res.redirect(`/posts/${post.id}`);
+        res.redirect(`/posts/${post.id}`);
     } catch (error) {
-      next(error);
+        next(error);
     }
 };
+
