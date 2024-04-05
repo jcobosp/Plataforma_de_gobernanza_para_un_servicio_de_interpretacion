@@ -237,15 +237,22 @@ exports.update = async (req, res, next) => {
     }
 };
 
-exports.destroy = async (req, res, next) => 
-{   const attachment = req.load.post.attachment;
+exports.destroy = async (req, res, next) => {
     try {
+        const post = req.load.post;
+
+        await models.UserPostVotes.destroy({ where: { postId: post.id } });
+
+        if (post.attachmentId) {
+            await models.Attachment.destroy({ where: { id: post.attachmentId } });
+        }
+
         await req.load.post.destroy();
-        attachment && await attachment.destroy();
-        const posts = '/posts';
-        res.redirect(posts);
-    } catch (error) { next(error); }
-}; 
+        res.redirect('/posts');
+    } catch (error) {
+        next(error);
+    }
+};
 
 exports.adminOrAuthorRequired = (req, res, next) => 
 {   const {post} = req.load;
