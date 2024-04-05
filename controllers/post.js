@@ -68,7 +68,7 @@ exports.show = async (req, res, next) => {
             });
             const userTeams = await models.UserTeam.findAll({
                 where: { userId: userId },
-                attributes: ['teamId']
+                attributes: ['teamId', 'wallet']
             });
             const belongsToSameTeam = userTeams.some(team => team.teamId === post.TeamId);
 
@@ -76,6 +76,7 @@ exports.show = async (req, res, next) => {
             const currentDate = new Date();
             const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
             const isVetoEnabled = currentDate < post.vetoDate;
+            const userWalletPoints = userTeams.find(team => team.teamId === post.TeamId)?.wallet || 0;
             const formattedPost = {
                 ...post.toJSON(),
                 votingStartDate: post.votingStartDate ? new Date(post.votingStartDate).toLocaleString() : 'No especificada',
@@ -84,6 +85,7 @@ exports.show = async (req, res, next) => {
                 vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleString() : 'No especificada',
                 team: teamName,
                 hasVoted: userPostVote && userPostVote.hasVoted,
+                userWalletPoints: userWalletPoints
             };
             res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled, belongsToSameTeam });
         } catch (error) {
@@ -267,7 +269,7 @@ exports.vote = async (req, res, next) => {
         });
 
         if (!userTeam || userTeam.wallet < votePoints) {
-            return res.status(400).send('No tienes suficientes puntos para votar.');
+            return res.status(400).send('No dispone de esa cantidad de puntos en su wallet para votar.');
         }
 
         const userPostVote = await models.UserPostVotes.findOne({
@@ -279,6 +281,14 @@ exports.vote = async (req, res, next) => {
 
         if (userPostVote && userPostVote.hasVoted) {
             return res.status(400).send('Ya has votado en esta propuesta.');
+        }
+
+        if (parseInt(votePoints) > post.max_voting) {
+            return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) excede el límite máximo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
+        }
+
+        if (parseInt(votePoints) < post.min_voting) {
+            return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) es inferior al límite mínimo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
         }
 
         if (!userPostVote) {
@@ -382,53 +392,3 @@ exports.veto = async (req, res, next) => {
         next(error);
     }
 };
-
-exports.grantVotingRewards = async () => {
-    try {
-        // Encontrar todas las propuestas vencidas que aún no han entregado la recompensa de votación
-        const posts = await models.Post.findAll({
-            where: {
-                votingEndDate: {
-                    [Op.lt]: new Date()
-                },
-                votingRewardGiven: false
-            }
-        });
-
-        for (const post of posts) {
-            const votes = await models.UserPostVotes.findAll({
-                where: {
-                    postId: post.id
-                }
-            });
-
-            for (const vote of votes) {
-                const userId = vote.userId;
-
-                const userTeam = await models.UserTeam.findOne({
-                    where: {
-                        userId: userId,
-                        teamId: post.TeamId
-                    }
-                });
-
-                if (userTeam) {
-                    // Agregar la recompensa de votación a la wallet del usuario
-                    await models.UserTeam.increment('wallet', {
-                        by: post.voting_reward,
-                        where: {
-                            userId: userId,
-                            teamId: post.TeamId
-                        }
-                    });
-                }
-            }
-
-            // Marcar la recompensa de votación como entregada para esta propuesta
-            await post.update({ votingRewardGiven: true });
-        }
-    } catch (error) {
-        console.error('Error al otorgar las recompensas de votación:', error);
-    }
-};
-
