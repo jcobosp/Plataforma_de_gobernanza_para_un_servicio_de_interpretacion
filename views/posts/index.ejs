@@ -22,34 +22,40 @@
       </div>
       <!-- End Breadcrumbs -->
     <section>
-    <h2>Propuestas:</h2>
-    <% for (var i in posts) { %>
-        <% var post = posts[i]; %>
-        <article class="postShow">
-            <h3 class="postTitle"><%= post.title %></h3>
-            <%- include('../attachments/_attachment', { post: post }) %>
-            <div class="postOptions">
-                <a class="button-2" href="/posts/<%= post.id %>">Show</a>
-                <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin) {%>
-                <a class="button-2" href="/posts/<%= post.id %>/edit">Edit</a>
-                <% } %>
-                <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin) {%>
-                <a class="button-2" href="/posts/<%= post.id %>?_method=DELETE" onClick="return confirm('Delete: <%= post.title %>');">Delete</a>
-                <% } %>
-            </div>
-            <div>
-                <small id="author">By <b><%= post.author?.username ?? "Anonymous" %></b> </small>
-            </div>
-        </article>
-    <% } %>
-    <div>
-    <% if(locals.loginUser) {%>
-    <a href="/posts/new">Create New Post</a>
-    <% } %>
-
-    <div>
-      <a href="/posts/calculate-reputation" class="button-2">Calcular Reputación</a>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Propuestas:</h2>
+        <% for (var i in posts) { %>
+            <% var post = posts[i]; %>
+            <article class="postShow">
+                <h3 class="postTitle"><%= post.title %></h3>
+                <%- include('../attachments/_attachment', { post: post }) %>
+                <div class="postOptions">
+                    <a class="button-2" href="/posts/<%= post.id %>">Show</a>
+                    <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin) {%>
+                    <a class="button-2" href="/posts/<%= post.id %>/edit">Edit</a>
+                    <% } %>
+                    <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin) {%>
+                    <a class="button-2" href="/posts/<%= post.id %>?_method=DELETE" onClick="return confirm('Delete: <%= post.title %>');">Delete</a>
+                    <% } %>
+                </div>
+                <div>
+                    <small id="author">By <b><%= post.author?.username ?? "Anonymous" %></b> </small>
+                </div>
+            </article>
+        <% } %>
+        <div>
+        <% if(locals.loginUser) {%>
+        <a href="/posts/new">Create New Post</a>
+        <% } %>
+      </div>
+      <div class="col-md-6"></div>
+        <div>
+          <a href="/posts/calculate-reputation" class="button-2">Calcular Reputación</a>
+        </div>
+        <div>
+          <a href="/posts/apply-rewards" class="button-2">Aplicar Rewards de Votación</a>
+        </div>
+      </div>
     </div>
-
-</div>
 </section>

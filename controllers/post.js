@@ -429,3 +429,35 @@ exports.calculateReputation = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.applyRewards = async (req, res, next) => {
+    try {
+        const posts = await models.Post.findAll();
+
+        for (const post of posts) {
+            const currentDate = new Date();
+            const votingEndDate = new Date(post.votingEndDate);
+            if (currentDate > votingEndDate) {
+                const userPostVotes = await models.UserPostVotes.findAll({
+                    where: {
+                        postId: post.id,
+                        hasVoted: true,
+                    },
+                });
+
+                const teamId = post.TeamId;
+
+                for (const userPostVote of userPostVotes) {
+                    const userId = userPostVote.userId;
+                    const votingReward = post.voting_reward;
+
+                    await models.UserTeam.increment('wallet', { by: votingReward, where: { userId: userId, teamId: teamId } });
+                }
+            }
+        }
+
+        res.redirect('/posts');
+    } catch (error) {
+        next(error);
+    }
+};
