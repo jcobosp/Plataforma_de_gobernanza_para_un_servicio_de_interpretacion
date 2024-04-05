@@ -453,6 +453,32 @@ exports.applyRewards = async (req, res, next) => {
 
                     await models.UserTeam.increment('wallet', { by: votingReward, where: { userId: userId, teamId: teamId } });
                 }
+
+                const votesFor = post.votesFor;
+                const votesAgainst = post.votesAgainst;
+                const abstentions = post.abstentions;
+                let winningOption;
+                let losingOption;
+                if (votesFor > votesAgainst) {
+                    winningOption = 'for';
+                    losingOption = 'against';
+                } else if (votesAgainst > votesFor) {
+                    winningOption = 'against';
+                    losingOption = 'for';
+                }
+
+                for (const userPostVote of userPostVotes) {
+                    const userId = userPostVote.userId;
+                    const votingFailurePenalty = post.voting_failure_penalty;
+                    const votingSuccessReward = post.voting_success_reward;
+                    const vote = userPostVote.lastVote;
+
+                    if (vote === winningOption) {
+                        await models.UserTeam.increment('tokens', { by: votingSuccessReward, where: { userId: userId, teamId: teamId } });
+                    } else if (vote === losingOption) {
+                        await models.UserTeam.decrement('tokens', { by: votingFailurePenalty, where: { userId: userId, teamId: teamId } });
+                    }
+                }
             }
         }
 
