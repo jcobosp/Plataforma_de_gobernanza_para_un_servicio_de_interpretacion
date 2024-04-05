@@ -399,3 +399,33 @@ exports.veto = async (req, res, next) => {
         next(error);
     }
 };
+
+
+exports.calculateReputation = async (req, res, next) => {
+    try {
+        const teams = await models.Team.findAll();
+
+        for (const team of teams) {
+            const teamId = team.id;
+
+            const userTeams = await models.UserTeam.findAll({
+                where: { teamId: teamId },
+            });
+
+            const totalTokens = userTeams.reduce((total, userTeam) => total + userTeam.tokens, 0);
+
+            for (const userTeam of userTeams) {
+                const userId = userTeam.userId;
+                const userTokens = userTeam.tokens;
+
+                const reputation = totalTokens !== 0 ? Math.round((userTokens / totalTokens) * 100) : 0;
+
+                await models.UserTeam.update({ reputation: reputation }, { where: { userId: userId, teamId: teamId } });
+            }
+        }
+
+        res.redirect('/posts');
+    } catch (error) {
+        next(error);
+    }
+};
