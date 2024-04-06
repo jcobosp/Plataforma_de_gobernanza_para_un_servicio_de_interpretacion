@@ -45,6 +45,10 @@
       <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
     <% } %>
 
+    <% if (post.usersVoted < post.min_users_voted) { %>
+      <p>No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
+    <% } %>
+
     <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
       <form action="/posts/<%= post.id %>/veto" method="post">
         <button type="submit" name="veto" value="veto">Veto</button>

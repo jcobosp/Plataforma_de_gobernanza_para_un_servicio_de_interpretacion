@@ -290,6 +290,10 @@ exports.vote = async (req, res, next) => {
             return res.status(400).send('Ya has votado en esta propuesta.');
         }
 
+        if (!userPostVote) {
+            await post.increment('usersVoted');
+        }
+
         if (parseInt(votePoints) > post.max_voting) {
             return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) excede el límite máximo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
         }
@@ -351,6 +355,7 @@ exports.changeVote = async (req, res, next) => {
         const lastvotedpoints = userPostVote.lastVotePoints;
         await models.UserTeam.increment('wallet', { by: lastvotedpoints, where: { userId: userId, teamId: teamId } });
         
+        await post.decrement('usersVoted');
 
         if (userPostVote.lastVote === 'for') {
             post.votesFor -= lastvotedpoints;
@@ -437,7 +442,8 @@ exports.applyRewards = async (req, res, next) => {
         for (const post of posts) {
             const currentDate = new Date();
             const votingEndDate = new Date(post.votingEndDate);
-            if (currentDate > votingEndDate && !post.vetoed) {
+            if (currentDate > votingEndDate && !post.vetoed && post.usersVoted >= post.min_users_voted) {
+                                    
                 const userPostVotes = await models.UserPostVotes.findAll({
                     where: {
                         postId: post.id,
