@@ -437,7 +437,7 @@ exports.applyRewards = async (req, res, next) => {
         for (const post of posts) {
             const currentDate = new Date();
             const votingEndDate = new Date(post.votingEndDate);
-            if (currentDate > votingEndDate) {
+            if (currentDate > votingEndDate && !post.vetoed) {
                 const userPostVotes = await models.UserPostVotes.findAll({
                     where: {
                         postId: post.id,
