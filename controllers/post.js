@@ -442,47 +442,61 @@ exports.applyRewards = async (req, res, next) => {
         for (const post of posts) {
             const currentDate = new Date();
             const votingEndDate = new Date(post.votingEndDate);
-            if (currentDate > votingEndDate && !post.vetoed && post.usersVoted >= post.min_users_voted) {
-                                    
-                const userPostVotes = await models.UserPostVotes.findAll({
-                    where: {
-                        postId: post.id,
-                        hasVoted: true,
-                    },
-                });
+            if (currentDate > votingEndDate && !post.vetoed) {
+                if (post.usersVoted >= post.min_users_voted){             
+                    const userPostVotes = await models.UserPostVotes.findAll({
+                        where: {
+                            postId: post.id,
+                            hasVoted: true,
+                        },
+                    });
 
-                const teamId = post.TeamId;
+                    const teamId = post.TeamId;
 
-                for (const userPostVote of userPostVotes) {
-                    const userId = userPostVote.userId;
-                    const votingReward = post.voting_reward;
+                    for (const userPostVote of userPostVotes) {
+                        const userId = userPostVote.userId;
+                        const votingReward = post.voting_reward;
 
-                    await models.UserTeam.increment('wallet', { by: votingReward, where: { userId: userId, teamId: teamId } });
-                }
+                        await models.UserTeam.increment('wallet', { by: votingReward, where: { userId: userId, teamId: teamId } });
+                    }
 
-                const votesFor = post.votesFor;
-                const votesAgainst = post.votesAgainst;
-                const abstentions = post.abstentions;
-                let winningOption;
-                let losingOption;
-                if (votesFor > votesAgainst) {
-                    winningOption = 'for';
-                    losingOption = 'against';
-                } else if (votesAgainst > votesFor) {
-                    winningOption = 'against';
-                    losingOption = 'for';
-                }
+                    const votesFor = post.votesFor;
+                    const votesAgainst = post.votesAgainst;
+                    const abstentions = post.abstentions;
+                    let winningOption;
+                    let losingOption;
+                    if (votesFor > votesAgainst) {
+                        winningOption = 'for';
+                        losingOption = 'against';
+                    } else if (votesAgainst > votesFor) {
+                        winningOption = 'against';
+                        losingOption = 'for';
+                    }
 
-                for (const userPostVote of userPostVotes) {
-                    const userId = userPostVote.userId;
-                    const votingFailurePenalty = post.voting_failure_penalty;
-                    const votingSuccessReward = post.voting_success_reward;
-                    const vote = userPostVote.lastVote;
+                    for (const userPostVote of userPostVotes) {
+                        const userId = userPostVote.userId;
+                        const votingFailurePenalty = post.voting_failure_penalty;
+                        const votingSuccessReward = post.voting_success_reward;
+                        const vote = userPostVote.lastVote;
 
-                    if (vote === winningOption) {
-                        await models.UserTeam.increment('tokens', { by: votingSuccessReward, where: { userId: userId, teamId: teamId } });
-                    } else if (vote === losingOption) {
-                        await models.UserTeam.decrement('tokens', { by: votingFailurePenalty, where: { userId: userId, teamId: teamId } });
+                        if (vote === winningOption) {
+                            await models.UserTeam.increment('tokens', { by: votingSuccessReward, where: { userId: userId, teamId: teamId } });
+                        } else if (vote === losingOption) {
+                            await models.UserTeam.decrement('tokens', { by: votingFailurePenalty, where: { userId: userId, teamId: teamId } });
+                        }
+                    }
+                }  else {
+                    const userPostVotes = await models.UserPostVotes.findAll({
+                        where: {
+                            postId: post.id,
+                            hasVoted: true,
+                        },
+                    });
+            
+                    for (const userVote of userPostVotes) {
+                        const { userId, lastVotePoints } = userVote;
+                        const teamId = post.TeamId;
+                        await models.UserTeam.increment('wallet', { by: lastVotePoints, where: { userId: userId, teamId: teamId } });
                     }
                 }
             }
