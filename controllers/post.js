@@ -470,6 +470,47 @@ exports.applyRewards = async (req, res, next) => {
                         },
                     });
 
+                    const totalPointsVoted = userPostVotes.reduce((total, userVote) => total + userVote.lastVotePoints, 0);
+
+                    if (totalPointsVoted > 0) {
+                        const teamId = post.TeamId;
+                        const usersWithCorrectVote = [];
+
+                        const votesFor = post.votesFor;
+                        const votesAgainst = post.votesAgainst;
+                        let winningOption;
+                        let losingOption;
+
+                        if (votesFor > votesAgainst) {
+                            winningOption = 'for';
+                            losingOption = 'against';
+                        } else if (votesAgainst > votesFor) {
+                            winningOption = 'against';
+                            losingOption = 'for';
+                        }
+
+                        for (const userPostVote of userPostVotes) {
+                            const userId = userPostVote.userId;
+                            const vote = userPostVote.lastVote;
+
+                            if (vote === winningOption) {
+                                usersWithCorrectVote.push(userId);
+                            }
+                        }
+
+                        for (const userId of usersWithCorrectVote) {
+                            const userTeam = await models.UserTeam.findOne({
+                                where: { userId: userId, teamId: teamId },
+                            });
+
+                            const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
+                            const percentage = userTeamReputation / 100;
+                            const pointsToDistribute = Math.round(totalPointsVoted * percentage);
+
+                            await models.UserTeam.increment('wallet', { by: pointsToDistribute, where: { userId: userId, teamId: teamId } });
+                        }
+                    }
+
                     const teamId = post.TeamId;
 
                     for (const userPostVote of userPostVotes) {
@@ -504,6 +545,7 @@ exports.applyRewards = async (req, res, next) => {
                             await models.UserTeam.decrement('tokens', { by: votingFailurePenalty, where: { userId: userId, teamId: teamId } });
                         }
                     }
+                // Si no se llega al min_users_voted
                 }  else {
                     const userPostVotes = await models.UserPostVotes.findAll({
                         where: {
