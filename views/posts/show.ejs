@@ -71,7 +71,7 @@
       <li>Voting Failure Penalty: <%= post.voting_failure_penalty %></li>
       <li>Voting Success Reward: <%= post.voting_success_reward %></li>
       <br>
-      <li>User Wallet Points: <%= post.userWalletPoints %></li>
+      <li>User Wallet Points: <%= Math.round(post.userWalletPoints) %></li>
     </ul>
   </div>
   </div>

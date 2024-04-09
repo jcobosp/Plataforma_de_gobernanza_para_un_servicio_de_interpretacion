@@ -302,26 +302,30 @@ exports.vote = async (req, res, next) => {
             return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) es inferior al límite mínimo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
         }
 
+        const userTeamReputation = userTeam.reputation || 0;
+        const reputationFactor = 1 + (userTeamReputation / 100);
+        const votePointsWithReputation = Math.round(votePoints * reputationFactor);
+
         if (!userPostVote) {
             await models.UserPostVotes.create({
                 userId: userId,
                 postId: post.id,
                 hasVoted: true,
                 lastVote: vote,
-                lastVotePoints: parseInt(votePoints), 
+                lastVotePoints: parseInt(votePointsWithReputation), 
             });
         } else {
-            await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: parseInt(votePoints) }); // Convertir a número
+            await userPostVote.update({ hasVoted: true, lastVote: vote, lastVotePoints: parseInt(votePointsWithReputation) }); 
         }
 
-        await models.UserTeam.decrement('wallet', { by: parseInt(votePoints), where: { userId: userId, teamId: post.TeamId } }); // Convertir a número
+        await models.UserTeam.decrement('wallet', { by: parseInt(votePoints), where: { userId: userId, teamId: post.TeamId } }); 
 
         if (vote === 'for') {
-            post.votesFor += parseInt(votePoints); 
+            post.votesFor += parseInt(votePointsWithReputation); 
         } else if (vote === 'against') {
-            post.votesAgainst += parseInt(votePoints); 
+            post.votesAgainst += parseInt(votePointsWithReputation); 
         } else if (vote === 'abstain') {
-            post.abstentions += parseInt(votePoints); 
+            post.abstentions += parseInt(votePointsWithReputation); 
         }
 
         await post.save();
@@ -352,8 +356,15 @@ exports.changeVote = async (req, res, next) => {
             return;
         }
 
+        const userTeam = await models.UserTeam.findOne({
+            where: { userId: userId, teamId: teamId },
+        });
+
         const lastvotedpoints = userPostVote.lastVotePoints;
-        await models.UserTeam.increment('wallet', { by: lastvotedpoints, where: { userId: userId, teamId: teamId } });
+        const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
+        const reputationFactor = 1 + (userTeamReputation / 100);
+        const votePointsWithOutReputation = lastvotedpoints / reputationFactor;
+        await models.UserTeam.increment('wallet', { by: Math.round(votePointsWithOutReputation), where: { userId: userId, teamId: teamId } });
         
         await post.decrement('usersVoted');
 
@@ -390,12 +401,20 @@ exports.veto = async (req, res, next) => {
         for (const userVote of userPostVotes) {
             const { userId, lastVotePoints } = userVote;
             const teamId = post.TeamId;
-            await models.UserTeam.increment('wallet', { by: lastVotePoints, where: { userId: userId, teamId: teamId } });
+
+            const userTeam = await models.UserTeam.findOne({
+                where: { userId: userId, teamId: teamId },
+            });
+
+            const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
+            const reputationFactor = 1 + (userTeamReputation / 100);
+            const votePointsWithOutReputation = lastVotePoints / reputationFactor;
+            await models.UserTeam.increment('wallet', { by: Math.round(votePointsWithOutReputation), where: { userId: userId, teamId: teamId } });
         }
 
-        post.votesFor = 0;
-        post.votesAgainst = 0;
-        post.abstentions = 0;
+        // post.votesFor = 0;
+        // post.votesAgainst = 0;
+        // post.abstentions = 0;
         post.vetoed = true;
         await post.save();
   
@@ -496,7 +515,15 @@ exports.applyRewards = async (req, res, next) => {
                     for (const userVote of userPostVotes) {
                         const { userId, lastVotePoints } = userVote;
                         const teamId = post.TeamId;
-                        await models.UserTeam.increment('wallet', { by: lastVotePoints, where: { userId: userId, teamId: teamId } });
+
+                        const userTeam = await models.UserTeam.findOne({
+                            where: { userId: userId, teamId: teamId },
+                        });
+
+                        const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
+                        const reputationFactor = 1 + (userTeamReputation / 100);
+                        const votePointsWithOutReputation = lastVotePoints / reputationFactor;
+                        await models.UserTeam.increment('wallet', { by: Math.round(votePointsWithOutReputation), where: { userId: userId, teamId: teamId } });
                     }
                 }
             }
