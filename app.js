@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var session = require('express-session');
 var indexRouter = require('./routes/index');
 var app = express();
+var postsController = require('./controllers/post');
 app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
@@ -48,5 +49,18 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+// Ejecución de applyRewards cada minuto
+setInterval(async () => {
+  try {
+      console.log('Ejecutando applyRewards...');
+      await postsController.applyRewards();
+      console.log('applyRewards ejecutado exitosamente')
+  } catch (error) {
+      console.error('Error al ejecutar applyRewards:', error);
+  }
+}, 60000); 
+
+
 
 module.exports = app;
