@@ -72,6 +72,10 @@
       <li>Voting Success Reward: <%= post.voting_success_reward %></li>
       <br>
       <li>User Wallet Points: <%= Math.round(post.userWalletPoints) %></li>
+      
+      <li>Your Reputation: <%= post.userTeamReputation %>%</li>
+      <li>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></li>
+      
     </ul>
   </div>
   </div>

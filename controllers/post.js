@@ -72,6 +72,12 @@ exports.show = async (req, res, next) => {
             });
             const belongsToSameTeam = userTeams.some(team => team.teamId === post.TeamId);
 
+            const userTeam = await models.UserTeam.findOne({
+                where: { userId: userId, teamId: post.TeamId },
+            });
+            const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
+            const reputationFactor = 1 + (userTeamReputation / 100);
+
             const isAdmin = req.session.loginUser ? req.session.loginUser.isAdmin : false;
             const currentDate = new Date();
             const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
@@ -85,7 +91,9 @@ exports.show = async (req, res, next) => {
                 vetoDate: post.vetoDate ? new Date(post.vetoDate).toLocaleString() : 'No especificada',
                 team: teamName,
                 hasVoted: userPostVote && userPostVote.hasVoted,
-                userWalletPoints: userWalletPoints
+                userWalletPoints: userWalletPoints,
+                userTeamReputation: userTeamReputation,
+                reputationFactor: reputationFactor
             };
             res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled, belongsToSameTeam });
         } catch (error) {
