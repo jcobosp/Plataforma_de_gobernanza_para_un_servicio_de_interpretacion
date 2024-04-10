@@ -577,6 +577,8 @@ exports.applyRewards = async (req, res, next) => {
                 }
             }
         }
+        // Para calcular o actualizar la reputación después de repartir las recompensas
+        await exports.calculateReputation(req, res, next);
 
         res.redirect('/posts');
     } catch (error) {
