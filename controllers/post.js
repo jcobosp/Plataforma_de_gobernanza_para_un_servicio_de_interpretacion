@@ -470,7 +470,13 @@ exports.calculateReputation = async (req, res, next) => {
 
 exports.applyRewards = async (req, res, next) => {
     try {
-        const posts = await models.Post.findAll();
+        // Obtener solo las propuestas que aún no han recibido recompensas y no han sido vetadas
+        const posts = await models.Post.findAll({
+            where: {
+                votingRewardGiven: false, // Solo las propuestas que aún no han recibido recompensas
+                vetoed: false // Que no han sido vetadas
+            }
+        });
 
         for (const post of posts) {
             const currentDate = new Date();
@@ -583,6 +589,8 @@ exports.applyRewards = async (req, res, next) => {
                         await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
                     }
                 }
+                // Al final del bucle for que maneja la aplicación de recompensas
+                await models.Post.update({ votingRewardGiven: true }, { where: { id: post.id } });
             }
         }
         // Para calcular o actualizar la reputación después de repartir las recompensas
