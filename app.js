@@ -59,7 +59,7 @@ setInterval(async () => {
   } catch (error) {
       console.error('Error al ejecutar applyRewards:', error);
   }
-}, 60000); 
+}, 1000); 
 
 
 
