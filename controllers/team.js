@@ -216,9 +216,8 @@ exports.joinTeam = async (req, res, next) => {
       await models.UserTeam.create({ // Aquí corregir el nombre del modelo a UserTeam
         userId: loginUser.id,
         teamId,
-        // También puedes configurar otros campos como tokens, wallet, reputation aquí
-        tokens: 0,
-        wallet: 0,
+        tokens: 5,
+        wallet: 10,
         reputation: 0
       });
   
