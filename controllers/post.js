@@ -439,7 +439,7 @@ exports.veto = async (req, res, next) => {
 };
 
 
-exports.calculateReputation = async (req, res, next) => {
+exports.calculateReputation = async () => {
     try {
         const teams = await models.Team.findAll();
 
@@ -462,13 +462,13 @@ exports.calculateReputation = async (req, res, next) => {
             }
         }
 
-        res.redirect('/posts');
+        // res.redirect('/posts');
     } catch (error) {
-        next(error);
+        console.error('Error al ejecutar calculateReputation:', error);
     }
 };
 
-exports.applyRewards = async (req, res, next) => {
+exports.applyRewards = async () => {
     try {
         // Obtener solo las propuestas que aún no han recibido recompensas y no han sido vetadas
         const posts = await models.Post.findAll({
@@ -594,10 +594,10 @@ exports.applyRewards = async (req, res, next) => {
             }
         }
         // Para calcular o actualizar la reputación después de repartir las recompensas
-        await exports.calculateReputation(req, res, next);
+        await exports.calculateReputation();
 
-        res.redirect('/posts');
+        // res.redirect('/posts');
     } catch (error) {
-        next(error);
+        console.error('Error al ejecutar applyRewards:', error);
     }
 };
