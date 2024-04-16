@@ -200,10 +200,11 @@ exports.adminOrAuthorRequired = (req, res, next) =>
 exports.joinTeam = async (req, res, next) => {
     try {
       const { teamId } = req.params;
-      const { loginUser } = req.session;
-      
+      const { loginUser } = req.session; 
+      // Incrementar el contador de numUsers en la tabla de Teams
+      await models.Team.increment('numUsers', { where: { id: teamId } });
       // Verificar si el usuario ya está unido al equipo
-      const userTeam = await models.UserTeam.findOne({ // Aquí corregir el nombre del modelo a UserTeam
+      const userTeam = await models.UserTeam.findOne({ 
         where: { userId: loginUser.id, teamId }
       });
   
@@ -213,7 +214,7 @@ exports.joinTeam = async (req, res, next) => {
       }
   
       // Crear una nueva entrada en userTeams para registrar la unión del usuario al equipo
-      await models.UserTeam.create({ // Aquí corregir el nombre del modelo a UserTeam
+      await models.UserTeam.create({ 
         userId: loginUser.id,
         teamId,
         tokens: 5,
@@ -238,10 +239,11 @@ exports.joinTeam = async (req, res, next) => {
         await models.UserTeam.destroy({
             where: { userId: loginUser.id, teamId }
         });
-
+        // Restar un punto a la columna numUsers en la tabla Teams
+        await models.Team.decrement('numUsers', { where: { id: teamId } });
         // Redireccionar a la página del equipo después de abandonar el equipo
         res.redirect('/teams/' + teamId);
     } catch (error) {
-        next(error);
+        next(error); 
     }
 };
