@@ -1,9 +1,9 @@
-<section>
+<div>
     <div class="inputOption">
-        <input type="text" id="title" name="title" placeholder="Título">
+        <input type="text" id="title" name="title" placeholder="Título" value="<%= team.title %>">
     </div>
     <div class="inputOption">
-        <textarea id="body" name="body" placeholder="Mensaje"></textarea>
+        <textarea id="body" name="body" placeholder="Mensaje"><%= team.body %></textarea>
     </div>
     <div class="inputOption">
         <input type="file" id="image" name="image">
@@ -19,4 +19,4 @@
     </div>
     <input type="submit" name="enviar" id="enviar" value="Save">    
     <a href="/teams">Volver</a>
-</section>
+</div>
