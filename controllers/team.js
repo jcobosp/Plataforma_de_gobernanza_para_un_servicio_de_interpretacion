@@ -58,13 +58,7 @@ exports.show = async (req, res, next) => {
             where: { userId: req.session.loginUser.id, teamId: team.id }
         });
 
-        // Cargar todos los miembros del equipo y sus nombres de usuario
-        const teamMembers = await models.UserTeam.findAll({
-            where: { teamId: team.id },
-            include: { model: models.User}
-        });
-
-        res.render('teams/show', { team, adminUser, isMember, teamMembers }); 
+        res.render('teams/show', { team, adminUser, isMember}); 
     } catch (error) {
         next(error);
     }
@@ -254,41 +248,40 @@ exports.joinTeam = async (req, res, next) => {
     }
 };
 
+// exports.donateReputation = async (req, res, next) => {
+//     try {
+//         const { team } = req.load;
+//         const { recipientUserId, amount } = req.body;
+//         const { loginUser } = req.session;
 
-exports.donateReputation = async (req, res, next) => {
-    try {
-        const { team } = req.load;
-        const { recipientUserId, amount } = req.body;
-        const { loginUser } = req.session;
+//         // Verificar si el usuario tiene suficientes tokens para donar
+//         if (loginUser.tokens < amount) {
+//             return res.status(400).send("No tienes suficientes tokens para donar esa cantidad de reputación.");
+//         }
 
-        // Verificar si el usuario tiene suficientes tokens para donar
-        if (loginUser.tokens < amount) {
-            return res.status(400).send("No tienes suficientes tokens para donar esa cantidad de reputación.");
-        }
+//         // Verificar si el usuario receptor pertenece al equipo
+//         const recipientUserTeam = await models.UserTeam.findOne({
+//             where: { userId: recipientUserId, teamId: team.id }
+//         });
 
-        // Verificar si el usuario receptor pertenece al equipo
-        const recipientUserTeam = await models.UserTeam.findOne({
-            where: { userId: recipientUserId, teamId: team.id }
-        });
+//         if (!recipientUserTeam) {
+//             return res.status(400).send("El usuario receptor no pertenece a este equipo.");
+//         }
 
-        if (!recipientUserTeam) {
-            return res.status(400).send("El usuario receptor no pertenece a este equipo.");
-        }
+//         // Restar la cantidad de tokens donados del usuario donante
+//         await models.UserTeam.decrement('tokens', {
+//             by: amount,
+//             where: { userId: loginUser.id, teamId: team.id }
+//         });
 
-        // Restar la cantidad de tokens donados del usuario donante
-        await models.UserTeam.decrement('tokens', {
-            by: amount,
-            where: { userId: loginUser.id, teamId: team.id }
-        });
+//         // Sumar la cantidad de tokens donados al usuario receptor
+//         await models.UserTeam.increment('tokens', {
+//             by: amount,
+//             where: { userId: recipientUserId, teamId: team.id }
+//         });
 
-        // Sumar la cantidad de tokens donados al usuario receptor
-        await models.UserTeam.increment('tokens', {
-            by: amount,
-            where: { userId: recipientUserId, teamId: team.id }
-        });
-
-        res.redirect('/teams/' + team.id);
-    } catch (error) {
-        next(error);
-    }
-};
+//         res.redirect('/teams/' + team.id);
+//     } catch (error) {
+//         next(error);
+//     }
+// };

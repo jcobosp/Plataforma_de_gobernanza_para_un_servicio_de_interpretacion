@@ -29,7 +29,7 @@ router.put('/teams/:teamId(\\d+)', upload.single('image'), teamController.update
 router.delete('/teams/:teamId(\\d+)', teamController.adminOrAuthorRequired, teamController.destroy);
 router.post('/teams/:teamId/join', teamController.joinTeam);
 router.post('/teams/:teamId/leave', teamController.leaveTeam);
-router.post('/teams/:teamId/donate-reputation', teamController.donateReputation);
+// router.post('/teams/:teamId/donatereputation', teamController.donateReputation);
 
 
 // Pantalla Reputación

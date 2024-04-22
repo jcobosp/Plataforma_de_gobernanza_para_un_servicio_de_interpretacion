@@ -26,20 +26,7 @@
         </form>
       <% } %>
 
-      <!-- Formulario para donar reputación -->
-<% if (locals.loginUser && locals.isMember) { %>
-  <form method="post" action="/teams/<%= team.id %>/donate-reputation">
-    <label for="recipientUserId">Seleccione el usuario receptor:</label>
-    <select name="recipientUserId" id="recipientUserId">
-      <% teamMembers.forEach(userTeam => { %>
-        <option value="<%= userTeam.User.id %>"><%= userTeam.User.username %></option>
-      <% }) %> 
-    </select>
-    <label for="amount">Cantidad de tokens a donar:</label>
-    <input type="number" name="amount" id="amount" min="1" max="<%= locals.loginUser.tokens %>">
-    <button type="submit">Donar Reputación</button>
-  </form>
-<% } %>
+       
       
       <a href="/teams">Volver</a>
     </article>
