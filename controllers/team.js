@@ -259,6 +259,53 @@ exports.joinTeam = async (req, res, next) => {
     }
 };
 
+
+
+
+exports.donate = async (req, res, next) => {
+    try {
+        const { teamId } = req.params;
+        const { recipient, amount } = req.body;
+
+        const donorUserTeam = await models.UserTeam.findOne({
+            where: { userId: req.session.loginUser.id, teamId }
+        });
+
+        const recipientUserTeam = await models.UserTeam.findOne({
+            where: { userId: recipient, teamId }
+        });
+
+        const donationAmount = Number(amount);
+
+        if (donorUserTeam.wallet < donationAmount) {
+            throw new Error('Insufficient tokens');
+        }
+
+        donorUserTeam.wallet -= donationAmount;
+        recipientUserTeam.wallet += donationAmount;
+
+        await donorUserTeam.save();
+        await recipientUserTeam.save();
+
+        res.redirect(`/teams/${teamId}`);
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // exports.donateReputation = async (req, res, next) => {
 //     try {
 //         const { team } = req.load;
