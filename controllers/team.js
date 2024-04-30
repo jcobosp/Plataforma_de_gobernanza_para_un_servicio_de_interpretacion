@@ -58,12 +58,23 @@ exports.show = async (req, res, next) => {
             where: { userId: req.session.loginUser.id, teamId: team.id }
         });
 
-        res.render('teams/show', { team, adminUser, isMember}); 
+        // Obtener todos los usuarios que pertenecen al equipo
+        const userTeams = await models.UserTeam.findAll({ where: { teamId: team.id } });
+        const teamMembers = await Promise.all(userTeams.map(async userTeam => {
+            const user = await models.User.findByPk(userTeam.userId);
+            return {
+                user,
+                wallet: userTeam.wallet,
+                tokens: userTeam.tokens,
+                reputation: userTeam.reputation
+            };
+        }));
+
+        res.render('teams/show', { team, teamMembers, adminUser, isMember }); 
     } catch (error) {
         next(error);
     }
 };
-
 
 
 
