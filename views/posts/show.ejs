@@ -17,35 +17,44 @@
       <li>Abstentions: <%= post.abstentions %></li>
       <li>Team: <%= post.team %></li>
     </ul>
-    <% if (!post.vetoed) { %>
-      <% if (belongsToSameTeam) { %> 
-        <% if (isVotingPeriod) { %>
-          <% if (post.hasVoted) { %>
-            <p>¡Ya has votado en esta propuesta!</p>
-            <form action="/posts/<%= post.id %>/change-vote" method="post">
-              <input type="hidden" name="teamId" value="<%= post.TeamId %>">
-              <button type="submit" name="vote" value="change">Cambiar mi voto</button>
-            </form>
+
+    <% if (isLoggedIn) { %>
+      <% if (!post.vetoed) { %>
+        <% if (belongsToSameTeam) { %> 
+          <% if (isVotingPeriod) { %>
+            <% if (post.hasVoted) { %>
+              <p>¡Ya has votado en esta propuesta!</p>
+              <form action="/posts/<%= post.id %>/change-vote" method="post">
+                <input type="hidden" name="teamId" value="<%= post.TeamId %>">
+                <button type="submit" name="vote" value="change">Cambiar mi voto</button>
+              </form>
+            <% } else { %>
+              <form action="/posts/<%= post.id %>/vote" method="post">
+                <label for="votePoints">Cantidad de puntos:</label>
+                <input type="number" id="votePoints" name="votePoints" min="1" max="10000" required>
+                <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
+                <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+                <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+              </form>
+            <% } %>
           <% } else { %>
-            <form action="/posts/<%= post.id %>/vote" method="post">
-              <label for="votePoints">Cantidad de puntos:</label>
-              <input type="number" id="votePoints" name="votePoints" min="1" max="10000" required>
-              <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
-              <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
-              <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
-            </form>
+            <% if (isPostVotingFinished) { %>
+              <p>La votación ya ha finalizado.</p>
+            <% } else { %>
+              <p>La votación aún no ha comenzado.</p>
+            <% } %>
           <% } %>
         <% } else { %>
-          <p>Las votaciones no están habilitadas en este momento.</p>
+          <p>Para votar, debes pertenecer al equipo <%= post.team %>.</p>
         <% } %>
       <% } else { %>
-        <p>Para votar, debes pertenecer al equipo <%= post.team %>.</p>
+        <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
       <% } %>
-    <% } else { %>
-      <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
+      <% } else { %>
+        <p>¡Inicia sesión para ver más sobre las propuestas!</p>
     <% } %>
 
-    <% if (post.usersVoted < post.min_users_voted) { %>
+    <% if (isLoggedIn && !post.vetoed && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
       <p>No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
     <% } %>
 

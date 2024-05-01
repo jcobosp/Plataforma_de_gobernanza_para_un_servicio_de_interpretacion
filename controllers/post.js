@@ -50,6 +50,7 @@ exports.index = async (req, res, next) => {
 
 exports.show = async (req, res, next) => {
     const { post } = req.load;
+    const isLoggedIn = req.session.loginUser;
     if (post) {
         try {
             let teamName = 'No team assigned';
@@ -82,6 +83,7 @@ exports.show = async (req, res, next) => {
             const currentDate = new Date();
             const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
             const isVetoEnabled = currentDate < post.vetoDate;
+            const isPostVotingFinished = currentDate > post.votingEndDate;
             const userWalletPoints = userTeams.find(team => team.teamId === post.TeamId)?.wallet || 0;
             const formattedPost = {
                 ...post.toJSON(),
@@ -95,7 +97,7 @@ exports.show = async (req, res, next) => {
                 userTeamReputation: userTeamReputation,
                 reputationFactor: reputationFactor
             };
-            res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled, belongsToSameTeam });
+            res.render('posts/show', { post: formattedPost, isAdmin, isVotingPeriod, isVetoEnabled, belongsToSameTeam, isLoggedIn, isPostVotingFinished });
         } catch (error) {
             next(error);
         }
