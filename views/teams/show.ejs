@@ -75,6 +75,17 @@
             <% }) %>
         </tbody>
     </table>
+
+    <!-- Boton de inflación para aplicar una reducción del 50% en los tokens de los usuarios del equipo -->
+    <% if (locals.loginUser && locals.loginUser.isAdmin) { %> 
+      <div class="inflate-form">
+        <h3>Inflate</h3>
+        <p>Al presionar este botón, se reducirán los tokens de todos los miembros del equipo en un 50%.</p>
+        <form method="post" action="/teams/<%= team.id %>/inflate">
+          <button type="submit" class="inflate-button">Inflate</button>
+        </form>
+      </div>
+    <% } %>
       
       <a href="/teams">Volver</a>
     </article>

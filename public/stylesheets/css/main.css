@@ -2311,3 +2311,45 @@ input[type="checkbox"]:checked::before {
 .donation-form .donate-button:hover {
   background-color: #0056b3;
 }
+
+
+
+
+.inflate-form {
+  width: 300px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.inflate-form .form-group {
+  margin-bottom: 10px;
+}
+
+.inflate-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.inflate-form select, 
+.inflate-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.inflate-form .inflate-button {
+  background-color: #ff0000; 
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.inflate-form .inflate-button:hover {
+  background-color: #b30000;
+}
