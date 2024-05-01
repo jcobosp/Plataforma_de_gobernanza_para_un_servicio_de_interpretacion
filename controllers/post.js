@@ -41,7 +41,7 @@ exports.index = async (req, res, next) => {
         const allFindOptions = models.Post.findAll(findOptions);
         const posts = await allFindOptions;
         const postInd = 'posts/index.ejs';
-        res.render(postInd, {posts});
+        res.render(postInd, {posts, filterType: ''});
     } 
     catch (error) {
         next(error);
