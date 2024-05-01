@@ -62,6 +62,7 @@ router.post('/posts/:postId/change-vote', postController.changeVote);
 router.post('/posts/:postId/veto', postController.adminOrAuthorRequired, postController.veto);
 router.get('/posts/calculate-reputation', postController.calculateReputation);
 router.get('/posts/apply-rewards', postController.applyRewards);
+router.get('/posts/filter', postController.filter);
 
 // Pantalla Usuarios
 router.param('userId', userController.load);

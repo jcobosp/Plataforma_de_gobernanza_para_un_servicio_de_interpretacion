@@ -601,3 +601,39 @@ exports.applyRewards = async () => {
         console.error('Error al ejecutar applyRewards:', error);
     }
 };
+
+exports.filter = async (req, res, next) => {
+    try {
+        const currentDate = new Date();
+        const filterType = req.query.filter;
+
+        const allPosts = await models.Post.findAll({
+            include: [
+                { model: models.Attachment, as: 'attachment' },
+                { model: models.User, as: 'author' }
+            ],
+            order: [['createdAt', 'ASC']]
+        });
+
+        const posts = allPosts.filter(post => {
+            switch (filterType) {
+                case 'not-started':
+                    return currentDate < post.votingStartDate;
+                case 'in-progress':
+                    return currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
+                case 'finished':
+                    return currentDate > post.votingEndDate && !post.vetoed;
+                case 'vetoed':
+                    return post.vetoed;
+                case '':
+                    return true; // Retorna todas las publicaciones si el filtro es "All"
+                default:
+                    return false;
+            }
+        });
+
+        res.render('posts/index', { posts, filterType });
+    } catch (error) {
+        next(error);
+    }
+};
