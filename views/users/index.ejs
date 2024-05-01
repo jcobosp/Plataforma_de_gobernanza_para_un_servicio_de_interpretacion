@@ -1,37 +1,5 @@
-<!-- 
-
-<section>
-    <h2>Users</h2>
-    <table>
-        <% for (let i in users) { %>
-            <tr>
-                <td>
-                    <a href="/users/<%= users[i].id %>">
-                        <%= users[i].username %>
-                    </a>
-                    <span class="role-badge <%= users[i].isAdmin ? 'active' : 'inactive' %>">Admin</span>
-                    <span class="role-badge <%= users[i].isAdminProposal ? 'active' : 'inactive' %>">Admin de Propuestas</span>
-                    <span class="role-badge <%= users[i].isAdminTeam ? 'active' : 'inactive' %>">Admin de Teams</span>
-                    <span class="role-badge <%= users[i].isAdminToken ? 'active' : 'inactive' %>">Admin de Tokens</span>
-                </td>
-                <td>
-                    <a href="/users/<%= users[i].id %>/edit">Editar</a>
-                </td>
-                <td>
-                    <a href="/users/<%= users[i].id %>?_method=DELETE"
-                        onClick="return confirm('Delete user: <%= users[i].username %>');">Borrar</a>
-                </td>
-            </tr>
-        <% } %>
-    </table>
-    <% if(locals.loginUser?.isAdmin){ %>
-        <a href="/users/new">Crear nuevo usuario</a>
-    <% } %>
-</section> -->
-
-
-
-    <!-- ======= Breadcrumbs ======= -->
+<!-- ======= Breadcrumbs ======= -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <div class="breadcrumbs">
         <div class="page-header d-flex align-items-center" style="background-image: url('/stylesheets/img/page-header.jpg');">
           <div class="container position-relative">
@@ -55,7 +23,7 @@
       <!-- End Breadcrumbs -->
     <section>
     <h2>Users</h2>
-    <table>
+    <table class="user-table">
         <tr>
             <th>User</th>
             <th>Roles</th>
@@ -70,10 +38,10 @@
                     </a>
                 </td>
                 <td>
-                    <span class="role-badge <%= users[i].isAdmin ? 'active' : 'inactive' %>">Admin</span>
-                    <span class="role-badge <%= users[i].isAdminProposal ? 'active' : 'inactive' %>">Admin de Propuestas</span>
-                    <span class="role-badge <%= users[i].isAdminTeam ? 'active' : 'inactive' %>">Admin de Teams</span>
-                    <span class="role-badge <%= users[i].isAdminToken ? 'active' : 'inactive' %>">Admin de Tokens</span>
+                    <span class="role-icon <%= users[i].isAdmin ? 'active' : 'inactive' %>"><i class="fas fa-crown"></i></span> <!-- Admin -->
+                    <span class="role-icon <%= users[i].isAdminProposal ? 'active' : 'inactive' %>"><i class="fas fa-file-alt"></i></span> <!-- Admin de Propuestas -->
+                    <span class="role-icon <%= users[i].isAdminTeam ? 'active' : 'inactive' %>"><i class="fas fa-users"></i></span> <!-- Admin de Teams -->
+                    <span class="role-icon <%= users[i].isAdminToken ? 'active' : 'inactive' %>"><i class="fas fa-coins"></i></span> <!-- Admin de Tokens -->
                 </td>
                 <td>
                     <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
@@ -88,7 +56,7 @@
             </tr>
         <% } %>
     </table>
-    <% if(locals.loginUser?.isAdmin){ %>
+    <!-- <% if(locals.loginUser?.isAdmin){ %>
         <a href="/users/new">Crear nuevo usuario</a>
-    <% } %>
+    <% } %> -->
 </section>

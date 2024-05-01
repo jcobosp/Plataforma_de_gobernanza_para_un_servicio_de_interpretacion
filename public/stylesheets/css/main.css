@@ -2353,3 +2353,82 @@ input[type="checkbox"]:checked::before {
 .inflate-form .inflate-button:hover {
   background-color: #b30000;
 }
+
+@keyframes zoomIn {
+  0% {
+      transform: scale(0);
+      opacity: 0;
+  }
+  100% {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+.registration-form {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 70px;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-left: auto;
+  padding: 20px;
+  animation: zoomIn 2s;
+}
+
+
+.registration-form h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.registration-form form {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.registration-form ul {
+  list-style: none;
+  padding: 0;
+}
+
+.registration-form li {
+  margin-bottom: 10px;
+}
+
+.registration-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.registration-form input[type="text"], 
+.registration-form input[type="email"], 
+.registration-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.registration-form input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.registration-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.registration-form .text-danger {
+  color: #dc3545;
+  margin-bottom: 10px;
+}

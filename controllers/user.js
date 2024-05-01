@@ -49,7 +49,7 @@ exports.create = async (req, res, next) => {
     });
     if (!password) {
         console.log('Error: Password must not be empty.');
-        return res.render('users/new', {user});
+        return res.render('users/registrarse', {user});
     }
     try {user = await user.save({fields: ["username", "password", "salt", "email"]});
         console.log('Success: User created successfully.');
@@ -61,11 +61,11 @@ exports.create = async (req, res, next) => {
     } catch (error) {
         if (error instanceof Sequelize.UniqueConstraintError) {
             console.log(`Error: User "${username}" already exists.`);
-            res.render('users/new', {user});
+            res.render('users/registrarse', {user});
         } else if (error instanceof Sequelize.ValidationError) {
             console.log('Error: There are errors in the form:');
             error.errors.forEach(({message}) => console.log('Error:', message));
-            res.render('users/new', {user});
+            res.render('users/registrarse', {user});
         } else {
             next(error);
         }
@@ -157,4 +157,9 @@ exports.destroy = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+
+exports.registrarse = function(req, res, next) {
+    res.render('users/registrarse', { user: models.User.build() });
 };
