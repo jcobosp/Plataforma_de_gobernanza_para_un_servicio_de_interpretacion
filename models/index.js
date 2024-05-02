@@ -33,4 +33,7 @@ Post.belongsToMany(User, { through: UserPostVotes, foreignKey: 'postId' });
 UserPostVotes.belongsTo(User, { foreignKey: 'userId' });
 UserPostVotes.belongsTo(Post, { foreignKey: 'postId' });
 
+Attachment.hasOne(DeletedPost, {as: 'deletedPost', foreignKey: 'attachmentId'});
+DeletedPost.belongsTo(Attachment, {as: 'attachment', foreignKey: 'attachmentId'});
+
 module.exports = sequelize;

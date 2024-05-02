@@ -76,6 +76,7 @@
                   <% var deletedPost = deletedPosts[i]; %>
                   <article class="postShow">
                       <h3 class="postTitle"><%= deletedPost.title %></h3>
+                      <!-- <%- include('../attachments/_attachmentDeletedPosts', { deletedPost: deletedPost }) %> -->
                       <div>
                           <small class="deletedBy">Eliminado por: <b><%= deletedPost.deletedBy ?? "Anonymous" %></b> </small>
                       </div>

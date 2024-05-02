@@ -50,6 +50,7 @@ router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/removeTokenFromUser', tokenCont
 // Pantalla Propuestas
 router.param('postId', postController.load);
 router.get('/posts/:postId(\\d+)/attachment', postController.attachment);
+// router.get('/deletedPosts/:postId(\\d+)/attachment', postController.deletedPostAttachment);
 router.get('/posts', postController.index);
 router.get('/posts/:postId(\\d+)', postController.show);
 router.get('/posts/new', sessionController.loginRequired, postController.new);

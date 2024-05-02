@@ -40,7 +40,14 @@ exports.index = async (req, res, next) => {
         };
         const allFindOptions = models.Post.findAll(findOptions);
         const posts = await allFindOptions;
-        const deletedPosts = await models.DeletedPost.findAll();
+        const deletedPosts = await models.DeletedPost.findAll({
+            include: [
+                {
+                    model: models.Attachment,
+                    as: 'attachment'
+                }
+            ]
+        });
 
         const postInd = 'posts/index.ejs';
         res.render(postInd, {posts, deletedPosts, filterType: ''});
@@ -252,6 +259,7 @@ exports.update = async (req, res, next) => {
 exports.destroy = async (req, res, next) => {
     try {
         const post = req.load.post;
+        const originalAttachment = await post.getAttachment();
 
         // Devolver los originalVotePoints a cada usuario que votó en la propuesta
         const userPostVotes = await models.UserPostVotes.findAll({
@@ -268,22 +276,32 @@ exports.destroy = async (req, res, next) => {
             await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
         }
 
+        // Crea un nuevo adjunto con los mismos datos que el original
+        let newAttachmentId = null;
+        if (originalAttachment) {
+            const newAttachment = await models.Attachment.create({
+                mime: originalAttachment.mime,
+                image: originalAttachment.image,
+                url: originalAttachment.url
+            });
+            newAttachmentId = newAttachment.id;
+        }
+
         await models.DeletedPost.create({
             id: post.id,
             title: post.title,
             body: post.body,
-            attachmentId: post.attachmentId,
+            attachmentId: newAttachmentId, 
             deletedAt: new Date(),
-            deletedBy: req.session.loginUser.username, // Asegúrate de que el usuario actual esté disponible en req.session.user
+            deletedBy: req.session.loginUser.username, 
             createdAt: post.createdAt,
             updatedAt: post.updatedAt
         });
 
         await models.UserPostVotes.destroy({ where: { postId: post.id } });
-
-        if (post.attachmentId) {
-            await models.Attachment.destroy({ where: { id: post.attachmentId } });
-        }
+        // if (post.attachmentId) {
+        //     await models.Attachment.destroy({ where: { id: post.attachmentId } });
+        // }
 
         await req.load.post.destroy();
         res.redirect('/posts');
@@ -291,6 +309,22 @@ exports.destroy = async (req, res, next) => {
         next(error);
     }
 };
+
+// exports.deletedPostAttachment = async (req, res, next) => {
+//     const deletedPost = await models.DeletedPost.findByPk(req.params.postId);
+//     const attachment = await deletedPost.getAttachment();
+//     if (!attachment) { res.redirect("/images/none.png") ; }
+//     else if (attachment.image) {
+//         res.type(attachment.mime);
+//         const buff = Buffer.from(attachment.image.toString(), 'base64' );
+//         res.send( buff);
+//     }
+//     else if (attachment.url) {     res.redirect(attachment.url) ; }
+//     else { 
+//         const imgNone = "/images/none.png";
+//         res.redirect(imgNone); } 
+
+// };
 
 exports.adminOrAuthorRequired = (req, res, next) => 
 {   const {post} = req.load;
