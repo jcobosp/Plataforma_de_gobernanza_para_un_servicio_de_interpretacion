@@ -68,6 +68,26 @@
         <% if(locals.loginUser) {%>
         <a href="/posts/new">Create New Post</a>
         <% } %>
+
+          <!-- Registro de propuestas eliminadas -->
+          <h3>Propuestas Eliminadas:</h3>
+          <% if (deletedPosts && deletedPosts.length > 0) { %>
+              <% for (var i in deletedPosts) { %>
+                  <% var deletedPost = deletedPosts[i]; %>
+                  <article class="postShow">
+                      <h3 class="postTitle"><%= deletedPost.title %></h3>
+                      <div>
+                          <small class="deletedBy">Eliminado por: <b><%= deletedPost.deletedBy ?? "Anonymous" %></b> </small>
+                      </div>
+                      <div>
+                          <small class="deletedAt">Fecha de eliminación: <b><%= deletedPost.deletedAt?.toLocaleDateString() ?? "Unknown" %></b> </small>
+                      </div>
+                  </article>
+              <% } %>
+          <% } else { %>
+              <p>No hay propuestas eliminadas.</p>
+          <% } %>
+
       </div>
       <!-- <div class="col-md-6"></div>
         <div>

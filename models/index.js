@@ -8,6 +8,7 @@ const User = require('./user')(sequelize, Sequelize.DataTypes);
 const Team = require('./team')(sequelize, Sequelize.DataTypes);
 const UserTeam = require('./userTeam')(sequelize, Sequelize.DataTypes);
 const UserPostVotes = require('./userPostVotes')(sequelize, Sequelize.DataTypes);
+const DeletedPost = require('./deletedPosts')(sequelize, Sequelize.DataTypes);
 
 Attachment.hasOne(Post, {as: 'post', foreignKey: 'attachmentId'});
 Post.belongsTo(Attachment, {as: 'attachment', foreignKey: 'attachmentId'});

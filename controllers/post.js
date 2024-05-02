@@ -40,8 +40,10 @@ exports.index = async (req, res, next) => {
         };
         const allFindOptions = models.Post.findAll(findOptions);
         const posts = await allFindOptions;
+        const deletedPosts = await models.DeletedPost.findAll();
+
         const postInd = 'posts/index.ejs';
-        res.render(postInd, {posts, filterType: ''});
+        res.render(postInd, {posts, deletedPosts, filterType: ''});
     } 
     catch (error) {
         next(error);
@@ -250,6 +252,32 @@ exports.update = async (req, res, next) => {
 exports.destroy = async (req, res, next) => {
     try {
         const post = req.load.post;
+
+        // Devolver los originalVotePoints a cada usuario que votó en la propuesta
+        const userPostVotes = await models.UserPostVotes.findAll({
+            where: {
+                postId: post.id,
+                hasVoted: true,
+            },
+        });
+
+        for (const userVote of userPostVotes) {
+            const { userId, originalVotePoints } = userVote;
+            const teamId = post.TeamId;
+
+            await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
+        }
+
+        await models.DeletedPost.create({
+            id: post.id,
+            title: post.title,
+            body: post.body,
+            attachmentId: post.attachmentId,
+            deletedAt: new Date(),
+            deletedBy: req.session.loginUser.username, // Asegúrate de que el usuario actual esté disponible en req.session.user
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt
+        });
 
         await models.UserPostVotes.destroy({ where: { postId: post.id } });
 
