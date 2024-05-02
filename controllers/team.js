@@ -188,14 +188,29 @@ exports.update = async (req, res, next) =>
 };
 
 exports.destroy = async (req, res, next) => 
-{   const attachment = req.load.team.attachment;
+{   
+    const team = req.load.team;
+    const attachment = team.attachment;
     try {
-        await req.load.team.destroy();
+        // Crear una nueva entrada en DeletedTeams
+        await models.DeletedTeam.create({
+            id: team.id,
+            title: team.title,
+            body: team.body,
+            tokens: team.tokens,
+            numUsers: team.numUsers,
+            adminTeamId: team.adminTeamId,
+            deletedAt: new Date(),
+            deletedBy: req.session.loginUser?.id // Asegúrate de que esta es la forma correcta de obtener el id del usuario actual
+        });
+
+        // Ahora eliminar el equipo
+        await team.destroy();
         attachment && await attachment.destroy();
         const teams = '/teams';
         res.redirect(teams);
     } catch (error) { next(error); }
-}; 
+};
 
 exports.adminOrAuthorRequired = (req, res, next) => 
 {   const {team} = req.load;
