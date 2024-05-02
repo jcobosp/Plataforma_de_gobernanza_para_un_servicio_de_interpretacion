@@ -261,19 +261,24 @@ exports.destroy = async (req, res, next) => {
         const post = req.load.post;
         const originalAttachment = await post.getAttachment();
 
-        // Devolver los originalVotePoints a cada usuario que votó en la propuesta
-        const userPostVotes = await models.UserPostVotes.findAll({
-            where: {
-                postId: post.id,
-                hasVoted: true,
-            },
-        });
+        const currentDate = new Date();
 
-        for (const userVote of userPostVotes) {
-            const { userId, originalVotePoints } = userVote;
-            const teamId = post.TeamId;
+        // Verifica si la fecha actual está dentro del rango de votingStartDate y votingEndDate
+        if (post.votingStartDate <= currentDate && currentDate <= post.votingEndDate) {
+            // Devolver los originalVotePoints a cada usuario que votó en la propuesta
+            const userPostVotes = await models.UserPostVotes.findAll({
+                where: {
+                    postId: post.id,
+                    hasVoted: true,
+                },
+            });
 
-            await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
+            for (const userVote of userPostVotes) {
+                const { userId, originalVotePoints } = userVote;
+                const teamId = post.TeamId;
+
+                await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
+            }
         }
 
         // Crea un nuevo adjunto con los mismos datos que el original
@@ -299,9 +304,10 @@ exports.destroy = async (req, res, next) => {
         });
 
         await models.UserPostVotes.destroy({ where: { postId: post.id } });
-        // if (post.attachmentId) {
-        //     await models.Attachment.destroy({ where: { id: post.attachmentId } });
-        // }
+
+        if (post.attachmentId) {
+            await models.Attachment.destroy({ where: { id: post.attachmentId } });
+        }
 
         await req.load.post.destroy();
         res.redirect('/posts');
