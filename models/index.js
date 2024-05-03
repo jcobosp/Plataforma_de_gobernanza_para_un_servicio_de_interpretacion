@@ -10,6 +10,7 @@ const UserTeam = require('./userTeam')(sequelize, Sequelize.DataTypes);
 const UserPostVotes = require('./userPostVotes')(sequelize, Sequelize.DataTypes);
 const DeletedPost = require('./deletedPosts')(sequelize, Sequelize.DataTypes);
 const DeletedTeam = require('./deletedTeams')(sequelize, Sequelize.DataTypes); 
+const UserTeamHistory = require('./userTeamHistories')(sequelize, Sequelize.DataTypes);
 
 Attachment.hasOne(Post, {as: 'post', foreignKey: 'attachmentId'});
 Post.belongsTo(Attachment, {as: 'attachment', foreignKey: 'attachmentId'});
@@ -24,6 +25,9 @@ Team.belongsTo(User, { as: 'adminUser', foreignKey: 'adminTeamId' });
 User.hasMany(Team, { as: 'adminTeams', foreignKey: 'adminTeamId' });
 User.belongsToMany(Team, { through: UserTeam, foreignKey: 'userId' });
 Team.belongsToMany(User, { through: UserTeam, foreignKey: 'teamId' });
+
+User.belongsToMany(Team, { through: UserTeamHistory, foreignKey: 'userId' });
+Team.belongsToMany(User, { through: UserTeamHistory, foreignKey: 'teamId' });
 
 Post.belongsTo(Team, { as: 'team', foreignKey: 'TeamId' });
 Team.hasMany(Post, { as: 'posts', foreignKey: 'TeamId' });

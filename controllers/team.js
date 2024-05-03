@@ -273,52 +273,61 @@ exports.adminOrAuthorRequired = (req, res, next) =>
 
 exports.joinTeam = async (req, res, next) => {
     try {
-      const { teamId } = req.params;
-      const { loginUser } = req.session; 
-      // Incrementar el contador de numUsers en la tabla de Teams
-      await models.Team.increment('numUsers', { where: { id: teamId } });
-      // Verificar si el usuario ya está unido al equipo
-      const userTeam = await models.UserTeam.findOne({ 
-        where: { userId: loginUser.id, teamId }
-      });
-  
-      if (userTeam) {
-        // Si el usuario ya está unido al equipo, redireccionar a la página del equipo
-        return res.redirect('/teams/' + teamId);
-      }
-  
-      // Crear una nueva entrada en userTeams para registrar la unión del usuario al equipo
-      await models.UserTeam.create({ 
-        userId: loginUser.id,
-        teamId,
-        tokens: 5,
-        wallet: 10,
-        reputation: 0
-      });
+        const { teamId } = req.params;
+        const { loginUser } = req.session; 
 
-      await new Promise(resolve => setTimeout(resolve, 250));
-  
-      // Redireccionar a la página del equipo después de unirse exitosamente
-      res.redirect('/teams/' + teamId);
+        // Verificar si el usuario ya estuvo unido al equipo
+        const userTeamHistory = await models.UserTeamHistory.findOne({ 
+            where: { userId: loginUser.id, teamId }
+        });
+
+        if (userTeamHistory) {
+            // Si el usuario ya estuvo unido al equipo, restaurar su estado anterior
+            await models.UserTeam.create(userTeamHistory.dataValues);
+            await models.UserTeamHistory.destroy({ where: { userId: loginUser.id, teamId } });
+        } else {
+            // Incrementar el contador de numUsers en la tabla de Teams
+            await models.Team.increment('numUsers', { where: { id: teamId } });
+
+            // Crear una nueva entrada en userTeams para registrar la unión del usuario al equipo
+            await models.UserTeam.create({ 
+                userId: loginUser.id,
+                teamId,
+                tokens: 5,
+                wallet: 10,
+                reputation: 0
+            });
+        }
+
+        await new Promise(resolve => setTimeout(resolve, 250));
+
+        // Redireccionar a la página del equipo después de unirse exitosamente
+        res.redirect('/teams/' + teamId);
     } catch (error) {
-      next(error);
+        next(error);
     }
-  };
+};
   
 
-  exports.leaveTeam = async (req, res, next) => {
+exports.leaveTeam = async (req, res, next) => {
     try {
         const { teamId } = req.params;
         const { loginUser } = req.session;
-        
-        // Eliminar la asociación del usuario con el equipo
-        await models.UserTeam.destroy({
+
+        // Obtener la asociación del usuario con el equipo
+        const userTeam = await models.UserTeam.findOne({
             where: { userId: loginUser.id, teamId }
         });
+
+        // Mover la asociación del usuario con el equipo a UserTeamHistory
+        await models.UserTeamHistory.create(userTeam.dataValues);
+        await models.UserTeam.destroy({ where: { userId: loginUser.id, teamId } });
+
         // Restar un punto a la columna numUsers en la tabla Teams
         await models.Team.decrement('numUsers', { where: { id: teamId } });
 
         await new Promise(resolve => setTimeout(resolve, 250));
+
         // Redireccionar a la página del equipo después de abandonar el equipo
         res.redirect('/teams/' + teamId);
     } catch (error) {
