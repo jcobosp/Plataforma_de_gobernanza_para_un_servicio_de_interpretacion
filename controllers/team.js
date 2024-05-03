@@ -295,6 +295,8 @@ exports.joinTeam = async (req, res, next) => {
         wallet: 10,
         reputation: 0
       });
+
+      await new Promise(resolve => setTimeout(resolve, 250));
   
       // Redireccionar a la página del equipo después de unirse exitosamente
       res.redirect('/teams/' + teamId);
@@ -315,6 +317,8 @@ exports.joinTeam = async (req, res, next) => {
         });
         // Restar un punto a la columna numUsers en la tabla Teams
         await models.Team.decrement('numUsers', { where: { id: teamId } });
+
+        await new Promise(resolve => setTimeout(resolve, 250));
         // Redireccionar a la página del equipo después de abandonar el equipo
         res.redirect('/teams/' + teamId);
     } catch (error) {
