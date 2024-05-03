@@ -54,7 +54,7 @@
         <p>¡Inicia sesión para ver más sobre las propuestas!</p>
     <% } %>
 
-    <% if (isLoggedIn && !post.vetoed && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
+    <% if (isLoggedIn && !post.vetoed && belongsToSameTeam && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
       <p>No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
     <% } %>
 
