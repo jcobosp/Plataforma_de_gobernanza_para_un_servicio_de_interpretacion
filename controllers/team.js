@@ -39,8 +39,9 @@ exports.index = async (req, res, next) => {
         };
         const allFindOptions = models.Team.findAll(findOptions);
         const teams = await allFindOptions;
+        const deletedTeams = await models.DeletedTeam.findAll();
         const teamInd = 'teams/index.ejs';
-        res.render(teamInd, {teams});
+        res.render(teamInd, {teams, deletedTeams});
     } 
     catch (error) {
         next(error);
@@ -201,8 +202,55 @@ exports.destroy = async (req, res, next) =>
             numUsers: team.numUsers,
             adminTeamId: team.adminTeamId,
             deletedAt: new Date(),
-            deletedBy: req.session.loginUser?.id // Asegúrate de que esta es la forma correcta de obtener el id del usuario actual
+            deletedBy: req.session.loginUser.username
         });
+
+        // Eliminar todas las entradas en UserTeam que tienen el teamId del equipo que se está eliminando
+        await models.UserTeam.destroy({
+            where: {
+                teamId: team.id
+            }
+        });
+
+        // Buscar todos los posts con el TeamId del equipo
+        const posts = await models.Post.findAll({
+            where: {
+                TeamId: team.id
+            }
+        });
+
+        // Eliminar cada post
+        for (const post of posts) {
+            const originalAttachment = await post.getAttachment();
+            let newAttachmentId = null;
+            if (originalAttachment) {
+                const newAttachment = await models.Attachment.create({
+                    mime: originalAttachment.mime,
+                    image: originalAttachment.image,
+                    url: originalAttachment.url
+                });
+                newAttachmentId = newAttachment.id;
+            }
+
+            await models.DeletedPost.create({
+                id: post.id,
+                title: post.title,
+                body: post.body,
+                attachmentId: newAttachmentId, 
+                deletedAt: new Date(),
+                deletedBy: req.session.loginUser.username, 
+                createdAt: post.createdAt,
+                updatedAt: post.updatedAt
+            });
+
+            await models.UserPostVotes.destroy({ where: { postId: post.id } });
+
+            if (post.attachmentId) {
+                await models.Attachment.destroy({ where: { id: post.attachmentId } });
+            }
+
+            await post.destroy();
+        }
 
         // Ahora eliminar el equipo
         await team.destroy();

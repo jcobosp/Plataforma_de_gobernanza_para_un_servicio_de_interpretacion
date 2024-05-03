@@ -48,6 +48,25 @@
   <a href="/teams/new">Create New Team</a>
   <% } %>
 
+  <!-- Registro de teams eliminados -->
+  <h3>Equipos Eliminados:</h3>
+  <% if (deletedTeams && deletedTeams.length > 0) { %>
+      <% for (var i in deletedTeams) { %>
+          <% var deletedTeam = deletedTeams[i]; %>
+          <article class="teamShow">
+              <h3 class="teamTitle"><%= deletedTeam.title %></h3>
+              <div>
+                  <small class="deletedBy">Eliminado por: <b><%= deletedTeam.deletedBy ?? "Anonymous" %></b> </small>
+              </div>
+              <div>
+                  <small class="deletedAt">Fecha de eliminación: <b><%= deletedTeam.deletedAt?.toLocaleDateString() ?? "Unknown" %></b> </small>
+              </div>
+          </article>
+      <% } %>
+  <% } else { %>
+      <p>No hay equipos eliminados.</p>
+  <% } %>
+
 </div>
 </section>
 
