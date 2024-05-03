@@ -286,9 +286,6 @@ exports.joinTeam = async (req, res, next) => {
             await models.UserTeam.create(userTeamHistory.dataValues);
             await models.UserTeamHistory.destroy({ where: { userId: loginUser.id, teamId } });
         } else {
-            // Incrementar el contador de numUsers en la tabla de Teams
-            await models.Team.increment('numUsers', { where: { id: teamId } });
-
             // Crear una nueva entrada en userTeams para registrar la unión del usuario al equipo
             await models.UserTeam.create({ 
                 userId: loginUser.id,
@@ -298,6 +295,8 @@ exports.joinTeam = async (req, res, next) => {
                 reputation: 0
             });
         }
+        // Incrementar el contador de numUsers en la tabla de Teams
+        await models.Team.increment('numUsers', { where: { id: teamId } });
 
         await new Promise(resolve => setTimeout(resolve, 250));
 
