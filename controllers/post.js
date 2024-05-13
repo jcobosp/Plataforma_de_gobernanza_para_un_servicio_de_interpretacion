@@ -702,7 +702,16 @@ exports.filter = async (req, res, next) => {
             }
         });
 
-        res.render('posts/index', { posts, filterType });
+        const deletedPosts = await models.DeletedPost.findAll({
+            include: [
+                {
+                    model: models.Attachment,
+                    as: 'attachment'
+                }
+            ]
+        });
+
+        res.render('posts/index', { posts, filterType, deletedPosts });
     } catch (error) {
         next(error);
     }
