@@ -307,7 +307,6 @@ exports.joinTeam = async (req, res, next) => {
     }
 };
   
-
 exports.leaveTeam = async (req, res, next) => {
     try {
         const { teamId } = req.params;
@@ -318,8 +317,46 @@ exports.leaveTeam = async (req, res, next) => {
             where: { userId: loginUser.id, teamId }
         });
 
+        // Obtener los votos del usuario
+        const userVotes = await models.UserPostVotes.findAll({
+            where: { userId: loginUser.id }
+        });
+
+        // Para cada voto del usuario, verificar si el post pertenece al equipo que está abandonando
+        for (let vote of userVotes) {
+            const post = await models.Post.findOne({ where: { id: vote.postId } });
+
+
+            if (post && String(post.TeamId) === String(teamId)) {
+                // Decrementar el conteo de votos en el Post correspondiente
+                await post.decrement('usersVoted');
+
+                // Restar los puntos de votación del usuario en el Post
+                if (vote.lastVote === 'for') {
+                    post.votesFor -= vote.lastVotePoints;
+                } else if (vote.lastVote === 'against') {
+                    post.votesAgainst -= vote.lastVotePoints;
+                } else if (vote.lastVote === 'abstain') {
+                    post.abstentions -= vote.lastVotePoints;
+                }
+
+                await post.save();
+
+                // Devolver los originalVotePoints al wallet del usuario
+                await models.UserTeam.increment('wallet', { by: Math.round(vote.originalVotePoints), where: { userId: loginUser.id, teamId } });
+                
+                // Eliminar el voto del usuario en el post del equipo
+                await models.UserPostVotes.destroy({ where: { userId: loginUser.id, postId: vote.postId } });
+            }
+        }
+
+        // Actualizar userTeam con los datos más recientes antes de moverlo a UserTeamHistory
+        const updatedUserTeam = await models.UserTeam.findOne({
+            where: { userId: loginUser.id, teamId }
+        });
+
         // Mover la asociación del usuario con el equipo a UserTeamHistory
-        await models.UserTeamHistory.create(userTeam.dataValues);
+        await models.UserTeamHistory.create(updatedUserTeam.dataValues);
         await models.UserTeam.destroy({ where: { userId: loginUser.id, teamId } });
 
         // Restar un punto a la columna numUsers en la tabla Teams
