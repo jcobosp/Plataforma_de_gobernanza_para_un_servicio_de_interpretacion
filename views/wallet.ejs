@@ -49,11 +49,11 @@
           <li>
             <%= user.username %>: <%= user.tokens %>
             <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addTokenToUser">
-              <input type="number" name="tokens" min="1" value="1">
+              <input type="number" name="tokens" min="1" max="10000" value="1">
               <button type="submit">Sumar Tokens</button>
             </form>
             <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removeTokenFromUser">
-              <input type="number" name="tokens" min="1" value="1">
+              <input type="number" name="tokens" min="1" max="10000" value="1">
               <button type="submit" <%= user.tokens === 0 ? 'disabled' : '' %>>Restar Tokens</button>
             </form>
           </li>
