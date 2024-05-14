@@ -143,22 +143,84 @@ exports.update = async (req, res, next) => {
     }
 };
 
-
-
+// exports.destroy = async (req, res, next) => {
+//     try {
+//         if (req.session.loginUser?.id === req.load.user.id) {
+//             delete req.session.loginUser;
+//         }
+//         await req.load.user.destroy()
+//         console.log('Success: User deleted successfully.');
+//         res.redirect('/users');
+//     } catch (error) {
+//         next(error);
+//     }
+// };
 
 exports.destroy = async (req, res, next) => {
     try {
-        if (req.session.loginUser?.id === req.load.user.id) {
-            delete req.session.loginUser;
+        const { userId } = req.params; // ID del usuario a eliminar
+
+        // Obtener los votos del usuario
+        const userVotes = await models.UserPostVotes.findAll({
+            where: { userId: userId }
+        });
+
+        // Para cada voto del usuario
+        for (let vote of userVotes) {
+            const post = await models.Post.findOne({ where: { id: vote.postId } });
+
+            if (post) {
+                // Decrementar el conteo de votos en el Post correspondiente
+                await post.decrement('usersVoted');
+
+                // Restar los puntos de votación del usuario en el Post
+                if (vote.lastVote === 'for') {
+                    post.votesFor -= vote.lastVotePoints;
+                } else if (vote.lastVote === 'against') {
+                    post.votesAgainst -= vote.lastVotePoints;
+                } else if (vote.lastVote === 'abstain') {
+                    post.abstentions -= vote.lastVotePoints;
+                }
+
+                await post.save();
+
+                // Eliminar el voto del usuario en el post del equipo
+                await models.UserPostVotes.destroy({ where: { userId: userId, postId: vote.postId } });
+            }
         }
-        await req.load.user.destroy()
-        console.log('Success: User deleted successfully.');
-        res.redirect('/users');
+
+        // Obtener los equipos del usuario
+        const userTeams = await models.UserTeam.findAll({
+            where: { userId: userId }
+        });
+
+        // Para cada equipo del usuario
+        for (let userTeam of userTeams) {
+            const team = await models.Team.findOne({ where: { id: userTeam.teamId } });
+
+            if (team) {
+                // Decrementar el conteo de usuarios en el equipo correspondiente
+                await team.decrement('numUsers');
+
+                // Eliminar la entrada del usuario en el equipo
+                await models.UserTeam.destroy({ where: { userId: userId, teamId: userTeam.teamId } });
+            }
+        }
+
+        if (req.session.loginUser?.id === parseInt(userId)) {
+            delete req.session.loginUser;
+            await req.load.user.destroy()
+            console.log('Success: User deleted successfully.');
+            res.redirect('/registrarse');
+        } else {
+            await req.load.user.destroy()
+            console.log('Success: User deleted successfully.');
+            res.redirect('/users');
+        }
     } catch (error) {
         next(error);
     }
 };
-
 
 exports.registrarse = function(req, res, next) {
     res.render('users/registrarse', { user: models.User.build() });
