@@ -632,7 +632,12 @@ exports.applyRewards = async () => {
                         if (vote === winningOption) {
                             await models.UserTeam.increment('tokens', { by: votingSuccessReward, where: { userId: userId, teamId: teamId } });
                         } else if (vote === losingOption) {
-                            await models.UserTeam.decrement('tokens', { by: votingFailurePenalty, where: { userId: userId, teamId: teamId } });
+                            const userTeam = await models.UserTeam.findOne({ where: { userId: userId, teamId: teamId } });
+                            if (userTeam.tokens - votingFailurePenalty < 0) {
+                                await models.UserTeam.update({ tokens: 0 }, { where: { userId: userId, teamId: teamId } });
+                            } else {
+                                await models.UserTeam.decrement('tokens', { by: votingFailurePenalty, where: { userId: userId, teamId: teamId } });
+                            }
                         }
                     }
                 // Si no se llega al min_users_voted
