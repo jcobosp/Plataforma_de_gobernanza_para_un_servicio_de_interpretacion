@@ -191,6 +191,9 @@ exports.destroy = async (req, res, next) => {
 
                     // Eliminar el voto del usuario en el post del equipo
                     await models.UserPostVotes.destroy({ where: { userId: userId, postId: vote.postId } });
+                } else {
+                    // Eliminar el voto del usuario en el post del equipo
+                    await models.UserPostVotes.destroy({ where: { userId: userId, postId: vote.postId } });
                 }
             }
         }
