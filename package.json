@@ -12,6 +12,7 @@
     "seed_teams_undo": "sequelize db:seed:undo --seed 20240212125002-FillTeamsTable"
   },
   "dependencies": {
+    "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",

@@ -6,6 +6,7 @@ var logger = require('morgan');
 var partials = require('express-partials');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var flash = require('connect-flash');
 var indexRouter = require('./routes/index');
 var app = express();
 var postsController = require('./controllers/post');
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(partials());
 // Configuracion de la session para almacenarla en BBDD Redis.
 app.use(session({ secret: "Blog 2024", resave: false, saveUninitialized: true }));
+app.use(flash());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // Este middleware nos permite usar loginUser en las vistas (usando locals.loginUser)
@@ -48,6 +50,11 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.use(function(req, res, next) {
+  res.locals.messages = req.flash();
+  next();
 });
 
 // Ejecución de applyRewards cada minuto

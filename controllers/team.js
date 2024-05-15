@@ -31,7 +31,6 @@ exports.attachment = (req, res, next) => {
 };
 
 exports.index = async (req, res, next) => {
-    
     try {
         const findOptions = {
             include: [{model: models.Attachment, as: 'attachment'},
@@ -40,8 +39,27 @@ exports.index = async (req, res, next) => {
         const allFindOptions = models.Team.findAll(findOptions);
         const teams = await allFindOptions;
         const deletedTeams = await models.DeletedTeam.findAll();
+
+        // Calculate the time until the next reward can be claimed
+        if (req.session.loginUser) {
+            const user = await models.User.findByPk(req.session.loginUser.id);
+            if (user && user.lastDailyRewardClaimedAt) {
+                var currentDate = new Date();
+                var lastClaimedAt = new Date(user.lastDailyRewardClaimedAt);
+                var diffInMilliseconds = Math.abs(currentDate - lastClaimedAt);
+                var totalMillisecondsInADay = 24 * 60 * 60 * 1000;
+                var remainingMilliseconds = totalMillisecondsInADay - diffInMilliseconds;
+                if (remainingMilliseconds > 0) {
+                    var hours = Math.floor(remainingMilliseconds / 36e5);
+                    var minutes = Math.floor((remainingMilliseconds % 36e5) / 60000);
+                    var seconds = Math.floor((remainingMilliseconds % 60000) / 1000);
+                    var timeUntilNextReward = `${hours} hours, ${minutes} minutes, and ${seconds} seconds`;
+                }
+            }
+        }
+
         const teamInd = 'teams/index.ejs';
-        res.render(teamInd, {teams, deletedTeams});
+        res.render(teamInd, {teams, deletedTeams, timeUntilNextReward});
     } 
     catch (error) {
         next(error);
@@ -426,7 +444,38 @@ exports.inflate = async (req, res, next) => {
     }
 };
 
+exports.claimDailyReward = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        let user = await models.User.findOne({ where: { id: userId } });
 
+        if (!user) {
+            req.flash('error', 'User not found');
+            return res.redirect('/teams');
+        }
 
+        const currentDate = new Date();
+        const lastClaimedAt = new Date(user.lastDailyRewardClaimedAt);
+        const diffInHours = Math.abs(currentDate - lastClaimedAt) / 36e5;
+
+        if (diffInHours < 24) {
+            req.flash('error', 'Daily reward already claimed');
+            return res.redirect('/teams');
+        }
+
+        await models.UserTeam.increment('wallet', { by: 1, where: { userId: userId } });
+        await models.User.update({ lastDailyRewardClaimedAt: currentDate }, { where: { id: userId } });
+
+        // Recarga la instancia del modelo para obtener los datos más recientes
+        user = await user.reload();
+
+        req.flash('success', 'Daily reward claimed successfully');
+        res.redirect('/teams');
+    } catch (error) {
+        console.error('Error al ejecutar claimDailyReward:', error);
+        req.flash('error', 'An error occurred while claiming daily reward');
+        res.redirect('/teams');
+    }
+};
 
 

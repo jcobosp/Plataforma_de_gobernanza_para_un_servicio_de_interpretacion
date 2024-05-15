@@ -31,6 +31,7 @@ router.post('/teams/:teamId/join', teamController.joinTeam);
 router.post('/teams/:teamId/leave', teamController.leaveTeam);
 router.post('/teams/:teamId(\\d+)/donate', teamController.donate);
 router.post('/teams/:teamId(\\d+)/inflate', sessionController.adminRequired, teamController.inflate);
+router.post('/users/:id/claimdailyreward', teamController.claimDailyReward);
 
 // Pantalla Reputación
 router.get('/reputation', reputationController.index); 

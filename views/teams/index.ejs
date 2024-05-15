@@ -24,6 +24,16 @@
       <!-- End Breadcrumbs -->
   </section>
   <h2>Teams:</h2>
+  <% if(locals.loginUser) { %>
+    <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
+        <% if(timeUntilNextReward) { %>
+            <button id="claimRewardButton" type="submit" disabled>Claim Daily Reward</button>
+            <p>You can claim your next reward in <%= timeUntilNextReward %>.</p>
+        <% } else { %>
+            <button id="claimRewardButton" type="submit">Claim Daily Reward</button>
+        <% } %>
+    </form>
+  <% } %>
   <% for (var i in teams) { %>
       <% var team = teams[i]; %>
       <article class="teamShow">

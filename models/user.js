@@ -54,6 +54,10 @@ module.exports = (sequelize, DataTypes) => {
         isAdminProposal: {
             type: DataTypes.BOOLEAN,
             defaultValue: false 
+        },
+        lastDailyRewardClaimedAt: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         }
         },    
         { sequelize } 
