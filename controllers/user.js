@@ -170,22 +170,28 @@ exports.destroy = async (req, res, next) => {
             const post = await models.Post.findOne({ where: { id: vote.postId } });
 
             if (post) {
-                // Decrementar el conteo de votos en el Post correspondiente
-                await post.decrement('usersVoted');
+                const currentDate = new Date();
+                const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
 
-                // Restar los puntos de votación del usuario en el Post
-                if (vote.lastVote === 'for') {
-                    post.votesFor -= vote.lastVotePoints;
-                } else if (vote.lastVote === 'against') {
-                    post.votesAgainst -= vote.lastVotePoints;
-                } else if (vote.lastVote === 'abstain') {
-                    post.abstentions -= vote.lastVotePoints;
+                // Solo realizar operaciones de devolución de votos y puntos si el post está en el período de votación
+                if (isVotingPeriod) {
+                    // Decrementar el conteo de votos en el Post correspondiente
+                    await post.decrement('usersVoted');
+
+                    // Restar los puntos de votación del usuario en el Post
+                    if (vote.lastVote === 'for') {
+                        post.votesFor -= vote.lastVotePoints;
+                    } else if (vote.lastVote === 'against') {
+                        post.votesAgainst -= vote.lastVotePoints;
+                    } else if (vote.lastVote === 'abstain') {
+                        post.abstentions -= vote.lastVotePoints;
+                    }
+
+                    await post.save();
+
+                    // Eliminar el voto del usuario en el post del equipo
+                    await models.UserPostVotes.destroy({ where: { userId: userId, postId: vote.postId } });
                 }
-
-                await post.save();
-
-                // Eliminar el voto del usuario en el post del equipo
-                await models.UserPostVotes.destroy({ where: { userId: userId, postId: vote.postId } });
             }
         }
 
