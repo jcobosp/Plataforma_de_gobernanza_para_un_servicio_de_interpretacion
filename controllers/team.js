@@ -346,25 +346,31 @@ exports.leaveTeam = async (req, res, next) => {
 
 
             if (post && String(post.TeamId) === String(teamId)) {
-                // Decrementar el conteo de votos en el Post correspondiente
-                await post.decrement('usersVoted');
+                const currentDate = new Date();
+                const isVotingPeriod = currentDate >= post.votingStartDate && currentDate <= post.votingEndDate;
 
-                // Restar los puntos de votación del usuario en el Post
-                if (vote.lastVote === 'for') {
-                    post.votesFor -= vote.lastVotePoints;
-                } else if (vote.lastVote === 'against') {
-                    post.votesAgainst -= vote.lastVotePoints;
-                } else if (vote.lastVote === 'abstain') {
-                    post.abstentions -= vote.lastVotePoints;
+                // Solo realizar operaciones de devolución de votos y puntos si el post está en el período de votación
+                if (isVotingPeriod) {
+                    // Decrementar el conteo de votos en el Post correspondiente
+                    await post.decrement('usersVoted');
+
+                    // Restar los puntos de votación del usuario en el Post
+                    if (vote.lastVote === 'for') {
+                        post.votesFor -= vote.lastVotePoints;
+                    } else if (vote.lastVote === 'against') {
+                        post.votesAgainst -= vote.lastVotePoints;
+                    } else if (vote.lastVote === 'abstain') {
+                        post.abstentions -= vote.lastVotePoints;
+                    }
+
+                    await post.save();
+
+                    // Devolver los originalVotePoints al wallet del usuario
+                    await models.UserTeam.increment('wallet', { by: Math.round(vote.originalVotePoints), where: { userId: loginUser.id, teamId } });
+                    
+                    // Eliminar el voto del usuario en el post del equipo
+                    await models.UserPostVotes.destroy({ where: { userId: loginUser.id, postId: vote.postId } });
                 }
-
-                await post.save();
-
-                // Devolver los originalVotePoints al wallet del usuario
-                await models.UserTeam.increment('wallet', { by: Math.round(vote.originalVotePoints), where: { userId: loginUser.id, teamId } });
-                
-                // Eliminar el voto del usuario en el post del equipo
-                await models.UserPostVotes.destroy({ where: { userId: loginUser.id, postId: vote.postId } });
             }
         }
 
