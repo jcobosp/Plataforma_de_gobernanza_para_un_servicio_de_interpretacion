@@ -34,6 +34,9 @@
                 <input type="number" id="votePoints" name="votePoints" min="1" max="10000" required>
                 <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
                 <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+              </form>
+              <form action="/posts/<%= post.id %>/vote" method="post">
+                <input type="hidden" id="votePoints" name="votePoints" value="1">
                 <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
               </form>
             <% } %>

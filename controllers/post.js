@@ -345,8 +345,12 @@ exports.adminOrAuthorRequired = (req, res, next) =>
 
 exports.vote = async (req, res, next) => {
     const { post } = req.load;
-    const { vote, votePoints } = req.body;
+    let { vote, votePoints } = req.body;
     const userId = req.session.loginUser.id;
+
+    if (vote === 'abstain') {
+        votePoints = 1; // Si el voto es una abstención, establecemos votePoints a 1
+    }
 
     try {
         const userTeam = await models.UserTeam.findOne({
@@ -371,13 +375,14 @@ exports.vote = async (req, res, next) => {
         if (!userPostVote) {
             await post.increment('usersVoted');
         }
+        if (vote !== 'abstain') {
+            if (parseInt(votePoints) > post.max_voting) {
+                return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) excede el límite máximo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
+            }
 
-        if (parseInt(votePoints) > post.max_voting) {
-            return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) excede el límite máximo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
-        }
-
-        if (parseInt(votePoints) < post.min_voting) {
-            return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) es inferior al límite mínimo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
+            if (parseInt(votePoints) < post.min_voting) {
+                return res.status(400).send(`El número de puntos que ha seleccionado votar (${votePoints}) es inferior al límite mínimo permitido. Se permite votar entre ${post.min_voting} y ${post.max_voting} puntos.`);
+            }
         }
 
         if (parseInt(votePoints) < post.min_voting && parseInt(votePoints) > post.max_voting){
