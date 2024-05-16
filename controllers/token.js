@@ -172,3 +172,15 @@ exports.removeTokenFromUser = async (req, res) => {
     res.status(500).send('Error removing tokens from user');
   }
 };
+
+
+exports.adminOrTokenAdminRequired = (req, res, next) => 
+  {   
+      const isAdmin = !!req.session.loginUser?.isAdmin;
+      const isTokenAdmin = !!req.session.loginUser?.isAdminToken;
+      if(isAdmin || isTokenAdmin){
+          next();
+      } else{     
+          res.send(403);
+      }
+  };

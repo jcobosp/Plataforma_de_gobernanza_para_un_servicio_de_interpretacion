@@ -34,14 +34,14 @@ router.post('/teams/:teamId(\\d+)/inflate', sessionController.adminRequired, tea
 router.post('/users/:id/claimdailyreward', teamController.claimDailyReward);
 
 // Pantalla Reputación
-router.get('/reputation', reputationController.index); 
+router.get('/reputation', reputationController.adminRequired , reputationController.index); 
 router.post('/reputation/:userId(\\d+)/addPoint', reputationController.addPoint);
 
 // Pantalla Tockens
 // router.get('/tokens', tokenController.index); 
 // router.post('/tokens/:userId(\\d+)/addToken', tokenController.addToken);
 // router.post('/tokens/:userId(\\d+)/removeToken', tokenController.removeToken);
-router.get('/wallet', tokenController.index); 
+router.get('/wallet', tokenController.adminOrTokenAdminRequired, tokenController.index); 
 router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/addPointWallet', tokenController.addWalletPoint);
 router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/removePointWallet', tokenController.removeWalletPoint);
 router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/addTokenToUser', tokenController.addTokenToUser);

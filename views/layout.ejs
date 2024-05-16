@@ -31,11 +31,14 @@
           <li><a href="/teams">Teams</a></li>
           <li><a href="/posts">Propuestas</a></li>
           <% if(locals.loginUser){ %>
-          <li><a href="/users">Users</a></li>
+            <li><a href="/users">Users</a></li>
+            <% if(locals.loginUser.isAdmin) { %>
+            <li><a href="/reputation">Reputación</a></li>
+            <% } %>
+            <% if(locals.loginUser.isAdmin || locals.loginUser.isAdminToken) { %>
+            <li><a href="/wallet">Wallet</a></li>
+            <% } %>
           <% } %>
-          <li><a href="/reputation">Reputación</a></li>
-          <li><a href="/wallet">Wallet</a></li>
-
           <% if (locals.loginUser) { %>
           <li><a href="/login?_method=DELETE" class="logout">Cerrar sesión</a></li>
           <a href="/users/<%= loginUser.id %> " class="get-a-quote">

@@ -30,3 +30,12 @@ exports.addPoint = async (req, res) => {
     res.status(500).send('Error adding point');
   }
 };
+
+
+exports.adminRequired = (req, res, next) => {
+  if(!!req.session.loginUser?.isAdmin){
+      next();
+  } else{
+      res.send(403);
+  }
+};
