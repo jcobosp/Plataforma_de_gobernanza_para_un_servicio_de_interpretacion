@@ -34,6 +34,9 @@ exports.create = async (req, res, next) => {
                 id: user.id,
                 username: user.username,
                 isAdmin: user.isAdmin,
+                isAdminProposal: user.isAdminProposal, 
+                isAdminTeam: user.isAdminTeam, 
+                isAdminToken: user.isAdminToken,
                 expires: Date.now() + maxIdleTime
             };
             res.redirect("/");
@@ -72,6 +75,30 @@ exports.adminOrMyselfRequired = (req, res, next) => {
 
 exports.adminRequired = (req, res, next) => {
     if(!!req.session.loginUser?.isAdmin){
+        next();
+    } else{
+        res.send(403);
+    }
+};
+
+exports.tokenAdminRequired = (req, res, next) => {
+    if(!!req.session.loginUser?.isAdminToken){
+        next();
+    } else{
+        res.send(403);
+    }
+};
+
+exports.teamAdminRequired = (req, res, next) => {
+    if(!!req.session.loginUser?.isAdminTeam){
+        next();
+    } else{
+        res.send(403);
+    }
+};
+
+exports.proposalAdminRequired = (req, res, next) => {
+    if(!!req.session.loginUser?.isAdminProposal){
         next();
     } else{
         res.send(403);

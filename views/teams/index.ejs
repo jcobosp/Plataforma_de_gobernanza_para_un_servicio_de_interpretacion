@@ -41,10 +41,10 @@
           <%- include('../attachments/_attachmentTeams', { team: team }) %>
           <div class="teamOptions">
               <a class="button-2" href="/teams/<%= team.id %>">Show</a>
-              <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin) {%>
+              <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
               <a class="button-2" href="/teams/<%= team.id %>/edit">Edit</a>
               <% } %>
-              <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin) {%>
+              <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
               <a class="button-2" href="/teams/<%= team.id %>?_method=DELETE" onClick="return confirm('Delete: <%= team.title %>');">Delete</a>
               <% } %>
           </div>
@@ -54,7 +54,7 @@
       </article>
   <% } %>
   <div>
-  <% if(locals.loginUser) {%>
+  <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
   <a href="/teams/new">Create New Team</a>
   <% } %>
 

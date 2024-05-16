@@ -343,6 +343,30 @@ exports.adminOrAuthorRequired = (req, res, next) =>
     }
 };
 
+exports.adminOrAuthorOrProposalAdminRequired = (req, res, next) => 
+    {   
+        const {post} = req.load;
+        const isAdmin = !!req.session.loginUser?.isAdmin;
+        const isAuthor = post.authorId === req.session.loginUser?.id;
+        const isProposalAdmin = !!req.session.loginUser?.isAdminProposal;
+        if(isAdmin || isAuthor || isProposalAdmin){
+            next();
+        } else{     
+            res.send(403);
+        }
+    };
+
+exports.adminOrProposalAdminRequired = (req, res, next) => 
+    {   
+        const isAdmin = !!req.session.loginUser?.isAdmin;
+        const isProposalAdmin = !!req.session.loginUser?.isAdminProposal;
+        if(isAdmin || isProposalAdmin){
+            next();
+        } else{     
+            res.send(403);
+        }
+    };
+
 exports.vote = async (req, res, next) => {
     const { post } = req.load;
     let { vote, votePoints } = req.body;

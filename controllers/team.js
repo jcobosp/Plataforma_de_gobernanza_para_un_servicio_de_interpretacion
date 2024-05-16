@@ -279,15 +279,39 @@ exports.destroy = async (req, res, next) =>
 };
 
 exports.adminOrAuthorRequired = (req, res, next) => 
-{   const {team} = req.load;
-    const isAdmin = !!req.session.loginUser?.isAdmin;
-    const isAuthor = team.authorId === req.session.loginUser?.id;
-    if(isAdmin || isAuthor){
-        next();
-    } else{     
-        res.send(403);
-    }
-};
+    {   const {team} = req.load;
+        const isAdmin = !!req.session.loginUser?.isAdmin;
+        const isAuthor = team.authorId === req.session.loginUser?.id;
+        if(isAdmin || isAuthor){
+            next();
+        } else{     
+            res.send(403);
+        }
+    };
+
+exports.adminOrAuthorOrTeamAdminRequired = (req, res, next) => 
+    {   
+        const {team} = req.load;
+        const isAdmin = !!req.session.loginUser?.isAdmin;
+        const isAuthor = team.authorId === req.session.loginUser?.id;
+        const isTeamAdmin = !!req.session.loginUser?.isAdminTeam;
+        if(isAdmin || isAuthor || isTeamAdmin){
+            next();
+        } else{     
+            res.send(403);
+        }
+    };
+
+exports.adminOrTeamAdminRequired = (req, res, next) => 
+    {   
+        const isAdmin = !!req.session.loginUser?.isAdmin;
+        const isTeamAdmin = !!req.session.loginUser?.isAdminTeam;
+        if(isAdmin || isTeamAdmin){
+            next();
+        } else{     
+            res.send(403);
+        }
+    };
 
 exports.joinTeam = async (req, res, next) => {
     try {

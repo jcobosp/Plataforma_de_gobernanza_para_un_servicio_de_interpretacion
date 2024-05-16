@@ -33,6 +33,9 @@ app.use(function (req, res, next) {
     username: req.session.loginUser.username,
     email: req.session.loginUser.email,
     isAdmin: req.session.loginUser.isAdmin,
+    isAdminToken: req.session.loginUser.isAdminToken,
+    isAdminTeam: req.session.loginUser.isAdminTeam,
+    isAdminProposal: req.session.loginUser.isAdminProposal,
     // isProposalCreator: req.session.loginUser.isProposalCreator  ///////////////
   };
   next();

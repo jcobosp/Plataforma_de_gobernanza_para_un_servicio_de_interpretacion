@@ -52,10 +52,10 @@
                 <%- include('../attachments/_attachment', { post: post }) %>
                 <div class="postOptions">
                     <a class="button-2" href="/posts/<%= post.id %>">Show</a>
-                    <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin) {%>
+                    <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>
                     <a class="button-2" href="/posts/<%= post.id %>/edit">Edit</a>
                     <% } %>
-                    <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin) {%>
+                    <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>
                     <a class="button-2" href="/posts/<%= post.id %>?_method=DELETE" onClick="return confirm('Delete: <%= post.title %>');">Delete</a>
                     <% } %>
                 </div>
@@ -65,7 +65,7 @@
             </article>
         <% } %>
         <div>
-        <% if(locals.loginUser) {%>
+        <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>
         <a href="/posts/new">Create New Post</a>
         <% } %>
 
