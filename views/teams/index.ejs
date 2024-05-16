@@ -20,9 +20,89 @@
             </ol>
           </div>
         </nav>
-      </div>
+    </div>
       <!-- End Breadcrumbs -->
   </section>
+
+  <div id="recent-blog-posts" class="recent-blog-posts">
+
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-header">
+        <h2>Equipos</h2>
+        <p>Busca el equipo en el que mejor encajes</p>
+      </div>
+
+      <div>
+      <% if(locals.loginUser) { %>
+        <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
+            <% if(timeUntilNextReward) { %>
+                <button id="claimRewardButton" type="submit" disabled>Claim Daily Reward</button>
+                <p>You can claim your next reward in <%= timeUntilNextReward %>.</p>
+            <% } else { %>
+                <button id="claimRewardButton" type="submit">Claim Daily Reward</button>
+            <% } %>
+        </form>
+      <% } %>
+      </div>
+
+      <div class="row">
+        <% for (var i in teams) { %>
+          <% var team = teams[i]; %>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="<%= i*200 %>">
+            <div class="post-box">
+              <div class="post-img">
+                <%- include('../attachments/_attachmentTeams', { team: team }) %>
+              </div>
+              <div class="meta">
+                <span class="post-date"><%= new Date(team.createdAt).toDateString() %></span>
+                <span class="post-author"> / <%= team.author?.username ?? "Anonymous" %></span>
+              </div>
+              <h3 class="post-title"><%= team.title %></h3>
+              <p><%= team.body %></p>
+              <a href="/teams/<%= team.id %>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
+                <a class="button-2" href="/teams/<%= team.id %>/edit">Edit</a>
+                <a class="button-2" href="/teams/<%= team.id %>?_method=DELETE" onClick="return confirm('Delete: <%= team.title %>');">Delete</a>
+              <% } %>
+            </div>
+          </div>
+          <% if ((i+1) % 3 === 0) { %>
+            </div>
+            <div class="row">
+          <% } %>
+        <% } %>
+      </div>
+
+      <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
+        <a href="/teams/new">Create New Team</a>
+      <% } %>
+
+    </div>
+
+    <div>
+      <!-- Registro de teams eliminados -->
+      <h3>Equipos Eliminados:</h3>
+      <% if (deletedTeams && deletedTeams.length > 0) { %>
+          <% for (var i in deletedTeams) { %>
+              <% var deletedTeam = deletedTeams[i]; %>
+              <article class="teamShow">
+                  <h3 class="teamTitle"><%= deletedTeam.title %></h3>
+                  <div>
+                      <small class="deletedBy">Eliminado por: <b><%= deletedTeam.deletedBy ?? "Anonymous" %></b> </small>
+                  </div>
+                  <div>
+                      <small class="deletedAt">Fecha de eliminación: <b><%= deletedTeam.deletedAt?.toLocaleDateString() ?? "Unknown" %></b> </small>
+                  </div>
+              </article>
+          <% } %>
+      <% } else { %>
+          <p>No hay equipos eliminados.</p>
+      <% } %>
+    </div>
+
+  </div>
+<!--   
   <h2>Teams:</h2>
   <% if(locals.loginUser) { %>
     <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
@@ -53,31 +133,115 @@
           </div>
       </article>
   <% } %>
-  <div>
+
   <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
-  <a href="/teams/new">Create New Team</a>
-  <% } %>
+    <a href="/teams/new">Create New Team</a>
+  <% } %> -->
 
   <!-- Registro de teams eliminados -->
-  <h3>Equipos Eliminados:</h3>
-  <% if (deletedTeams && deletedTeams.length > 0) { %>
-      <% for (var i in deletedTeams) { %>
-          <% var deletedTeam = deletedTeams[i]; %>
-          <article class="teamShow">
-              <h3 class="teamTitle"><%= deletedTeam.title %></h3>
-              <div>
-                  <small class="deletedBy">Eliminado por: <b><%= deletedTeam.deletedBy ?? "Anonymous" %></b> </small>
-              </div>
-              <div>
-                  <small class="deletedAt">Fecha de eliminación: <b><%= deletedTeam.deletedAt?.toLocaleDateString() ?? "Unknown" %></b> </small>
-              </div>
-          </article>
-      <% } %>
-  <% } else { %>
-      <p>No hay equipos eliminados.</p>
-  <% } %>
+  <!-- <h3>Equipos Eliminados:</h3>
+    <% if (deletedTeams && deletedTeams.length > 0) { %>
+        <% for (var i in deletedTeams) { %>
+            <% var deletedTeam = deletedTeams[i]; %>
+            <article class="teamShow">
+                <h3 class="teamTitle"><%= deletedTeam.title %></h3>
+                <div>
+                    <small class="deletedBy">Eliminado por: <b><%= deletedTeam.deletedBy ?? "Anonymous" %></b> </small>
+                </div>
+                <div>
+                    <small class="deletedAt">Fecha de eliminación: <b><%= deletedTeam.deletedAt?.toLocaleDateString() ?? "Unknown" %></b> </small>
+                </div>
+            </article>
+        <% } %>
+    <% } else { %>
+        <p>No hay equipos eliminados.</p>
+    <% } %> -->
 
-</div>
+    <!-- ======= Recent Blog Posts Section ======= -->
+    <!-- <section id="recent-blog-posts" class="recent-blog-posts">
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>Blog</h2>
+          <p>Recent posts form our Blog</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="post-box">
+              <div class="post-img"><img src="/images/background/background-12.png" class="img-fluid" alt=""></div>
+              <div class="meta">
+                <span class="post-date">Tue, December 12</span>
+                <span class="post-author"> / Julia Parker</span>
+              </div>
+              <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
+              <p>Illum voluptas ab enim placeat. Adipisci enim velit nulla. Vel omnis laudantium. Asperiores eum ipsa est officiis. Modi cupiditate exercitationem qui magni est...</p>
+              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="post-box">
+              <div class="post-img"><img src="/images/background/background-9.jpg" class="img-fluid" alt=""></div>
+              <div class="meta">
+                <span class="post-date">Fri, September 05</span>
+                <span class="post-author"> / Mario Douglas</span>
+              </div>
+              <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
+              <p>Voluptatem nesciunt omnis libero autem tempora enim ut ipsam id. Odit quia ab eum assumenda. Quisquam omnis aliquid necessitatibus tempora consectetur doloribus...</p>
+              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
+            <div class="post-box">
+              <div class="post-img"><img src="/images/background/background-10.png" class="img-fluid" alt=""></div>
+              <div class="meta">
+                <span class="post-date">Tue, July 27</span>
+                <span class="post-author"> / Lisa Hunter</span>
+              </div>
+              <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
+              <p>Quia nam eaque omnis explicabo similique eum quaerat similique laboriosam. Quis omnis repellat sed quae consectetur magnam veritatis dicta nihil...</p>
+              <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <% for (var i in teams) { %>
+            <% var team = teams[i]; %>
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="<%= i*200 %>">
+              <div class="post-box">
+                <div class="post-img">
+                  <%- include('../attachments/_attachmentTeams', { team: team }) %>
+                </div>
+                <div class="meta">
+                  <span class="post-date"><%= new Date(team.createdAt).toDateString() %></span>
+                  <span class="post-author"> / <%= team.author?.username ?? "Anonymous" %></span>
+                </div>
+                <h3 class="post-title"><%= team.title %></h3>
+                <p><%= team.body %></p>
+                <a href="/teams/<%= team.id %>" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+                <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
+                  <a class="button-2" href="/teams/<%= team.id %>/edit">Edit</a>
+                  <a class="button-2" href="/teams/<%= team.id %>?_method=DELETE" onClick="return confirm('Delete: <%= team.title %>');">Delete</a>
+                <% } %>
+              </div>
+            </div>
+            <% if ((i+1) % 3 === 0) { %>
+              </div>
+              <div class="row">
+            <% } %>
+          <% } %>
+        </div>
+
+      </div>
+
+    </section>End Recent Blog Posts Section -->
+
 </section>
 
  
