@@ -14,6 +14,7 @@
   --background: #f4e6df;
   --color-terciary: #ddcdc5;
   --color-cuartary: #f48c06;
+  --color-quintary: #000000;
   --iniciar-sesion-text-dark: hsl(240, 54%, 15%);
   --iniciar-sesion-text-light: hsl(242, 18%, 64%);
   --iniciar-sesion-primary: hsl(222, 98%, 60%);
@@ -83,7 +84,7 @@ section {
   text-transform: uppercase;
   margin-bottom: 20px;
   padding-bottom: 0;
-  color: #001973;
+  color: var(--color-quintary);
   position: relative;
   z-index: 2;
   margin-bottom: 20px;
@@ -138,7 +139,7 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 
-.breadcrumbs .page-header {
+/* .breadcrumbs .page-header {
   padding: 140px 0 80px 0;
   position: relative;
   background-size: cover;
@@ -198,8 +199,26 @@ section {
   padding-right: 10px;
   color: #4278cc;
   content: "/";
+} */
+
+.breadcrumbs .container {
+  max-width: 100%;
 }
 
+.breadcrumb-card {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px 30px;
+  background-color: #fff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1), 0px 8px 15px rgba(0, 0, 0, 0.2); /* Adjust this line */
+  border-radius: 50px;
+  list-style: none;
+  margin-top: 120px;
+}
+
+.breadcrumb-card li {
+  margin: 0px;
+}
 /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/
@@ -288,25 +307,26 @@ section {
 } */
 .container-fluid.container-xl.d-flex.align-items-center.justify-content-start {
   justify-content: flex-start;
-  max-width: 99%;
+  max-width: 100%;
 }
 
 .header {
   transition: all 0.5s;
   z-index: 997;
-  padding: 15px 0;
+  padding: 8px 0;
   margin: 10px;
-  border-radius: 15px;
+  border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .nav-container {
   transition: padding 0.5s ease;
-  border-radius: 15px; /* Agrega bordes redondos */
+  border-radius: 50px; /* Agrega bordes redondos */
   box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Agrega sombra para dar efecto flotante */
-  background: rgba(75 , 67 , 66, 0.9); /* Asegura que el fondo siempre esté presente */
-  margin-left: auto;
-  padding: 10px;
+  background: rgba(0 , 0 , 0, 0.9); /* Asegura que el fondo siempre esté presente */
+  margin: 3px 0px 3px auto;
+  padding: 8px;
 }
 
 
@@ -331,6 +351,9 @@ section {
 
 .header.sticked .nav-container {
   padding: 5px; 
+  margin: 3px 0px 3px auto;
+  margin-right: 0px;
+  
 }
 
 .header.header-inner {
@@ -354,8 +377,9 @@ section {
   font-size: 30px;
   margin: 0;
   font-weight: 700;
-  color: #fff;
+  color: #000000;
   font-family: var(--font-primary);
+  padding-left: 20px;
 }
 
 .navbar ul {
@@ -389,6 +413,11 @@ section {
     align-items: center;
   }
 
+  .navbar ul li:last-child {
+    display: flex;
+    gap: 5px; /* Reduce el espacio entre los botones de "Registrarse" e "Iniciar sesión" */
+  }
+
   .navbar li {
     position: relative;
   }
@@ -414,19 +443,22 @@ section {
     margin-left: 5px;
   }
 
-  .navbar a:hover,
+  /* .navbar a:hover,
   .navbar .active,
   .navbar .active:focus,
   .navbar li:hover>a {
     color: #fff;
-  }
+  } */
 
   .navbar .logout,
   .navbar .logout:focus {
     background: #fff;
     padding: 8px 20px;
-    margin-left: 30px;
-    border-radius: 4px;
+    border-radius: 50px;
+    margin-left: 200px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     color: var(--color-cuartary);
   }
 
@@ -440,15 +472,43 @@ section {
   .navbar .get-a-quote:focus {
     background: var(--color-primary);
     padding: 8px 20px;
-    margin-left: 30px;
-    border-radius: 4px;
+    margin-left: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 50px;
     color: #fff;
   }
 
   .navbar .get-a-quote:hover,
   .navbar .get-a-quote:focus:hover {
-    color: #2756ff;
+    color: var(--color-quintary);
     background: #fff;
+  }
+
+  
+  .header.sticked .navbar .get-a-quote {
+  transition: padding 0.7s ease, margin 0.5s ease;
+  padding: 6px 15px 6px 15px; /* Ajusta estos valores a tus necesidades */
+  margin-left: 15px; /* Ajusta este valor a tus necesidades */
+  }
+
+  .header.sticked .navbar .logout{
+  transition: padding 0.7s ease, margin 0.5s ease;
+  padding: 6px 15px 6px 15px; /* Ajusta estos valores a tus necesidades */
+  margin-left: 200px;
+  }
+
+  .header.sticked .navbar .get-a-quote,
+  .header.sticked .navbar .logout {
+    transition: font-size 0.5s ease;
+    font-size: 14px; /* Ajusta este valor a tus necesidades */
+  }
+
+  .header.sticked .navbar .logout:hover,
+  .header.sticked .navbar .get-a-quote:hover {
+  color: var(--color-quintary);
+  background: #fff;
   }
 
   .navbar .dropdown ul {
@@ -540,6 +600,7 @@ section {
 #hero .container,
 #hero .container-fluid {
   padding-top: 84px;
+  margin-bottom: 0px;
 }
 
 #hero h1 {
@@ -547,11 +608,11 @@ section {
   font-size: 52px;
   font-weight: 700;
   line-height: 64px;
-  color: #fff;
+  color: black;
 }
 
 #hero h2 {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(0, 0, 0, 0.8);
   margin: 10px 0 0 0;
   font-size: 20px;
 }
@@ -566,13 +627,13 @@ section {
   border-radius: 5px;
   transition: 0.5s;
   margin-top: 30px;
-  color: #fff;
-  border: 2px solid #fff;
+  color: black;
+  border: 2px solid black;
 }
 
 #hero .btn-get-started:hover {
   background: #fff;
-  color: #5846f9;
+  color: var(--color-primary);
 }
 
 #hero .animated {
@@ -1469,12 +1530,12 @@ input[type="checkbox"]:checked::before {
 .recent-blog-posts .post-box .meta .post-author {
   font-size: 15px;
   font-weight: 400;
-  color: var(--color-secondary);
+  color: var(--color-quintary);
 }
 
 .recent-blog-posts .post-box .post-title {
   font-size: 24px;
-  color: var(--color-secondary);
+  color: var(--color-quintary);
   font-weight: 700;
   margin: 15px 0 0 0;
   position: relative;
@@ -1512,14 +1573,16 @@ input[type="checkbox"]:checked::before {
   font-size: 18px;
   line-height: 1.5;
   border-radius: 4px;
-  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out, transform .15s ease-in-out;
   margin: 10px;
 }
 
 .recent-blog-posts .post-box .btn:hover {
-  color: #fff;
+  color: rgba(var(--color-secondary));
   background-color: rgba(var(--color-secondary-dark-rgb), 0.7);
   border-color: rgba(var(--color-secondary));
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
+  transform: translateY(-7px); /* Move button up */
 }
 
 .recent-blog-posts .post-box .edit-delete-buttons {
