@@ -133,3 +133,12 @@ document.querySelectorAll('#navbar a').forEach(navbarlink => {
   });
 
 });
+
+
+document.getElementById('showMore').addEventListener('click', function() {
+  var hiddenPosts = document.querySelectorAll('.deleted-post.hidden');
+  for (var i = 0; i < hiddenPosts.length; i++) {
+    hiddenPosts[i].classList.remove('hidden');
+  }
+  this.style.display = 'none';
+});
