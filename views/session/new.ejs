@@ -19,84 +19,91 @@
  
 
 <!-- ======= Breadcrumbs ======= -->
-<div class="breadcrumbs">
-  <nav>
-    <div class="container">
-      <ol class="breadcrumb-card">
-        <li><a href="/">Menu</a> / Iniciar Sesión</li>
-      </ol>
-    </div>
-  </nav>
-</div>
+  <div class="breadcrumbs">
+    <nav>
+      <div class="container">
+        <ol class="breadcrumb-card">
+          <li><a href="/">Menu</a> / Iniciar Sesión</li>
+        </ol>
+      </div>
+    </nav>
+  </div>
 <!-- End Breadcrumbs -->
+<div class="card">
+  <div class="iniciar-sesion-contenedor">
 
-<div class="iniciar-sesion-contenedor">
-
-    <div class="imagen-iniciar-sesion-section">
-      <div class="imagen-iniciar-sesion-wrapper">
-        <img src="/images/mesh-gradient.png" alt="" class="imagengradiente-iniciar-sesion"> 
-      </div>
-
-      <div class="contenido-contenedor-iniciar-sesion">
-        <h1 class="section-heading">Empowering Minds Through Digital <span>Education.</span></h1>
-        <p class="section-paragraph">Every step forward is a step towards knowledge. Embrace the journey.</p>
-      </div>
-    </div>
-
-    <div class="formulario-is-section">
-      <div class="formulario-is-wrapper">
-        <div class="logo-iniciar-sesion-contenedor">
-          <a href="#" class="logo-iniciar-sesion-contenedor">
-            <img src="/images/logo.png" alt="Logo">
-          </a>
+      <div class="imagen-iniciar-sesion-section">
+        <div class="imagen-iniciar-sesion-wrapper">
+          <img src="/images/mesh-gradient.png" alt="" class="imagengradiente-iniciar-sesion"> 
         </div>
 
-        <h2>Welcome Back!</h2>
-        <p>Enter your credentials to access your account.</p>
+        <div class="contenido-contenedor-iniciar-sesion">
+          <h1 class="section-heading">Empoderando Mentes a Través de la <span>Educación Digital.</span></h1>
+          <p class="section-paragraph">Cada paso adelante es un paso hacia el conocimiento. Abraza el viaje.</p>
+        </div>
+      </div>
 
-        <!-- CUADRO DE INTRODUCIR INFO -->
-        <form method='POST' action='/login'>
-          <div class="input-iniciar-sesion-contenedor">
-            <div class="formulario-grupo">
-              
-              <label for="login">Login:</label>
-              <input type="text" id="username" name="username" autocomplete="off" />
-
-              <!-- <label for="email">Email</label>
-              <input type="email" id="email" autocomplete="off">  -->
-
-            </div>
-            <div class="formulario-grupo">
-
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" />
-
-              <!-- <label for="password">Password</label>
-              <input type="password" id="password"> -->
-
-            </div>
-          </div>
-        
-          <div class="recordar-olvidar">
-            <div class="recordar-me">
-              <input type="checkbox" value="remember-me" id="recordar-me">
-              <label for="remember-me">Remember me</label>
-            </div>
-
-            <a href="#">Forgot password?</a>
+      <div class="formulario-is-section">
+        <div class="formulario-is-wrapper">
+          <div class="logo-iniciar-sesion-contenedor">
+            <a href="#" class="logo-iniciar-sesion-contenedor">
+              <img src="/images/logo.png" alt="Logo">
+            </a>
           </div>
 
-          <button class="iniciarsesion-button">Log In</button>
-          <!-- <input class="iniciarsesion-button" name="commit" type="submit" value="Log In" /> -->
+          <h2>¡Bienvenido de nuevo!</h2>
+          <p>Introduce tus credenciales para acceder a tu cuenta.</p>
 
-          <div class="or-divider">or</div>
+          <!-- CUADRO DE INTRODUCIR INFO -->
+          <form method='POST' action='/login'>
+            <div class="input-iniciar-sesion-contenedor">
+              <div class="formulario-grupo">
+                
+                <label for="login">Nombre de usuario:</label>
+                <input type="text" id="username" name="username" autocomplete="off" />
 
-          <button class="google-iniciarsesion">
-            <object data="/images/google.svg"></object>
-            <span>Sign in with Google</span>
-          </button>
-        </form>
-        <!-- HASTA AQUI CUADRO DE INFO -->
+                <!-- <label for="email">Email</label>
+                <input type="email" id="email" autocomplete="off">  -->
+
+              </div>
+              <div class="formulario-grupo">
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" />
+
+                <!-- <label for="password">Password</label>
+                <input type="password" id="password"> -->
+
+              </div>
+            </div>
+          
+            <!-- <div class="recordar-olvidar">
+              <div class="recordar-me">
+                <input type="checkbox" value="remember-me" id="recordar-me">
+                <label for="remember-me">Remember me</label>
+              </div>
+
+              <a href="#">Forgot password?</a>
+            </div> -->
+            <div>
+              <div>
+                <span>¿Aun no tienes cuenta?</span> <a href="/registrarse">Registrarse</a>
+              </div>
+            </div>
+            <br>
+
+            <button class="iniciarsesion-button">Iniciar Sesión</button>
+            <!-- <input class="iniciarsesion-button" name="commit" type="submit" value="Log In" /> -->
+
+            <!-- <div class="or-divider">or</div>
+
+            <button class="google-iniciarsesion">
+              <object data="/images/google.svg"></object>
+              <span>Sign in with Google</span>
+            </button> -->
+          </form>
+          <!-- HASTA AQUI CUADRO DE INFO -->
+        </div>
       </div>
     </div>
   </div>
