@@ -1,60 +1,137 @@
-<section>
-    <h2>Show Team:</h2>
-    
-    <%- include('../attachments/_attachmentTeams', { team: team }) %>
-    <article class="teamShow">
-      <ul>
-        <li>Title: <b><%= team.title %></b></li>
-        <li>Body: <b><%= team.body %></b></li>
-        <li>Created At: <b><%= team.createdAt %></b></li>
-        <li>Updated At: <b><%= team.updatedAt %></b></li>
-        <li>Author: <b><%= team.author?.username ?? "Anonymous" %></b></li>
-        <li>Admin User: <b><%= adminUser?.username ?? 'None' %></b></li>
-        <li>Number of Tokens: <b><%= team.tokens %></b></li>
-        <li>Number of Users: <b><%= team.numUsers %></b></li>
-      </ul>
-      
-      <% if (locals.loginUser && !locals.isMember) { %> 
-      <form method="post" action="/teams/<%= team.id %>/join">
-        <button type="submit">Unirse al Equipo</button>
-      </form>
-      <% } %>
+<div class="team-section-show">
 
-      <% if (locals.loginUser && locals.isMember) { %> 
-        <form method="post" action="/teams/<%= team.id %>/leave">
-            <button type="submit">Abandonar Equipo</button>
-        </form>
-      <% } %>
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <nav>
+    <div class="container">
+        <ol class="breadcrumb-card">
+        <li><a href="/">Menu</a> / <a href="/teams">Equipos</a> / <%= team.title %></li>
+        </ol>
+    </div>
+    </nav>
+  </div>
+  <!-- End Breadcrumbs -->
+  
+  <div class="section-header">
+    <h2><%= team.title %></h2>
+    <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+  </div>
+  <div class="card">
+    <div class="team-info">
+      <div class="team-image">
+        <%- include('../attachments/_attachmentTeams', { team: team }) %>
+      </div>
+      <div class="team-body">
+        <h1 class="team-title"><%= team.title %></h1>
+        <p class="team-description"><%= team.body %></p>
+      </div>
+    </div>
+  </div>
 
-      <!-- Boton para donar tokens a un miembro del team -->
-      
-      <% if (locals.loginUser && locals.isMember) { %> 
-        <!-- Formulario para donar tokens -->
-        <div class="donation-form">
-          <h3>Donate Tokens</h3>
-          <form method="post" action="/teams/<%= team.id %>/donate">
-              <div class="form-group">
-                  <label for="recipient">Recipient:</label>
-                  <select name="recipient" id="recipient">
-                      <% teamMembers.forEach(member => { %>
-                          <% if (member.user.id !== locals.loginUser.id) { %>
-                              <option value="<%= member.user.id %>"><%= member.user.username %></option>
-                          <% } %>
-                      <% }) %>
-                  </select>
-              </div>
-      
-              <div class="form-group">
-                  <label for="amount">Amount:</label>
-                  <input type="number" name="amount" id="amount" min="1" max="<%= locals.loginUser.wallet %>" required>
-              </div>
-      
-              <button type="submit" class="donate-button">Donate Tokens</button>
-          </form>
+  <div class="card">
+    <div class="team-stats">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="stat-item">
+            <i class="fas fa-users"></i>
+            <div class="stat-info">
+              <div class="stat-title">Number of Users</div>
+              <div class="stat-value"><%= team.numUsers %></div>
+            </div>
+          </div>
         </div>
-      <% } %>
+        <div class="col-md-4">
+          <div class="stat-item">
+            <i class="fas fa-user"></i>
+            <div class="stat-info">
+              <div class="stat-title">Author</div>
+              <div class="stat-value"><%= team.author?.username ?? "Anonymous" %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-item">
+            <i class="fas fa-user-shield"></i>
+            <div class="stat-info">
+              <div class="stat-title">Admin User</div>
+              <div class="stat-value"><%= adminUser?.username ?? 'None' %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-item">
+            <i class="fas fa-calendar-alt"></i>
+            <div class="stat-info">
+              <div class="stat-title">Created At</div>
+              <div class="stat-value"><%= team.createdAt %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-item">
+            <i class="fas fa-coins"></i>
+            <div class="stat-info">
+              <div class="stat-title">Number of Tokens</div>
+              <div class="stat-value"><%= team.tokens %></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-item">
+            <i class="fas fa-calendar-check"></i>
+            <div class="stat-info">
+              <div class="stat-title">Updated At</div>
+              <div class="stat-value"><%= team.updatedAt %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <!-- Tabla con los usuarios del equipo -->
+    <% if (locals.loginUser && !locals.isMember) { %> 
+    <form method="post" action="/teams/<%= team.id %>/join">
+      <button type="submit" class="btn">Join Team</button>
+    </form>
+    <% } %>
+
+    <% if (locals.loginUser && locals.isMember) { %> 
+      <form method="post" action="/teams/<%= team.id %>/leave">
+          <button type="submit" class="btn">Leave Team</button>
+      </form>
+    <% } %>
+  </div>
+
+  <% if (locals.loginUser && locals.isMember) { %> 
+  <div class="card">
+    <h3>Donate Tokens</h3>
+    <form method="post" action="/teams/<%= team.id %>/donate">
+        <div class="form-group">
+            <label for="recipient">Recipient:</label>
+            <select name="recipient" id="recipient">
+                <% teamMembers.forEach(member => { %>
+                    <% if (member.user.id !== locals.loginUser.id) { %>
+                        <option value="<%= member.user.id %>"><%= member.user.username %></option>
+                    <% } %>
+                <% }) %>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" name="amount" id="amount" min="1" max="<%= locals.loginUser.wallet %>" required>
+        </div>
+
+        <button type="submit" class="btn">Donate Tokens</button>
+    </form>
+  </div>
+  <% } %>
+
+  <div class="section-header">
+    <h2>Miembros del equipo</h2>
+  </div>
+
+    <div class="card">
       <table>
         <thead>
             <tr>
@@ -70,54 +147,25 @@
                     <td><%= member.user.username %></td>
                     <td><%= member.wallet %></td>
                     <td><%= member.tokens %></td>
-                    <td><%= member.reputation %> %</td>
+                    <td>
+                      <progress value="<%= member.reputation %>" max="100"></progress>
+                      <%= member.reputation %> %
+                    </td>
                 </tr>
             <% }) %>
         </tbody>
       </table>
+    </div>
 
-      <div class="table-widget">
-        <table>
-          <caption>
-            Team Members
-            <span class="table-row-count"></span>
-          </caption>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Status</th>
-              <th>Email address</th>
-              <th>Tags</th>
-            </tr>
-          </thead>
-          <tbody id="team-member-rows">
-            <!--? rows are generated -->
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-                <ul class="pagination">
-                  <!--? generated pages -->
-                </ul>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+  <% if (locals.loginUser && locals.loginUser.isAdmin) { %> 
+  <div class="card">
+    <h3>Inflate</h3>
+    <p>By pressing this button, the tokens of all team members will be reduced by 50%.</p>
+    <form method="post" action="/teams/<%= team.id %>/inflate">
+      <button type="submit" class="btn">Inflate</button>
+    </form>
+  </div>
+  <% } %>
 
-    <!-- Boton de inflación para aplicar una reducción del 50% en los tokens de los usuarios del equipo -->
-    <% if (locals.loginUser && locals.loginUser.isAdmin) { %> 
-      <div class="inflate-form">
-        <h3>Inflate</h3>
-        <p>Al presionar este botón, se reducirán los tokens de todos los miembros del equipo en un 50%.</p>
-        <form method="post" action="/teams/<%= team.id %>/inflate">
-          <button type="submit" class="inflate-button">Inflate</button>
-        </form>
-      </div>
-    <% } %>
-      
-      <a href="/teams">Volver</a>
-    </article>
-
-  </section>
-  
+  <a href="/teams" class="btn">Back</a>
+</div>

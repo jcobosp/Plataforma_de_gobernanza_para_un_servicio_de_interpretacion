@@ -719,7 +719,7 @@ section {
 --------------------------------------------------------------*/
 .footer {
   font-size: 14px;
-  background-color: var(--color-secondary);
+  background-color: var(--color-quintary);
   padding: 50px 0;
   color: white;
 }
@@ -1941,4 +1941,118 @@ input[type="checkbox"]:checked::before {
   color: var(--color-primary);
   transform: translateY(-5px);
   box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/*--------------------------------------------------------------
+# PANTALLA SHOW DE UN TEAM
+--------------------------------------------------------------*/
+
+
+.team-section-show {
+  padding: 1px;
+}
+
+.team-section-show  .card {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.team-section-show  .btn {
+  background-color: var(--color-primary);
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+}
+
+.team-section-show  .btn:hover {
+  color: var(--color-quintary);
+}
+
+.team-section-show .card .team-info {
+  display: flex;
+  align-items: start;
+}
+
+.team-section-show .card .team-info .team-image {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.team-section-show .card .team-info .team-body {
+  flex: 2;
+}
+
+.team-section-show .card .team-info .team-body .team-title {
+  font-size: 2em;
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.team-section-show .card .team-info .team-body .team-description {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+.team-section-show .card .team-info .team-image img {
+  border-radius: 10px;
+}
+
+.team-section-show .card .team-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.team-section-show .card .team-stats .stat-item {
+  display: flex;
+  align-items: center;
+}
+
+.team-section-show .card .team-stats .stat-item i {
+  font-size: 2em;
+  margin-right: 10px;
+}
+
+.team-section-show .card .team-stats .stat-item .stat-info .stat-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.team-section-show .card .team-stats .stat-item .stat-info .stat-value {
+  font-size: 1em;
+}
+
+
+.team-section-show .card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.team-section-show .card table th,
+.team-section-show .card table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.team-section-show .card table th {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.team-section-show .card table td progress {
+  width: 100%;
+  height: 20px;
 }
