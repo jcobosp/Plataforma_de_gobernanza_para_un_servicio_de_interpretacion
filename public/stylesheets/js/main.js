@@ -51,20 +51,28 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //Ocultar la navegación móvil en los enlaces de la misma página
-  document.querySelectorAll('#navbar a').forEach(navbarlink => {
+document.querySelectorAll('#navbar a').forEach(navbarlink => {
 
-    if (!navbarlink.hash) return;
+  if (!navbarlink.hash) return;
 
-    let section = document.querySelector(navbarlink.hash);
-    if (!section) return;
+  let section = document.querySelector(navbarlink.hash);
+  if (!section) return;
 
-    navbarlink.addEventListener('click', () => {
-      if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
-      }
+  navbarlink.addEventListener('click', () => {
+    // Elimina la clase 'active' de todos los enlaces
+    document.querySelectorAll('#navbar a').forEach(link => {
+      link.classList.remove('active');
     });
 
+    // Agrega la clase 'active' al enlace que se ha hecho clic
+    navbarlink.classList.add('active');
+
+    if (document.querySelector('.mobile-nav-active')) {
+      mobileNavToogle();
+    }
   });
+
+});
 
   //Desplegables de navegación móvil
   const navDropdowns = document.querySelectorAll('.navbar .dropdown > a');

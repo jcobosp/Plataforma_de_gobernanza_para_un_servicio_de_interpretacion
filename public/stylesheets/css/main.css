@@ -281,16 +281,56 @@ section {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-.header {
+/* .header {
   transition: all 0.5s;
   z-index: 997;
   padding: 30px 0;
+} */
+.container-fluid.container-xl.d-flex.align-items-center.justify-content-start {
+  justify-content: flex-start;
+  max-width: 99%;
 }
 
-.header.sticked {
+.header {
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+  margin: 10px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.nav-container {
+  transition: padding 0.5s ease;
+  border-radius: 15px; /* Agrega bordes redondos */
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Agrega sombra para dar efecto flotante */
+  background: rgba(75 , 67 , 66, 0.9); /* Asegura que el fondo siempre esté presente */
+  margin-left: auto;
+  padding: 10px;
+}
+
+
+/* .header.sticked {
   background: rgba(14, 29, 52, 0.9);
   padding: 15px 0;
   box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
+} */
+
+.header.sticked {
+  padding: 5px 0;
+  box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
+}
+
+.header.sticked .logo img {
+  max-height: 30px; 
+}
+
+.header.sticked .logo h1 {
+  font-size: 20px; 
+}
+
+.header.sticked .nav-container {
+  padding: 5px; 
 }
 
 .header.header-inner {
@@ -298,17 +338,39 @@ section {
   height: 70px;
 }
 
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
 .header .logo img {
+  transition: max-height 0.5s ease;
   max-height: 40px;
   margin-right: 6px;
 }
 
 .header .logo h1 {
+  transition: font-size 0.5s ease;
   font-size: 30px;
   margin: 0;
   font-weight: 700;
   color: #fff;
   font-family: var(--font-primary);
+}
+
+.navbar ul {
+  display: flex;
+  justify-content: space-between; /* Distribuye los elementos uniformemente */
+}
+
+.navbar ul li:last-child {
+  display: flex;
+  gap: 10px; /* Espacio entre los botones de "Registrarse" e "Iniciar sesión" */
+}
+
+.page-links {
+  margin-right: 10px; /* Ajusta este valor a tus necesidades */
+  margin-left: 10px; /* Ajusta este valor a tus necesidades */
 }
 
 /*--------------------------------------------------------------
@@ -365,13 +427,13 @@ section {
     padding: 8px 20px;
     margin-left: 30px;
     border-radius: 4px;
-    color: #2756ff;
+    color: var(--color-cuartary);
   }
 
   .navbar .logout:hover,
   .navbar .logout:focus:hover {
     color: #fff;
-    background: #2756ff;
+    background: var(--color-cuartary);
   }
 
   .navbar .get-a-quote,
@@ -469,7 +531,7 @@ section {
 #hero {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, rgba(44 , 62 , 80, 0.9) 0%, rgba(0 , 0 , 0, 0.9) 100%), url("/images/background/background-12.png") center center no-repeat;
+  background: linear-gradient(45deg, rgba(254 , 239 , 17, 0.95) 0%, rgba(245 , 115 , 7, 0.95) 100%), url("/images/background/background-12.png") center center no-repeat;
   background-size: cover;
 }
 
