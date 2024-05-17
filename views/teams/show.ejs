@@ -1,3 +1,4 @@
+
 <div class="team-section-show">
 
   <!-- ======= Breadcrumbs ======= -->
@@ -132,6 +133,7 @@
   </div>
 
     <div class="card">
+      <div class="tablausuarios">
       <table>
         <thead>
             <tr>
@@ -148,13 +150,17 @@
                     <td><%= member.wallet %></td>
                     <td><%= member.tokens %></td>
                     <td>
-                      <progress value="<%= member.reputation %>" max="100"></progress>
-                      <%= member.reputation %> %
-                    </td>
+                      <div class="progress-bar-container" data-reputation="<%= member.reputation %>">
+                          <div class="progress-bar"></div>
+                          <span class="percentage"><%= member.reputation %> %</span>
+                      </div>
+                      
+                  </td>
                 </tr>
             <% }) %>
         </tbody>
-      </table>
+      </table> 
+      </div>
     </div>
 
   <% if (locals.loginUser && locals.loginUser.isAdmin) { %> 
@@ -169,3 +175,14 @@
 
   <a href="/teams" class="btn">Back</a>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var progressBarContainers = document.querySelectorAll('.progress-bar-container');
+      progressBarContainers.forEach(function(container) {
+          var reputation = container.getAttribute('data-reputation');
+          var progressBar = container.querySelector('.progress-bar');
+          progressBar.style.width = reputation + '%';
+      });
+  });
+</script>

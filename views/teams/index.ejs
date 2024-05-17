@@ -56,7 +56,7 @@
               </div>
               <h3 class="post-title"><%= team.title %></h3>
               <p><%= team.body %></p>
-              <a href="/teams/<%= team.id %>" class="btn"><span>Más información</span><i class="bi bi-arrow-right"></i></a>
+              <a href="/teams/<%= team.id %>" class="btn"><span>Más información</span></a>
               <% if(locals.loginUser?.id === team.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
                 <div class="edit-delete-buttons">
                 <a class="btn" href="/teams/<%= team.id %>/edit">Editar</a>
