@@ -28,13 +28,13 @@
               <div class="reward-content">
                 <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
                   <% if(timeUntilNextReward) { %>
-                    <button id="claimRewardButton" type="submit" disabled>Claim Daily Reward</button>
+                    <button id="claimRewardButton" type="submit" disabled>Reclamar recompensa diaria</button>
                   <% } else { %>
-                    <button id="claimRewardButton" type="submit">Claim Daily Reward</button>
+                    <button id="claimRewardButton" type="submit">Reclamar recompensa diaria</button>
                   <% } %>
                 </form>
                 <% if(timeUntilNextReward) { %>
-                  <p class="timeUntilNextReward">You can claim your next reward in <%= timeUntilNextReward %>.</p>
+                  <p class="timeUntilNextReward">Puedes reclamar tu siguiente recompensa en <%= timeUntilNextReward %>.</p>
                 <% } %>
               </div>
             <% } %>
@@ -90,7 +90,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Title</th>
+                <th scope="col">Título</th>
                 <th scope="col">Eliminado por</th>
                 <th scope="col">Fecha de eliminación</th>
               </tr>

@@ -219,6 +219,16 @@ section {
 .breadcrumb-card li {
   margin: 0px;
 }
+
+.breadcrumb-card li a {
+  color: var(--color-primary); /* Color inicial del enlace, ajusta según tus necesidades */
+  transition: color 0.3s ease; /* Añadido para una transición suave */
+}
+
+.breadcrumb-card li a:hover {
+  color: #FFA500; /* Color naranja brillante al pasar el ratón por encima */
+}
+
 /*--------------------------------------------------------------
 # Scroll top button
 --------------------------------------------------------------*/
@@ -1961,17 +1971,35 @@ input[type="checkbox"]:checked::before {
 .tablausuarios table {
   width: 100%; 
   margin: auto;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 1em;
   color: #333;
   background: #fafafa;
+  /* border-radius: 20px; */
+}
+
+.tablausuarios table th:first-child {
+  border-top-left-radius: 20px;
+}
+
+.tablausuarios table th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.tablausuarios table tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+.tablausuarios table tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
 }
 
 .tablausuarios table th,
 .tablausuarios table td {
   border: 1px solid #ddd;
   padding: 15px;
-  text-align: left;
+  text-align: center;
 }
 
 .tablausuarios table th {
@@ -1979,6 +2007,7 @@ input[type="checkbox"]:checked::before {
   color: white;
   text-transform: uppercase;
   font-weight: bold;
+  text-align: center;
 }
 
 .tablausuarios tbody tr:nth-child(even) {
