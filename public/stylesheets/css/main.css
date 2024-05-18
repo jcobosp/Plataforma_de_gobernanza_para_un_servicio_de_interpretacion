@@ -1811,9 +1811,10 @@ input[type="checkbox"]:checked::before {
 
 .deletedposts {
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 20px; /* Aumentado de 5px a 20px */
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   margin-bottom: 20px;
+  overflow: hidden; /* Añadido para aplicar el border-radius a la tabla */
 }
 
 .deletedposts-header {
@@ -1821,6 +1822,7 @@ input[type="checkbox"]:checked::before {
   border-bottom: 1px solid #ddd;
   padding: 15px;
   font-size: 1.25em;
+  text-align: center; /* Añadido para centrar el texto del encabezado */
 }
 
 .deletedposts-body {
@@ -1831,18 +1833,41 @@ input[type="checkbox"]:checked::before {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
+  border-collapse: separate; /* Cambiado de collapse a separate */
+  border-spacing: 0; /* Añadido */
+}
+
+.deletedposts table th:first-child {
+  border-top-left-radius: 20px;
+}
+
+.deletedposts table th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.deletedposts table tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+.deletedposts table tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
 }
 
 .deletedposts .table th,
 .deletedposts .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #dee2e6;
+  border: 1px solid #ddd; /* Añadido */
+  text-align: center; /* Añadido para centrar el texto */
 }
 
 .deletedposts .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
+  background-color: var(--color-primary); /* Añadido */
+  color: white; /* Añadido */
+  text-transform: uppercase; /* Añadido */
+  font-weight: bold; /* Añadido */
 }
 
 .deletedposts .table tbody + tbody {
@@ -1851,6 +1876,14 @@ input[type="checkbox"]:checked::before {
 
 .deletedposts .hidden {
   display: none;
+}
+
+.deletedposts .table tbody tr:nth-child(even) {
+  background: #f2f2f2; /* Añadido */
+}
+
+.deletedposts .table tbody tr:hover {
+  background: #eaeaea; /* Añadido */
 }
 
 #showMore {
@@ -2311,4 +2344,450 @@ input[type="checkbox"]:checked::before {
 .volverateams:hover {
   background-color: var(--color-cuartary);
   color: white;
+}
+
+/*--------------------------------------------------------------
+# PANTALLA SHOW DE UNA PORPUESTA
+--------------------------------------------------------------*/
+.post-section-show {
+  
+  padding: 30px;
+}
+
+.post-section-show .vertical-card-posts1 {
+  /* Cambia el ancho de la tarjeta vertical aquí */
+  width: 100%;
+  min-height: 686px;
+  transition: all 0.3s ease-in-out;
+}
+
+.post-section-show .horizontal-card-posts1 {
+  /* Cambia el ancho de la tarjeta horizontal aquí */
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.post-section-show .vertical-card-posts1:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.post-section-show .horizontal-card-posts1:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+
+.post-section-show .cardposts1 {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.post-section-show .card-content1 {
+  display: flex;
+  flex-direction: column; /* Hace que el contenido de la tarjeta se apile verticalmente */
+}
+
+.post-section-show .card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px; /* Hace que la imagen sea redonda */
+  margin-bottom: 30px; /* Agrega espacio debajo de la imagen */
+}
+
+.post-section-show .card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px; /* Hace que la imagen sea redonda */
+}
+
+.post-section-show .card-info-posts1 {
+  padding: 20px;
+}
+
+.post-section-show .card-info-posts1 h3 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+.post-section-show .card-info-posts1 p {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: var(--color-default);
+}
+
+.post-section-show .card-dates1 {
+  text-align: center; /* Centra el texto */
+  line-height: 1.5; /* Agrega espacio entre las líneas */
+}
+
+.post-section-show .card-dates1 p {
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
+  font-weight: bold; /* Hace que el texto sea más grueso */
+  color: var(--color-primary); /* Cambia el color del texto */
+}
+
+.post-section-show .card-dates1 i {
+  margin-right: 5px;
+  color: var(--color-primary);
+}
+
+.post-section-show .card-author {
+  text-align: center; /* Centra el texto */
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
+  font-weight: bold; /* Hace que el texto sea más grueso */
+  color: var(--color-primary); /* Cambia el color del texto */
+  margin-top: 20px; /* Agrega espacio encima del bloque de autor */
+}
+
+.cardposts-reglasvotacion {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cardposts-reglasvotacion:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card-header-reglasvotacion {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 24px; /* Aumenta el tamaño de la fuente */
+  padding: 15px; /* Aumenta el padding */
+  border-radius: 5px 5px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinea los elementos a los extremos */
+  transition: all 0.3s ease-in-out; /* Añade una transición */
+}
+
+.card-header-reglasvotacion:hover {
+  background-color: var(--color-secondary); /* Cambia el color de fondo al pasar el ratón */
+}
+
+.card-header-reglasvotacion h3 {
+  margin-left: 10px;
+  font-weight: bold; /* Hace que el texto sea más grueso */
+}
+
+.card-body-reglasvotacion {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-body-reglasvotacion p {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  transition: all 0.3s ease-in-out; /* Añade una transición */
+}
+
+.card-body-reglasvotacion p:last-child {
+  border-bottom: none;
+}
+
+
+.card-body-reglasvotacion p:hover {
+  background-color: #f9f9f9; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.card-body-reglasvotacion p i {
+  margin-right: 10px;
+  color: var(--color-primary);
+}
+
+.team-voting-details {
+  /* Cambia el ancho de la tarjeta de Team and Voting Details aquí */
+  width: 100%;
+  height: 350px;
+}
+
+.rewards-penalties {
+  /* Cambia el ancho de la tarjeta de Rewards and Penalties aquí */
+  width: 100%;
+  height: 350px;
+}
+
+.coin-animation-container {
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.coin-animation-container::before,
+.coin-animation-container::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: black;
+}
+
+.coin-animation-container::before {
+  top: 9px;
+  left: 10px;
+  right: 10px;
+}
+
+.coin-animation-container::after {
+  bottom: 9px;
+  left: 10px;
+  right: 10px;
+}
+
+.coin-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
+}
+
+.coin-icon {
+  font-size: 2em;
+  color: var(--color-primary);
+  animation: coin-animation 2s infinite;
+}
+
+.penalty {
+  font-size: 2em;
+  color: var(--color-quintary);
+  animation: coin-animation 2s infinite;
+}
+
+.coin-icon:nth-child(1) { animation-delay: 0s; }
+.coin-icon:nth-child(2) { animation-delay: 0.2s; }
+.coin-icon:nth-child(3) { animation-delay: 0.4s; }
+.coin-icon:nth-child(4) { animation-delay: 0.6s; }
+.coin-icon:nth-child(5) { animation-delay: 0.8s; }
+.coin-icon:nth-child(6) { animation-delay: 1s; }
+.coin-icon:nth-child(7) { animation-delay: 1.2s; }
+.coin-icon:nth-child(8) { animation-delay: 1.4s; }
+.coin-icon:nth-child(9) { animation-delay: 1.6s; }
+.coin-icon:nth-child(10) { animation-delay: 1.8s; }
+
+@keyframes coin-animation {
+  0% {
+    transform: translateY(-100%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(100%) rotate(360deg);
+  }
+}
+
+.user-voting-details {
+  width: 100%;
+  margin-top: 1px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-bottom: 1px;
+}
+
+.user-voting-details .card-header-reglasvotacion {
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+  border-radius: 1px 1px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease-in-out;
+}
+
+.user-voting-details .card-header-reglasvotacion:hover {
+  background-color: var(--color-secondary);
+}
+
+.user-voting-details .card-body-reglasvotacion {
+  padding: 10px 10px 1px 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.user-voting-details .card-body-reglasvotacion p {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+  transition: all 0.3s ease-in-out;
+}
+
+/* .user-voting-details .card-body-reglasvotacion p:last-child {
+  border-bottom: none;
+} */
+
+.user-voting-details .card-body-reglasvotacion p:hover {
+  background-color: #f9f9f9;
+}
+
+.user-voting-details .card-body-reglasvotacion p i {
+  margin-right: 10px;
+  color: var(--color-primary);
+}
+
+.title-style {
+  color: var(--color-quintary);
+  font-weight: bold;
+}
+
+.voting-status {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.voting-status .card-header {
+  background: linear-gradient(90deg, #535353, #000);
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.voting-status .card-header .title-style {
+  color: #000000;
+  text-shadow: 0 0 10px #ffc107, 0 0 20px #ffc107, 0 0 30px #ffc107, 0 0 40px #ffc107;
+}
+
+.voting-status .card-body-reglasvotacion {
+  padding: 20px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.voting-status .card-body-reglasvotacion p {
+  margin-bottom: 10px;
+}
+
+.voting-status .card-body-reglasvotacion p i {
+  margin-right: 10px;
+}
+
+.voting-status .card-body-reglasvotacion p:nth-child(1) i {
+  color: #28a745;
+}
+
+.voting-status .card-body-reglasvotacion p:nth-child(2) i {
+  color: #dc3545;
+}
+
+.voting-status .card-body-reglasvotacion p:nth-child(3) i {
+  color: #ffc107;
+}
+
+.vote-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  animation: fadein 2s;
+}
+
+.vote-card i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.vote-card span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.vote-for {
+  background: #28a745;
+  color: #fff;
+}
+
+.vote-against {
+  background: #dc3545;
+  color: #fff;
+}
+
+.vote-abstain {
+  background: #ffc107;
+  color: #fff;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.circle-chart {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.circle-chart svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.circle-chart .bg {
+  fill: none;
+  stroke: #f0f0f0;
+  stroke-width: 10;
+}
+
+.circle-chart .progress {
+  fill: none;
+  stroke-width: 10;
+  stroke-dasharray: 251;
+  stroke-dashoffset: 251;
+  transition: stroke-dashoffset 2s;
+}
+
+.vote-for .progress {
+  stroke: #28a745;
+}
+
+.vote-against .progress {
+  stroke: #dc3545;
+}
+
+.vote-abstain .progress {
+  stroke: #ffc107;
+}
+
+.circle-chart .percentage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  font-weight: bold;
 }

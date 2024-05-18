@@ -1,95 +1,260 @@
-<section>
-  <h2>Show Post:</h2>
+<div>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <nav>
+    <div class="container">
+        <ol class="breadcrumb-card">
+        <li><a href="/">Menu</a> / <a href="/posts">Propuestas</a> / <%= post.title %></li>
+        </ol>
+    </div>
+    </nav>
+  </div>
+  <!-- End Breadcrumbs -->
+  <div class="post-section-show">
+    
+    <div class="section-header">
+      <h2><%= post.title %></h2>
+      <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+    </div>
 
-  <% include('../attachments/_attachment', { post: post }) %>
-  <article class="postShow">
-  <div class="row">
-  <div class="col-md-6">
-    <ul>
-      <li>Title: <b><%= post.title %></b></li>
-      <li>Body: <b><%= post.body %></b></li>
-      <li>Voting Start Date: <%= post.votingStartDate %></li>
-      <li>Voting End Date: <%= post.votingEndDate %></li>
-      <li>Application Date: <%= post.applicationDate %></li>
-      <li>Veto Date: <%= post.vetoDate %></li>
-      <li>Votes For: <%= post.votesFor %></li>
-      <li>Votes Against: <%= post.votesAgainst %></li>
-      <li>Abstentions: <%= post.abstentions %></li>
-      <li>Team: <%= post.team %></li>
-    </ul>
+    <article class="postShow">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="cardposts1 vertical-card-posts1">
+            <div class="card-content1">
+              <div class="card-image">
+                <%- include('../attachments/_attachment', { post: post }) %>
+              </div>
+              <div class="card-dates1">
+                <p><i class="fa fa-calendar"></i> Voting Start Date: <%= post.votingStartDate %></p>
+                <p><i class="fa fa-calendar"></i> Voting End Date: <%= post.votingEndDate %></p>
+                <p><i class="fa fa-calendar"></i> Application Date: <%= post.applicationDate %></p>
+                <p><i class="fa fa-calendar"></i> Veto Date: <%= post.vetoDate %></p>
+              </div>
+              <div class="card-author">
+                <p>By <b><%= post.author ? post.author.username : "Anonymous" %></b></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="cardposts1 horizontal-card-posts1">
+            <div class="card-content1">
+              <div class="card-info-posts1">
+                <h3><%= post.title %></h3>
+                <p><%= post.body %></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="cardposts-reglasvotacion team-voting-details">
+                <div class="card-header-reglasvotacion">
+                  <h4><i class="fa fa-info-circle"></i> Team and Voting Details</h4>
+                </div>
+                <div class="card-body-reglasvotacion">
+                  <p>Team: <%= post.team %></p>
+                  <p>Minimum Voting Score: <%= post.min_voting %></p>
+                  <p>Maximum Voting: <%= post.max_voting %></p>
+                  <p>Minimum Users Voted: <%= post.min_users_voted %></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="cardposts-reglasvotacion rewards-penalties">
+                <div class="card-header-reglasvotacion">
+                  <h4><i class="fa fa-gift"></i> Rewards and Penalties</h4>
+                </div>
+                <div class="card-body-reglasvotacion">
+                  <p><i class="fa fa-trophy"></i> Voting Reward: <%= post.voting_reward %></p>
+                  <p><i class="fa fa-thumbs-down"></i> Voting Failure Penalty: <%= post.voting_failure_penalty %></p>
+                  <p><i class="fa fa-thumbs-up"></i> Voting Success Reward: <%= post.voting_success_reward %></p>
+                  <div class="balance">
+                    <div class="coin-animation-container">
+                      <div class="coin-container">
+                        <i class="fas fa-wallet coin-icon"></i>
+                        <i class="fas fa-ban penalty"></i>
+                        <i class="fas fa-gem coin-icon"></i>
+                        <i class="fas fa-bomb coin-icon penalty"></i>
+                        <i class="fas fa-money-bill-wave coin-icon"></i>
+                        <i class="fas fa-skull-crossbones penalty"></i>
+                        <i class="fas fa-euro-sign coin-icon"></i>
+                        <i class="fas fa-exclamation-triangle penalty"></i>
+                        <i class="fas fa-dollar-sign coin-icon"></i>
+                        <i class="fas fa-trash coin-icon penalty"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="cardposts-reglasvotacion user-voting-details">
+                <div class="card-header">
+                  <h4 class="title-style"><i class="fa fa-user"></i> User Voting Details</h4>
+                </div>
+                <div class="card-body-reglasvotacion">
+                  <p>User Wallet Points: <%= Math.round(post.userWalletPoints) %></p>
+                  <p>Your Reputation: <%= post.userTeamReputation %>%</p>
+                  <p>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
 
-    <% if (isLoggedIn) { %>
-      <% if (!post.vetoed) { %>
-        <% if (belongsToSameTeam) { %> 
-          <% if (isVotingPeriod) { %>
-            <% if (post.hasVoted) { %>
-              <p>¡Ya has votado en esta propuesta!</p>
-              <form action="/posts/<%= post.id %>/change-vote" method="post">
-                <input type="hidden" name="teamId" value="<%= post.TeamId %>">
-                <button type="submit" name="vote" value="change">Cambiar mi voto</button>
-              </form>
+    <div class="col-md-12">
+      <div class="cardposts-reglasvotacion voting-status">
+        <div class="card-header">
+          <h4 class="title-style"><i class="fas fa-chart-pie"></i> Estado de la Votación</h4>
+        </div>
+        <div class="card-body-reglasvotacion">
+          <div class="col-md-6">
+            <div class="vote-card vote-for">
+              <i class="fas fa-check-circle"></i>
+              <span>Votos a favor: <%= post.votesFor %></span>
+            </div>
+            <div class="vote-card vote-against">
+              <i class="fas fa-times-circle"></i>
+              <span>Votos en contra: <%= post.votesAgainst %></span>
+            </div>
+            <div class="vote-card vote-abstain">
+              <i class="fas fa-minus-circle"></i>
+              <span>Abstenciones: <%= post.abstentions %></span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <svg id="votingStatus" width="500" height="500"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p>Votes For: <%= post.votesFor %>
+        </p>
+        <p>Votes Against: <%= post.votesAgainst %>
+        </p>
+        <p>Abstentions: <%= post.abstentions %>
+        </p>
+        <p>Team: <%= post.team %>
+        </p>
+      </div>
+    </div>
+
+      <% if (isLoggedIn) { %>
+        <% if (!post.vetoed) { %>
+          <% if (belongsToSameTeam) { %> 
+            <% if (isVotingPeriod) { %>
+              <% if (post.hasVoted) { %>
+                <p>¡Ya has votado en esta propuesta!</p>
+                <form action="/posts/<%= post.id %>/change-vote" method="post">
+                  <input type="hidden" name="teamId" value="<%= post.TeamId %>">
+                  <button type="submit" name="vote" value="change">Cambiar mi voto</button>
+                </form>
+              <% } else { %>
+                <form action="/posts/<%= post.id %>/vote" method="post">
+                  <label for="votePoints">Cantidad de puntos:</label>
+                  <input type="number" id="votePoints" name="votePoints" min="1" max="10000" required>
+                  <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
+                  <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+                </form>
+                <form action="/posts/<%= post.id %>/vote" method="post">
+                  <input type="hidden" id="votePoints" name="votePoints" value="1">
+                  <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+                </form>
+              <% } %>
             <% } else { %>
-              <form action="/posts/<%= post.id %>/vote" method="post">
-                <label for="votePoints">Cantidad de puntos:</label>
-                <input type="number" id="votePoints" name="votePoints" min="1" max="10000" required>
-                <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
-                <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
-              </form>
-              <form action="/posts/<%= post.id %>/vote" method="post">
-                <input type="hidden" id="votePoints" name="votePoints" value="1">
-                <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
-              </form>
+              <% if (isPostVotingFinished) { %>
+                <p>La votación ya ha finalizado.</p>
+              <% } else { %>
+                <p>La votación aún no ha comenzado.</p>
+              <% } %>
             <% } %>
           <% } else { %>
-            <% if (isPostVotingFinished) { %>
-              <p>La votación ya ha finalizado.</p>
-            <% } else { %>
-              <p>La votación aún no ha comenzado.</p>
-            <% } %>
+            <p>Para votar, debes pertenecer al equipo <%= post.team %>.</p>
           <% } %>
         <% } else { %>
-          <p>Para votar, debes pertenecer al equipo <%= post.team %>.</p>
+          <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
         <% } %>
-      <% } else { %>
-        <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
+        <% } else { %>
+          <p>¡Inicia sesión para ver más sobre las propuestas!</p>
       <% } %>
-      <% } else { %>
-        <p>¡Inicia sesión para ver más sobre las propuestas!</p>
-    <% } %>
 
-    <% if (isLoggedIn && !post.vetoed && belongsToSameTeam && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
-      <p>No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
-    <% } %>
+      <% if (isLoggedIn && !post.vetoed && belongsToSameTeam && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
+        <p>No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
+      <% } %>
 
-    <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
-      <form action="/posts/<%= post.id %>/veto" method="post">
-        <button type="submit" name="veto" value="veto">Veto</button>
-      </form>
-    <% } %>
+      <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
+        <form action="/posts/<%= post.id %>/veto" method="post">
+          <button type="submit" name="veto" value="veto">Veto</button>
+        </form>
+      <% } %>
 
-    <div> 
-      <small id="author">
-        By <b><%= post.author ? post.author.username : "Anonymous" %></b>
-      </small>
+      <div> 
+        <small id="author">
+          By <b><%= post.author ? post.author.username : "Anonymous" %></b>
+        </small>
+      </div>
+    <a href="/posts">Volver</a>
     </div>
-   <a href="/posts">Back</a>
   </div>
   <div class="col-md-6">
-    <ul>
-      <li>Minimum Voting Score: <%= post.min_voting %></li>
-      <li>Maximum Voting: <%= post.max_voting %></li>
-      <li>Minimum Users Voted: <%= post.min_users_voted %></li>
-      <li>Voting Reward: <%= post.voting_reward %></li>
-      <li>Voting Failure Penalty: <%= post.voting_failure_penalty %></li>
-      <li>Voting Success Reward: <%= post.voting_success_reward %></li>
-      <br>
-      <li>User Wallet Points: <%= Math.round(post.userWalletPoints) %></li>
-      
-      <li>Your Reputation: <%= post.userTeamReputation %>%</li>
-      <li>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></li>
-      
-    </ul>
+    <div class="card">
+      <div class="card-header">
+        <h3>Voting Details</h3>
+      </div>
+      <div class="card-body">
+        <p>Minimum Voting Score: <%= post.min_voting %></p>
+        <p>Maximum Voting: <%= post.max_voting %></p>
+        <p>Minimum Users Voted: <%= post.min_users_voted %></p>
+        <p>Voting Reward: <%= post.voting_reward %></p>
+        <p>Voting Failure Penalty: <%= post.voting_failure_penalty %></p>
+        <p>Voting Success Reward: <%= post.voting_success_reward %></p>
+        <p>User Wallet Points: <%= Math.round(post.userWalletPoints) %></p>
+        <p>Your Reputation: <%= post.userTeamReputation %>%</p>
+        <p>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></p>
+      </div>
+    </div>
   </div>
   </div>
   </article>
-</section>
+  </div>
+</div>
+
+<script>
+ var data = [
+  { name: 'Votos a favor', count: <%= post.votesFor %>, color: '#28a745' },
+  { name: 'Votos en contra', count: <%= post.votesAgainst %>, color: '#dc3545' },
+  { name: 'Abstenciones', count: <%= post.abstentions %>, color: '#ffc107' }
+];
+
+var svg = d3.select('#votingStatus'),
+    width = +svg.attr('width'),
+    height = +svg.attr('height'),
+    radius = Math.min(width, height) / 2;
+
+var g = svg.append('g')
+    .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+
+var pie = d3.pie()
+    .sort(null)
+    .value(function(d) { return d.count; });
+
+var path = d3.arc()
+    .outerRadius(radius - 10)
+    .innerRadius(0);
+
+var arc = g.selectAll('.arc')
+    .data(pie(data))
+    .enter().append('g')
+      .attr('class', 'arc');
+
+arc.append('path')
+    .attr('d', path)
+    .attr('fill', function(d) { return d.data.color; });
+</script>
