@@ -17,6 +17,21 @@
     <h2><%= team.title %></h2>
     <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
   </div>
+
+  <div class="unirseequipo">
+    <% if (locals.loginUser && !locals.isMember) { %> 
+      <form method="post" action="/teams/<%= team.id %>/join">
+        <button type="submit" class="btn join-btn">Join Team</button>
+      </form>
+    <% } %>
+
+    <% if (locals.loginUser && locals.isMember) { %> 
+      <form method="post" action="/teams/<%= team.id %>/leave">
+        <button type="submit" class="btn">Leave Team</button>
+      </form>
+    <% } %>
+  </div>
+
   <div class="card">
     <div class="team-info">
       <div class="team-image">
@@ -90,7 +105,7 @@
     </div>
   </div>
 
-    <% if (locals.loginUser && !locals.isMember) { %> 
+    <!-- <% if (locals.loginUser && !locals.isMember) { %> 
     <form method="post" action="/teams/<%= team.id %>/join">
       <button type="submit" class="btn">Join Team</button>
     </form>
@@ -100,33 +115,9 @@
       <form method="post" action="/teams/<%= team.id %>/leave">
           <button type="submit" class="btn">Leave Team</button>
       </form>
-    <% } %>
+    <% } %> -->
   </div>
-
-  <% if (locals.loginUser && locals.isMember) { %> 
-  <div class="card">
-    <h3>Donate Tokens</h3>
-    <form method="post" action="/teams/<%= team.id %>/donate">
-        <div class="form-group">
-            <label for="recipient">Recipient:</label>
-            <select name="recipient" id="recipient">
-                <% teamMembers.forEach(member => { %>
-                    <% if (member.user.id !== locals.loginUser.id) { %>
-                        <option value="<%= member.user.id %>"><%= member.user.username %></option>
-                    <% } %>
-                <% }) %>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="amount">Amount:</label>
-            <input type="number" name="amount" id="amount" min="1" max="<%= locals.loginUser.wallet %>" required>
-        </div>
-
-        <button type="submit" class="btn">Donate Tokens</button>
-    </form>
-  </div>
-  <% } %>
+ 
 
   <div class="section-header">
     <h2>Miembros del equipo</h2>
@@ -162,18 +153,55 @@
       </table> 
       </div>
     </div>
+    <% if (locals.loginUser && locals.isMember) { %> 
+    <div class="section-header">
+      <h2>Acciones del equipo</h2>
+    </div>
+    <% } %>
+    <div class="tarjetasaccion">
+    <% if (locals.loginUser && locals.isMember) { %> 
+      <div class="card donation-form">
+          <h3 class="donarpuntos">Donar Tokens</h3>
+          <form method="post" action="/teams/<%= team.id %>/donate">
+                  <div class="form-group">
+                          <label for="recipient">Destinatario:</label>
+                          <div class="user-buttons">
+                                  <% teamMembers.forEach(member => { %>
+                                          <% if (member.user.id !== locals.loginUser.id) { %>
+                                                  <button type="button" class="user-button" onclick="selectRecipient(this)" data-id="<%= member.user.id %>">
+                                                          <%= member.user.username %>
+                                                  </button>
+                                          <% } %>
+                                  <% }) %>
+                          </div>
+                          <input type="hidden" name="recipient" id="recipient">
+                  </div>
+  
+                  <div class="form-group">
+                          <label for="amount">Cantidad: <span id="amountLabel">1</span></label>
+                          <input type="range" name="amount" id="amount" min="1" max="<%= locals.loginUser.wallet %>" value="1" oninput="updateAmountLabel(this.value)" required>
+                  </div>
+                  
+                    <button type="submit" class="btn donate-button">Donar</button>
+                  
+          </form>
+      </div>
+    <% } %>
 
-  <% if (locals.loginUser && locals.loginUser.isAdmin) { %> 
-  <div class="card">
-    <h3>Inflate</h3>
-    <p>By pressing this button, the tokens of all team members will be reduced by 50%.</p>
-    <form method="post" action="/teams/<%= team.id %>/inflate">
-      <button type="submit" class="btn">Inflate</button>
-    </form>
-  </div>
-  <% } %>
+    <% if (locals.loginUser && locals.loginUser.isAdmin) { %> 
+      <div class="card inflate-form">
+        <h3 class="inflaciontext">Inflación</h3>
+        <p>Al presionar este botón, los tokens de todos los miembros del equipo se reducirán en un 50%.</p>
+        <form method="post" action="/teams/<%= team.id %>/inflate">
+          <button type="submit" class="inflate-button">Aplicar</button>
+        </form>
+      </div>
+    <% } %>
+    </div>
 
-  <a href="/teams" class="btn">Back</a>
+    <div class="button-container-volverateams">
+      <a href="/teams" class="volverateams">Volver</a>
+    </div>
 </div>
 
 <script>
@@ -185,4 +213,22 @@
           progressBar.style.width = reputation + '%';
       });
   });
+</script>
+
+<script>
+  function updateAmountLabel(value) {
+    document.getElementById('amountLabel').textContent = value;
+  }
+</script>
+
+<script>
+  function selectRecipient(button) {
+    document.querySelectorAll('.user-button').forEach(button => button.classList.remove('selected'));
+    button.classList.add('selected');
+    document.getElementById('recipient').value = button.dataset.id;
+  }
+
+  function updateAmountLabel(value) {
+    document.getElementById('amountLabel').textContent = value;
+  }
 </script>

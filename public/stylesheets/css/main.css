@@ -1144,85 +1144,6 @@ input[type="checkbox"]:checked::before {
   }
 }
 
-/* APARTADO PARA DONAR PUNTOS WALLET A OTROS USERS */
-.donation-form {
-  width: 300px;
-  background-color: #f8f9fa;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-.donation-form .form-group {
-  margin-bottom: 10px;
-}
-
-.donation-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.donation-form select, 
-.donation-form input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ced4da;
-}
-
-.donation-form .donate-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.donation-form .donate-button:hover {
-  background-color: #0056b3;
-}
-
-/* APARTADO DE INFLACION */
-.inflate-form {
-  width: 300px;
-  background-color: #f8f9fa;
-  padding: 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-.inflate-form .form-group {
-  margin-bottom: 10px;
-}
-
-.inflate-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.inflate-form select, 
-.inflate-form input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ced4da;
-}
-
-.inflate-form .inflate-button {
-  background-color: #ff0000; 
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.inflate-form .inflate-button:hover {
-  background-color: #b30000;
-}
 
 
 /* APARTADO DE REGISTRO */
@@ -1950,6 +1871,12 @@ input[type="checkbox"]:checked::before {
   padding: 1px;
 }
 
+.team-section-show .section-header {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 15px 10px 5px 10px;
+} 
+
 .team-section-show .card {
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   margin-bottom: 20px;
@@ -2114,4 +2041,245 @@ input[type="checkbox"]:checked::before {
   color: #000;
   font-size: 12px;
   line-height: 20px;
+}
+
+/* APARTADO PARA DONAR PUNTOS WALLET A OTROS USERS */
+.donation-form {
+  width: 300px;
+  background-color: #ffffff; /* Tarjeta de color blanco */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+  color: var(--color-quintary);
+  display: flex; /* Añadido */
+  flex-direction: column; /* Añadido */
+}
+
+.donation-form .form-group {
+  margin-bottom: 10px;
+}
+
+.donation-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.donation-form select, 
+.donation-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--color-terciary);
+  background-color: var(--color-secondary);
+  color: var(--color-quintary);
+}
+
+.donation-form .input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.donation-form .input-group .btn {
+  padding: 10px;
+  border: none;
+  background-color: var(--color-primary);
+  color: var(--color-quintary);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.donation-form .input-group .btn:hover {
+  background-color: var(--color-cuartary);
+}
+
+.donation-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.donation-form .button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.donation-form .donate-button {
+  background-color: var(--color-primary);
+  color: var(--color-quintary);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.donation-form .donate-button:hover {
+  background-color: var(--color-cuartary);
+}
+
+.donation-form input[type="range"] {
+  width: 100%;
+  height: 8px; /* Barra más estrecha */
+  border-radius: 5px;
+  background: var(--color-terciary);
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.donation-form input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px; /* Círculo más sutil */
+  height: 18px; /* Círculo más sutil */
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.donation-form input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--color-cuartary);
+}
+
+.user-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.user-button {
+  padding: 10px;
+  border: 1px solid var(--color-terciary);
+  border-radius: 5px;
+  background: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.user-button.selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-quintary);
+}
+
+/* APARTADO DE INFLACION */
+.inflate-form {
+  width: 300px;
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex; /* Añadido */
+  flex-direction: column; /* Añadido */
+}
+
+.inflate-form h3 {
+  color: #b30000;
+  margin-bottom: 10px;
+  font-size: 24px; /* Aumentado el tamaño de la fuente */
+}
+
+.inflate-form p {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 18px; /* Aumentado el tamaño de la fuente */
+}
+
+.inflate-form .inflate-button {
+  background-color: #b30000; 
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 25px; /* Añadido */
+}
+
+.inflate-form .inflate-button:hover {
+  background-color: #ff0000;
+}
+
+.tarjetasaccion {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.donation-form {
+  width: 70%; /* 50% - 2% para dar un poco de espacio entre las tarjetas */
+}
+
+.donation-form .donarpuntos {
+  text-align: center;
+  font-weight: bold;
+}
+
+.inflate-form {
+  width: 25%;
+}
+
+.inflate-form .inflaciontext {
+  text-align: center;
+  font-weight: bold;
+}
+
+.unirseequipo {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+}
+
+.unirseequipo .join-btn {
+  animation: pulsejointeam 2s infinite;
+  font-weight: 300; 
+}
+@keyframes pulsejointeam {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5), 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.7);
+  }
+}
+
+
+.button-container-volverateams {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Añadido para dar margen en la parte superior e inferior */
+}
+
+.volverateams {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-quintary);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.volverateams:hover {
+  background-color: var(--color-cuartary);
+  color: white;
 }
