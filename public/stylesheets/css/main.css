@@ -2895,3 +2895,296 @@ input[type="checkbox"]:checked::before {
   display: flex;
   flex-wrap: wrap;
 }
+
+.votacionformulario {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.votacionformulario:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.voting-form {
+  background-color: transparent;
+}
+
+.voting-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.voting-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.voting-form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vote-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.vote-button:last-child {
+  margin-right: 0;
+}
+
+.vote-button:hover {
+  transform: scale(1.05);
+}
+
+.vote-button[name="vote"][value="for"] {
+  background-color: #28a745;
+}
+
+.vote-button[name="vote"][value="against"] {
+  background-color: #dc3545;
+}
+
+.vote-button[name="vote"][value="abstain"] {
+  background-color: #ffc107;
+}
+
+.vote-button[name="vote"][value="change"] {
+  background-color: #6c757d;
+}
+
+.voting-form input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 15px;
+  background: var(--color-quintary);
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+  border-radius: 60px;
+  /* Add a linear gradient for the track background */
+  background: linear-gradient(yellow, var(--color-primary)) no-repeat var(--color-quintary);
+  background-size: 0% 100%; /* Start at 50% (change it with JavaScript) */
+  
+}
+
+.voting-form input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 15px;
+  border-radius: 60px;
+}
+
+.voting-form input[type="range"]::-moz-range-track {
+  -moz-appearance: none;
+  height: 15px;
+  border-radius: 60px;
+}
+
+.voting-form input[type="range"]:hover {
+  opacity: 1;
+}
+
+.voting-form input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: -2.5px;
+  /* Add a box shadow for the glow effect */
+  box-shadow: 0 0 20px yellow;
+}
+
+.voting-form input[type="range"]::-moz-range-thumb {
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--color-primary);
+  cursor: pointer;
+  border-radius: 50%;
+  margin-top: -2.5px;
+  /* Add a box shadow for the glow effect */
+  box-shadow: 0 0 20px yellow;
+}
+
+.voting-form output {
+  display: block;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+}
+
+.voting-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold; /* Hace el título en negrita */
+  color: black;
+}
+
+.vote-changed-message {
+  text-align: center;
+  font-size: 20px;
+  color: #dc3545;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.change-vote-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  background-color: #6c757d;
+  display: block;
+  margin: 0 auto; /* Centra el botón */
+}
+
+
+.change-vote-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4); /* Agrega sombra durante la animación */
+}
+
+.changevotesection {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold; /* Hace el título en negrita */
+  color: black;
+}
+
+/* Estilo para el mensaje cuando la votación ha finalizado */
+.votacionformulario .votacionfin {
+  color: #e60017; /* Rojo */
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Estilo para el mensaje cuando la votación aún no ha comenzado */
+.votacionformulario .votacionnoiniciada {
+  color: #ff4907; /* Amarillo */
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Estilo para el mensaje cuando el usuario no pertenece al equipo */
+.votacionformulario .votacionnoequipo {
+  color: #0d1f2f; /* Gris */
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Estilo para el mensaje cuando la propuesta ha sido vetada */
+.votacionformulario .votacioncalceladaveto {
+  color: #a80000; /* Verde */
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Estilo para el mensaje cuando el usuario no ha iniciado sesión */
+.votacionformulario .votacioniniciarses {
+  color: var(--color-primary); /* Azul */
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* Estilo para el mensaje cuando no se alcanzó el número mínimo de usuarios necesarios a votar */
+.votacionformulario .votacioninsuficientesusers {
+  color: #a80000; /* Rojo */
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+}
+
+.button-container-volverapropuestas {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Añadido para dar margen en la parte superior e inferior */
+}
+
+.volveraposts {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: var(--color-quintary);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.volveraposts:hover {
+  background-color: var(--color-cuartary);
+  color: white;
+}
+
+.vetocard {
+  width: 500px; /* Ajusta este valor a tus necesidades */
+  background-color: #f8f9fa;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.vetocard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.veto-header {
+  color: #b30000;
+  margin-bottom: 10px;
+  font-size: 24px;
+  text-align: center; /* Centra el texto */
+  font-weight: bold; /* Hace el texto en negrita */
+}
+
+.veto-button {
+  background-color: #f44336; /* Red */
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 25px;
+}
+
+.veto-button:hover {
+  background-color: #ff0000;
+}

@@ -200,7 +200,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-6">
         <p>Votes For: <%= post.votesFor %>
         </p>
@@ -211,66 +211,87 @@
         <p>Team: <%= post.team %>
         </p>
       </div>
-    </div>
+    </div> -->
 
+    <div class="votacionformulario">
       <% if (isLoggedIn) { %>
         <% if (!post.vetoed) { %>
           <% if (belongsToSameTeam) { %> 
             <% if (isVotingPeriod) { %>
               <% if (post.hasVoted) { %>
-                <p>¡Ya has votado en esta propuesta!</p>
+                <h2 class="changevotesection">Sección de Votación</h2>
+                <p class="vote-changed-message">¡Ya has votado en esta propuesta!</p>
                 <form action="/posts/<%= post.id %>/change-vote" method="post">
                   <input type="hidden" name="teamId" value="<%= post.TeamId %>">
-                  <button type="submit" name="vote" value="change">Cambiar mi voto</button>
+                  <button type="submit" class="change-vote-button" name="vote" value="change">Cambiar mi voto</button>
                 </form>
               <% } else { %>
-                <form action="/posts/<%= post.id %>/vote" method="post">
-                  <label for="votePoints">Cantidad de puntos:</label>
-                  <input type="number" id="votePoints" name="votePoints" min="1" max="10000" required>
-                  <button type="submit" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
-                  <button type="submit" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
-                </form>
-                <form action="/posts/<%= post.id %>/vote" method="post">
-                  <input type="hidden" id="votePoints" name="votePoints" value="1">
-                  <button type="submit" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
-                </form>
+                <div class="voting-form">
+                  <h2>Sección de Votación</h2>
+                  <form action="/posts/<%= post.id %>/vote" method="post">
+                    <label for="votePoints">Cantidad de puntos:</label>
+                    <input type="range" id="votePoints" name="votePoints" min="1" max="<%= post.max_voting %>" value="1" oninput="amount.value=votePoints.value">
+                    <output id="amount">1</output>
+                    <div class="button-container">
+                      <button type="submit" class="vote-button" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
+                      <button type="submit" class="vote-button" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+                      <button type="submit" class="vote-button" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+                    </div>
+                  </form>
+                </div>
               <% } %>
             <% } else { %>
               <% if (isPostVotingFinished) { %>
-                <p>La votación ya ha finalizado.</p>
+                <h2 class="changevotesection">Sección de Votación</h2>
+                <p class="votacionfin">La votación ya ha finalizado.</p>
               <% } else { %>
-                <p>La votación aún no ha comenzado.</p>
+                <h2 class="changevotesection">Sección de Votación</h2>
+                <p class="votacionnoiniciada">La votación aún no ha comenzado.</p>
               <% } %>
             <% } %>
           <% } else { %>
-            <p>Para votar, debes pertenecer al equipo <%= post.team %>.</p>
+            <h2 class="changevotesection">Sección de Votación</h2>
+            <p class="votacionnoequipo">Para votar, debes pertenecer al equipo <%= post.team %>.</p>
           <% } %>
         <% } else { %>
-          <p>El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
+          <h2 class="changevotesection">Sección de Votación</h2>
+          <p class="votacioncalceladaveto">El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
         <% } %>
         <% } else { %>
-          <p>¡Inicia sesión para ver más sobre las propuestas!</p>
+          <h2 class="changevotesection">Sección de Votación</h2>
+          <p class="votacioniniciarses">¡Inicia sesión para ver más sobre las propuestas!</p>
       <% } %>
 
       <% if (isLoggedIn && !post.vetoed && belongsToSameTeam && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
-        <p>No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
+        <p class="votacioninsuficientesusers">No se alcanzó el número mínimo de usuarios necesarios a votar para que la propuesta se llevara a cabo.</p>
       <% } %>
+    </div>
 
-      <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
+    <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
+      <div class="vetocard inflate-form">
+        <h3 class="veto-header">Veto</h3>
+        <p>Al presionar este botón, el post será vetado.</p>
         <form action="/posts/<%= post.id %>/veto" method="post">
-          <button type="submit" name="veto" value="veto">Veto</button>
+          <button class="veto-button inflate-button" type="submit" name="veto" value="veto">Veto</button>
         </form>
-      <% } %>
+      </div>
+    <% } %>
+    
 
-      <div> 
+      <!-- <div> 
         <small id="author">
           By <b><%= post.author ? post.author.username : "Anonymous" %></b>
         </small>
+      </div> -->
+
+      <div class="button-container-volverapropuestas">
+        <a href="/posts" class="volveraposts">Volver</a>
       </div>
-    <a href="/posts">Volver</a>
+
     </div>
   </div>
-  <div class="col-md-6">
+
+  <!-- <div class="col-md-6">
     <div class="card">
       <div class="card-header">
         <h3>Voting Details</h3>
@@ -287,7 +308,8 @@
         <p>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></p>
       </div>
     </div>
-  </div>
+  </div> -->
+
   </div>
   </article>
   </div>
@@ -338,3 +360,14 @@
     }
   });
 </script>
+
+<script>
+  const range = document.querySelector('.voting-form input[type="range"]');
+range.addEventListener('input', () => {
+  let value = ((range.value - range.min) / (range.max - range.min)) * 100;
+  // Add an offset to the value
+  value = value - (10 / range.max * 100) + 20;
+  range.style.backgroundSize = value + '% 100%';
+});
+</script>
+
