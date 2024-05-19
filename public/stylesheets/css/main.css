@@ -2651,6 +2651,17 @@ input[type="checkbox"]:checked::before {
   font-weight: bold;
 }
 
+
+.cardposts-votacionestado {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.cardposts-votacionestado:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 .voting-status {
   background: white;
   border-radius: 10px;
@@ -2678,30 +2689,44 @@ input[type="checkbox"]:checked::before {
   text-shadow: 0 0 10px #ffc107, 0 0 20px #ffc107, 0 0 30px #ffc107, 0 0 40px #ffc107;
 }
 
-.voting-status .card-body-reglasvotacion {
-  padding: 20px;
-  font-size: 18px;
+.voting-status .card-body-votacionestado {
   display: flex;
-  justify-content: space-between;
+
 }
 
-.voting-status .card-body-reglasvotacion p {
+.voting-status .card-body-votacionestado .left-side {
+  flex: 0 0 40%;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 33px;
   margin-bottom: 10px;
 }
 
-.voting-status .card-body-reglasvotacion p i {
+.voting-status .card-body-votacionestado .right-side {
+  flex: 0 0 60%;
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.voting-status .card-body-votacionestado p {
+  margin-bottom: 20px;
+}
+
+.voting-status .card-body-votacionestado p i {
   margin-right: 10px;
 }
 
-.voting-status .card-body-reglasvotacion p:nth-child(1) i {
+.voting-status .card-body-votacionestado p:nth-child(1) i {
   color: #28a745;
 }
 
-.voting-status .card-body-reglasvotacion p:nth-child(2) i {
+.voting-status .card-body-votacionestado p:nth-child(2) i {
   color: #dc3545;
 }
 
-.voting-status .card-body-reglasvotacion p:nth-child(3) i {
+.voting-status .card-body-votacionestado p:nth-child(3) i {
   color: #ffc107;
 }
 
@@ -2709,7 +2734,7 @@ input[type="checkbox"]:checked::before {
   background: #fff;
   border-radius: 10px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   animation: fadein 2s;
@@ -2745,49 +2770,128 @@ input[type="checkbox"]:checked::before {
   to   { opacity: 1; }
 }
 
-.circle-chart {
+.race {
   position: relative;
-  width: 100px;
-  height: 100px;
+  height: auto; /* Ajusta la altura automáticamente */
+  background: #f8f9fa;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 20px; /* Añade un poco de espacio alrededor de las barras */
+  display: flex;
+  flex-direction: column;
+  margin-right: 45px;
+  margin-top:10px;
 }
 
-.circle-chart svg {
-  transform: rotate(-90deg);
+.race .progress-bar-container {
+  position: relative;
   width: 100%;
+  height: 40px;
+  background: #e9ecef;
+  border-radius: 5px;
+  margin-bottom: 20px; /* Añade espacio entre las barras */
+  /* flex: 1; */
+  overflow: hidden;
+}
+
+.race .progress-bar-container:last-child {
+  margin-top: 20px; /* Añade un margen superior a la última barra (abstenciones) */
+}
+
+.race .progress-bar {
+  /* position: absolute; */
   height: 100%;
+  transition: width 0.5s ease;
+  display: flex; /* Añade flex para centrar el texto */
+  align-items: center; /* Centra el texto verticalmente */
+  justify-content: center; /* Centra el texto horizontalmente */
+  color: white; /* Cambia el color del texto a blanco */
 }
 
-.circle-chart .bg {
-  fill: none;
-  stroke: #f0f0f0;
-  stroke-width: 10;
-}
-
-.circle-chart .progress {
-  fill: none;
-  stroke-width: 10;
-  stroke-dasharray: 251;
-  stroke-dashoffset: 251;
-  transition: stroke-dashoffset 2s;
-}
-
-.vote-for .progress {
-  stroke: #28a745;
-}
-
-.vote-against .progress {
-  stroke: #dc3545;
-}
-
-.vote-abstain .progress {
-  stroke: #ffc107;
-}
-
-.circle-chart .percentage {
+.race .progress-bar::after {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 18px;
-  font-weight: bold;
+  top: 0;
+  right: -10px; /* adjust this value to position the arrow correctly */
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent; /* adjust this value to change the size of the arrow */
+  border-bottom: 10px solid transparent; /* adjust this value to change the size of the arrow */
+  border-left: 10px solid green; /* adjust this value to change the size and color of the arrow */
+}
+
+.race .finish-line {
+  width: 40px; /* Ajusta el ancho para acomodar las 4 líneas */
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: -5px;
+  display: flex; /* Añade flex para alinear las líneas horizontalmente */
+}
+
+.race .finish-line .line {
+  width: 40px;
+  height: calc(100% + 10px);
+  background: repeating-linear-gradient(
+    to bottom, 
+    #000 0, 
+    #000 5%, 
+    #fff 5%, 
+    #fff 10%
+  );
+}
+
+.race .finish-line .line:nth-child(even) {
+  background: repeating-linear-gradient(
+    to bottom, 
+    #fff 0, 
+    #fff 5%, 
+    #000 5%, 
+    #000 10%
+  ); /* Invierte el patrón para las líneas pares */
+}
+
+.race .vote-for {
+  background: #28a745;
+}
+
+.race .vote-against {
+  background: #dc3545;
+}
+
+.race .vote-abstain {
+  background: #ffc107;
+}
+.race .vote-abstain {
+  position: relative; /* Añade posicionamiento relativo para posicionar el icono */
+  background: #ccc; /* Cambia el color de fondo a algo neutral */
+}
+
+.race .vote-abstain .fas {
+  position: absolute; /* Posiciona el icono absolutamente dentro de la barra */
+  top: 50%; /* Centra el icono verticalmente */
+  left: 50%; /* Centra el icono horizontalmente */
+  transform: translate(-50%, -50%); /* Ajusta la posición del icono para que esté perfectamente centrado */
+  opacity: 0.5; /* Ajusta la opacidad del icono para que sea semi-transparente */
+}
+
+.card-body-votacionestado .spectators{
+  margin-top: 0px;
+  margin-left: 13px;
+}
+
+.card-body-votacionestado .spectator-icon {
+  opacity: 0.3;
+  color: #ccc; /* color of inactive icons */
+  font-size: 20px; /* adjust size as needed */
+}
+
+.card-body-votacionestado .spectator-icon.active {
+  opacity: 1;
+  color: #ffc107; /* color of active icons */
+}
+
+.card-body-votacionestado #spectators-icons {
+  display: flex;
+  flex-wrap: wrap;
 }

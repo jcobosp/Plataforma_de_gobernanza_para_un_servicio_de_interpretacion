@@ -1,5 +1,4 @@
 <div>
-  <script src="https://d3js.org/d3.v5.min.js"></script>
   <!-- ======= Breadcrumbs ======= -->
   <div class="breadcrumbs">
     <nav>
@@ -106,7 +105,7 @@
       </div>
     </article>
 
-    <div class="col-md-12">
+    <!-- <div class="col-md-12">
       <div class="cardposts-reglasvotacion voting-status">
         <div class="card-header">
           <h4 class="title-style"><i class="fas fa-chart-pie"></i> Estado de la Votación</h4>
@@ -127,7 +126,75 @@
             </div>
           </div>
           <div class="col-md-6">
-            <svg id="votingStatus" width="500" height="500"></svg>
+            <div class="race">
+              <div class="progress-bar-container" data-votes="<%= post.votesFor %>">
+                <div class="progress-bar vote-for">
+                  <span class="percentage"><%= post.votesFor %> %</span>
+                </div>
+              </div>
+              <div class="progress-bar-container" data-votes="<%= post.votesAgainst %>">
+                <div class="progress-bar vote-against">
+                  <span class="percentage"><%= post.votesAgainst %> %</span>
+                </div>
+              </div>
+              <div class="finish-line">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="spectators" data-abstentions="<%= post.abstentions %>">
+              <div id="spectators-icons"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div> -->
+
+    <div class="col-md-12">
+      <div class="cardposts-votacionestado voting-status">
+        <div class="card-header">
+          <h4 class="title-style"><i class="fas fa-chart-pie"></i> Estado de la Votación</h4>
+        </div>
+        <div class="card-body-votacionestado">
+          <div class="left-side">
+            <div class="vote-card vote-for">
+              <i class="fas fa-check-circle"></i>
+              <span>Votos a favor: <%= post.votesFor %></span>
+            </div>
+            <div class="vote-card vote-against">
+              <i class="fas fa-times-circle"></i>
+              <span>Votos en contra: <%= post.votesAgainst %></span>
+            </div>
+            <div class="vote-card vote-abstain">
+              <i class="fas fa-minus-circle"></i>
+              <span>Abstenciones: <%= post.abstentions %></span>
+            </div>
+          </div>
+          <div class="right-side">
+            <div class="race">
+              <div class="progress-bar-container" data-votes="<%= post.votesFor %>">
+                <div class="progress-bar vote-for">
+                  <span class="percentage"><%= post.votesFor %> %</span>
+                </div>
+              </div>
+              <div class="progress-bar-container" data-votes="<%= post.votesAgainst %>">
+                <div class="progress-bar vote-against">
+                  <span class="percentage"><%= post.votesAgainst %> %</span>
+                </div>
+              </div>
+              <div class="finish-line">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+              </div>
+            </div>
+            <div class="spectators" data-abstentions="<%= post.abstentions %>">
+              <div id="spectators-icons"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -226,35 +293,48 @@
   </div>
 </div>
 
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function() {
+  var progressBarContainers = document.querySelectorAll('.progress-bar-container');
+  progressBarContainers.forEach(function(container) {
+    var votes = container.getAttribute('data-votes');
+    var progressBar = container.querySelector('.progress-bar');
+    progressBar.style.width = votes + '%';
+  });
+});
+</script> -->
 <script>
- var data = [
-  { name: 'Votos a favor', count: <%= post.votesFor %>, color: '#28a745' },
-  { name: 'Votos en contra', count: <%= post.votesAgainst %>, color: '#dc3545' },
-  { name: 'Abstenciones', count: <%= post.abstentions %>, color: '#ffc107' }
-];
+  document.addEventListener("DOMContentLoaded", function() {
+    var progressBarContainers = document.querySelectorAll('.progress-bar-container');
+    var totalVotes = 0;
+    progressBarContainers.forEach(function(container) {
+      var votes = parseInt(container.getAttribute('data-votes'));
+      totalVotes += votes;
+    });
 
-var svg = d3.select('#votingStatus'),
-    width = +svg.attr('width'),
-    height = +svg.attr('height'),
-    radius = Math.min(width, height) / 2;
+    progressBarContainers.forEach(function(container) {
+      var votes = parseInt(container.getAttribute('data-votes'));
+      var progressBar = container.querySelector('.progress-bar');
+      var percentage = (votes / totalVotes) * 100;
+      progressBar.style.width = percentage + '%';
+      progressBar.style.borderRadius = '0 5px 5px 0'; // add border radius to the right side of the progress bar
+      progressBar.querySelector('.percentage').textContent = percentage.toFixed(2) + ' %';
+    });
 
-var g = svg.append('g')
-    .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+    const totalVoters = 25; // replace with your total number of voters
+    const spectators = document.querySelector('.spectators');
+    let abstentions = parseInt(spectators.getAttribute('data-abstentions'));
+    abstentions = Math.min(abstentions, totalVoters); // limit the number of abstentions to the total number of voters
+    const spectatorsIcons = document.getElementById('spectators-icons');
 
-var pie = d3.pie()
-    .sort(null)
-    .value(function(d) { return d.count; });
-
-var path = d3.arc()
-    .outerRadius(radius - 10)
-    .innerRadius(0);
-
-var arc = g.selectAll('.arc')
-    .data(pie(data))
-    .enter().append('g')
-      .attr('class', 'arc');
-
-arc.append('path')
-    .attr('d', path)
-    .attr('fill', function(d) { return d.data.color; });
+    for (let i = 0; i < totalVoters; i++) {
+      const icon = document.createElement('span');
+      icon.className = 'spectator-icon'; 
+      icon.textContent = '👀'; // emoji de ojo
+      if (i < abstentions) {
+        icon.classList.add('active');
+      }
+      spectatorsIcons.appendChild(icon);
+    }
+  });
 </script>
