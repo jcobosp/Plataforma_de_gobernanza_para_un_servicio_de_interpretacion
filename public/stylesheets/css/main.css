@@ -2235,7 +2235,7 @@ input[type="checkbox"]:checked::before {
 /* APARTADO DE INFLACION */
 .inflate-form {
   width: 300px;
-  background-color: #f8f9fa;
+  background-color: white;
   padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
@@ -2428,11 +2428,20 @@ input[type="checkbox"]:checked::before {
   font-size: 18px; /* Aumenta el tamaño de la fuente */
   font-weight: bold; /* Hace que el texto sea más grueso */
   color: var(--color-primary); /* Cambia el color del texto */
+  display: flex; /* Añade flexbox para alinear la imagen y el texto */
+  align-items: center; /* Centra verticalmente la imagen y el texto */
+  justify-content: center; /* Centra horizontalmente la imagen y el texto */
 }
 
 .post-section-show .card-dates1 i {
   margin-right: 5px;
   color: var(--color-primary);
+}
+
+.post-section-show .card-dates1 img {
+  width: 45px; /* Ajusta el tamaño de la imagen */
+  height: 45px; /* Ajusta el tamaño de la imagen */
+  margin-right: 5px; /* Añade margen a la derecha de la imagen */
 }
 
 .post-section-show .card-author {
@@ -2443,13 +2452,25 @@ input[type="checkbox"]:checked::before {
   margin-top: 20px; /* Agrega espacio encima del bloque de autor */
 }
 
+.post-section-show .card-author img {
+  width: 40px; /* Ajusta el tamaño de la imagen */
+  height: 40px; /* Ajusta el tamaño de la imagen */
+  margin-right: 5px; /* Añade margen a la derecha de la imagen */
+}
+
+.post-section-show .detalles-user img {
+  width: 42px; /* Ajusta el tamaño de la imagen */
+  height: 42px; /* Ajusta el tamaño de la imagen */
+  margin-right: 5px; /* Añade margen a la derecha de la imagen */
+}
+
 .cardposts-reglasvotacion {
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   border-radius: 5px;
   margin-bottom: 20px;
   overflow: hidden;
-  padding: 20px;
+  padding: 22px 22px 33px 22px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -2457,24 +2478,45 @@ input[type="checkbox"]:checked::before {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.cardposts-reglasvotacion2 {
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding: 22px 22px 0 22px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cardposts-reglasvotacion2:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 .card-header-reglasvotacion {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 24px; /* Aumenta el tamaño de la fuente */
-  padding: 15px; /* Aumenta el padding */
+  padding: 10px; /* Aumenta el padding */
   border-radius: 5px 5px 0 0;
+  margin-bottom: -5px;
   display: flex;
   align-items: center;
   justify-content: space-between; /* Alinea los elementos a los extremos */
-  transition: all 0.3s ease-in-out; /* Añade una transición */
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
 }
 
 .card-header-reglasvotacion:hover {
-  background-color: var(--color-secondary); /* Cambia el color de fondo al pasar el ratón */
+  transform: scale(1.1); /* Aumenta el tamaño del contenido en un 10% */
 }
 
-.card-header-reglasvotacion h3 {
-  margin-left: 10px;
+.card-header-reglasvotacion .header-icon {
+  width: 50px; /* Ajusta el tamaño de la imagen */
+  height: 50px; /* Ajusta el tamaño de la imagen */
+}
+
+.card-header-reglasvotacion h4 {
+  margin-left: 11px;
+  margin-right: 1px;
   font-weight: bold; /* Hace que el texto sea más grueso */
 }
 
@@ -2483,6 +2525,52 @@ input[type="checkbox"]:checked::before {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 0px;
+}
+
+.card-body-reglasvotacionespecial {
+  padding: 4.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.card-body-reglasvotacionespecial .icon-recompensas{
+  width: 40px; /* Ajusta el tamaño de la imagen */
+  height: 40px;
+  margin-right: 11px;
+}
+
+.card-body-reglasvotacionespecial p {
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
+}
+
+.card-body-reglasvotacionespecial p span {
+  flex-grow: 1;
+}
+
+.card-body-reglasvotacionespecial p strong {
+  margin-right: 5px;
+}
+
+.card-body-reglasvotacionespecial p:last-child {
+  border-bottom: none;
+}
+
+.card-body-reglasvotacionespecial p:hover {
+  transform: scale(1.1); 
+}
+
+.card-body-reglasvotacionespecial p i {
+  margin-right: 10px;
+  color: var(--color-primary);
 }
 
 .card-body-reglasvotacion p {
@@ -2492,16 +2580,23 @@ input[type="checkbox"]:checked::before {
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
-  transition: all 0.3s ease-in-out; /* Añade una transición */
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
 }
 
 .card-body-reglasvotacion p:last-child {
   border-bottom: none;
 }
 
+.card-body-reglasvotacion p span {
+  flex-grow: 1;
+}
+
+.card-body-reglasvotacion p strong {
+  margin-right: 5px;
+}
 
 .card-body-reglasvotacion p:hover {
-  background-color: #f9f9f9; /* Cambia el color de fondo al pasar el ratón */
+  transform: scale(1.1); 
 }
 
 .card-body-reglasvotacion p i {
@@ -2512,13 +2607,13 @@ input[type="checkbox"]:checked::before {
 .team-voting-details {
   /* Cambia el ancho de la tarjeta de Team and Voting Details aquí */
   width: 100%;
-  height: 350px;
+  height: auto;
 }
 
 .rewards-penalties {
   /* Cambia el ancho de la tarjeta de Rewards and Penalties aquí */
   width: 100%;
-  height: 350px;
+  height: auto;
 }
 
 .coin-animation-container {
@@ -2598,20 +2693,20 @@ input[type="checkbox"]:checked::before {
   margin-bottom: 1px;
 }
 
-.user-voting-details .card-header-reglasvotacion {
-  background-color: var(--color-primary);
-  color: white;
+.user-voting-details .card-header {
+  background-color: white;
+  color: black;
   font-size: 24px;
   padding: 15px;
   border-radius: 1px 1px 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-.user-voting-details .card-header-reglasvotacion:hover {
-  background-color: var(--color-secondary);
+.user-voting-details .card-header:hover {
+  transform: scale(1.05);
 }
 
 .user-voting-details .card-body-reglasvotacion {
@@ -2637,9 +2732,9 @@ input[type="checkbox"]:checked::before {
   border-bottom: none;
 } */
 
-.user-voting-details .card-body-reglasvotacion p:hover {
+/* .user-voting-details .card-body-reglasvotacion p:hover {
   background-color: #f9f9f9;
-}
+} */
 
 .user-voting-details .card-body-reglasvotacion p i {
   margin-right: 10px;
@@ -3148,15 +3243,32 @@ input[type="checkbox"]:checked::before {
 }
 
 .vetocard {
-  width: 500px; /* Ajusta este valor a tus necesidades */
-  background-color: #f8f9fa;
+  width: 650px; /* Ajusta este valor a tus necesidades */
+  background-color: white;
   padding: 20px;
   margin: 20px auto;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   text-align: center;
+}
+
+.veto-content {
+  flex: 1; /* Ocupa todo el espacio disponible */
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.veto-image {
+  /* Ajusta estos valores a tus necesidades */
+  width: 250px;
+  margin-left: 20px;
+}
+
+.veto-image img {
+  width: 100%;
+  height: auto;
 }
 
 .vetocard:hover {

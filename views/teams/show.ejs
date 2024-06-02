@@ -162,7 +162,7 @@
     <div class="tarjetasaccion">
     <% if (locals.loginUser && locals.isMember) { %> 
       <div class="card donation-form">
-          <h3 class="donarpuntos">Donar Tokens</h3>
+          <h3 class="donarpuntos">Donar puntos de la Wallet</h3>
           <form method="post" action="/teams/<%= team.id %>/donate">
                   <div class="form-group">
                           <label for="recipient">Destinatario:</label>
@@ -186,6 +186,18 @@
                     <button type="submit" class="btn donate-button">Donar</button>
                   
           </form>
+      </div>
+    <% } %>
+
+    <% if (locals.loginUser && locals.isMember && !locals.loginUser.isAdmin) { %> 
+      <div class="card inflate-form">
+        <!-- <h3 class="inflaciontext">Inflación</h3>
+        <p>Al presionar este botón, los tokens de todos los miembros del equipo se reducirán en un 50%.</p>
+        <form method="post" action="/teams/<%= team.id %>/inflate">
+          <button type="submit" class="inflate-button">Aplicar</button>
+        </form> -->
+        <img src="/images/3D-icons/billetes-icon-2.PNG" alt="Descripción de la imagen">
+
       </div>
     <% } %>
 

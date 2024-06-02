@@ -26,13 +26,13 @@
                 <%- include('../attachments/_attachment', { post: post }) %>
               </div>
               <div class="card-dates1">
-                <p><i class="fa fa-calendar"></i> Voting Start Date: <%= post.votingStartDate %></p>
-                <p><i class="fa fa-calendar"></i> Voting End Date: <%= post.votingEndDate %></p>
-                <p><i class="fa fa-calendar"></i> Application Date: <%= post.applicationDate %></p>
-                <p><i class="fa fa-calendar"></i> Veto Date: <%= post.vetoDate %></p>
+                <p><img src="/images/3D-icons/calculadora-icon-4.PNG" alt="Icono de comienzo de la votación"> Fecha de comienzo de la votación: <%= post.votingStartDate %></p>
+                <p><img src="/images/3D-icons/calendar-icon-5.PNG" alt="Icono de finalización de la votación"> Fecha de finalización de la votación: <%= post.votingEndDate %></p>
+                <p><img src="/images/3D-icons/calendar-icon-6.PNG" alt="Icono de fecha de aplicación"> Fecha de aplicación: <%= post.applicationDate %></p>
+                <p><img src="/images/3D-icons/reloj-icon-2.PNG" alt="Icono de fecha de veto"> Fecha de disponibilidad del veto: <%= post.vetoDate %></p>
               </div>
               <div class="card-author">
-                <p>By <b><%= post.author ? post.author.username : "Anonymous" %></b></p>
+                <p>By <b><%= post.author ? post.author.username : "Anonymous" %></b> <img src="/images/3D-icons/autor-icon-1.PNG" alt="Author Icon"></p>
               </div>
             </div>
           </div>
@@ -50,26 +50,26 @@
             <div class="col-md-6">
               <div class="cardposts-reglasvotacion team-voting-details">
                 <div class="card-header-reglasvotacion">
-                  <h4><i class="fa fa-info-circle"></i> Team and Voting Details</h4>
+                  <h4><img class="header-icon" src="/images/3D-icons/info-icon-1.PNG" alt="Icono info"> Detalles de la propuesta</h4>
                 </div>
                 <div class="card-body-reglasvotacion">
-                  <p>Team: <%= post.team %></p>
-                  <p>Minimum Voting Score: <%= post.min_voting %></p>
-                  <p>Maximum Voting: <%= post.max_voting %></p>
-                  <p>Minimum Users Voted: <%= post.min_users_voted %></p>
+                  <p><strong>Equipo:</strong> <span><%= post.team %></span></p>
+                  <p><strong>Puntuación mínima a votar:</strong>  <span><%= post.min_voting %></span></p>
+                  <p><strong>Puntuación máxima a votar:</strong><span> <%= post.max_voting %></span></p>
+                  <p><strong>Mínimo de usuarios que deben votar:</strong> <span><%= post.min_users_voted %></span></p>
                 </div>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="cardposts-reglasvotacion rewards-penalties">
+              <div class="cardposts-reglasvotacion2 rewards-penalties">
                 <div class="card-header-reglasvotacion">
-                  <h4><i class="fa fa-gift"></i> Rewards and Penalties</h4>
+                  <h4><img class="header-icon" src="/images/3D-icons/regalo-icon-3.PNG" alt="Icono de Regalo"> Recompensas y penalizaciones</h4>
                 </div>
-                <div class="card-body-reglasvotacion">
-                  <p><i class="fa fa-trophy"></i> Voting Reward: <%= post.voting_reward %></p>
-                  <p><i class="fa fa-thumbs-down"></i> Voting Failure Penalty: <%= post.voting_failure_penalty %></p>
-                  <p><i class="fa fa-thumbs-up"></i> Voting Success Reward: <%= post.voting_success_reward %></p>
-                  <div class="balance">
+                <div class="card-body-reglasvotacionespecial">
+                  <p> <img class="icon-recompensas" src="/images/3D-icons/celebracion-icon-1.PNG" alt="Icono gonfeti"> <strong>Recompensa por votar:</strong><span><%= post.voting_reward %></span></p>
+                  <p> <img class="icon-recompensas" src="/images/3D-icons/thumbdown-icon-1.PNG" alt="Icono pulgar abajo"> <strong>Penalización si la votación resulta contraria a tu voto:</strong><span><%= post.voting_failure_penalty %></span></p>
+                  <p> <img class="icon-recompensas" src="/images/3D-icons/thumbup-icon-2.PNG" alt="Icono pulgar arriba"> <strong>Recompensa si la votación resulta a favor de tu voto:</strong><span><%= post.voting_success_reward %></span></p>
+                  <!-- <div class="balance">
                     <div class="coin-animation-container">
                       <div class="coin-container">
                         <i class="fas fa-wallet coin-icon"></i>
@@ -84,19 +84,21 @@
                         <i class="fas fa-trash coin-icon penalty"></i>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="cardposts-reglasvotacion user-voting-details">
                 <div class="card-header">
-                  <h4 class="title-style"><i class="fa fa-user"></i> User Voting Details</h4>
+                  <div class="detalles-user">
+                    <h4 class="title-style"><img src="/images/3D-icons/user-icon-1.PNG" alt="Icono de Autor"> Detalles del usuario al votar</h4>
+                  </div>
                 </div>
                 <div class="card-body-reglasvotacion">
-                  <p>User Wallet Points: <%= Math.round(post.userWalletPoints) %></p>
-                  <p>Your Reputation: <%= post.userTeamReputation %>%</p>
-                  <p>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></p>
+                  <p><strong>Puntos de tu Wallet:</strong> <span><%= Math.round(post.userWalletPoints) %></span></p>
+                  <p><strong>Tu reputación del equipo:</strong> <span><%= post.userTeamReputation %>%</span></p>
+                  <p><strong>Tu multiplicador de voto:</strong> <span><%= post.reputationFactor.toFixed(2) %></span></p>
                 </div>
               </div>
             </div>
@@ -269,11 +271,16 @@
 
     <% if (isAdmin && !post.vetoed && isVetoEnabled) { %>
       <div class="vetocard inflate-form">
-        <h3 class="veto-header">Veto</h3>
-        <p>Al presionar este botón, el post será vetado.</p>
-        <form action="/posts/<%= post.id %>/veto" method="post">
-          <button class="veto-button inflate-button" type="submit" name="veto" value="veto">Veto</button>
-        </form>
+        <div class="veto-content">
+          <h3 class="veto-header">Veto</h3>
+          <p>Al presionar este botón, el post será vetado.</p>
+          <form action="/posts/<%= post.id %>/veto" method="post">
+            <button class="veto-button inflate-button" type="submit" name="veto" value="veto">Veto</button>
+          </form>
+        </div>
+        <div class="veto-image">
+          <img src="/images/3D-icons/btonrojo-icon-1.PNG" alt="Descripción de la imagen">
+        </div>
       </div>
     <% } %>
     
@@ -366,7 +373,7 @@
 range.addEventListener('input', () => {
   let value = ((range.value - range.min) / (range.max - range.min)) * 100;
   // Add an offset to the value
-  value = value - (10 / range.max * 100) + 20;
+  value = value - (10 / range.max * 100) + 10;
   range.style.backgroundSize = value + '% 100%';
 });
 </script>
