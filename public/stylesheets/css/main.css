@@ -2744,6 +2744,7 @@ input[type="checkbox"]:checked::before {
 .title-style {
   color: var(--color-quintary);
   font-weight: bold;
+  font-size: 29px;
 }
 
 
@@ -2757,6 +2758,17 @@ input[type="checkbox"]:checked::before {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+/* .cardposts-votacionestado .card-right-side {
+  flex: 0 0 20%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardposts-votacionestado .card-right-side img {
+  max-height: 100%;
+} */
+
 .voting-status {
   background: white;
   border-radius: 10px;
@@ -2767,42 +2779,69 @@ input[type="checkbox"]:checked::before {
 }
 
 .voting-status .card-header {
-  background: linear-gradient(90deg, #535353, #000);
+  /* background: linear-gradient(90deg, #535353, #000); */
   color: #fff;
   padding: 10px;
   border-radius: 10px;
   text-align: center;
-  font-size: 24px;
+  font-size: 29px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease-in-out;
 }
 
-.voting-status .card-header .title-style {
-  color: #000000;
-  text-shadow: 0 0 10px #ffc107, 0 0 20px #ffc107, 0 0 30px #ffc107, 0 0 40px #ffc107;
+.voting-status .card-header:hover {
+  transform: scale(1.1); 
+}
+
+.cardposts-votacionestado .card-header img {
+  margin-right: 10px;
+  width: 50px; 
+  height: 50px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.cardposts-votacionestado .card-header img:hover {
+  transform: scale(1.1); 
 }
 
 .voting-status .card-body-votacionestado {
   display: flex;
-
 }
 
 .voting-status .card-body-votacionestado .left-side {
-  flex: 0 0 40%;
+  flex: 0 0 30%;
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 33px;
   margin-bottom: 10px;
 }
 
+
+
 .voting-status .card-body-votacionestado .right-side {
-  flex: 0 0 60%;
+  flex: 0 0 43%;
   margin-left: 10px;
   margin-right: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.voting-status .card-body-votacionestado .card-right-side {
+  flex: 0 0 27%; /* Ajusta el tamaño a 25% */
+}
+
+.voting-status .card-body-votacionestado .card-right-side img{
+  height: 240px; /* reducir a la mitad */
+  width: 240px; /* reducir a la mitad */
+  margin: 10px; /* agregar margen */
+  transition: transform 0.3s ease-in-out;
+}
+
+.voting-status .card-body-votacionestado .card-right-side img:hover {
+  transform: scale(1.1); 
 }
 
 .voting-status .card-body-votacionestado p {
@@ -2825,6 +2864,25 @@ input[type="checkbox"]:checked::before {
   color: #ffc107;
 }
 
+.vote-wrapper {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease-in-out;
+  margin-left:25px;
+}
+
+
+.vote-wrapper:hover {
+  transform: scale(1.1); 
+}
+
+.card-body-votacionestado .vote-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+
 .vote-card {
   background: #fff;
   border-radius: 10px;
@@ -2835,28 +2893,23 @@ input[type="checkbox"]:checked::before {
   animation: fadein 2s;
 }
 
-.vote-card i {
-  font-size: 24px;
-  margin-right: 10px;
-}
-
 .vote-card span {
   font-size: 18px;
   font-weight: bold;
 }
 
 .vote-for {
-  background: #28a745;
+  background: #27C628;
   color: #fff;
 }
 
 .vote-against {
-  background: #dc3545;
+  background: #E6342C;
   color: #fff;
 }
 
 .vote-abstain {
-  background: #ffc107;
+  background: #253b3b;
   color: #fff;
 }
 
@@ -2912,7 +2965,7 @@ input[type="checkbox"]:checked::before {
   height: 0;
   border-top: 10px solid transparent; /* adjust this value to change the size of the arrow */
   border-bottom: 10px solid transparent; /* adjust this value to change the size of the arrow */
-  border-left: 10px solid green; /* adjust this value to change the size and color of the arrow */
+  border-left: 10px solid #27C628; /* adjust this value to change the size and color of the arrow */
 }
 
 .race .finish-line {
@@ -2947,15 +3000,15 @@ input[type="checkbox"]:checked::before {
 }
 
 .race .vote-for {
-  background: #28a745;
+  background: #27C628;
 }
 
 .race .vote-against {
-  background: #dc3545;
+  background: #E6342C;
 }
 
 .race .vote-abstain {
-  background: #ffc107;
+  background: #253b3b;
 }
 .race .vote-abstain {
   position: relative; /* Añade posicionamiento relativo para posicionar el icono */

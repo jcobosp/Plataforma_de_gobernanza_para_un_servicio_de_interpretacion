@@ -158,21 +158,27 @@
     <div class="col-md-12">
       <div class="cardposts-votacionestado voting-status">
         <div class="card-header">
-          <h4 class="title-style"><i class="fas fa-chart-pie"></i> Estado de la Votación</h4>
+          <h4 class="title-style"><img src="/images/3D-icons/grafico-icon-1.PNG" alt="Icono"> Estado de la Votación</h4>
         </div>
         <div class="card-body-votacionestado">
           <div class="left-side">
-            <div class="vote-card vote-for">
-              <i class="fas fa-check-circle"></i>
-              <span>Votos a favor: <%= post.votesFor %></span>
+            <div class="vote-wrapper">
+              <img src="/images/3D-icons/check-icon-3.PNG" class="vote-icon">
+              <div class="vote-card vote-for">
+                <span>Votos a favor: <%= post.votesFor %></span>
+              </div>
             </div>
-            <div class="vote-card vote-against">
-              <i class="fas fa-times-circle"></i>
-              <span>Votos en contra: <%= post.votesAgainst %></span>
+            <div class="vote-wrapper">
+              <img src="/images/3D-icons/cruz-icon-1.PNG" class="vote-icon">
+              <div class="vote-card vote-against">
+                <span>Votos en contra: <%= post.votesAgainst %></span>
+              </div>
             </div>
-            <div class="vote-card vote-abstain">
-              <i class="fas fa-minus-circle"></i>
-              <span>Abstenciones: <%= post.abstentions %></span>
+            <div class="vote-wrapper">
+              <img src="/images/3D-icons/lista-ico-7.PNG" class="vote-icon">
+              <div class="vote-card vote-abstain">
+                <span>Abstenciones: <%= post.abstentions %></span>
+              </div>
             </div>
           </div>
           <div class="right-side">
@@ -197,6 +203,9 @@
             <div class="spectators" data-abstentions="<%= post.abstentions %>">
               <div id="spectators-icons"></div>
             </div>
+          </div>
+          <div class="card-right-side">
+            <img src="/images/3D-icons/trofeo-icono-2.PNG" alt="Icono llave">
           </div>
         </div>
       </div>
@@ -350,7 +359,7 @@
       progressBar.querySelector('.percentage').textContent = percentage.toFixed(2) + ' %';
     });
 
-    const totalVoters = 25; // replace with your total number of voters
+    const totalVoters = 18; // replace with your total number of voters
     const spectators = document.querySelector('.spectators');
     let abstentions = parseInt(spectators.getAttribute('data-abstentions'));
     abstentions = Math.min(abstentions, totalVoters); // limit the number of abstentions to the total number of voters
