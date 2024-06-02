@@ -2834,8 +2834,8 @@ input[type="checkbox"]:checked::before {
 }
 
 .voting-status .card-body-votacionestado .card-right-side img{
-  height: 240px; /* reducir a la mitad */
-  width: 240px; /* reducir a la mitad */
+  height: 260px; /* reducir a la mitad */
+  width: 260px; /* reducir a la mitad */
   margin: 10px; /* agregar margen */
   transition: transform 0.3s ease-in-out;
 }
@@ -3057,14 +3057,105 @@ input[type="checkbox"]:checked::before {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.voting-section {
+  display: flex;
+}
+
+.image-voting-section {
+  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
+  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+}
+
+.image-voting-section img {
+  height: 300px;
+  width: 300px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-voting-section img:hover {
+  transform: scale(1.1); 
+}
+
 .voting-form {
+  flex: 1;
   background-color: transparent;
 }
 
-.voting-form h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.voting-form-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  transition: transform 0.3s ease-in-out;
 }
+
+.voting-form-header h2 {
+  text-align: center;
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+}
+
+.voting-form-header img.voting-image {
+  width: 50px; /* Establece el tamaño de la imagen */
+  margin-bottom: 15px;
+}
+
+.voting-form-header:hover {
+  transform: scale(1.1); 
+}
+
+
+
+.voting-section-editar {
+  display: flex;
+}
+
+.image-voting-section-editar {
+  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
+  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+}
+
+.image-voting-section-editar img {
+  height: 300px;
+  width: 300px;
+  margin-left: 100px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-voting-section-editar img:hover {
+  transform: scale(1.1); 
+}
+
+.voting-form-editar {
+  flex: 1;
+  background-color: transparent;
+}
+
+.voting-form-header-editar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.voting-form-header-editar h2 {
+  text-align: center;
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  font-weight: bold;
+  color: black;
+}
+
+.voting-form-header-editar img.voting-image-editar {
+  width: 50px; /* Establece el tamaño de la imagen */
+  margin-bottom: 15px;
+}
+
+.voting-form-header-editar:hover {
+  transform: scale(1.1); 
+}
+
 
 .voting-form label {
   display: block;
@@ -3105,15 +3196,15 @@ input[type="checkbox"]:checked::before {
 }
 
 .vote-button[name="vote"][value="for"] {
-  background-color: #28a745;
+  background-color: #27C628;
 }
 
 .vote-button[name="vote"][value="against"] {
-  background-color: #dc3545;
+  background-color: #E6342C;
 }
 
 .vote-button[name="vote"][value="abstain"] {
-  background-color: #ffc107;
+  background-color: #253b3b;
 }
 
 .vote-button[name="vote"][value="change"] {

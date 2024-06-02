@@ -32,7 +32,7 @@
                 <p><img src="/images/3D-icons/reloj-icon-2.PNG" alt="Icono de fecha de veto"> Fecha de disponibilidad del veto: <%= post.vetoDate %></p>
               </div>
               <div class="card-author">
-                <p>By <b><%= post.author ? post.author.username : "Anonymous" %></b> <img src="/images/3D-icons/autor-icon-1.PNG" alt="Author Icon"></p>
+                <p><b>Autor:</b> <%= post.author ? post.author.username : "Anonymous" %> <img src="/images/3D-icons/autor-icon-1.PNG" alt="Author Icon"></p>
               </div>
             </div>
           </div>
@@ -230,25 +230,43 @@
           <% if (belongsToSameTeam) { %> 
             <% if (isVotingPeriod) { %>
               <% if (post.hasVoted) { %>
-                <h2 class="changevotesection">Sección de Votación</h2>
-                <p class="vote-changed-message">¡Ya has votado en esta propuesta!</p>
-                <form action="/posts/<%= post.id %>/change-vote" method="post">
-                  <input type="hidden" name="teamId" value="<%= post.TeamId %>">
-                  <button type="submit" class="change-vote-button" name="vote" value="change">Cambiar mi voto</button>
-                </form>
-              <% } else { %>
-                <div class="voting-form">
-                  <h2>Sección de Votación</h2>
-                  <form action="/posts/<%= post.id %>/vote" method="post">
-                    <label for="votePoints">Cantidad de puntos:</label>
-                    <input type="range" id="votePoints" name="votePoints" min="1" max="<%= post.max_voting %>" value="1" oninput="amount.value=votePoints.value">
-                    <output id="amount">1</output>
-                    <div class="button-container">
-                      <button type="submit" class="vote-button" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
-                      <button type="submit" class="vote-button" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
-                      <button type="submit" class="vote-button" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+                <div class="voting-section-editar">
+                  <div class="image-voting-section-editar">
+                    <img src="/images/3D-icons/editar-icon-2.PNG" alt="Your image description" class="voting-image-editar">
+                  </div>
+                  <div class="voting-form-editar">
+                    <div class="voting-form-header-editar">
+                      <h2>Sección de votación</h2>
+                      <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image-editar">
                     </div>
-                  </form>
+                    <p class="vote-changed-message">¡Ya has votado en esta propuesta!</p>
+                    <form action="/posts/<%= post.id %>/change-vote" method="post">
+                      <input type="hidden" name="teamId" value="<%= post.TeamId %>">
+                      <button type="submit" class="change-vote-button" name="vote" value="change">Cambiar mi voto</button>
+                    </form>
+                  </div>
+                </div>
+              <% } else { %>
+                <div class="voting-section">
+                  <div class="image-voting-section">
+                    <img src="/images/3D-icons/corona-icon-2.PNG" alt="Your image description" class="voting-image">
+                  </div>
+                  <div class="voting-form">
+                    <div class="voting-form-header">
+                      <h2>Sección de votación</h2>
+                      <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image">
+                    </div>
+                    <form action="/posts/<%= post.id %>/vote" method="post">
+                      <label for="votePoints">Cantidad de puntos:</label>
+                      <input type="range" id="votePoints" name="votePoints" min="1" max="<%= post.max_voting %>" value="1" oninput="amount.value=votePoints.value">
+                      <output id="amount">1</output>
+                      <div class="button-container">
+                        <button type="submit" class="vote-button" name="vote" value="for">Votar a favor (<%= post.votesFor %>)</button>
+                        <button type="submit" class="vote-button" name="vote" value="against">Votar en contra (<%= post.votesAgainst %>)</button>
+                        <button type="submit" class="vote-button" name="vote" value="abstain">Abstenerse (<%= post.abstentions %>)</button>
+                      </div>
+                    </form>
+                  </div>
                 </div>
               <% } %>
             <% } else { %>
