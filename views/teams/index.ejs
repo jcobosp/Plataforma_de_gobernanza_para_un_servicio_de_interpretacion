@@ -78,16 +78,18 @@
 
     </div>
 
-    <div>
+    <div class="deletedteams">
       <div class="section-header">
-        <h2>Equipos Eliminados</h2>
+        <div class="header-content">
+          <h2>Equipos Eliminados</h2>
+          <img src="/images/3D-icons/papelera-icon-3.PNG" alt="Papelera" class="deletedheader-image">
+        </div>
         <p>Encuentra los equipos que fueron eliminados</p>
       </div>
-    
       <!-- Registro de teams eliminados -->
       <% if (deletedTeams && deletedTeams.length > 0) { %>
-        <div class="table-responsive">
-          <table class="table table-striped">
+        <div class="deletedposts-body">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">Título</th>
@@ -98,7 +100,7 @@
             <tbody>
               <% for (var i in deletedTeams) { %>
                 <% var deletedTeam = deletedTeams[i]; %>
-                <tr>
+                <tr class="deleted-post <%= i >= 5 ? 'hidden' : '' %>">
                   <td><%= deletedTeam.title %></td>
                   <td><%= deletedTeam.deletedBy ?? "Anonymous" %></td>
                   <td><%= deletedTeam.deletedAt?.toLocaleDateString() ?? "Unknown" %></td>
@@ -106,6 +108,9 @@
               <% } %>
             </tbody>
           </table>
+          <% if (deletedTeams.length > 5) { %>
+            <button id="showMore">Mostrar más</button>
+          <% } %>
         </div>
       <% } else { %>
         <p>No hay equipos eliminados.</p>

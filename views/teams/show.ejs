@@ -120,7 +120,9 @@
  
 
   <div class="section-header">
-    <h2>Miembros del equipo</h2>
+    <div class="section-header-equipoicono">
+      <h2>Miembros del equipo <img class="header-icon" src="/images/3D-icons/team-icon-1.PNG"></h2>
+    </div>
   </div>
 
     <div class="card">
@@ -128,26 +130,25 @@
       <table>
         <thead>
             <tr>
-                <th>Username</th>
-                <th>Wallet</th>
-                <th>Tokens</th>
-                <th>Reputation</th>
+              <th><div class="scale-on-hover">Nombre usuario <img class="header-icon" src="/images/3D-icons/star-icon-1.PNG"></div></th>
+              <th><div class="scale-on-hover">Wallet <img class="header-icon" src="/images/3D-icons/cartera-icon-1.PNG"></div></th>
+              <th><div class="scale-on-hover">Tokens <img class="header-icon" src="/images/3D-icons/coins-icon-15.PNG"></div></th>
+              <th><div class="scale-on-hover">Reputación <img class="header-icon" src="/images/3D-icons/corona-icon-3.PNG"></div></th>
             </tr>
         </thead>
         <tbody>
             <% teamMembers.forEach(member => { %>
-                <tr>
-                    <td><%= member.user.username %></td>
-                    <td><%= member.wallet %></td>
-                    <td><%= member.tokens %></td>
-                    <td>
-                      <div class="progress-bar-container" data-reputation="<%= member.reputation %>">
-                          <div class="progress-bar"></div>
-                          <span class="percentage"><%= member.reputation %> %</span>
-                      </div>
-                      
-                  </td>
-                </tr>
+              <tr>
+                <td><div class="scale-on-hover"><%= member.user.username %></div></td>
+                <td><div class="scale-on-hover"><%= member.wallet %></div></td>
+                <td><div class="scale-on-hover"><%= member.tokens %></div></td>
+                <td>
+                  <div class="progress-bar-container scale-on-hover" data-reputation="<%= member.reputation %>">
+                      <div class="progress-bar"></div>
+                      <span class="percentage"><%= member.reputation %> %</span>
+                  </div>
+                </td>
+            </tr>
             <% }) %>
         </tbody>
       </table> 

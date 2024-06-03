@@ -1817,12 +1817,36 @@ input[type="checkbox"]:checked::before {
   overflow: hidden; /* Añadido para aplicar el border-radius a la tabla */
 }
 
+
+.deletedteams {
+  border: 1px solid #ddd;
+  border-radius: 20px; /* Aumentado de 5px a 20px */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  margin: 20px 115px 20px 115px;
+  overflow: hidden; /* Añadido para aplicar el border-radius a la tabla */
+}
+
 .deletedposts-header {
   background-color: #f5f5f5;
   border-bottom: 1px solid #ddd;
   padding: 15px;
   font-size: 1.25em;
   text-align: center; /* Añadido para centrar el texto del encabezado */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content h2 {
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+}
+
+.deletedheader-image {
+  width: 60px; /* Establece el tamaño de la imagen */
+  margin-bottom: 35px;
 }
 
 .deletedposts-body {
@@ -1883,6 +1907,66 @@ input[type="checkbox"]:checked::before {
 }
 
 .deletedposts .table tbody tr:hover {
+  background: #eaeaea; /* Añadido */
+}
+
+
+
+
+.deletedteams .table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: separate; /* Cambiado de collapse a separate */
+  border-spacing: 0; /* Añadido */
+}
+
+.deletedteams table th:first-child {
+  border-top-left-radius: 20px;
+}
+
+.deletedteams table th:last-child {
+  border-top-right-radius: 20px;
+}
+
+.deletedteams table tr:last-child td:first-child {
+  border-bottom-left-radius: 20px;
+}
+
+.deletedteams table tr:last-child td:last-child {
+  border-bottom-right-radius: 20px;
+}
+
+.deletedteams .table th,
+.deletedteams .table td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border: 1px solid #ddd; /* Añadido */
+  text-align: center; /* Añadido para centrar el texto */
+}
+
+.deletedteams .table thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+  background-color: var(--color-primary); /* Añadido */
+  color: white; /* Añadido */
+  text-transform: uppercase; /* Añadido */
+  font-weight: bold; /* Añadido */
+}
+
+.deletedteams .table tbody + tbody {
+  border-top: 2px solid #dee2e6;
+}
+
+.deletedteams .hidden {
+  display: none;
+}
+
+.deletedteams .table tbody tr:nth-child(even) {
+  background: #f2f2f2; /* Añadido */
+}
+
+.deletedteams .table tbody tr:hover {
   background: #eaeaea; /* Añadido */
 }
 
@@ -2001,6 +2085,18 @@ input[type="checkbox"]:checked::before {
   font-size: 1em;
 }
 
+.section-header-equipoicono h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-header-equipoicono .header-icon {
+  height: 60px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  width: auto;
+  margin-left: 5px; /* Ajusta este valor para cambiar el espacio entre el título y la imagen */
+}
+
 .tablausuarios table {
   width: 100%; 
   margin: auto;
@@ -2036,19 +2132,37 @@ input[type="checkbox"]:checked::before {
 }
 
 .tablausuarios table th {
-  background-color: var(--color-primary);
-  color: white;
+  background-color: white;
+  color: var(--color-primary);
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
 }
 
-.tablausuarios tbody tr:nth-child(even) {
+.tablausuarios table th .header-icon {
+  height: 40px; /* Ajusta este valor para cambiar el tamaño de las imágenes */
+  width: auto;
+  vertical-align: middle;
+  margin-left: 5px; /* Ajusta este valor para cambiar el espacio entre el título y la imagen */
+  margin-bottom: 5px;
+}
+
+.tablausuarios table th:hover .scale-on-hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.tablausuarios tbody tr:nth-child(odd) {
   background: #f2f2f2;
 }
 
 .tablausuarios table tbody tr:hover {
   background: #eaeaea;
+}
+
+.tablausuarios table tbody tr:hover .scale-on-hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .tablausuarios table td:last-child {
