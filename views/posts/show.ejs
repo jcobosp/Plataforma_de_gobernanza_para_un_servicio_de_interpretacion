@@ -96,9 +96,27 @@
                   </div>
                 </div>
                 <div class="card-body-reglasvotacion">
-                  <p><strong>Puntos de tu Wallet:</strong> <span><%= Math.round(post.userWalletPoints) %></span></p>
-                  <p><strong>Tu reputación del equipo:</strong> <span><%= post.userTeamReputation %>%</span></p>
-                  <p><strong>Tu multiplicador de voto:</strong> <span><%= post.reputationFactor.toFixed(2) %></span></p>
+                  <p>
+                    <strong>Puntos de tu Wallet:</strong> 
+                    <span>
+                      <%= Math.round(post.userWalletPoints) %> 
+                      <img class="icon-datos-user" src="/images/3D-icons/billetes-icon-1.PNG" alt="Icono wallet points">
+                    </span>
+                  </p>
+                  <p>
+                    <strong>Tu reputación del equipo:</strong> 
+                    <span>
+                      <%= post.userTeamReputation %>% 
+                      <img class="icon-datos-user" src="/images/3D-icons/coins-icon-9.PNG" alt="Icono wallet points">
+                    </span>
+                  </p>
+                  <p>
+                    <strong>Tu multiplicador de voto:</strong> 
+                    <span>
+                      <%= post.reputationFactor.toFixed(2) %> 
+                      <img class="icon-datos-user" src="/images/3D-icons/cohete-icon-1.PNG" alt="Icono wallet points">
+                    </span>
+                  </p>
                 </div>
               </div>
             </div>
@@ -257,7 +275,7 @@
                       <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image">
                     </div>
                     <form action="/posts/<%= post.id %>/vote" method="post">
-                      <label for="votePoints">Cantidad de puntos:</label>
+                      <label for="votePoints">Cantidad de puntos <img class="icon-formulario-votacion" src="/images/3D-icons/billetes-icon-3.PNG" alt="Icono wallet points">:</label>
                       <input type="range" id="votePoints" name="votePoints" min="1" max="<%= post.max_voting %>" value="1" oninput="amount.value=votePoints.value">
                       <output id="amount">1</output>
                       <div class="button-container">
@@ -271,24 +289,65 @@
               <% } %>
             <% } else { %>
               <% if (isPostVotingFinished) { %>
-                <h2 class="changevotesection">Sección de Votación</h2>
-                <p class="votacionfin">La votación ya ha finalizado.</p>
+                <div class="voting-section-fin">
+                  <div class="image-voting-section-fin">
+                    <img src="/images/3D-icons/reloj-icon-3.PNG" alt="Your image description" class="voting-image-fin">
+                  </div>
+                  <div class="voting-form-fin">
+                    <div class="voting-form-header-fin">
+                      <h2>Sección de votación</h2>
+                      <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image-fin">
+                    </div>
+                    <p class="votacionfin">La votación ya ha finalizado.</p>
+                  </div>
+                </div>
               <% } else { %>
-                <h2 class="changevotesection">Sección de Votación</h2>
-                <p class="votacionnoiniciada">La votación aún no ha comenzado.</p>
+                <div class="voting-section-ini">
+                  <div class="image-voting-section-ini">
+                    <img src="/images/3D-icons/reloj-icon-1.PNG" alt="Your image description" class="voting-image-ini">
+                  </div>
+                  <div class="voting-form-ini">
+                    <div class="voting-form-header-ini">
+                      <h2>Sección de votación</h2>
+                      <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image-ini">
+                    </div>
+                    <p class="votacionnoiniciada">La votación aún no ha comenzado.</p>
+                  </div>
+                </div>
               <% } %>
             <% } %>
           <% } else { %>
-            <h2 class="changevotesection">Sección de Votación</h2>
-            <p class="votacionnoequipo">Para votar, debes pertenecer al equipo <%= post.team %>.</p>
+            <div class="voting-section-equip">
+              <div class="image-voting-section-equip">
+                <img src="/images/3D-icons/estela-icon-1.PNG" alt="Your image description" class="voting-image-equip">
+              </div>
+              <div class="voting-form-equip">
+                <div class="voting-form-header-equip">
+                  <h2>Sección de votación</h2>
+                  <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image-equip">
+                </div>
+                <p class="votacionnoequipo">Para votar, debes pertenecer al equipo <%= post.team %>.</p>
+              </div>
+            </div>
           <% } %>
         <% } else { %>
-          <h2 class="changevotesection">Sección de Votación</h2>
-          <p class="votacioncalceladaveto">El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
+          <div class="voting-section-vetado">
+            <div class="image-voting-section-vetado">
+              <img src="/images/3D-icons/exclamation-icon-1.PNG" alt="Your image description" class="voting-image-vetado">
+            </div>
+            <div class="voting-form-vetado">
+              <div class="voting-form-header-vetado">
+                <h2>Sección de votación</h2>
+                <img src="/images/3D-icons/question-icon-1.PNG" alt="Your image description" class="voting-image-vetado">
+              </div>
+              <p class="votacioncalceladaveto">El administrador ha ejercido el derecho a veto y la propuesta se ha cancelado.</p>
+            </div>
+          </div>
         <% } %>
         <% } else { %>
           <h2 class="changevotesection">Sección de Votación</h2>
           <p class="votacioniniciarses">¡Inicia sesión para ver más sobre las propuestas!</p>
+          <a href="/login" class="login-button-votacion">Iniciar sesión</a>
       <% } %>
 
       <% if (isLoggedIn && !post.vetoed && belongsToSameTeam && post.usersVoted < post.min_users_voted && isPostVotingFinished) { %>
@@ -400,7 +459,7 @@
 range.addEventListener('input', () => {
   let value = ((range.value - range.min) / (range.max - range.min)) * 100;
   // Add an offset to the value
-  value = value - (10 / range.max * 100) + 10;
+  value = value - (10 / range.max * 100) + 15;
   range.style.backgroundSize = value + '% 100%';
 });
 </script>

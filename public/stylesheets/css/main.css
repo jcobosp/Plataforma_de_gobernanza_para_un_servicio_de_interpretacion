@@ -2528,6 +2528,12 @@ input[type="checkbox"]:checked::before {
   margin-top: 0px;
 }
 
+.card-body-reglasvotacion .icon-datos-user{
+  height: 37px;
+  width: 37px;
+  margin-bottom: 5px;
+}
+
 .card-body-reglasvotacionespecial {
   padding: 4.5px;
   display: flex;
@@ -2575,9 +2581,9 @@ input[type="checkbox"]:checked::before {
 
 .card-body-reglasvotacion p {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
   transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
@@ -2588,6 +2594,9 @@ input[type="checkbox"]:checked::before {
 }
 
 .card-body-reglasvotacion p span {
+  display: flex; /* Hace que el span sea un contenedor flexible */
+  align-items: center; /* Alinea los elementos al centro del eje transversal */
+  justify-content: flex-end; /* Alinea los elementos al final del eje principal */
   flex-grow: 1;
 }
 
@@ -3131,7 +3140,11 @@ input[type="checkbox"]:checked::before {
   background-color: transparent;
 }
 
-.voting-form-header-editar {
+.voting-form-header-editar,
+.voting-form-header-fin,
+.voting-form-header-ini,
+.voting-form-header-equip,
+.voting-form-header-vetado {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -3140,19 +3153,238 @@ input[type="checkbox"]:checked::before {
   transition: transform 0.3s ease-in-out;
 }
 
-.voting-form-header-editar h2 {
+.voting-form-header-editar h2,
+.voting-form-header-fin h2,
+.voting-form-header-ini h2,
+.voting-form-header-equip h2,
+.voting-form-header-vetado h2 {
   text-align: center;
   margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
   font-weight: bold;
   color: black;
 }
 
-.voting-form-header-editar img.voting-image-editar {
+.voting-form-header-editar img.voting-image-editar,
+.voting-form-header-fin img.voting-image-fin,
+.voting-form-header-ini img.voting-image-ini,
+.voting-form-header-equip img.voting-image-equip,
+.voting-form-header-vetado img.voting-image-vetado {
   width: 50px; /* Establece el tamaño de la imagen */
   margin-bottom: 15px;
 }
 
-.voting-form-header-editar:hover {
+.voting-form-header-editar:hover,
+.voting-form-header-fin:hover,
+.voting-form-header-ini:hover,
+.voting-form-header-equip:hover,
+.voting-form-header-vetado:hover {
+  transform: scale(1.1); 
+}
+
+
+.voting-section-fin {
+  display: flex;
+}
+
+.image-voting-section-fin {
+  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
+  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+}
+
+.image-voting-section-fin img {
+  height: 300px;
+  width: 300px;
+  margin-left: 100px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-voting-section-fin img:hover {
+  transform: scale(1.1); 
+}
+
+.voting-form-fin {
+  flex: 1;
+  background-color: transparent;
+}
+
+.voting-form-header-fin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.voting-form-header-fin h2 {
+  text-align: center;
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  font-weight: bold;
+  color: black;
+}
+
+.voting-form-header-fin img.voting-image-editar {
+  width: 50px; /* Establece el tamaño de la imagen */
+  margin-bottom: 15px;
+}
+
+.voting-form-header-fin:hover {
+  transform: scale(1.1); 
+}
+
+
+
+.voting-section-ini {
+  display: flex;
+}
+
+.image-voting-section-ini {
+  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
+  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+}
+
+.image-voting-section-ini img {
+  height: 300px;
+  width: 300px;
+  margin-left: 100px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-voting-section-ini img:hover {
+  transform: scale(1.1); 
+}
+
+.voting-form-ini {
+  flex: 1;
+  background-color: transparent;
+}
+
+.voting-form-header-ini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.voting-form-header-ini h2 {
+  text-align: center;
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  font-weight: bold;
+  color: black;
+}
+
+.voting-form-header-ini img.voting-image-editar {
+  width: 50px; /* Establece el tamaño de la imagen */
+  margin-bottom: 15px;
+}
+
+.voting-form-header-ini:hover {
+  transform: scale(1.1); 
+}
+
+
+
+
+.voting-section-equip {
+  display: flex;
+}
+
+.image-voting-section-equip {
+  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
+  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+}
+
+.image-voting-section-equip img {
+  height: 300px;
+  width: 300px;
+  margin-left: 100px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-voting-section-equip img:hover {
+  transform: scale(1.1); 
+}
+
+.voting-form-equip {
+  flex: 1;
+  background-color: transparent;
+}
+
+.voting-form-header-equip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.voting-form-header-equip h2 {
+  text-align: center;
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  font-weight: bold;
+  color: black;
+}
+
+.voting-form-header-equip img.voting-image-editar {
+  width: 50px; /* Establece el tamaño de la imagen */
+  margin-bottom: 15px;
+}
+
+.voting-form-header-equip:hover {
+  transform: scale(1.1); 
+}
+
+
+.voting-section-vetado {
+  display: flex;
+}
+
+.image-voting-section-vetado {
+  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
+  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+}
+
+.image-voting-section-vetado img {
+  height: 300px;
+  width: 300px;
+  margin-left: 100px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-voting-section-vetado img:hover {
+  transform: scale(1.1); 
+}
+
+.voting-form-vetado {
+  flex: 1;
+  background-color: transparent;
+}
+
+.voting-form-header-vetado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 70px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.voting-form-header-vetado h2 {
+  text-align: center;
+  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  font-weight: bold;
+  color: black;
+}
+
+.voting-form-header-vetado img.voting-image-editar {
+  width: 50px; /* Establece el tamaño de la imagen */
+  margin-bottom: 15px;
+}
+
+.voting-form-header-vetado:hover {
   transform: scale(1.1); 
 }
 
@@ -3161,6 +3393,7 @@ input[type="checkbox"]:checked::before {
   display: block;
   margin-bottom: 10px;
   font-weight: bold;
+  color:black;
 }
 
 .voting-form input[type="number"] {
@@ -3443,4 +3676,29 @@ input[type="checkbox"]:checked::before {
 
 .veto-button:hover {
   background-color: #ff0000;
+}
+
+.login-button-votacion {
+  display: block; /* Cambia a block para permitir el centrado horizontal con margin */
+  background-color: var(--color-primary);
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px; /* Añade esquinas redondeadas */
+  margin: auto; /* Centra el botón horizontalmente */
+  width: fit-content; /* Asegura que el botón solo sea tan ancho como su contenido */
+}
+
+.login-button-votacion:hover {
+  transform: translateY(-5px);
+  color:black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.icon-formulario-votacion {
+  height: 31px;
+  width: 31px;
+  margin-bottom: 4px;
 }
