@@ -41,6 +41,9 @@
         <h1 class="team-title"><%= team.title %></h1>
         <p class="team-description"><%= team.body %></p>
       </div>
+      <div class="team-badge">
+        <img src="/images/3D-icons/medalla-icono-4.PNG">
+      </div>
     </div>
   </div>
 
@@ -49,54 +52,54 @@
       <div class="row">
         <div class="col-md-4">
           <div class="stat-item">
-            <i class="fas fa-users"></i>
+            <img class="stat-icon" src="/images/3D-icons/grupousers-icon-1.PNG">
             <div class="stat-info">
-              <div class="stat-title">Number of Users</div>
+              <div class="stat-title">Número de usuarios</div>
               <div class="stat-value"><%= team.numUsers %></div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="stat-item">
-            <i class="fas fa-user"></i>
+            <img class="stat-icon" src="/images/3D-icons/autor-icon-2.PNG">
             <div class="stat-info">
-              <div class="stat-title">Author</div>
+              <div class="stat-title">Autor</div>
               <div class="stat-value"><%= team.author?.username ?? "Anonymous" %></div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="stat-item">
-            <i class="fas fa-user-shield"></i>
+            <img class="stat-icon" src="/images/3D-icons/admin-icon-3.PNG">
             <div class="stat-info">
-              <div class="stat-title">Admin User</div>
+              <div class="stat-title">Admin del equipo</div>
               <div class="stat-value"><%= adminUser?.username ?? 'None' %></div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="stat-item">
-            <i class="fas fa-calendar-alt"></i>
+            <img class="stat-icon" src="/images/3D-icons/calendar-icon-3.PNG">
             <div class="stat-info">
-              <div class="stat-title">Created At</div>
+              <div class="stat-title">Fecha creación</div>
               <div class="stat-value"><%= team.createdAt %></div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="stat-item">
-            <i class="fas fa-coins"></i>
+            <img class="stat-icon" src="/images/3D-icons/coins-icon-11.PNG">
             <div class="stat-info">
-              <div class="stat-title">Number of Tokens</div>
+              <div class="stat-title">Número de tokens</div>
               <div class="stat-value"><%= team.tokens %></div>
             </div>
           </div>
         </div>
         <div class="col-md-4">
           <div class="stat-item">
-            <i class="fas fa-calendar-check"></i>
+            <img class="stat-icon" src="/images/3D-icons/lista-ico-5.PNG">
             <div class="stat-info">
-              <div class="stat-title">Updated At</div>
+              <div class="stat-title">Fecha última actualización</div>
               <div class="stat-value"><%= team.updatedAt %></div>
             </div>
           </div>
@@ -130,7 +133,7 @@
       <table>
         <thead>
             <tr>
-              <th><div class="scale-on-hover">Nombre usuario <img class="header-icon" src="/images/3D-icons/star-icon-1.PNG"></div></th>
+              <th><div class="scale-on-hover">Nombre de usuario <img class="header-icon" src="/images/3D-icons/star-icon-1.PNG"></div></th>
               <th><div class="scale-on-hover">Wallet <img class="header-icon" src="/images/3D-icons/cartera-icon-1.PNG"></div></th>
               <th><div class="scale-on-hover">Tokens <img class="header-icon" src="/images/3D-icons/coins-icon-15.PNG"></div></th>
               <th><div class="scale-on-hover">Reputación <img class="header-icon" src="/images/3D-icons/corona-icon-3.PNG"></div></th>

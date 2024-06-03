@@ -135,6 +135,11 @@ section {
   }
 }
 
+.section-header:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
 /*--------------------------------------------------------------
 # Breadcrumbs
 --------------------------------------------------------------*/
@@ -602,12 +607,12 @@ section {
 }
 
 /* FOTO DE MENU */
-#hero {
+/* #hero {
   width: 100%;
   height: 100vh;
   background: linear-gradient(45deg, rgba(254 , 239 , 17, 0.95) 0%, rgba(245 , 115 , 7, 0.95) 100%), url("/images/background/background-12.png") center center no-repeat;
   background-size: cover;
-}
+} */
 
 
 
@@ -676,6 +681,7 @@ section {
 
   #hero .hero-img {
     text-align: center;
+    margin-left: 30px;
   }
 
   #hero .hero-img img {
@@ -2040,6 +2046,29 @@ input[type="checkbox"]:checked::before {
 
 .team-section-show .card .team-info .team-body {
   flex: 2;
+  margin-right: 40px; /* Ajusta este valor para cambiar el espacio entre el cuerpo del equipo y la insignia del equipo */
+  margin-left: 20px;
+}
+
+.team-section-show .card .team-info .team-badge {
+  flex: 1; /* Ajusta este valor para cambiar el tamaño de la insignia del equipo */
+}
+
+.team-section-show .card .team-info .team-badge img {
+  width: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  height: auto;
+  margin-right: 20px;
+}
+
+.team-section-show .card .team-info .team-badge:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.team-section-show .card .team-info .team-image:hover,
+.team-section-show .card .team-info .team-body:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
 }
 
 .team-section-show .card .team-info .team-body .team-title {
@@ -2070,8 +2099,9 @@ input[type="checkbox"]:checked::before {
   align-items: center;
 }
 
-.team-section-show .card .team-stats .stat-item i {
-  font-size: 2em;
+.team-section-show .card .team-stats .stat-item .stat-icon {
+  width: 60px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  height: auto;
   margin-right: 10px;
 }
 
@@ -2083,6 +2113,11 @@ input[type="checkbox"]:checked::before {
 
 .team-section-show .card .team-stats .stat-item .stat-info .stat-value {
   font-size: 1em;
+}
+
+.team-section-show .card .team-stats .stat-item:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .section-header-equipoicono h2 {
@@ -3790,6 +3825,14 @@ input[type="checkbox"]:checked::before {
 
 .veto-button:hover {
   background-color: #ff0000;
+}
+
+.veto-header:hover,
+.veto-content p:hover,
+.veto-button:hover,
+.veto-image img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
 }
 
 .login-button-votacion {
