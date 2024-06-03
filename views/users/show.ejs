@@ -1,7 +1,25 @@
 
 
-<section>
-    <h2>User:</h2>
+<div>
+
+    <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+            <nav>
+            <div class="container">
+                <ol class="breadcrumb-card">
+                <li><a href="/">Menu</a> / Perfil del usuario</li>
+                </ol>
+            </div>
+            </nav>
+        </div>
+    <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+        <h2>Perfil del usuario</h2>
+        <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+    </div>
+
+    <!-- <h2>User:</h2>
     <ul>
         <li>
             <span>User name:<b>
@@ -30,5 +48,81 @@
         <a href="/users/<%= user.id %>/edit">Editar</a>
         <a href="/users/<%= user.id %>?_method=DELETE"
             onClick="return confirm('Delete user: <%= user.username %>');">Borrar</a>
-    <% } %>
-</section>
+    <% } %> -->
+
+    <div class="card-profile">
+        <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="User Profile Icon" class="profile-icon">
+        <h2 class="username"><%= user.username %></h2>
+        <p class="email"><%= user.email %></p>
+        <div class="info-cards">
+            <div class="info-card">
+              <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="Password Icon">
+              <h3>Contraseña</h3>
+              <p>********</p>
+            </div>
+            <!-- Repeat the above structure for each piece of user information -->
+            <div class="info-card">
+              <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+              <h3>Administrador</h3>
+              <p><%= user.isAdmin %></p>
+            </div>
+            
+            <div class="info-card">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+                <h3>Fecha creación del perfil</h3>
+                <p><%= user.createdAt %></p>
+            </div>
+
+            <!-- <div class="info-card">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+                <h3>Administrador de tokens</h3>
+                <p><%= user.isAdminToken %></p>
+            </div> -->
+
+            <div class="info-card">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+                <h3>Administrador de equipos</h3>
+                <p><%= user.isAdminTeam %></p>
+            </div>
+
+            <div class="info-card">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+                <h3>Administrador de propuestas</h3>
+                <p><%= user.isAdminProposal %></p>
+            </div>
+
+            <div class="info-card">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+                <h3>Ultima recompensa diaria reclamada</h3>
+                <p><%= user.lastDailyRewardClaimedAt %></p>
+            </div>
+
+            <div class="info-card info-card-special">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="Reputation Icon">
+                <h3>Reputación total</h3>
+                <p><%= user.reputation %></p>
+            </div>
+              
+            <div class="info-card info-card-special">
+                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="Tokens Icon">
+                <h3>Tokens totales</h3>
+                <p><%= user.tokens %></p>
+            </div>
+
+            <% if(locals.loginUser?.isAdmin || locals.loginUser?.id===user.id){ %>
+                <div class="button-cards">
+                  <div class="button-card">
+                    <a href="/users/<%= user.id %>/edit">Editar</a>
+                  </div>
+                  <div class="button-card">
+                    <a href="/users/<%= user.id %>?_method=DELETE"
+                      onClick="return confirm('Delete user: <%= user.username %>');">Borrar</a>
+                  </div>
+                </div>
+            <% } %>
+
+
+          </div>
+    </div>
+
+</div>

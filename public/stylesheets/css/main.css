@@ -3859,3 +3859,97 @@ input[type="checkbox"]:checked::before {
   width: 31px;
   margin-bottom: 4px;
 }
+
+
+/* PERFIL USUARIO */
+.card-profile {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  padding: 30px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.card-profile .profile-icon {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.card-profile .username {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.card-profile .email {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.card-profile .info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.card-profile .info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  width: calc(33.33% - 20px);
+  background-color: #fff;
+}
+
+.card-profile .info-card-special {
+  width: 100%;
+}
+
+.card-profile .info-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.card-profile .info-card h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-profile .info-card p {
+  font-size: 1em;
+  font-weight: normal;
+  margin: 0;
+}
+
+.card-profile .button-cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.card-profile .button-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  margin: 10px;
+  width: calc(50% - 20px);
+  background-color: #fff;
+  flex: 1;
+}
+
+.card-profile .button-card a {
+  text-decoration: none;
+  color: #000;
+}
