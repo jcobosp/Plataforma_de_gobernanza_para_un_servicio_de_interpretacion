@@ -1,4 +1,4 @@
-
+<!-- 
 <section>
     <h2>Edit User:</h2>
     <form method="post" action="/users/<%= user.id %>?_method=PUT">
@@ -35,5 +35,71 @@
             <a href="/users" class="button-2">Cancelar</a>
         <% } %>
     </form>
-</section>
+</section> -->
 
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <nav>
+        <div class="container">
+            <ol class="breadcrumb-card">
+            <li><a href="/">Menu</a> / Editar mi perfil</li>
+            </ol>
+        </div>
+        </nav>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+    <h2>Editar perfil del usuario</h2>
+    <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+    </div>
+
+<div>
+    <div class="card-profile">
+        <img src="<%= user.isAdmin ? '/images/3D-icons/admin-icon-2.PNG' : '/images/3D-icons/userperfil-icon-4.PNG' %>" alt="User Profile Icon" class="profile-icon">
+        <form method="post" action="/users/<%= user.id %>?_method=PUT" class="profile-form-edituser">
+            <div class="input-group-edituser">
+                <label for="username">Nombre de usuario <img src="/images/3D-icons/medalla-icono-2.PNG" alt="Icon" class="input-icon"></label>
+                <input type="text" id="username" name="username" value="<%= user.username %>" required>
+            </div>
+            <div class="input-group-edituser">
+                <label for="email">Correo electrónico <img src="/images/3D-icons/correo-icon-1.PNG" alt="Icon" class="input-icon"></label>
+                <input type="email" id="email" name="email" value="<%= user.email %>" required>
+            </div>
+            <div class="input-group-edituser">
+                <label for="password">Nueva contraseña <img src="/images/3D-icons/candado-icon-3.PNG" alt="Icon" class="input-icon"></label>
+                <input type="password" id="password" name="password">
+            </div>
+            <% if(locals.loginUser.isAdmin) { %>
+                <div class="checkbox-group">
+                    <label>Roles del usuario <img src="/images/3D-icons/llave-icon-2.PNG" alt="Icon" class="input-icon"></label>
+                    <div class="checkbox">
+                        <input type="checkbox" id="isAdmin" name="isAdmin" <%= user.isAdmin ? 'checked' : '' %>>
+                        <label for="isAdmin">Admin</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="isAdminProposal" name="isAdminProposal" <%= user.isAdminProposal ? 'checked' : '' %>>
+                        <label for="isAdminProposal">Admin de Propuestas</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="isAdminTeam" name="isAdminTeam" <%= user.isAdminTeam ? 'checked' : '' %>>
+                        <label for="isAdminTeam">Admin de Teams</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="isAdminToken" name="isAdminToken" <%= user.isAdminToken ? 'checked' : '' %>>
+                        <label for="isAdminToken">Admin de Tokens</label>
+                    </div>
+                </div>
+            <% } %>
+            <div class="button-group-editprofile">
+                <input type="submit" value="Guardar" onclick="return validPassword()">
+                <% if (previousPage) { %>
+                    <a href="/users/<%= user.id %>" class="button-2-editprofile">Cancelar</a>
+                <% } else { %>
+                    <a href="/users" class="button-2-editprofile">Cancelar</a>
+                <% } %>
+            </div>
+        </form>
+    </div>
+</div>

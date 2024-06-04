@@ -993,12 +993,12 @@ a[href="/registrarse"]:hover {
   gap: 0.6rem;
 }
 
-input[type="checkbox"] {
+/* input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   display: grid;
   place-content: center;
-}
+} */
 
 .recordar-me input {
   width: 1rem;
@@ -1008,7 +1008,7 @@ input[type="checkbox"] {
   border-radius: 2px;
 }
 
-input[type="checkbox"]::before {
+/* input[type="checkbox"]::before {
   content: "";
   width: 0.65em;
   height: 0.65em;
@@ -1022,7 +1022,7 @@ input[type="checkbox"]::before {
 
 input[type="checkbox"]:checked::before {
   transform: scale(1);
-}
+} */
 .recordar-me input:checked {
   background: var(--iniciar-sesion-primary-gradient);
 }
@@ -3872,6 +3872,12 @@ input[type="checkbox"]:checked::before {
   text-align: center;
 }
 
+.profile-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .card-profile .profile-icon {
   width: 200px;
   height: 200px;
@@ -4091,4 +4097,120 @@ input[type="checkbox"]:checked::before {
   justify-content: center;
   width: 80%; /* Ajusta este valor según tus necesidades */
   margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+}
+
+input[type="submit"] {
+  background-color: #3498db; /* Light Blue */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+input[type="submit"]:hover {
+  background-color: #0099ff;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+}
+
+input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+.button-2-editprofile {
+  background-color: #e74c3c; /* Red */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.button-2-editprofile:hover {
+  background-color: #ff1900;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+  color:white;
+}
+
+.button-2-editprofile:active {
+  transform: translateY(0);
+}
+
+.profile-form-edituser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-group-edituser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%; /* Ajusta este valor según tus necesidades */
+  margin: 0 auto;
+}
+
+.input-group-edituser label {
+  font-weight: bold; /* Hace que el texto de la etiqueta esté en negrita */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.input-icon {
+  width: 50px; /* Ajusta este valor según tus necesidades */
+  height: 50px;
+}
+
+.input-group-edituser input {
+  padding: 5px; /* Reduce el padding para hacer el input más pequeño */
+  border-radius: 10px; /* Aumenta el border-radius para esquinas más redondas */
+  border: 1px solid #ccc;
+  width: 300px; /* Esto hará que el input tome todo el ancho de su contenedor */
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group label {
+  font-weight: bold; /* Hace que el texto de la etiqueta esté en negrita */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.checkbox-group .checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Esto centrará los elementos del checkbox horizontalmente */
+  gap: 5px;
+}
+
+.checkbox-group .checkbox input {
+  width: 15px;
+  height: 15px;
+}
+
+.button-group-editprofile {
+  display: flex;
+  justify-content: space-between; /* Esto separará los botones */
 }
