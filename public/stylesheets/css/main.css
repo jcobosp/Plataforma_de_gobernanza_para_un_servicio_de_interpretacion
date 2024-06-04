@@ -2175,7 +2175,7 @@ input[type="checkbox"]:checked::before {
 }
 
 .tablausuarios table th .header-icon {
-  height: 40px; /* Ajusta este valor para cambiar el tamaño de las imágenes */
+  height: 50px; /* Ajusta este valor para cambiar el tamaño de las imágenes */
   width: auto;
   vertical-align: middle;
   margin-left: 5px; /* Ajusta este valor para cambiar el espacio entre el título y la imagen */
@@ -3875,7 +3875,7 @@ input[type="checkbox"]:checked::before {
 .card-profile .profile-icon {
   width: 200px;
   height: 200px;
-  margin: 0 auto;
+  margin: 0 0 10px 0;
 }
 
 .card-profile .username {
@@ -3886,6 +3886,21 @@ input[type="checkbox"]:checked::before {
 .card-profile .email {
   font-size: 15px;
   font-weight: normal;
+}
+
+.card-profile .profile-icon:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+
+.card-profile .username:hover {
+  transform: scale(1.1);
+  transition: font-size 0.3s ease;
+}
+
+.card-profile .email:hover {
+  transform: scale(1.1);
+  transition: font-size 0.3s ease;
 }
 
 .card-profile .info-cards {
@@ -3905,6 +3920,11 @@ input[type="checkbox"]:checked::before {
   margin: 10px;
   width: calc(33.33% - 20px);
   background-color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.card-profile .info-card:hover {
+  transform: scale(1.05);
 }
 
 .card-profile .info-card-special {
@@ -3912,8 +3932,8 @@ input[type="checkbox"]:checked::before {
 }
 
 .card-profile .info-card img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin-bottom: 10px;
 }
 
@@ -3929,6 +3949,14 @@ input[type="checkbox"]:checked::before {
   margin: 0;
 }
 
+.card-profile .info-card .activated {
+  color: rgb(0, 211, 0);
+}
+
+.card-profile .info-card .deactivated {
+  color: red;
+}
+
 .card-profile .button-cards {
   display: flex;
   justify-content: center;
@@ -3938,18 +3966,129 @@ input[type="checkbox"]:checked::before {
 
 .card-profile .button-card {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  margin: 10px;
-  width: calc(50% - 20px);
+  margin: 10px 100px;
+  width: 50px;
   background-color: #fff;
   flex: 1;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-profile .button-card a:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
 .card-profile .button-card a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
   text-decoration: none;
-  color: #000;
+  color: white;
+  background-color: #003cff;
+  transition: background-color 0.3s ease; /* Asegúrate de que la transición del color de fondo está activada */
+}
+
+.card-profile .button-card a:hover {
+  background-color: #256cfa; /* Cambia a una versión más clara del color original */
+}
+
+.card-profile .button-card:nth-child(2) a {
+  background-color: #b60000;
+}
+
+.card-profile .button-card:nth-child(2) a:hover {
+  background-color: #eb0000; /* Cambia a una versión más clara del color original */
+}
+
+.card-profile .button-icon {
+  width: 50px;
+  margin-right: 10px;
+  transition: transform 0.3s ease;
+  margin-left: 5px;
+}
+
+.card-profile .button-icon:hover {
+  transform: scale(1.1);
+}
+
+.section-header-perfiluser {
+  text-align: center;
+  padding: 30px 0;
+  position: relative;
+}
+
+.section-header-perfiluser h2 {
+  font-size: 25px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: var(--color-quintary);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.section-header-perfiluser h2:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: var(--color-primary);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.section-header-perfiluser span {
+  position: absolute;
+  top: 46px;
+  color: rgba(14, 29, 52, 0.06);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 56px;
+  text-transform: uppercase;
+  line-height: 0;
+}
+
+.section-header-perfiluser p {
+  margin-bottom: 0;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 640px) {
+  .section-header-perfiluser h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+  }
+
+  .section-header-perfiluser span {
+    font-size: 38px;
+  }
+}
+
+.section-header-perfiluser:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.content-container-userprofile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%; /* Ajusta este valor según tus necesidades */
+  margin: 0 auto; /* Esto centra el contenedor horizontalmente */
 }

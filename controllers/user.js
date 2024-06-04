@@ -26,9 +26,24 @@ exports.index = async (req, res, next) => {
     }
 };
 
-exports.show = (req, res, next) => {
+exports.show = async (req, res, next) => {
     const {user} = req.load;
-    res.render('users/show', {user});
+
+    try {
+        const userTeams = await models.UserTeam.findAll({ where: { userId: user.id } });
+
+        // Buscar el título del equipo para cada entrada de UserTeam
+        for (let i = 0; i < userTeams.length; i++) {
+            const team = await models.Team.findOne({ where: { id: userTeams[i].teamId } });
+            console.log('Team:', team); // Verificar que el equipo se está obteniendo correctamente
+            userTeams[i] = {...userTeams[i].dataValues, teamTitle: team.title}; // Agregar teamTitle al objeto userTeam
+            console.log('UserTeam after adding team title:', userTeams[i]); // Verificar que el título del equipo se está agregando correctamente
+        }
+
+        res.render('users/show', {user, userTeams});
+    } catch (error) {
+        next(error);
+    }
 };
 
 exports.new = (req, res, next) => {

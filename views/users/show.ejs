@@ -51,53 +51,47 @@
     <% } %> -->
 
     <div class="card-profile">
-        <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="User Profile Icon" class="profile-icon">
+        <img src="<%= user.isAdmin ? '/images/3D-icons/admin-icon-2.PNG' : '/images/3D-icons/userperfil-icon-4.PNG' %>" alt="User Profile Icon" class="profile-icon">
         <h2 class="username"><%= user.username %></h2>
         <p class="email"><%= user.email %></p>
         <div class="info-cards">
             <div class="info-card">
-              <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="Password Icon">
+              <img src="/images/3D-icons/candado-icon-1.PNG" alt="Password Icon">
               <h3>Contraseña</h3>
               <p>********</p>
             </div>
             <!-- Repeat the above structure for each piece of user information -->
             <div class="info-card">
-              <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+              <img src="/images/3D-icons/admin-icon-1.PNG" alt="isAdmin Icon">
               <h3>Administrador</h3>
-              <p><%= user.isAdmin %></p>
+              <p class="<%= user.isAdmin ? 'activated' : 'deactivated' %>"><%= user.isAdmin ? 'Activado' : 'Desactivado' %></p>
             </div>
             
             <div class="info-card">
-                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
-                <h3>Fecha creación del perfil</h3>
-                <p><%= user.createdAt %></p>
-            </div>
-
-            <!-- <div class="info-card">
-                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
-                <h3>Administrador de tokens</h3>
-                <p><%= user.isAdminToken %></p>
-            </div> -->
-
-            <div class="info-card">
-                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
-                <h3>Administrador de equipos</h3>
-                <p><%= user.isAdminTeam %></p>
-            </div>
-
-            <div class="info-card">
-                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
-                <h3>Administrador de propuestas</h3>
-                <p><%= user.isAdminProposal %></p>
-            </div>
-
-            <div class="info-card">
-                <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="isAdmin Icon">
+                <img src="/images/3D-icons/regalo-icon-5.PNG" alt="isAdmin Icon">
                 <h3>Ultima recompensa diaria reclamada</h3>
                 <p><%= user.lastDailyRewardClaimedAt %></p>
             </div>
 
-            <div class="info-card info-card-special">
+            <div class="info-card">
+                <img src="/images/3D-icons/team-icon-1.PNG" alt="isAdmin Icon">
+                <h3>Administrador de equipos</h3>
+                <p class="<%= user.isAdminTeam ? 'activated' : 'deactivated' %>"><%= user.isAdminTeam ? 'Activado' : 'Desactivado' %></p>
+            </div>
+
+            <div class="info-card">
+                <img src="/images/3D-icons/question-icon-2.PNG" alt="isAdmin Icon">
+                <h3>Administrador de propuestas</h3>
+                <p class="<%= user.isAdminProposal ? 'activated' : 'deactivated' %>"><%= user.isAdminProposal ? 'Activado' : 'Desactivado' %></p>
+            </div>
+
+            <div class="info-card">
+                <img src="/images/3D-icons/coins-icon-10.PNG" alt="isAdmin Icon">
+                <h3>Administrador de tokens</h3>
+                <p class="<%= user.isAdminToken ? 'activated' : 'deactivated' %>"><%= user.isAdminToken ? 'Activado' : 'Desactivado' %></p>
+            </div>
+
+            <!-- <div class="info-card info-card-special">
                 <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="Reputation Icon">
                 <h3>Reputación total</h3>
                 <p><%= user.reputation %></p>
@@ -107,22 +101,78 @@
                 <img src="/images/3D-icons/userperfil-icon-4.PNG" alt="Tokens Icon">
                 <h3>Tokens totales</h3>
                 <p><%= user.tokens %></p>
+            </div> -->
+        <div class="content-container-userprofile">
+            <div class="section-header-perfiluser">
+                <h2>Wallet, tokens y reputación</h2>
+                <p> De los equipos a los que perteneces</p>
             </div>
+
+            <!-- LISTA DATOS USER EN EQUIPOS -->
+            <% if (userTeams && userTeams.length > 0) { %>
+                <div class="card">
+                    <div class="tablausuarios">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><div class="scale-on-hover">Nombre del equipo <img class="header-icon" src="/images/3D-icons/bandera-icon-1.PNG"></div></th>
+                                    <th><div class="scale-on-hover">Wallet <img class="header-icon" src="/images/3D-icons/cajafuerte-icon-6.PNG"></div></th>
+                                    <th><div class="scale-on-hover">Tokens <img class="header-icon" src="/images/3D-icons/coins-icon-1.PNG"></div></th>
+                                    <th><div class="scale-on-hover">Reputación <img class="header-icon" src="/images/3D-icons/corona-icon-1.PNG"></div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% userTeams.forEach(userTeam => { %>
+                                    <tr>
+                                        <td><div class="scale-on-hover"><%= userTeam.teamTitle %></div></td>
+                                        <td><div class="scale-on-hover"><%= userTeam.wallet %></div></td>
+                                        <td><div class="scale-on-hover"><%= userTeam.tokens %></div></td>
+                                        <td>
+                                            <div class="progress-bar-container scale-on-hover" data-reputation="<%= userTeam.reputation %>">
+                                                <div class="progress-bar"></div>
+                                                <span class="percentage"><%= userTeam.reputation %> %</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <% } else { %>
+                <p>El usuario no pertenece a ningún equipo.</p>
+            <% } %>
 
             <% if(locals.loginUser?.isAdmin || locals.loginUser?.id===user.id){ %>
                 <div class="button-cards">
-                  <div class="button-card">
-                    <a href="/users/<%= user.id %>/edit">Editar</a>
-                  </div>
-                  <div class="button-card">
-                    <a href="/users/<%= user.id %>?_method=DELETE"
-                      onClick="return confirm('Delete user: <%= user.username %>');">Borrar</a>
-                  </div>
+                    <div class="button-card">
+                        <img src="/images/3D-icons/listado-icon-1.PNG" class="button-icon">
+                        <a href="/users/<%= user.id %>/edit">Editar perfil</a>
+                    </div>
+                    <div class="button-card">
+                        <a href="/users/<%= user.id %>?_method=DELETE" onClick="return confirm('Delete user: <%= user.username %>');">Borrar cuenta</a>
+                        <img src="/images/3D-icons/borraruser-icon-1.PNG" class="button-icon">
+                    </div>
                 </div>
             <% } %>
+
+
+        </div>
 
 
           </div>
     </div>
 
 </div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var progressBarContainers = document.querySelectorAll('.progress-bar-container');
+        progressBarContainers.forEach(function(container) {
+            var reputation = container.getAttribute('data-reputation');
+            var progressBar = container.querySelector('.progress-bar');
+            progressBar.style.width = reputation + '%';
+        });
+    });
+  </script>
