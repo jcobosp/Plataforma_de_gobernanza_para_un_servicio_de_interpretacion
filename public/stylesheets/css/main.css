@@ -4214,3 +4214,90 @@ input[type="submit"]:active {
   display: flex;
   justify-content: space-between; /* Esto separará los botones */
 }
+
+/* PANTALLA USUARIOS */
+.user-table-usersscreen {
+  width: 100%;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Sombra inicial */
+  transition: box-shadow 0.3s ease; /* Transición suave de la sombra */
+}
+
+.user-table-usersscreen:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); /* Sombra más oscura y más grande al pasar el ratón por encima */
+}
+
+.user-table-usersscreen th {
+  background-color: white;
+  padding: 10px;
+  color: black;
+  font-size: 17px;
+}
+
+.user-table-usersscreen td {
+  padding: 10px;
+}
+
+.user-table-usersscreen td a {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px; /* Añade un poco de padding */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave de color y fondo */
+}
+
+.user-table-usersscreen td a:hover {
+  color: #004288; /* Cambia esto al color que prefieras */
+  background-color: #62b1ff; /* Cambia esto al color de fondo que prefieras */
+}
+
+.user-table-usersscreen td a.delete-link {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px; /* Añade un poco de padding */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave de color y fondo */
+}
+
+.user-table-usersscreen td a.delete-link:hover {
+  color: #b90000; /* Cambia esto al color que prefieras */
+  background-color: #FFC0C0; /* Cambia esto al color de fondo que prefieras */
+}
+
+.user-table-usersscreen td a.username-link {
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px; /* Añade un poco de padding */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave de color y fondo */
+}
+
+.user-table-usersscreen td a.username-link:hover {
+  color: #FFA500; /* Cambia esto al color que prefieras (este es un tono de naranja) */
+  background-color: #565656; /* Cambia esto al color de fondo que prefieras (este es un tono de gris oscuro) */
+}
+
+.user-table-usersscreen tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.user-table-usersscreen td.activado {
+  color: rgb(0, 211, 0);
+}
+
+.user-table-usersscreen td.desactivado {
+  color: red;
+}
+
+.user-table-usersscreen .header-icon {
+  width: 45px; /* Cambia esto al tamaño que prefieras */
+}
+
+.prohibido-icon-userssecreen {
+  width: 40px; /* Ajusta este valor a tu gusto */
+  height: 40px; /* Esto mantendrá la relación de aspecto de la imagen */
+}

@@ -1,53 +1,75 @@
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <nav>
-      <div class="container">
-          <ol class="breadcrumb-card">
-          <li><a href="/">Menu</a> / Usuarios</li>
-          </ol>
-      </div>
-      </nav>
-  </div>
-  <!-- End Breadcrumbs -->
 
-    <section>
-    <h2>Users</h2>
-    <table class="user-table">
-        <tr>
-            <th>User</th>
-            <th>Roles</th>
-            <th>Editar</th>
-            <th>Borrar</th>
-        </tr>
-        <% for (let i in users) { %>
+    <!-- ======= Breadcrumbs ======= -->
+
+    <div>
+        <div class="breadcrumbs">
+            <nav>
+            <div class="container">
+                <ol class="breadcrumb-card">
+                <li><a href="/">Menu</a> / Usuarios</li>
+                </ol>
+            </div>
+            </nav>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+        <h2>Usuarios</h2>
+        <p>Descubre todos los miembros de la plataforma</p>
+    </div>
+
+    <div class="card-profile">
+        <table class="user-table-usersscreen">
             <tr>
-                <td>
-                    <a href="/users/<%= users[i].id %>">
-                        <%= users[i].username %>
-                    </a>
-                </td>
-                <td>
-                    <span class="role-icon <%= users[i].isAdmin ? 'active' : 'inactive' %>"><i class="fas fa-crown"></i></span> <!-- Admin -->
-                    <span class="role-icon <%= users[i].isAdminProposal ? 'active' : 'inactive' %>"><i class="fas fa-file-alt"></i></span> <!-- Admin de Propuestas -->
-                    <span class="role-icon <%= users[i].isAdminTeam ? 'active' : 'inactive' %>"><i class="fas fa-users"></i></span> <!-- Admin de Teams -->
-                    <span class="role-icon <%= users[i].isAdminToken ? 'active' : 'inactive' %>"><i class="fas fa-coins"></i></span> <!-- Admin de Tokens -->
-                </td>
-                <td>
-                    <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
-                        <a href="/users/<%= users[i].id %>/edit">Editar</a>
-                    <% } %>
-                </td>
-                <td>
-                    <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
-                        <a href="/users/<%= users[i].id %>?_method=DELETE" onClick="return confirm('Delete user: <%= users[i].username %>');">Borrar</a>
-                    <% } %>
-                </td>
+                <th>Usuario <img class="header-icon" src="/images/3D-icons/userperfil-icon-1.PNG" alt="Icono"></th>
+                <th>Administrador <img class="header-icon" src="/images/3D-icons/admin-icon-1.PNG" alt="Icono"></th>
+                <th>AdminPropuestas <img class="header-icon" src="/images/3D-icons/megafono-icon-3.PNG" alt="Icono"></th>
+                <th>AdminEquipos <img class="header-icon" src="/images/3D-icons/grupousers-icon-1.PNG" alt="Icono"></th>
+                <th>AdminTokens <img class="header-icon" src="/images/3D-icons/coins-icon-7.PNG" alt="Icono"></th>
+                <th>Editar <img class="header-icon" src="/images/3D-icons/editar-icon-1.PNG" alt="Icono"></th>
+                <th>Borrar <img class="header-icon" src="/images/3D-icons/papelera-icon-5.PNG" alt="Icono"></th>
             </tr>
-        <% } %>
-    </table>
+            <% for (let i in users) { %>
+                <tr>
+                    <td>
+                        <a href="/users/<%= users[i].id %>" class="username-link">
+                            <%= users[i].username %>
+                        </a>
+                    </td>
+                    <td class="<%= users[i].isAdmin ? 'activado' : 'desactivado' %>">
+                        <%= users[i].isAdmin ? 'Activado' : 'Desactivado' %>
+                    </td>
+                    <td class="<%= users[i].isAdminProposal ? 'activado' : 'desactivado' %>">
+                        <%= users[i].isAdminProposal ? 'Activado' : 'Desactivado' %>
+                    </td>
+                    <td class="<%= users[i].isAdminTeam ? 'activado' : 'desactivado' %>">
+                        <%= users[i].isAdminTeam ? 'Activado' : 'Desactivado' %>
+                    </td>
+                    <td class="<%= users[i].isAdminToken ? 'activado' : 'desactivado' %>">
+                        <%= users[i].isAdminToken ? 'Activado' : 'Desactivado' %>
+                    </td>
+                    <td>
+                        <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
+                            <a href="/users/<%= users[i].id %>/edit">Editar</a>
+                        <% } else { %>
+                            <img class="prohibido-icon-userssecreen" src="/images/3D-icons/prohibido-icon-3.PNG" alt="Prohibido">
+                        <% } %>
+                    </td>
+                    <td>
+                        <% if (locals.loginUser && (locals.loginUser.isAdmin || locals.loginUser.id === users[i].id)) { %>
+                            <a href="/users/<%= users[i].id %>?_method=DELETE" class="delete-link" onClick="return confirm('Delete user: <%= users[i].username %>');">Borrar</a>
+                        <% } else { %>
+                            <img class="prohibido-icon-userssecreen" src="/images/3D-icons/papelera-icon-6.PNG" alt="Prohibido">
+                        <% } %>
+                    </td>
+                </tr>
+            <% } %>
+        </table>
+    </div>
     <!-- <% if(locals.loginUser?.isAdmin){ %>
         <a href="/users/new">Crear nuevo usuario</a>
     <% } %> -->
-</section>
+
+    
+    </div>
