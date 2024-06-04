@@ -4,7 +4,7 @@ const postController = require('../controllers/post');
 const sessionController = require('../controllers/session');
 const userController = require('../controllers/user');
 const teamController = require('../controllers/team');   
-const reputationController = require('../controllers/reputation'); 
+// const reputationController = require('../controllers/reputation'); 
 const tokenController = require('../controllers/token'); 
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -34,8 +34,8 @@ router.post('/teams/:teamId(\\d+)/inflate', sessionController.adminRequired, tea
 router.post('/users/:id/claimdailyreward', teamController.claimDailyReward);
 
 // Pantalla Reputación
-router.get('/reputation', reputationController.adminRequired , reputationController.index); 
-router.post('/reputation/:userId(\\d+)/addPoint', reputationController.addPoint);
+// router.get('/reputation', reputationController.adminRequired , reputationController.index); 
+// router.post('/reputation/:userId(\\d+)/addPoint', reputationController.addPoint);
 
 // Pantalla Tockens
 // router.get('/tokens', tokenController.index); 
