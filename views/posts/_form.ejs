@@ -1,19 +1,22 @@
 
     <div class="inputOption">
+        <label for="title">Título <img class="label-icon" src="/images/3D-icons/medalla-icono-1.PNG" alt="Icon"></label>
         <input type="text" id="title" name="title" placeholder="Título" required>
     </div>
     <div class="inputOption">
-        <textarea id="body" name="body" placeholder="Mensaje" required></textarea>
+        <label for="body">Descripción <img class="label-icon" src="/images/3D-icons/listado-icon-1.PNG" alt="Icon"></label>
+        <textarea id="body" name="body" placeholder="Descripción" required></textarea>
     </div>
     <div class="inputOption">
+        <label for="image">Foto <img class="label-icon" src="/images/3D-icons/camara-icon-1.PNG" alt="Icon"></label>
         <input type="file" id="image" name="image">
     </div>
     <div class="inputOption">
-        <label for="team">Equipo:</label>
+        <label for="team">Equipo <img class="label-icon" src="/images/3D-icons/medalla-icono-4.PNG" alt="Icon"></label>
         <select id="team" name="team" required>
             <% teams.forEach(team => { %>
                 <option value="<%= team.id %>"><%= team.title %></option>
             <% }); %>
         </select>
-    </div>    
+    </div>  
     <!-- <input type="submit" name="enviar" id="enviar" value="Save"> -->

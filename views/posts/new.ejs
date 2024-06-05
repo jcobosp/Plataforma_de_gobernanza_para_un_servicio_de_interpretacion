@@ -1,60 +1,83 @@
-<section>
-    <h2>Add post:</h2>
-    <form method="post" action="/posts" enctype="multipart/form-data" >
-        <%- include('_form.ejs') %>
-        
-        <div class="inputOption">
-            <label for="votingStartDate">Voting Start Date:</label>
-            <input type="datetime-local" id="votingStartDate" name="votingStartDate" required
-                value="<%= post.votingStartDate ? post.votingStartDate.toISOString().slice(0, 16) : '' %>" />
+<div>
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <nav>
+        <div class="container">
+            <ol class="breadcrumb-card">
+            <li><a href="/">Menu</a> / / <a href="/posts">Propuestas</a> / Crear propuesta</li>
+            </ol>
         </div>
+        </nav>
+    </div>
+    <!-- End Breadcrumbs -->
 
-        <div class="inputOption">
-            <label for="votingEndDate">Voting End Date:</label>
-            <input type="datetime-local" id="votingEndDate" name="votingEndDate" required
-                value="<%= post.votingEndDate ? post.votingEndDate.toISOString().slice(0, 16) : '' %>" />
-        </div>
-        
-        <div class="inputOption">
-            <label for="applicationDate">Application Date:</label>
-            <input type="datetime-local" id="applicationDate" name="applicationDate" required
-                value="<%= post.applicationDate ? post.applicationDate.toISOString().slice(0, 16) : '' %>" />
-        </div>
-        
-        <div class="inputOption">
-            <label for="vetoDate">Veto Date:</label>
-            <input type="datetime-local" id="vetoDate" name="vetoDate" required
-                value="<%= post.vetoDate ? post.vetoDate.toISOString().slice(0, 16) : '' %>" />
-        </div>
+    <div class="section-header">
+      <h2>Crear propuesta</h2>
+    </div>
 
-        <div class="inputOption">
-            <label for="min_voting">Minimum Voting Score:</label>
-            <input type="number" id="min_voting" name="min_voting" value="<%= post.min_voting %>" min="1" max="5000" step="1" required>
-        </div>
-        <div class="inputOption">
-            <label for="max_voting">Maximum Voting:</label>
-            <input type="number" id="max_voting" name="max_voting" value="<%= post.max_voting %>" min="1" max="10000" step="1" required>
-        </div>
-        <div class="inputOption">
-            <label for="min_users_voted">Minimum Users Voted:</label>
-            <input type="number" id="min_users_voted" name="min_users_voted" value="<%= post.min_users_voted %>" min="1" max="10000" step="1" required>
-        </div>
-        <div class="inputOption">
-            <label for="voting_reward">Voting Reward:</label>
-            <input type="number" id="voting_reward" name="voting_reward" value="<%= post.voting_reward %>" min="1" max="10000" step="1" required>
-        </div>
-        <div class="inputOption">
-            <label for="voting_failure_penalty">Voting Failure Penalty:</label>
-            <input type="number" id="voting_failure_penalty" name="voting_failure_penalty" value="<%= post.voting_failure_penalty %>" min="1" max="10000" step="1" required>
-        </div>
-        <div class="inputOption">
-            <label for="voting_success_reward">Voting Success Reward:</label>
-            <input type="number" id="voting_success_reward" name="voting_success_reward" value="<%= post.voting_success_reward %>" min="1" max="10000" step="1" required>
-        </div>
-        
-        
-        <input type="submit" name="enviar" id="enviar" value="Save">
-        <a href="/posts">Cancelar</a>
-    </form>
+    <div class="newpost-card">
+        <form method="post" action="/posts" enctype="multipart/form-data" >
+            
+            <h3>Rellena los siguientes datos para crear la nueva propuesta</h3>
 
-</section> 
+            <%- include('_form.ejs') %>
+
+            <div class="inputOption">
+                <label for="votingStartDate">Fecha de inicio de la votación <img class="label-icon" src="/images/3D-icons/calculadora-icon-4.PNG" alt="Icon"></label>
+                <input type="datetime-local" id="votingStartDate" name="votingStartDate" required
+                    value="<%= post.votingStartDate ? post.votingStartDate.toISOString().slice(0, 16) : '' %>" />
+            </div>
+
+            <div class="inputOption">
+                <label for="votingEndDate">Fecha de finalización de la votación <img class="label-icon" src="/images/3D-icons/calendar-icon-5.PNG" alt="Icon"></label>
+                <input type="datetime-local" id="votingEndDate" name="votingEndDate" required
+                    value="<%= post.votingEndDate ? post.votingEndDate.toISOString().slice(0, 16) : '' %>" />
+            </div>
+            
+            <div class="inputOption">
+                <label for="applicationDate">Fecha de aplicación <img class="label-icon" src="/images/3D-icons/calendar-icon-6.PNG" alt="Icon"></label>
+                <input type="datetime-local" id="applicationDate" name="applicationDate" required
+                    value="<%= post.applicationDate ? post.applicationDate.toISOString().slice(0, 16) : '' %>" />
+            </div>
+            
+            <div class="inputOption">
+                <label for="vetoDate">Fecha de veto <img class="label-icon" src="/images/3D-icons/reloj-icon-2.PNG" alt="Icon"></label>
+                <input type="datetime-local" id="vetoDate" name="vetoDate" required
+                    value="<%= post.vetoDate ? post.vetoDate.toISOString().slice(0, 16) : '' %>" />
+            </div>
+
+            <div class="inputOption">
+                <label for="min_voting">Puntuación mínima de votación <img class="label-icon" src="/images/3D-icons/check-icon-2.PNG" alt="Icon"></label>
+                <input type="number" id="min_voting" name="min_voting" value="<%= post.min_voting %>" min="1" max="5000" step="1" required>
+            </div>
+            <div class="inputOption">
+                <label for="max_voting">Puntuación máxima de votación <img class="label-icon" src="/images/3D-icons/exclamation-icon-1.PNG" alt="Icon"></label>
+                <input type="number" id="max_voting" name="max_voting" value="<%= post.max_voting %>" min="1" max="10000" step="1" required>
+            </div>
+            <div class="inputOption">
+                <label for="min_users_voted">Mínimo de usuarios a votar <img class="label-icon" src="/images/3D-icons/grupousers-icon-1.PNG" alt="Icon"></label>
+                <input type="number" id="min_users_voted" name="min_users_voted" value="<%= post.min_users_voted %>" min="1" max="10000" step="1" required>
+            </div>
+            <div class="inputOption">
+                <label for="voting_reward">Recompensa por votación <img class="label-icon" src="/images/3D-icons/maletin-icon-1.PNG" alt="Icon"></label>
+                <input type="number" id="voting_reward" name="voting_reward" value="<%= post.voting_reward %>" min="1" max="10000" step="1" required>
+            </div>
+            <div class="inputOption">
+                <label for="voting_failure_penalty">Penalización por fallo en la votación <img class="label-icon" src="/images/3D-icons/thumbdown-icon-1.PNG" alt="Icon"></label>
+                <input type="number" id="voting_failure_penalty" name="voting_failure_penalty" value="<%= post.voting_failure_penalty %>" min="1" max="10000" step="1" required>
+            </div>
+            <div class="inputOption">
+                <label for="voting_success_reward">Recompensa por éxito en la votación <img class="label-icon" src="/images/3D-icons/coins-icon-1.PNG" alt="Icon"></label>
+                <input type="number" id="voting_success_reward" name="voting_success_reward" value="<%= post.voting_success_reward %>" min="1" max="10000" step="1" required>
+            </div>
+            
+            
+            <div class="buttonContainer">
+                <a href="/posts">Cancelar</a>
+                <input type="submit" name="enviar" id="enviar" value="Guardar">
+            </div>
+
+        </form>
+    </div>
+
+</div> 

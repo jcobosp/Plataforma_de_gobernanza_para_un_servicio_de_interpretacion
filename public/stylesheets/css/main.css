@@ -2610,7 +2610,7 @@ input[type="checkbox"]:checked::before {
 .post-section-show .card-dates1 p {
   font-size: 18px; /* Aumenta el tamaño de la fuente */
   font-weight: bold; /* Hace que el texto sea más grueso */
-  color: var(--color-primary); /* Cambia el color del texto */
+  color: black; /* Cambia el color del texto */
   display: flex; /* Añade flexbox para alinear la imagen y el texto */
   align-items: center; /* Centra verticalmente la imagen y el texto */
   justify-content: center; /* Centra horizontalmente la imagen y el texto */
@@ -2631,7 +2631,7 @@ input[type="checkbox"]:checked::before {
   text-align: center; /* Centra el texto */
   font-size: 18px; /* Aumenta el tamaño de la fuente */
   font-weight: bold; /* Hace que el texto sea más grueso */
-  color: var(--color-primary); /* Cambia el color del texto */
+  color: black; /* Cambia el color del texto */
   margin-top: 20px; /* Agrega espacio encima del bloque de autor */
 }
 
@@ -4334,4 +4334,123 @@ input[type="submit"]:active {
 .prohibido-icon-userssecreen {
   width: 40px; /* Ajusta este valor a tu gusto */
   height: 40px; /* Esto mantendrá la relación de aspecto de la imagen */
+}
+
+/* NUEVA PROPUESTA */
+.newpost-card {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  padding: 30px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newpost-card form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.inputOption textarea {
+  height: 30%; /* Adjust this value to your liking */
+}
+
+.inputOption input,
+.inputOption textarea,
+.inputOption select {
+  text-align: center; /* Center the text */
+}
+
+.newpost-card form h3 {
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 20px;
+  color:black;
+}
+
+.newpost-card form .inputOption {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+.newpost-card form .inputOption label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+  color:black;
+}
+
+.newpost-card .inputOption label:hover{
+  transform: scale(1.1);
+}
+
+.newpost-card form .inputOption input,
+.newpost-card form .inputOption textarea,
+.newpost-card form .inputOption select {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.newpost-card form input[type="submit"] {
+  width: auto;
+  margin-top: 20px;
+}
+
+.newpost-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+.newpost-card form .buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.newpost-card form .buttonContainer input[type="submit"],
+.newpost-card form .buttonContainer a {
+  margin: 0 200px; /* Increase margin for more separation */
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease; /* Add transition for smooth hover effect */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Add shadow */
+  width: 120px; /* Set a fixed width */
+  text-align: center; /* Center the text */
+}
+
+.newpost-card form .buttonContainer input[type="submit"] {
+  background-color: rgb(2, 125, 165); /* Change color to light blue */
+}
+
+.newpost-card form .buttonContainer a {
+  background-color: red;
+}
+
+
+.newpost-card form .buttonContainer input[type="submit"]:hover,
+.newpost-card form .buttonContainer a:hover {
+  transform: translateY(-2px); /* Move up when hovered */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  opacity: 0.8; /* Make color lighter when hovered */
+}
+
+.newpost-card .label-icon {
+  width: 50px; /* Adjust this value to your liking */
+  transition: transform 0.3s ease;
+}
+
+.newpost-card .inputOption label:hover .label-icon {
+  transform: scale(1.1);
 }
