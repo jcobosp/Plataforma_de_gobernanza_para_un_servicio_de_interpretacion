@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registrarse</title>
-    <!-- Aquí puedes incluir tus estilos y scripts -->
-</head>
-<body>
+<div>
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
@@ -17,121 +11,47 @@
         </nav>
     </div>
     <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+      <h2>Registrarse</h2>
+    </div>
     
-    <section class="registration-form">
-        <h2>Registrarse:</h2>
+    <div class="registration-form">
+        
         <form method="post" action="/users">
+          <h4 class="form-intro">INTRODUCE TUS DATOS PARA CREAR TU CUENTA</h4>
                 <ul>
-                    <li>
-                        <label for="username" class="rem">email:</label><br>
-                        <input type="email" pattern=".+@.+" id="email" name="email" value="<%= user.email %>" autocomplete="off" required/>
-                    </li>
-                    <li>
-                        <label for="email" class="rem">User name:</label><br>
-                        <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off" required/>
-                    </li>
+                  <li>
+                    <label for="email" class="rem">Nombre de usuario <img src="/images/3D-icons/medalla-icono-2.PNG" alt="icon" /></label>
+                    <input type="text" id="username" name="username" value="<%= user.username %>" autocomplete="off" required/>
+                  </li>
+                  <li>
+                    <label for="username" class="rem">Correo electronico <img src="/images/3D-icons/correo-icon-1.PNG" alt="icon" /></label>
+                    <input type="email" pattern=".+@.+" id="email" name="email" value="<%= user.email %>" autocomplete="off" required/>
+                  </li>
+
+                  <li>
+                    <label for="user_password" class="rem">Contraseña <img src="/images/3D-icons/candado-icon-3.PNG" alt="icon" /></label>
+                    <input type="password" id="user_password" name="password" autocomplete="off" required />
+                  </li>
+                    
                 </ul>
-                <% if (!user.id) { %>
-                    <p class="text-danger">Enter the new password twice</p>
-                    <% } else { %>
-                        <p class="text-danger">Leave blank to not change the current password</p>
-                        <% } %>
-                            <ul>
-                                <li>
-                                    <label for="user_password" class="rem">Password:</label><br>
-                                    <input type="password" id="user_password" name="password" autocomplete="off" required/>
-                                </li>
-                                <li>
-                                    <label for="user_confirm_password" class="rem">Confirm Password:</label><br>
-                                    <input type="password" id="user_confirm_password" autocomplete="off" required/>
-                                </li>
-                            </ul>
+                <!-- <% if (!user.id) { %>
+                  <p class="text-danger">Enter the new password twice</p>
+                  <% } else { %>
+                    <p class="text-danger">Leave blank to not change the current password</p>
+                    <% } %> -->
+                      <!-- <ul>
+                        <li>
+                          <label for="user_password" class="rem">Contraseña</label><br>
+                          <input type="password" id="user_password" name="password" autocomplete="off" required />
+                        </li> -->
+                        <!-- <li>
+                            <label for="user_confirm_password" class="rem">Confirm Password:</label><br>
+                            <input type="password" id="user_confirm_password" autocomplete="off" required/>
+                        </li> -->
+                      <!-- </ul> -->
             <input type="submit" value="Registrarse" onclick="return forcePassword() && validPassword() " class="button-2">
         </form>
-    </section>
-</body>
-</html>
-
-
-
-<!--
-// v0 by Vercel.
-// https://v0.dev/t/h2ivP212eRC
--->
-<!-- 
-<div class="flex items-center justify-center h-screen bg-gradient-to-br from-[#000000] to-[#000000] dark:from-[#2c3e50] dark:to-[#34495e]">
-    <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md dark:bg-gray-900">
-      <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
-      <form class="space-y-4">
-        <div class="relative">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400"
-          >
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-          <input
-            class="flex h-10 w-full bg-background px-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:ring-0 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
-            id="username"
-            placeholder="Username"
-            type="text"
-          />
-        </div>
-        <div class="relative">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400"
-          >
-            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-          </svg>
-          <input
-            class="flex h-10 w-full bg-background px-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:ring-0 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
-            id="email"
-            placeholder="Email"
-            type="email"
-          />
-        </div>
-        <div class="relative">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-gray-400"
-          >
-            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-          <input
-            class="flex h-10 w-full bg-background px-3 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 pl-12 pr-4 py-3 rounded-lg border border-gray-300 focus:border-gray-500 focus:ring-0 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200"
-            id="password"
-            placeholder="Password"
-            type="password"
-          />
-        </div>
-      </form>
-    </div>
-  </div> -->
+    </div>  
+</div>

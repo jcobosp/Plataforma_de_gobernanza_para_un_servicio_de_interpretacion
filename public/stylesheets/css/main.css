@@ -1163,6 +1163,107 @@ input[type="checkbox"]:checked::before {
 
 
 /* APARTADO DE REGISTRO */
+
+.registration-form {
+  width: 100%;
+  max-width: 600px; /* Aumenta el ancho máximo de la tarjeta */
+  margin-top: 10px;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-left: auto;
+  padding: 20px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+  animation: zoomIn 2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añade una transición para el transform y el box-shadow */
+}
+
+.registration-form:hover {
+  transform: translateY(-10px); /* Mueve la tarjeta hacia arriba cuando se pasa el ratón por encima */
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.3); /* Intensifica la sombra cuando se pasa el ratón por encima */
+}
+
+.registration-form h4{
+  font-size: 20px;
+}
+
+.registration-form label img {
+  width: 50px; /* Ajusta el ancho de la imagen */
+  height: 50px; /* Ajusta la altura de la imagen */
+  margin-bottom: 5px;
+}
+
+.registration-form form {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra los elementos horizontalmente */
+}
+
+.form-intro {
+  text-align: center; /* Centra el texto introductorio */
+  margin-bottom: 20px; /* Añade un espacio debajo del texto introductorio */
+  color: black;
+  transition: transform 0.3s ease;
+}
+
+.form-intro:hover, .registration-form label:hover {
+  transform: scale(1.1); /* Aumenta la escala cuando se pasa el ratón por encima */
+}
+
+.registration-form ul {
+  list-style: none;
+  padding: 0;
+  width: 80%; /* Ajusta el ancho de la lista para que los elementos se centren */
+}
+
+.registration-form li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+  margin-top: 5px;
+}
+
+.form-intro, .registration-form label {
+  font-weight: bold; /* Hace que el texto sea en negrita */
+  transition: transform 0.3s ease
+}
+
+.registration-form label {
+  display: block;
+  margin-bottom: 0px;
+  color: black;
+}
+
+
+.registration-form input[type="text"], 
+.registration-form input[type="email"], 
+.registration-form input[type="password"] {
+  width: 80%; /* Reduce el ancho de los inputs */
+  padding: 10px;
+  border: 1px solid #8b8b8b;
+  border-radius: 10px; /* Aumenta el radio de los bordes de los inputs para hacerlos más redondos */
+  margin-top: 1px;
+}
+
+.registration-form input[type="submit"] {
+  display: block;
+  width: 80%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.registration-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
 @keyframes zoomIn {
   0% {
       transform: scale(0);
@@ -1172,74 +1273,6 @@ input[type="checkbox"]:checked::before {
       transform: scale(1);
       opacity: 1;
   }
-}
-
-.registration-form {
-  width: 100%;
-  max-width: 400px;
-  margin-top: 70px;
-  margin-right: auto;
-  margin-bottom: 0;
-  margin-left: auto;
-  padding: 20px;
-  animation: zoomIn 2s;
-}
-
-
-.registration-form h2 {
-  color: #333;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.registration-form form {
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-}
-
-.registration-form ul {
-  list-style: none;
-  padding: 0;
-}
-
-.registration-form li {
-  margin-bottom: 10px;
-}
-
-.registration-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.registration-form input[type="text"], 
-.registration-form input[type="email"], 
-.registration-form input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-.registration-form input[type="submit"] {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.registration-form input[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.registration-form .text-danger {
-  color: #dc3545;
-  margin-bottom: 10px;
 }
 
 /* TABLA USUARIOS POR EQUIPO */
