@@ -19,7 +19,7 @@
 
     <div class="newpost-card">
     <form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
-        <h3>Cambie los siguientes datos que desees de la propuesta</h3>
+        <h3>Rellena los siguientes datos para editar la propuesta</h3>
         <!-- <div class="inputOption">
             <h3>Titulo de la propuesta:</h3>
             <input type="text" id="title" name="title" placeholder="Título de la propuesta" value="<%= post.title %>" required>
@@ -33,7 +33,7 @@
         </div> -->
         <div class="inputOption">
             <label for="title">Título <img class="label-icon" src="/images/3D-icons/medalla-icono-1.PNG" alt="Icon"></label>
-            <input type="text" id="title" name="title" placeholder="Título" required>
+            <input type="text" id="title" name="title" value="<%= post.title %>" required>
         </div>
         <div class="inputOption">
             <label for="body">Descripción <img class="label-icon" src="/images/3D-icons/listado-icon-1.PNG" alt="Icon"></label>

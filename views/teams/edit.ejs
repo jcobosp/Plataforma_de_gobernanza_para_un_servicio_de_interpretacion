@@ -1,5 +1,20 @@
-<section>
-    <h2>Edit Teams:</h2>
+<div>
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <nav>
+        <div class="container">
+            <ol class="breadcrumb-card">
+                <li><a href="/">Menu</a> / <a href="/teams">Equipos</a> / Editar equipo</li>
+            </ol>
+        </div>
+        </nav>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+      <h2>Editar Equipo</h2>
+    </div>
     <!-- <h3>Titulo actual:</h3>
     <p>
         <%= team.title %>
@@ -8,12 +23,33 @@
     <p>
         <%= team.body %>
     </p> -->
-    <h3>Admin actual:</h3>
+    <!-- <h3>Admin actual:</h3>
     <p>
         <p><%= adminUser ? adminUser.username : 'None' %></p>
-    </p>
+    </p> -->
 
-    <form method="post" action="/teams/<%= team.id %>?_method=PUT" enctype="multipart/form-data">
-        <%- include('_form.ejs') %>
-    </form>
-</section>
+    <div class="newteam-card">
+        <form method="post" action="/teams/<%= team.id %>?_method=PUT" enctype="multipart/form-data">
+            <h3>Rellena los siguientes datos para editar el equipo</h3>
+            
+            <div class="inputOption">
+                <label>Título <img class="label-icon" src="/images/3D-icons/medalla-icono-4.PNG" alt="Icon"></label>
+                <input type="text" id="title" name="title" placeholder="Título" value="<%= team.title %>">
+            </div>
+            <div class="inputOption">
+                <label>Descripción <img class="label-icon" src="/images/3D-icons/descripcion-icon-1.PNG" alt="Icon"></label>
+                <textarea id="body" name="body" placeholder="Mensaje"><%= team.body %></textarea>
+            </div>
+            <div class="inputOption">
+                <label>Foto <img class="label-icon" src="/images/3D-icons/camara-icon-1.PNG" alt="Icon"></label>
+                <input type="file" id="image" name="image">
+            </div>
+
+        <div class="buttonContainer">
+            <a href="/teams">Cancelar</a>
+            <input type="submit" name="enviar" id="enviar" value="Guardar">    
+        </div>
+
+        </form>
+    </div>
+</div>

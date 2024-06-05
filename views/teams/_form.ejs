@@ -1,14 +1,17 @@
 <div>
     <div class="inputOption">
+        <label>Título <img class="label-icon" src="/images/3D-icons/medalla-icono-4.PNG" alt="Icon"></label>
         <input type="text" id="title" name="title" placeholder="Título" value="<%= team.title %>">
     </div>
     <div class="inputOption">
+        <label>Descripción <img class="label-icon" src="/images/3D-icons/descripcion-icon-1.PNG" alt="Icon"></label>
         <textarea id="body" name="body" placeholder="Mensaje"><%= team.body %></textarea>
     </div>
     <div class="inputOption">
+        <label>Foto <img class="label-icon" src="/images/3D-icons/camara-icon-1.PNG" alt="Icon"></label>
         <input type="file" id="image" name="image">
     </div>
-    <div class="inputOption">
+    <!-- <div class="inputOption">
         <label for="adminUser">Seleccionar nuevo admin:</label>
         <select id="adminUser" name="adminUser">
             <% for (var i in users) { %>
@@ -16,7 +19,8 @@
                 <option value="<%= user.id %>"><%= user.username %></option>
               <% } %>
         </select>
-    </div>
-    <input type="submit" name="enviar" id="enviar" value="Save">    
-    <a href="/teams">Volver</a>
+    </div> -->
+    
+    <!-- <input type="submit" name="enviar" id="enviar" value="Guardar">    
+    <a href="/teams">Volver</a> -->
 </div>

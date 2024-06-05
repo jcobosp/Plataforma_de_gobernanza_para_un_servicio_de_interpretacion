@@ -1,18 +1,38 @@
-<section>
-    <h2>Add Team:</h2>
+<div>
+
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <nav>
+        <div class="container">
+            <ol class="breadcrumb-card">
+                <li><a href="/">Menu</a> / <a href="/teams">Equipos</a> / Crear equipo</li>
+            </ol>
+        </div>
+        </nav>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+      <h2>Crear Equipo</h2>
+    </div>
+
+    <div class="newteam-card">
     <form method="post" action="/teams" enctype="multipart/form-data" >
+        <h3>Rellena los siguientes datos para crear el nuevo equipo</h3>
         <div class="inputOption">
-            <h3>Titulo del Team</h3>
-            <input type="text" id="title" name="title" placeholder="Título del Team">
+            <label>Título <img class="label-icon" src="/images/3D-icons/medalla-icono-4.PNG" alt="Icon"></label>
+            <input type="text" id="title" name="title" placeholder="Título">
         </div>
         <div class="inputOption">
-            <h3>Descripción del Team</h3>
-            <textarea id="body" name="body" placeholder="Descripción del Team"></textarea>
+            <label>Descripción <img class="label-icon" src="/images/3D-icons/descripcion-icon-1.PNG" alt="Icon"></label>
+            <textarea id="body" name="body" placeholder="Descripción"></textarea>
         </div>
         <div class="inputOption">
+            <label>Foto <img class="label-icon" src="/images/3D-icons/camara-icon-1.PNG" alt="Icon"></label>
             <input type="file" id="image" name="image">
         </div>
-        <div class="inputOption">
+        <!-- MIRAR SI LO DEL ADMIN TEAM SE IMPLEMENTA AL FINAL -->
+        <!-- <div class="inputOption">
             <label for="adminUser">Seleccionar admin:</label>
             <select id="adminUser" name="adminUser">
                 <% for (var i in users) { %>
@@ -20,10 +40,14 @@
                     <option value="<%= user.id %>"><%= user.username %></option>
                   <% } %>
             </select>
+        </div> -->
+        <div class="buttonContainer">
+            <a href="/teams">Cancelar</a>
+            <input type="submit" name="enviar" id="enviar" value="Crear">    
         </div>
-        <input type="submit" name="enviar" id="enviar" value="Save">    
-        <a href="/teams">Volver</a>
+
     </form>
-</section>
+</div>
+</div>
 
   

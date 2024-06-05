@@ -1590,7 +1590,7 @@ input[type="checkbox"]:checked::before {
 }
 
 #claimRewardForm {
-  float: right;
+  /* float: right; */
   margin-bottom: 10px;
 }
 
@@ -1636,6 +1636,37 @@ input[type="checkbox"]:checked::before {
     transform: scale(1);
   }
 }
+
+.button-container-newteam {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container-newteam .createTeamButton {
+  animation: glow 2s ease-in-out infinite;
+  color: black; 
+  background-color: var(--color-primary); 
+  border: none;
+  padding: 10px 20px;
+  height: 45px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 550;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px; 
+  box-shadow: 0px 0px 10px 5px rgba(255,255,255,0.5); 
+}
+
+.button-container-newteam .createTeamButton:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: white; 
+}
+
 
 
 /*--------------------------------------------------------------
@@ -4348,6 +4379,7 @@ input[type="submit"]:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom:40px;
 }
 
 .newpost-card form {
@@ -4357,13 +4389,13 @@ input[type="submit"]:active {
   justify-content: center;
 }
 
-.inputOption textarea {
+.newpost-card .inputOption textarea {
   height: 30%; /* Adjust this value to your liking */
 }
 
-.inputOption input,
-.inputOption textarea,
-.inputOption select {
+.newpost-card .inputOption input,
+.newpost-card .inputOption textarea,
+.newpost-card .inputOption select {
   text-align: center; /* Center the text */
 }
 
@@ -4372,6 +4404,11 @@ input[type="submit"]:active {
   width: 100%;
   margin-bottom: 20px;
   color:black;
+  transition: transform 0.3s ease;
+}
+
+.newpost-card form h3:hover {
+  transform: scale(1.1);
 }
 
 .newpost-card form .inputOption {
@@ -4432,25 +4469,163 @@ input[type="submit"]:active {
 
 .newpost-card form .buttonContainer input[type="submit"] {
   background-color: rgb(2, 125, 165); /* Change color to light blue */
+  font-weight: bold;
 }
 
 .newpost-card form .buttonContainer a {
   background-color: red;
+  font-weight: bold;
 }
 
 
-.newpost-card form .buttonContainer input[type="submit"]:hover,
 .newpost-card form .buttonContainer a:hover {
   transform: translateY(-2px); /* Move up when hovered */
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
-  opacity: 0.8; /* Make color lighter when hovered */
+  background-color: rgb(255, 0, 0);
+}
+
+.newpost-card form .buttonContainer input[type="submit"]:hover {
+  transform: translateY(-2px); /* Move up when hovered */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  background-color: rgb(51, 177, 219);
 }
 
 .newpost-card .label-icon {
-  width: 50px; /* Adjust this value to your liking */
+  width: 48px; /* Adjust this value to your liking */
   transition: transform 0.3s ease;
 }
 
 .newpost-card .inputOption label:hover .label-icon {
+  transform: scale(1.1);
+}
+
+/* NUEVO EQUIPO */
+.newteam-card {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  padding: 30px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom:40px;
+}
+
+.newteam-card form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.newteam-card .inputOption textarea {
+  height: 30%; /* Adjust this value to your liking */
+}
+
+.newteam-card .inputOption input,
+.newteam-card .inputOption textarea,
+.newteam-card .inputOption select {
+  text-align: center; /* Center the text */
+}
+
+.newteam-card form h3 {
+  font-weight: bold;
+  width: 100%;
+  margin-bottom: 20px;
+  color:black;
+  transition: transform 0.3s ease;
+}
+
+.newteam-card form h3:hover {
+  transform: scale(1.1);
+}
+
+.newteam-card form .inputOption {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+.newteam-card form .inputOption label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  transition: transform 0.3s ease;
+  color:black;
+}
+
+.newteam-card .inputOption label:hover{
+  transform: scale(1.1);
+}
+
+.newteam-card form .inputOption input,
+.newteam-card form .inputOption textarea,
+.newteam-card form .inputOption select {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.newteam-card form input[type="submit"] {
+  width: auto;
+  margin-top: 20px;
+}
+
+.newteam-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+.newteam-card form .buttonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.newteam-card form .buttonContainer input[type="submit"],
+.newteam-card form .buttonContainer a {
+  margin: 0 200px; /* Increase margin for more separation */
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease; /* Add transition for smooth hover effect */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Add shadow */
+  width: 120px; /* Set a fixed width */
+  text-align: center; /* Center the text */
+}
+
+.newteam-card form .buttonContainer input[type="submit"] {
+  background-color: rgb(2, 125, 165); /* Change color to light blue */
+  font-weight: bold;
+}
+
+.newteam-card form .buttonContainer a {
+  background-color: rgb(187, 0, 0);
+  font-weight: bold;
+}
+
+.newteam-card form .buttonContainer a:hover {
+  transform: translateY(-2px); /* Move up when hovered */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  background-color: rgb(255, 0, 0);
+}
+
+.newteam-card form .buttonContainer input[type="submit"]:hover {
+  transform: translateY(-2px); /* Move up when hovered */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  background-color: rgb(51, 177, 219);
+}
+
+.newteam-card .label-icon {
+  width: 48px; /* Adjust this value to your liking */
+  transition: transform 0.3s ease;
+}
+
+.newteam-card .inputOption label:hover .label-icon {
   transform: scale(1.1);
 }

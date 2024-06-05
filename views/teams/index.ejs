@@ -23,21 +23,27 @@
 
       <div class="row">
         <div class="col-lg-12">
-          <div class="reward-container">
-            <% if(locals.loginUser) { %>
-              <div class="reward-content">
-                <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
-                  <% if(timeUntilNextReward) { %>
-                    <button id="claimRewardButton" type="submit" disabled>Reclamar recompensa diaria</button>
-                  <% } else { %>
-                    <button id="claimRewardButton" type="submit">Reclamar recompensa diaria</button>
-                  <% } %>
-                </form>
-                <% if(timeUntilNextReward) { %>
-                  <p class="timeUntilNextReward">Puedes reclamar tu siguiente recompensa en <%= timeUntilNextReward %>.</p>
-                <% } %>
-              </div>
+          <div class="button-container-newteam">
+            <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
+              <a class="createTeamButton" href="/teams/new">Crear Equipo</a>
             <% } %>
+      
+            <div class="reward-container">
+              <% if(locals.loginUser) { %>
+                <div class="reward-content">
+                  <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
+                    <% if(timeUntilNextReward) { %>
+                      <button id="claimRewardButton" type="submit" disabled>Reclamar recompensa diaria</button>
+                    <% } else { %>
+                      <button id="claimRewardButton" type="submit">Reclamar recompensa diaria</button>
+                    <% } %>
+                  </form>
+                  <% if(timeUntilNextReward) { %>
+                    <p class="timeUntilNextReward">Puedes reclamar tu siguiente recompensa en <%= timeUntilNextReward %>.</p>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
           </div>
         </div>
       </div>
@@ -73,7 +79,7 @@
       </div>
 
       <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
-        <a href="/teams/new">Create New Team</a>
+        <a href="/teams/new">Crear equipo</a>
       <% } %>
 
     </div>
