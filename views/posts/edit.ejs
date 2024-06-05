@@ -1,92 +1,119 @@
 
 
-<section>
-  <h2>Edit Post:</h2>
-
-  <!-- <h3>Titulo actual:</h3>
-  <p><%= post.title %></p>
-  <h3>Descripcion actual:</h3>
-  <p><%= post.body %></p> -->
-
-<form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
-    <div class="inputOption">
-        <h3>Titulo de la propuesta:</h3>
-        <input type="text" id="title" name="title" placeholder="Título de la propuesta" value="<%= post.title %>" required>
+<div>
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+        <nav>
+        <div class="container">
+            <ol class="breadcrumb-card">
+            <li><a href="/">Menu</a> / / <a href="/posts">Propuestas</a> / Editar propuesta</li>
+            </ol>
+        </div>
+        </nav>
     </div>
-    <div class="inputOption">
-        <h3>Descripcion de la propuesta:</h3>
-        <textarea id="body" name="body" placeholder="Descripcion de la propuesta" required><%= post.body %></textarea>
-    </div>
-    <div class="inputOption">
-        <input type="file" id="image" name="image">
+    <!-- End Breadcrumbs -->
+
+    <div class="section-header">
+      <h2>Editar propuesta</h2>
     </div>
 
-    <div class="inputOption">
-        <label for="votingStartDate">Voting Start Date:</label>
-        <input type="datetime-local" id="votingStartDate" name="votingStartDate" required
-            value="<%= post.votingStartDate instanceof Date ? post.votingStartDate.toISOString().slice(0, 16) : '' %>" />
-    </div>
-    <div class="inputOption">
-        <label for="votingEndDate">Voting End Date:</label>
-        <input type="datetime-local" id="votingEndDate" name="votingEndDate" required
-            value="<%= post.votingEndDate instanceof Date ? post.votingEndDate.toISOString().slice(0, 16) : '' %>" />
-    </div>
-    <div class="inputOption">
-        <label for="applicationDate">Application Date:</label>
-        <input type="datetime-local" id="applicationDate" name="applicationDate" required
-            value="<%= post.applicationDate instanceof Date ? post.applicationDate.toISOString().slice(0, 16) : '' %>" />
-    </div>
-    <div class="inputOption">
-        <label for="vetoDate">Veto Date:</label>
-        <input type="datetime-local" id="vetoDate" name="vetoDate" required
-            value="<%= post.vetoDate instanceof Date ? post.vetoDate.toISOString().slice(0, 16) : '' %>" />
-    </div>
+    <div class="newpost-card">
+    <form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
+        <h3>Cambie los siguientes datos que desees de la propuesta</h3>
+        <!-- <div class="inputOption">
+            <h3>Titulo de la propuesta:</h3>
+            <input type="text" id="title" name="title" placeholder="Título de la propuesta" value="<%= post.title %>" required>
+        </div>
+        <div class="inputOption">
+            <h3>Descripcion de la propuesta:</h3>
+            <textarea id="body" name="body" placeholder="Descripcion de la propuesta" required><%= post.body %></textarea>
+        </div>
+        <div class="inputOption">
+            <input type="file" id="image" name="image">
+        </div> -->
+        <div class="inputOption">
+            <label for="title">Título <img class="label-icon" src="/images/3D-icons/medalla-icono-1.PNG" alt="Icon"></label>
+            <input type="text" id="title" name="title" placeholder="Título" required>
+        </div>
+        <div class="inputOption">
+            <label for="body">Descripción <img class="label-icon" src="/images/3D-icons/listado-icon-1.PNG" alt="Icon"></label>
+            <textarea id="body" name="body" placeholder="Descripción" required></textarea>
+        </div>
+        <div class="inputOption">
+            <label for="image">Foto <img class="label-icon" src="/images/3D-icons/camara-icon-1.PNG" alt="Icon"></label>
+            <input type="file" id="image" name="image">
+        </div>
 
-    <div class="inputOption">
-        <label for="team">Equipo:</label>
-        <select id="team" name="team" required>
-            <% teams.forEach(team => { %>
-                <% if (post.TeamId === team.id) { %>
-                    <option value="<%= team.id %>" selected><%= team.title %></option>
-                <% } else { %>
-                    <option value="<%= team.id %>"><%= team.title %></option>
-                <% } %>
-            <% }); %>
-        </select>
-    </div> 
+        <div class="inputOption">
+            <label for="team">Equipo <img class="label-icon" src="/images/3D-icons/medalla-icono-4.PNG" alt="Icon"></label>
+            <select id="team" name="team" required>
+                <% teams.forEach(team => { %>
+                    <% if (post.TeamId === team.id) { %>
+                        <option value="<%= team.id %>" selected><%= team.title %></option>
+                    <% } else { %>
+                        <option value="<%= team.id %>"><%= team.title %></option>
+                    <% } %>
+                <% }); %>
+            </select>
+        </div> 
 
-    <div class="inputOption">
-        <label for="min_voting">Minimum Voting Score:</label>
-        <input type="number" id="min_voting" name="min_voting" value="<%= post.min_voting %>" min="1" step="1" required>
-    </div>
-    <div class="inputOption">
-        <label for="max_voting">Maximum Voting:</label>
-        <input type="number" id="max_voting" name="max_voting" value="<%= post.max_voting %>" min="1" step="1" required>
-    </div>
-    <div class="inputOption">
-        <label for="min_users_voted">Minimum Users Voted:</label>
-        <input type="number" id="min_users_voted" name="min_users_voted" value="<%= post.min_users_voted %>" min="1" step="1" required>
-    </div>
-    <div class="inputOption">
-        <label for="voting_reward">Voting Reward:</label>
-        <input type="number" id="voting_reward" name="voting_reward" value="<%= post.voting_reward %>" min="1" step="1" required>
-    </div>
-    <div class="inputOption">
-        <label for="voting_failure_penalty">Voting Failure Penalty:</label>
-        <input type="number" id="voting_failure_penalty" name="voting_failure_penalty" value="<%= post.voting_failure_penalty %>" min="1" step="1" required>
-    </div>
-    <div class="inputOption">
-        <label for="voting_success_reward">Voting Success Reward:</label>
-        <input type="number" id="voting_success_reward" name="voting_success_reward" value="<%= post.voting_success_reward %>" min="1" step="1" required>
-    </div>
-    
-    
+        <div class="inputOption">
+            <label for="votingStartDate">Fecha de inicio de la votación <img class="label-icon" src="/images/3D-icons/calculadora-icon-4.PNG" alt="Icon"></label>
+            <input type="datetime-local" id="votingStartDate" name="votingStartDate" required
+                value="<%= post.votingStartDate instanceof Date ? post.votingStartDate.toISOString().slice(0, 16) : '' %>" />
+        </div>
+        <div class="inputOption">
+            <label for="votingEndDate">Fecha de finalización de la votación <img class="label-icon" src="/images/3D-icons/calendar-icon-5.PNG" alt="Icon"></label>
+            <input type="datetime-local" id="votingEndDate" name="votingEndDate" required
+                value="<%= post.votingEndDate instanceof Date ? post.votingEndDate.toISOString().slice(0, 16) : '' %>" />
+        </div>
+        <div class="inputOption">
+            <label for="applicationDate">Fecha de aplicación <img class="label-icon" src="/images/3D-icons/calendar-icon-6.PNG" alt="Icon"></label>
+            <input type="datetime-local" id="applicationDate" name="applicationDate" required
+                value="<%= post.applicationDate instanceof Date ? post.applicationDate.toISOString().slice(0, 16) : '' %>" />
+        </div>
+        <div class="inputOption">
+            <label for="vetoDate">Fecha de veto <img class="label-icon" src="/images/3D-icons/reloj-icon-2.PNG" alt="Icon"></label>
+            <input type="datetime-local" id="vetoDate" name="vetoDate" required
+                value="<%= post.vetoDate instanceof Date ? post.vetoDate.toISOString().slice(0, 16) : '' %>" />
+        </div>
 
-    <input type="submit" name="enviar" id="enviar" value="Save" />
-    <a href="/posts">Volver</a>
-  </form>
+        <div class="inputOption">
+            <label for="min_voting">Puntuación mínima de votación <img class="label-icon" src="/images/3D-icons/check-icon-2.PNG" alt="Icon"></label>
+            <input type="number" id="min_voting" name="min_voting" value="<%= post.min_voting %>" min="1" step="1" required>
+        </div>
+        <div class="inputOption">
+            <label for="max_voting">Puntuación máxima de votación <img class="label-icon" src="/images/3D-icons/exclamation-icon-1.PNG" alt="Icon"></label>
+            <input type="number" id="max_voting" name="max_voting" value="<%= post.max_voting %>" min="1" step="1" required>
+        </div>
+        <div class="inputOption">
+            <label for="min_users_voted">Mínimo de usuarios a votar <img class="label-icon" src="/images/3D-icons/grupousers-icon-1.PNG" alt="Icon"></label>
+            <input type="number" id="min_users_voted" name="min_users_voted" value="<%= post.min_users_voted %>" min="1" step="1" required>
+        </div>
+        <div class="inputOption">
+            <label for="voting_reward">Recompensa por votación <img class="label-icon" src="/images/3D-icons/maletin-icon-1.PNG" alt="Icon"></label>
+            <input type="number" id="voting_reward" name="voting_reward" value="<%= post.voting_reward %>" min="1" step="1" required>
+        </div>
+        <div class="inputOption">
+            <label for="voting_failure_penalty">Penalización por fallo en la votación <img class="label-icon" src="/images/3D-icons/thumbdown-icon-1.PNG" alt="Icon"></label>
+            <input type="number" id="voting_failure_penalty" name="voting_failure_penalty" value="<%= post.voting_failure_penalty %>" min="1" step="1" required>
+        </div>
+        <div class="inputOption">
+            <label for="voting_success_reward">Recompensa por éxito en la votación <img class="label-icon" src="/images/3D-icons/coins-icon-1.PNG" alt="Icon"></label>
+            <input type="number" id="voting_success_reward" name="voting_success_reward" value="<%= post.voting_success_reward %>" min="1" step="1" required>
+        </div>
+        
+        
 
-  <script>
+        <div class="buttonContainer">
+            <a href="/posts">Cancelar</a>
+            <input type="submit" name="enviar" id="enviar" value="Guardar">
+        </div>
+
+    </form>
+</div>
+
+  <!-- <script>
     document.getElementById('postForm').addEventListener('submit', function(event) {
         const form = event.target;
         if (!form.checkValidity()) {
@@ -94,7 +121,7 @@
             alert('Por favor, rellena todos los campos obligatorios.');
         }
     });
-</script>
+</script> -->
 
 
-</section>
+</div>
