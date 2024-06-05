@@ -4629,3 +4629,128 @@ input[type="submit"]:active {
 .newteam-card .inputOption label:hover .label-icon {
   transform: scale(1.1);
 }
+
+
+/* PANTALLA PUNTOS */
+.puntosscreen-card {
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  margin: 10px;
+  padding: 30px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom:40px;
+  background-color: #f9f9f9; /* Añade un color de fondo suave */
+}
+
+.puntosscreen-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: translateY(-2px);
+}
+
+.puntosscreen-card h3 {
+  color: black; /* Cambia el color del texto a un gris oscuro */
+  margin-bottom: 20px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.puntosscreen-card h3:hover {
+  transform: scale(1.1);
+}
+
+.puntosscreen-card h3, .puntosscreen-card .icon-title-puntos {
+  display: inline-block;
+}
+
+.puntosscreen-card ul {
+  list-style: none; /* Elimina los puntos de la lista */
+  padding: 0; /* Elimina el padding de la lista */
+}
+
+.puntosscreen-card li {
+  margin-bottom: 20px; /* Añade un margen inferior a cada elemento de la lista */
+  font-weight: bold;
+}
+.puntosscreen-card form {
+  display: flex; /* Alinea los elementos del formulario horizontalmente */
+  justify-content: space-between; /* Distribuye los elementos del formulario uniformemente */
+  align-items: center; /* Alinea verticalmente los elementos del formulario */
+  margin-bottom: 10px; /* Añade un margen inferior al formulario */
+  width: 100%; /* Asegura que el formulario ocupe todo el ancho disponible */
+}
+
+.puntosscreen-card input[type="number"] {
+  margin-right: 10px; /* Añade un margen a la derecha del input */
+  padding: 5px; /* Añade padding al input */
+  border: 1px solid #ccc; /* Añade un borde al input */
+  border-radius: 5px; /* Redondea las esquinas del input */
+  flex: 1; /* Asegura que el input ocupe todo el espacio disponible */
+}
+
+.puntosscreen-card button {
+  padding: 5px 10px; /* Añade padding al botón */
+  border: none; /* Elimina el borde del botón */
+  border-radius: 5px; /* Redondea las esquinas del botón */
+  flex: 0; /* Evita que el botón se estire para ocupar espacio */
+  display: flex; /* Alinea los elementos del botón horizontalmente */
+  align-items: center; /* Alinea verticalmente los elementos del botón */
+  justify-content: center; /* Centra los elementos del botón */
+  transition: transform 0.3s ease;
+}
+
+.puntosscreen-card button:hover {
+  transform: scale(1.1);
+}
+
+.puntosscreen-card button.sumar-puntosscreen:hover {
+  background-color: #00ff00; /* Un verde más claro */
+}
+
+.puntosscreen-card button.restar-puntosscreen:hover {
+  background-color: #ff0000; /* Un rojo más claro */
+}
+
+.puntosscreen-card .row {
+  display: flex; /* Hace que .row sea un contenedor flex */
+  flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas si no hay suficiente espacio */
+  justify-content: space-between; /* Añade espacio entre los elementos */
+}
+
+.puntosscreen-card .col-md-6 {
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  padding: 0 120px; /* Add horizontal padding */
+}
+
+
+.puntosscreen-card button.sumar-puntosscreen {
+  background-color: #00d800; /* Cambia el color de fondo del botón de sumar a verde */
+  color:white;
+  font-weight: bold;
+}
+
+.puntosscreen-card button.restar-puntosscreen {
+  background-color: #d20000; /* Cambia el color de fondo del botón de restar a rojo */
+  color:white;
+  font-weight: bold;
+}
+
+.puntosscreen-card button:disabled {
+  background-color: #ccc; /* Cambia el color de fondo del botón cuando está deshabilitado */
+  cursor: not-allowed; /* Cambia el cursor cuando el botón está deshabilitado */
+}
+
+.puntosscreen-card .label-icon {
+  width: 30px; /* Ajusta el tamaño de las imágenes */
+  height: 30px; /* Ajusta el tamaño de las imágenes */
+  margin-left: 5px;
+}
+
+.puntosscreen-card .icon-title-puntos {
+  width: 50px; /* Ajusta el tamaño de las imágenes */
+  height: 50px; /* Ajusta el tamaño de las imágenes */
+}
