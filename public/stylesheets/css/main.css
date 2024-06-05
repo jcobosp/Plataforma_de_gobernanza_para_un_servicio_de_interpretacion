@@ -1246,6 +1246,7 @@ input[type="checkbox"]:checked::before {
   border: 1px solid #8b8b8b;
   border-radius: 10px; /* Aumenta el radio de los bordes de los inputs para hacerlos más redondos */
   margin-top: 1px;
+  text-align: center;
 }
 
 .registration-form input[type="submit"] {
