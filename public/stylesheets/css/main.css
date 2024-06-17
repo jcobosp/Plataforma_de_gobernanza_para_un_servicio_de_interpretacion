@@ -4565,7 +4565,7 @@ input[type="submit"]:active {
   flex-direction: column;
   align-items: center;
   margin-bottom:40px;
-  background-color: #f9f9f9; /* Añade un color de fondo suave */
+  background-color: white; /* Añade un color de fondo suave */
 }
 
 .puntosscreen-card:hover {

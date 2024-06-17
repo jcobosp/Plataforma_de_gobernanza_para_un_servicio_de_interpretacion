@@ -17,45 +17,49 @@
   </div>
 
   <div class="puntosscreen-card">
-    <div class="row">
-      <div class="col-md-6">
-        <h3>Wallets<img class="icon-title-puntos" src="/images/3D-icons/cartera-icon-2.PNG" alt="Icon"></h3>
-        <ul>
-          <% users.forEach(user => { %>
-            <li>
-              <%= user.username %>: <%= user.wallet %>
-              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addPointWallet">
-                <input type="number" name="points" min="1" max="10000" value="1">
-                <button type="submit" class="sumar-puntosscreen">Sumar <img class="label-icon" src="/images/3D-icons/billetes-icon-6.PNG" alt="Icon"></button>
-              </form>
-              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removePointWallet">
-                <input type="number" name="points" min="1" max="10000" value="1">
-                <button type="submit" class="restar-puntosscreen" <%= user.wallet === 0 ? 'disabled' : '' %>>Restar <img class="label-icon" src="/images/3D-icons/billetes-icon-6.PNG" alt="Icon"></button>
-              </form>
-            </li>
-          <% }); %>
-        </ul>
-      </div>
-      <div class="col-md-6">
-        <h3>Tokens<img class="icon-title-puntos" src="/images/3D-icons/coins-icon-1.PNG" alt="Icon"></h3>
-        <ul>
-          <% users.forEach(user => { %>
-            <li>
-              <%= user.username %>: <%= user.tokens %>
-              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addTokenToUser">
-                <input type="number" name="tokens" min="1" max="10000" value="1">
-                <button type="submit" class="sumar-puntosscreen">Sumar <img class="label-icon" src="/images/3D-icons/coins-icon-16.PNG" alt="Icon"></button>
-              </form>
-              <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removeTokenFromUser">
-                <input type="number" name="tokens" min="1" max="10000" value="1">
-                <button type="submit" class="restar-puntosscreen" <%= user.tokens === 0 ? 'disabled' : '' %>>Restar <img class="label-icon" src="/images/3D-icons/coins-icon-16.PNG" alt="Icon"></button>
-              </form>
-            </li>
-          <% }); %>
-        </ul>
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Wallets<img class="icon-title-puntos" src="/images/3D-icons/cartera-icon-2.PNG" alt="Icon"></h3>
+          <ul>
+            <% users.forEach(user => { %>
+              <li>
+                Usuario: <%= user.username %><br>
+                Equipo: <%= user.teamTitle %><br>
+                Wallet: <%= user.wallet %>
+                <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addPointWallet">
+                  <input type="number" name="points" min="1" max="10000" value="1">
+                  <button type="submit" class="sumar-puntosscreen">Sumar <img class="label-icon" src="/images/3D-icons/billetes-icon-6.PNG" alt="Icon"></button>
+                </form>
+                <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removePointWallet">
+                  <input type="number" name="points" min="1" max="10000" value="1">
+                  <button type="submit" class="restar-puntosscreen" <%= user.wallet === 0 ? 'disabled' : '' %>>Restar <img class="label-icon" src="/images/3D-icons/billetes-icon-6.PNG" alt="Icon"></button>
+                </form>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3>Tokens<img class="icon-title-puntos" src="/images/3D-icons/coins-icon-1.PNG" alt="Icon"></h3>
+          <ul>
+            <% users.forEach(user => { %>
+              <li>
+                Usuario: <%= user.username %><br>
+                Equipo: <%= user.teamTitle %><br>
+                Tokens: <%= user.tokens %>
+                <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/addTokenToUser">
+                  <input type="number" name="tokens" min="1" max="10000" value="1">
+                  <button type="submit" class="sumar-puntosscreen">Sumar <img class="label-icon" src="/images/3D-icons/coins-icon-16.PNG" alt="Icon"></button>
+                </form>
+                <form method="post" action="/wallet/<%= user.userId %>/<%= user.teamId %>/removeTokenFromUser">
+                  <input type="number" name="tokens" min="1" max="10000" value="1">
+                  <button type="submit" class="restar-puntosscreen" <%= user.tokens === 0 ? 'disabled' : '' %>>Restar <img class="label-icon" src="/images/3D-icons/coins-icon-16.PNG" alt="Icon"></button>
+                </form>
+              </li>
+            <% }); %>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
 </div>
 
       
