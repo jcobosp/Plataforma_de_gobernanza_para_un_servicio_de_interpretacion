@@ -27,10 +27,10 @@
             <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam) {%>
               <a class="createTeamButton" href="/teams/new">Crear Equipo</a>
             <% } %>
-      
+
             <div class="reward-container">
               <% if(locals.loginUser) { %>
-                <div class="reward-content">
+                <div class="reward-content <%= locals.loginUser?.isAdmin || locals.loginUser?.isAdminTeam ? 'admin' : 'non-admin' %>">
                   <form id="claimRewardForm" action="/users/<%= locals.loginUser.id %>/claimdailyreward" method="post">
                     <% if(timeUntilNextReward) { %>
                       <button id="claimRewardButton" type="submit" disabled>Reclamar recompensa diaria</button>
