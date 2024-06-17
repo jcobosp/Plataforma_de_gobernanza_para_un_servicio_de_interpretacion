@@ -614,7 +614,9 @@ section {
   background-size: cover;
 } */
 
-
+.username-color {
+  color: var(--color-primary);
+}
 
 #hero .container,
 #hero .container-fluid {
