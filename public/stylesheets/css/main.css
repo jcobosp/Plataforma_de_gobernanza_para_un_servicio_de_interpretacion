@@ -15,11 +15,11 @@
   --color-terciary: #ddcdc5;
   --color-cuartary: #f48c06;
   --color-quintary: #000000;
-  --iniciar-sesion-text-dark: hsl(240, 54%, 15%);
-  --iniciar-sesion-text-light: hsl(242, 18%, 64%);
+  --iniciar-sesion-text-dark: hsl(240, 100%, 2%);
+  --iniciar-sesion-text-light: hsl(0, 0%, 30%);
   --iniciar-sesion-primary: hsl(222, 98%, 60%);
   --iniciar-sesion-primary-lighter: hsl(240, 33%, 86%);
-  --iniciar-sesion-primary-gradient: linear-gradient(to right, #fa9d3a, #ffba19);
+  --iniciar-sesion-primary-gradient: linear-gradient(to right, #ff8400, #ffb300);
 }
 
 /* Smooth scroll behavior */
@@ -880,6 +880,7 @@ section {
 .imagengradiente-iniciar-sesion {
   width: 100%; 
   height: 100%;
+  background: linear-gradient(to right, #ffb300, #ff8400); /* Reemplaza estos colores con los de tu gradiente */
 }
 
 .contenido-contenedor-iniciar-sesion {
@@ -901,7 +902,7 @@ section {
   margin-bottom: 1rem;
 }
 .contenido-contenedor-iniciar-sesion span {
-  background: var(--iniciar-sesion-primary-gradient);
+  background: linear-gradient(to right, #ff3300, #df3409); /* Cambia estos colores a los tonos de naranja que prefieras */
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -931,21 +932,29 @@ section {
   margin: auto;
 }
 
-.logo-iniciar-sesion-contenedor {
-  width: 3rem;
-  height: 3rem;
-  margin-bottom: 1.5rem;
+.formulario-is-wrapper span {
   display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.formulario-is-wrapper > h2 {
+.formulario-is-wrapper span h2 {
   margin-bottom: 0.1rem;
+  font-weight: bold; /* Agrega esta línea */
+  color: #000000; /* Cambia este valor al color que desees */
+  font-size: 1.75em;
 }
+
 .formulario-is-wrapper > p {
   font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--iniciar-sesion-text-light);
+  font-weight: bold; /* Agrega esta línea */
+  color: #2b2b2b; /* Cambia este valor al color que desees */
   margin-bottom: 2rem;
+}
+
+.logo-iniciar-sesion-contenedor {
+  width: 4.5rem;
+  height: 4.5rem;
 }
 
 a[href="/registrarse"]:hover {
@@ -967,7 +976,7 @@ a[href="/registrarse"]:hover {
 .formulario-grupo label {
   font-size: 0.9375rem;
   font-weight: 600;
-  color: #16164d;
+  color: #000000;
 }
 .formulario-grupo input {
   font-size: 0.875rem;
@@ -978,71 +987,10 @@ a[href="/registrarse"]:hover {
   border-radius: 0.3rem;
 }
 .formulario-grupo input:focus {
-  border: 2px solid #16164d;
+  border: 2px solid #000000;
 }
 
-.recordar-olvidar {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.875rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-}
-
-.recordar-me {
-  display: grid;
-  grid-template-columns: 1rem auto;
-  gap: 0.6rem;
-}
-
-/* input[type="checkbox"] {
-  -webkit-appearance: none;
-  appearance: none;
-  display: grid;
-  place-content: center;
-} */
-
-.recordar-me input {
-  width: 1rem;
-  height: 1rem;
-  margin-right: 0.3rem;
-  border: 1px solid var(--iniciar-sesion-text-light);
-  border-radius: 2px;
-}
-
-/* input[type="checkbox"]::before {
-  content: "";
-  width: 0.65em;
-  height: 0.65em;
-  background-color: white;
-  transform: scale(0);
-  transform-origin: bottom left;
-  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em var(--form-control-color);
-}
-
-input[type="checkbox"]:checked::before {
-  transform: scale(1);
-} */
-.recordar-me input:checked {
-  background: var(--iniciar-sesion-primary-gradient);
-}
-
-.recordar-me label {
-  color: var(--iniciar-sesion-text-dark);
-  user-select: none;
-}
-.recordar-olvidar a {
-  color: var(--iniciar-sesion-primary);
-}
-.recordar-olvidar a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--iniciar-sesion-primary);
-}
-
-.iniciarsesion-button,
-.google-iniciarsesion {
+.iniciarsesion-button {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -1055,46 +1003,11 @@ input[type="checkbox"]:checked::before {
 }
 
 .iniciarsesion-button {
-  color: white;
+  color: black;
   background: var(--iniciar-sesion-primary-gradient);
 }
 .iniciarsesion-button:hover {
   opacity: 0.9;
-}
-
-.or-divider {
-  width: 100%;
-  font-weight: 600;
-  color: var(--iniciar-sesion-text-light);
-  margin-block: 1.5rem;
-  text-align: center;
-  position: relative;
-}
-.or-divider::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  height: 1px;
-  width: 45%;
-  background-color: var(--iniciar-sesion-text-light);
-}
-.or-divider::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 0;
-  height: 1px;
-  width: 45%;
-  background-color: var(--iniciar-sesion-text-light);
-}
-
-.google-iniciarsesion {
-  border: 2px solid var(--iniciar-sesion-primary-lighter);
-}
-.google-iniciarsesion object {
-  width: 1.5rem;
-  height: 1.5rem;
 }
 
 @media screen and (max-width: 50rem) {
@@ -1138,18 +1051,14 @@ input[type="checkbox"]:checked::before {
   .logo-iniciar-sesion-contenedor {
     margin-bottom: 1rem;
   }
-  .formulario-is-wrapper > h2 {
+  /* .formulario-is-wrapper > h2 {
     font-size: 1.25rem;
-  }
+  } */
   .formulario-is-wrapper > p {
     margin-bottom: 1rem;
   }
   .formulario-is-wrapper button {
     font-size: 0.875rem;
-  }
-  .or-divider {
-    font-weight: 500;
-    margin-block: 0.6rem;
   }
 }
 

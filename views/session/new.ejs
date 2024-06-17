@@ -33,26 +33,29 @@
   <div class="iniciar-sesion-contenedor">
 
       <div class="imagen-iniciar-sesion-section">
-        <div class="imagen-iniciar-sesion-wrapper">
-          <img src="/images/mesh-gradient.png" alt="" class="imagengradiente-iniciar-sesion"> 
+        <div class="imagen-iniciar-sesion-wrapper imagengradiente-iniciar-sesion">
         </div>
+        <!-- <div class="imagen-iniciar-sesion-wrapper">
+          <img src="/images/mesh-gradient.png" alt="" class="imagengradiente-iniciar-sesion"> 
+        </div> -->
 
         <div class="contenido-contenedor-iniciar-sesion">
-          <h1 class="section-heading">Empoderando Mentes a Través de la <span>Educación Digital.</span></h1>
-          <p class="section-paragraph">Cada paso adelante es un paso hacia el conocimiento. Abraza el viaje.</p>
+          <h1 class="section-heading">Potenciando la <span>Gobernanza</span> en Eventos Multilingües.</h1>
+          <p class="section-paragraph">Cada decisión cuenta. Únete a nosotros para facilitar la interacción entre participantes y gestionar la toma de decisiones de manera eficaz y transparente.</p>
         </div>
       </div>
 
       <div class="formulario-is-section">
         <div class="formulario-is-wrapper">
-          <div class="logo-iniciar-sesion-contenedor">
-            <a href="#" class="logo-iniciar-sesion-contenedor">
-              <img src="/images/logo.png" alt="Logo">
-            </a>
-          </div>
 
-          <h2>¡Bienvenido de nuevo!</h2>
+          <span><h2>¡Bienvenido de nuevo!</h2> <img class="logo-iniciar-sesion-contenedor" src="/images/3D-icons/manosaludadndo-icon-1.png" alt="Logo"></span>
           <p>Introduce tus credenciales para acceder a tu cuenta.</p>
+
+          <!-- <div class="logo-iniciar-sesion-contenedor">
+            <a href="#">
+              <img src="/images/3D-icons/saludo-icon-1.png" alt="Logo">
+            </a>
+          </div> -->
 
           <!-- CUADRO DE INTRODUCIR INFO -->
           <form method='POST' action='/login'>
@@ -62,47 +65,24 @@
                 <label for="login">Nombre de usuario:</label>
                 <input type="text" id="username" name="username" autocomplete="off" />
 
-                <!-- <label for="email">Email</label>
-                <input type="email" id="email" autocomplete="off">  -->
-
               </div>
               <div class="formulario-grupo">
 
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" />
 
-                <!-- <label for="password">Password</label>
-                <input type="password" id="password"> -->
-
               </div>
             </div>
-          
-            <!-- <div class="recordar-olvidar">
-              <div class="recordar-me">
-                <input type="checkbox" value="remember-me" id="recordar-me">
-                <label for="remember-me">Remember me</label>
-              </div>
-
-              <a href="#">Forgot password?</a>
-            </div> -->
             <div>
               <div>
-                <span>¿Aun no tienes cuenta?</span> <a href="/registrarse">Registrarse</a>
+                <span>¿Aun no tienes cuenta? <a href="/registrarse">Registrarse</a></span>
               </div>
             </div>
             <br>
 
-            <button class="iniciarsesion-button">Iniciar Sesión</button>
-            <!-- <input class="iniciarsesion-button" name="commit" type="submit" value="Log In" /> -->
-
-            <!-- <div class="or-divider">or</div>
-
-            <button class="google-iniciarsesion">
-              <object data="/images/google.svg"></object>
-              <span>Sign in with Google</span>
-            </button> -->
+            <button class="iniciarsesion-button"><strong>Iniciar Sesión</strong></button>
           </form>
-          <!-- HASTA AQUI CUADRO DE INFO -->
+          
         </div>
       </div>
     </div>
