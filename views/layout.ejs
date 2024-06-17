@@ -34,7 +34,7 @@
             <li class="page-link"><a href="/teams">Equipos</a></li>
             <li class="page-link"><a href="/posts">Propuestas</a></li>
             <% if(locals.loginUser){ %>
-              <li class="page-link"><a href="/users">Users</a></li>
+              <li class="page-link"><a href="/users">Usuarios</a></li>
               <!-- <% if(locals.loginUser.isAdmin) { %>
                 <li class="page-link"><a href="/reputation">Reputación</a></li>
               <% } %> -->
@@ -76,7 +76,7 @@
           <a href="index.html" class="logo d-flex align-items-center">
             <span>Gestor Intérpretes</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Revolucionando la interacción en eventos multilingües y la toma de decisiones con una gestión eficiente. Nos esforzamos por mejorar la eficiencia y la calidad del servicio de interpretación.</p>
           <div class="social-links d-flex mt-4">
             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -86,35 +86,39 @@
         </div>
 
         <div class="col-lg-2 col-6 footer-links">
-          <h4>Useful Links</h4>
+          <h4>Enlaces Generales</h4>
           <ul>
-            <li><a href="/">Menu</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
+            <li><a href="/">Menú</a></li>
+            <li><a href="/teams">Equipos</a></li>
+            <li><a href="/posts">Propuestas</a></li>
           </ul>
         </div>
-
+        
         <div class="col-lg-2 col-6 footer-links">
-          <h4>Our Services</h4>
+          <h4>Enlaces de Usuario</h4>
           <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
+            <% if(locals.loginUser){ %>
+              <li class="page-link"><a href="/users">Usuarios</a></li>
+              <% if(locals.loginUser.isAdmin || locals.loginUser.isAdminToken) { %>
+                <li class="page-link"><a href="/wallet">Puntos</a></li>
+              <% } %>
+              <li><a href="/login?_method=DELETE" class="logout">Cerrar sesión</a></li>
+              <li><a href="/users/<%= loginUser.id %> " class="get-a-quote">
+                <%= loginUser.username %></a></li>
+            <% }else{%>
+              <li><a href="/registrarse" class="logout">Registrarse</a></li>
+              <li><a class="get-a-quote" href="/login">Iniciar Sesión</a></li>
+            <% } %>
           </ul>
         </div>
 
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
           <h4>Contactanos</h4>
           <p>
-            Calle 123 <br>
+            <!-- Calle 123 <br> -->
             Madrid, España<br>
             Madrid <br><br>
-            <strong>Phone:</strong> +31 123 456 789<br>
-            <strong>Email:</strong> ejemplo@gmail.com<br>
+            <strong>Correo Electrónico:</strong> jesus.cobos@alumnos.upm.es<br>
           </p>
 
         </div>

@@ -89,7 +89,10 @@ exports.show = async (req, res, next) => {
             };
         }));
 
-        res.render('teams/show', { team, teamMembers, adminUser, isMember }); 
+         // Calcular la suma total de los tokens
+         const totalTokens = teamMembers.reduce((sum, member) => sum + member.tokens, 0);
+
+        res.render('teams/show', { team, teamMembers, adminUser, isMember, totalTokens }); 
     } catch (error) {
         next(error);
     }

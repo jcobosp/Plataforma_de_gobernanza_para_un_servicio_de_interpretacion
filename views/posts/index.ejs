@@ -42,6 +42,9 @@
             <!-- </div> -->
         </div>
       </div>
+      <% if (!hasResults) { %>
+        <p class="center-textfiltro">No hay resultados para este tipo de propuestas.</p>
+      <% } %>
 
         <div class="row">
           <% for (var i in posts) { %>

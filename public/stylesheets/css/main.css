@@ -1863,6 +1863,10 @@ input[type="checkbox"]:checked::before {
   color: white;
 }
 
+.center-textfiltro {
+  text-align: center;
+}
+
 .animated-button-crearpost {
   animation: glow 2s ease-in-out infinite;
   color: black; 

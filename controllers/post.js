@@ -49,8 +49,10 @@ exports.index = async (req, res, next) => {
             ]
         });
 
+        const hasResults = posts.length > 0;
+
         const postInd = 'posts/index.ejs';
-        res.render(postInd, {posts, deletedPosts, filterType: ''});
+        res.render(postInd, {posts, deletedPosts, filterType: '', hasResults});
     } 
     catch (error) {
         next(error);
@@ -708,6 +710,8 @@ exports.applyRewards = async () => {
 
 exports.filter = async (req, res, next) => {
     try {
+
+        let hasResults = false;
         const currentDate = new Date();
         const filterType = req.query.filter;
 
@@ -736,6 +740,9 @@ exports.filter = async (req, res, next) => {
             }
         });
 
+        // Verificar si hay resultados
+        hasResults = posts.length > 0;
+
         const deletedPosts = await models.DeletedPost.findAll({
             include: [
                 {
@@ -745,7 +752,7 @@ exports.filter = async (req, res, next) => {
             ]
         });
 
-        res.render('posts/index', { posts, filterType, deletedPosts });
+        res.render('posts/index', { posts, filterType, deletedPosts, hasResults });
     } catch (error) {
         next(error);
     }
