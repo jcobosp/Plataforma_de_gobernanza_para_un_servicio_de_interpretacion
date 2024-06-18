@@ -1,32 +1,162 @@
+
 'use strict';
 /** @type {import('sequelize-cli').Migration} */
-module.exports = 
-{
-  async up (queryInterface, Sequelize) {
-   
+module.exports = {
+  async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('Posts', [
       {
-          title: 'Primer Post',
-          body: 'Esta práctica implementa un Blog.',
-          createdAt: new Date(),
-          updatedAt: new Date()
+        title: 'Mejora en la Capacitación Continua de los Intérpretes',
+        body: 'Proponemos la implementación de un programa de capacitación continua para todos los intérpretes del equipo. Este programa incluiría talleres mensuales, acceso a recursos educativos en línea, y la posibilidad de asistir a conferencias y seminarios sobre interpretación. El objetivo es asegurar que nuestros intérpretes mantengan y mejoren sus habilidades, adaptándose a las últimas tendencias y tecnologías en el campo de la interpretación.',
+        attachmentId: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        authorId: null,
+        TeamId: 1,  // Interpretación
+        votingStartDate: new Date(),
+        votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        applicationDate: new Date(),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        votesFor: 0,
+        votesAgainst: 0,
+        abstentions: 0,
+        vetoed: false,
+        min_voting: 1,
+        max_voting: 5,
+        min_users_voted: 3,
+        voting_reward: 10,
+        voting_failure_penalty: 5,
+        voting_success_reward: 15,
+        votingRewardGiven: false,
+        usersVoted: ''
       },
       {
-          title: 'Segundo Post',
-          body: 'Todo el mundo puede crear posts.',
-          createdAt: new Date(),
-          updatedAt: new Date()
+        title: 'Implementación de una Herramienta de Gestión de Proyectos',
+        body: 'Proponemos la adopción de una nueva herramienta de gestión de proyectos para mejorar la eficiencia en la organización de eventos. Esta herramienta permitirá una mejor planificación, seguimiento de tareas, y comunicación entre los miembros del equipo. Herramientas sugeridas incluyen Asana, Trello o Monday.com. La implementación de esta herramienta facilitará la coordinación y reducirá el riesgo de errores logísticos.',
+        attachmentId: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        authorId: null,
+        TeamId: 2,  // Coordinación
+        votingStartDate: new Date(),
+        votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        applicationDate: new Date(),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        votesFor: 0,
+        votesAgainst: 0,
+        abstentions: 0,
+        vetoed: false,
+        min_voting: 1,
+        max_voting: 5,
+        min_users_voted: 3,
+        voting_reward: 10,
+        voting_failure_penalty: 5,
+        voting_success_reward: 15,
+        votingRewardGiven: false,
+        usersVoted: ''
       },
       {
-          title: 'Tercer Post',
-          body: 'Cada post puede tener una imagen adjunta.',
-          createdAt: new Date(),
-          updatedAt: new Date()
+        title: 'Digitalización de Documentos y Archivos',
+        body: 'Proponemos un proyecto para digitalizar todos los documentos y archivos administrativos, convirtiéndolos en formatos electrónicos accesibles a través de un sistema de gestión documental. Esto mejorará la eficiencia en la búsqueda y manejo de documentos, reducirá el uso de papel, y garantizará la seguridad y la integridad de la información.',
+        attachmentId: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        authorId: null,
+        TeamId: 3,  // Documentación y Gestión
+        votingStartDate: new Date(),
+        votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        applicationDate: new Date(),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        votesFor: 0,
+        votesAgainst: 0,
+        abstentions: 0,
+        vetoed: false,
+        min_voting: 1,
+        max_voting: 5,
+        min_users_voted: 3,
+        voting_reward: 10,
+        voting_failure_penalty: 5,
+        voting_success_reward: 15,
+        votingRewardGiven: false,
+        usersVoted: ''
+      },
+      {
+        title: 'Mejora del Entorno de Trabajo y Bienestar del Personal',
+        body: 'Proponemos una serie de mejoras en el entorno de trabajo para aumentar la comodidad y el bienestar del personal. Esto incluiría la actualización del mobiliario de oficina, la creación de espacios de descanso, y la implementación de programas de bienestar como clases de yoga o meditación en la oficina. El objetivo es crear un ambiente de trabajo más agradable y saludable para todos.',
+        attachmentId: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        authorId: null,
+        TeamId: 4,  // Administración
+        votingStartDate: new Date(),
+        votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        applicationDate: new Date(),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        votesFor: 0,
+        votesAgainst: 0,
+        abstentions: 0,
+        vetoed: false,
+        min_voting: 1,
+        max_voting: 5,
+        min_users_voted: 3,
+        voting_reward: 10,
+        voting_failure_penalty: 5,
+        voting_success_reward: 15,
+        votingRewardGiven: false,
+        usersVoted: ''
+      },
+      {
+        title: 'Campaña de Marketing Digital en Redes Sociales',
+        body: 'Proponemos lanzar una campaña de marketing digital en redes sociales para aumentar la visibilidad de nuestros servicios de interpretación. La campaña incluirá anuncios dirigidos, contenido patrocinado, y la colaboración con influencers del sector. El objetivo es atraer a nuevos clientes y posicionar nuestra marca como líder en el mercado.',
+        attachmentId: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        authorId: null,
+        TeamId: 5,  // Marketing
+        votingStartDate: new Date(),
+        votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        applicationDate: new Date(),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        votesFor: 0,
+        votesAgainst: 0,
+        abstentions: 0,
+        vetoed: false,
+        min_voting: 1,
+        max_voting: 5,
+        min_users_voted: 3,
+        voting_reward: 10,
+        voting_failure_penalty: 5,
+        voting_success_reward: 15,
+        votingRewardGiven: false,
+        usersVoted: ''
+      },
+      {
+        title: 'Desarrollo de una Aplicación Móvil para Clientes',
+        body: 'Proponemos el desarrollo de una aplicación móvil que permita a los clientes solicitar servicios de interpretación, gestionar sus reservas, y comunicarse con los intérpretes de manera eficiente. Esta aplicación mejorará la accesibilidad y la conveniencia de nuestros servicios, ofreciendo una experiencia más fluida y moderna para nuestros clientes.',
+        attachmentId: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        authorId: null,
+        TeamId: 6,  // Investigación y Desarrollo (I+D)
+        votingStartDate: new Date(),
+        votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        applicationDate: new Date(),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        votesFor: 0,
+        votesAgainst: 0,
+        abstentions: 0,
+        vetoed: false,
+        min_voting: 1,
+        max_voting: 5,
+        min_users_voted: 3,
+        voting_reward: 10,
+        voting_failure_penalty: 5,
+        voting_success_reward: 15,
+        votingRewardGiven: false,
+        usersVoted: ''
       }
-  ]) ;
+    ], {});
   },
-  async down (queryInterface, Sequelize) {
-     const posts = 'Posts';
-    await queryInterface.bulkDelete(posts, null, {});
+  async down(queryInterface, Sequelize) {
+    await queryInterface.bulkDelete('Posts', null, {});
   }
 };
