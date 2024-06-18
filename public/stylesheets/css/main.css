@@ -1,12 +1,12 @@
 
-/* Fonts */
+/* Fuentes */
 :root {
   --font-default: "Open Sans", sans-serif;
   --font-primary: "Poppins", sans-serif;
   --font-secondary: "Poppins", sans-serif;
 }
 
-/* Colors */
+/* Colores */
 :root {
   --color-default: #4b4342;
   --color-primary: #f57307;
@@ -34,16 +34,6 @@ body {
   font-family: var(--font-default);
   color: var(--color-default);
 }
-/* body {
-  font-family: sans-serif;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 1rem;
-  background: var(--background);
-} */
 
 a {
   color: var(--color-primary);
@@ -144,68 +134,6 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 
-/* .breadcrumbs .page-header {
-  padding: 140px 0 80px 0;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.breadcrumbs .page-header:before {
-  content: "";
-  background-color: rgba(14, 29, 52, 0.8);
-  position: absolute;
-  inset: 0;
-}
-
-.breadcrumbs .page-header h2 {
-  font-size: 56px;
-  font-weight: 500;
-  color: #fff;
-  font-family: var(--font-secondary);
-}
-
-.breadcrumbs .page-header p {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.breadcrumbs nav {
-  background-color: #f3f6fc;
-  padding: 20px 0;
-}
-
-.breadcrumbs nav ol {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-secondary);
-}
-
-.breadcrumbs nav ol a {
-  color: var(--color-primary);
-  transition: 0.3s;
-}
-
-.breadcrumbs nav ol a:hover {
-  text-decoration: underline;
-}
-
-.breadcrumbs nav ol li+li {
-  padding-left: 10px;
-}
-
-.breadcrumbs nav ol li+li::before {
-  display: inline-block;
-  padding-right: 10px;
-  color: #4278cc;
-  content: "/";
-} */
-
 .breadcrumbs .container {
   max-width: 100%;
 }
@@ -215,7 +143,7 @@ section {
   justify-content: flex-start;
   padding: 10px 30px;
   background-color: #fff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1), 0px 8px 11px rgba(0, 0, 0, 0.1); /* Adjust this line */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1), 0px 8px 11px rgba(0, 0, 0, 0.1); 
   border-radius: 50px;
   list-style: none;
   margin-top: 120px;
@@ -226,12 +154,12 @@ section {
 }
 
 .breadcrumb-card li a {
-  color: var(--color-primary); /* Color inicial del enlace, ajusta según tus necesidades */
-  transition: color 0.3s ease; /* Añadido para una transición suave */
+  color: var(--color-primary); 
+  transition: color 0.3s ease; 
 }
 
 .breadcrumb-card li a:hover {
-  color: #FFA500; /* Color naranja brillante al pasar el ratón por encima */
+  color: #FFA500; 
 }
 
 /*--------------------------------------------------------------
@@ -315,11 +243,7 @@ section {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-/* .header {
-  transition: all 0.5s;
-  z-index: 997;
-  padding: 30px 0;
-} */
+
 .container-fluid.container-xl.d-flex.align-items-center.justify-content-start {
   justify-content: flex-start;
   max-width: 100%;
@@ -337,19 +261,12 @@ section {
 
 .nav-container {
   transition: padding 0.5s ease;
-  border-radius: 50px; /* Agrega bordes redondos */
-  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Agrega sombra para dar efecto flotante */
-  background: rgba(0 , 0 , 0, 0.9); /* Asegura que el fondo siempre esté presente */
+  border-radius: 50px; 
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); 
+  background: rgba(0 , 0 , 0, 0.9); 
   margin: 3px 0px 3px auto;
   padding: 8px;
 }
-
-
-/* .header.sticked {
-  background: rgba(14, 29, 52, 0.9);
-  padding: 15px 0;
-  box-shadow: 0px 2px 20px rgba(14, 29, 52, 0.1);
-} */
 
 .header.sticked {
   padding: 5px 0;
@@ -399,17 +316,17 @@ section {
 
 .navbar ul {
   display: flex;
-  justify-content: space-between; /* Distribuye los elementos uniformemente */
+  justify-content: space-between; 
 }
 
 .navbar ul li:last-child {
   display: flex;
-  gap: 10px; /* Espacio entre los botones de "Registrarse" e "Iniciar sesión" */
+  gap: 10px; 
 }
 
 .page-links {
-  margin-right: 10px; /* Ajusta este valor a tus necesidades */
-  margin-left: 10px; /* Ajusta este valor a tus necesidades */
+  margin-right: 10px; 
+  margin-left: 10px; 
 }
 
 /*--------------------------------------------------------------
@@ -430,7 +347,7 @@ section {
 
   .navbar ul li:last-child {
     display: flex;
-    gap: 5px; /* Reduce el espacio entre los botones de "Registrarse" e "Iniciar sesión" */
+    gap: 5px; 
   }
 
   .navbar li {
@@ -457,13 +374,6 @@ section {
     line-height: 0;
     margin-left: 5px;
   }
-
-  /* .navbar a:hover,
-  .navbar .active,
-  .navbar .active:focus,
-  .navbar li:hover>a {
-    color: #fff;
-  } */
 
   .navbar .logout,
   .navbar .logout:focus {
@@ -504,20 +414,20 @@ section {
   
   .header.sticked .navbar .get-a-quote {
   transition: padding 0.7s ease, margin 0.5s ease;
-  padding: 6px 15px 6px 15px; /* Ajusta estos valores a tus necesidades */
-  margin-left: 15px; /* Ajusta este valor a tus necesidades */
+  padding: 6px 15px 6px 15px; 
+  margin-left: 15px; 
   }
 
   .header.sticked .navbar .logout{
   transition: padding 0.7s ease, margin 0.5s ease;
-  padding: 6px 15px 6px 15px; /* Ajusta estos valores a tus necesidades */
+  padding: 6px 15px 6px 15px; 
   margin-left: 200px;
   }
 
   .header.sticked .navbar .get-a-quote,
   .header.sticked .navbar .logout {
     transition: font-size 0.5s ease;
-    font-size: 14px; /* Ajusta este valor a tus necesidades */
+    font-size: 14px; 
   }
 
   .header.sticked .navbar .logout:hover,
@@ -605,14 +515,6 @@ section {
     display: none;
   }
 }
-
-/* FOTO DE MENU */
-/* #hero {
-  width: 100%;
-  height: 100vh;
-  background: linear-gradient(45deg, rgba(254 , 239 , 17, 0.95) 0%, rgba(245 , 115 , 7, 0.95) 100%), url("/images/background/background-12.png") center center no-repeat;
-  background-size: cover;
-} */
 
 .username-color {
   color: var(--color-primary);
@@ -880,7 +782,7 @@ section {
 .imagengradiente-iniciar-sesion {
   width: 100%; 
   height: 100%;
-  background: linear-gradient(to right, #ffb300, #ff8400); /* Reemplaza estos colores con los de tu gradiente */
+  background: linear-gradient(to right, #ffb300, #ff8400); 
 }
 
 .contenido-contenedor-iniciar-sesion {
@@ -902,7 +804,7 @@ section {
   margin-bottom: 1rem;
 }
 .contenido-contenedor-iniciar-sesion span {
-  background: linear-gradient(to right, #ff3300, #df3409); /* Cambia estos colores a los tonos de naranja que prefieras */
+  background: linear-gradient(to right, #ff3300, #df3409); 
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -940,15 +842,15 @@ section {
 
 .formulario-is-wrapper span h2 {
   margin-bottom: 0.1rem;
-  font-weight: bold; /* Agrega esta línea */
-  color: #000000; /* Cambia este valor al color que desees */
+  font-weight: bold; 
+  color: #000000; 
   font-size: 1.75em;
 }
 
 .formulario-is-wrapper > p {
   font-size: 0.875rem;
-  font-weight: bold; /* Agrega esta línea */
-  color: #2b2b2b; /* Cambia este valor al color que desees */
+  font-weight: bold; 
+  color: #2b2b2b; 
   margin-bottom: 2rem;
 }
 
@@ -1051,9 +953,7 @@ a[href="/registrarse"]:hover {
   .logo-iniciar-sesion-contenedor {
     margin-bottom: 1rem;
   }
-  /* .formulario-is-wrapper > h2 {
-    font-size: 1.25rem;
-  } */
+  
   .formulario-is-wrapper > p {
     margin-bottom: 1rem;
   }
@@ -1077,7 +977,7 @@ a[href="/registrarse"]:hover {
 
 .registration-form {
   width: 100%;
-  max-width: 600px; /* Aumenta el ancho máximo de la tarjeta */
+  max-width: 600px; 
   margin-top: 10px;
   margin-right: auto;
   margin-bottom: 30px;
@@ -1085,12 +985,12 @@ a[href="/registrarse"]:hover {
   padding: 20px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   animation: zoomIn 2s;
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añade una transición para el transform y el box-shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .registration-form:hover {
-  transform: translateY(-10px); /* Mueve la tarjeta hacia arriba cuando se pasa el ratón por encima */
-  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.3); /* Intensifica la sombra cuando se pasa el ratón por encima */
+  transform: translateY(-10px); 
+  box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.3); 
 }
 
 .registration-form h4{
@@ -1098,8 +998,8 @@ a[href="/registrarse"]:hover {
 }
 
 .registration-form label img {
-  width: 50px; /* Ajusta el ancho de la imagen */
-  height: 50px; /* Ajusta la altura de la imagen */
+  width: 50px; 
+  height: 50px; 
   margin-bottom: 5px;
 }
 
@@ -1109,24 +1009,24 @@ a[href="/registrarse"]:hover {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra los elementos horizontalmente */
+  align-items: center; 
 }
 
 .form-intro {
-  text-align: center; /* Centra el texto introductorio */
-  margin-bottom: 20px; /* Añade un espacio debajo del texto introductorio */
+  text-align: center; 
+  margin-bottom: 20px; 
   color: black;
   transition: transform 0.3s ease;
 }
 
 .form-intro:hover, .registration-form label:hover {
-  transform: scale(1.1); /* Aumenta la escala cuando se pasa el ratón por encima */
+  transform: scale(1.1); 
 }
 
 .registration-form ul {
   list-style: none;
   padding: 0;
-  width: 80%; /* Ajusta el ancho de la lista para que los elementos se centren */
+  width: 80%; 
 }
 
 .registration-form li {
@@ -1138,7 +1038,7 @@ a[href="/registrarse"]:hover {
 }
 
 .form-intro, .registration-form label {
-  font-weight: bold; /* Hace que el texto sea en negrita */
+  font-weight: bold; 
   transition: transform 0.3s ease
 }
 
@@ -1152,10 +1052,10 @@ a[href="/registrarse"]:hover {
 .registration-form input[type="text"], 
 .registration-form input[type="email"], 
 .registration-form input[type="password"] {
-  width: 80%; /* Reduce el ancho de los inputs */
+  width: 80%; 
   padding: 10px;
   border: 1px solid #8b8b8b;
-  border-radius: 10px; /* Aumenta el radio de los bordes de los inputs para hacerlos más redondos */
+  border-radius: 10px; 
   margin-top: 1px;
   text-align: center;
 }
@@ -1173,7 +1073,7 @@ a[href="/registrarse"]:hover {
 }
 
 .registration-form input[type="submit"]:hover {
-  background-color: #f57307;
+  background-color: #ff7f17;
 }
 
 @keyframes zoomIn {
@@ -1480,8 +1380,8 @@ a[href="/registrarse"]:hover {
   color: rgba(var(--color-secondary));
   background-color: rgba(var(--color-secondary-dark-rgb), 0.7);
   border-color: rgba(var(--color-secondary));
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
-  transform: translateY(-7px); /* Move button up */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+  transform: translateY(-7px); 
 }
 
 .recent-blog-posts .post-box .edit-delete-buttons {
@@ -1507,7 +1407,6 @@ a[href="/registrarse"]:hover {
 }
 
 #claimRewardForm {
-  /* float: right; */
   margin-bottom: 10px;
 }
 
@@ -1702,8 +1601,8 @@ a[href="/registrarse"]:hover {
   color: rgba(var(--color-secondary));
   background-color: rgba(var(--color-secondary-dark-rgb), 0.7);
   border-color: rgba(var(--color-secondary));
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); /* Add shadow */
-  transform: translateY(-7px); /* Move button up */
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+  transform: translateY(-7px); 
 }
 
 .posts-section .post-card .edit-delete-buttons {
@@ -1803,19 +1702,19 @@ a[href="/registrarse"]:hover {
 
 .deletedposts {
   border: 1px solid #ddd;
-  border-radius: 20px; /* Aumentado de 5px a 20px */
+  border-radius: 20px; 
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   margin-bottom: 20px;
-  overflow: hidden; /* Añadido para aplicar el border-radius a la tabla */
+  overflow: hidden; 
 }
 
 
 .deletedteams {
   border: 1px solid #ddd;
-  border-radius: 20px; /* Aumentado de 5px a 20px */
+  border-radius: 20px; 
   box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   margin: 20px 115px 20px 115px;
-  overflow: hidden; /* Añadido para aplicar el border-radius a la tabla */
+  overflow: hidden; 
 }
 
 .deletedposts-header {
@@ -1823,7 +1722,7 @@ a[href="/registrarse"]:hover {
   border-bottom: 1px solid #ddd;
   padding: 15px;
   font-size: 1.25em;
-  text-align: center; /* Añadido para centrar el texto del encabezado */
+  text-align: center; 
 }
 
 .header-content {
@@ -1833,11 +1732,11 @@ a[href="/registrarse"]:hover {
 }
 
 .header-content h2 {
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
 }
 
 .deletedheader-image {
-  width: 60px; /* Establece el tamaño de la imagen */
+  width: 60px; 
   margin-bottom: 35px;
 }
 
@@ -1849,8 +1748,8 @@ a[href="/registrarse"]:hover {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
-  border-collapse: separate; /* Cambiado de collapse a separate */
-  border-spacing: 0; /* Añadido */
+  border-collapse: separate; 
+  border-spacing: 0; 
 }
 
 .deletedposts table th:first-child {
@@ -1873,17 +1772,17 @@ a[href="/registrarse"]:hover {
 .deletedposts .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border: 1px solid #ddd; /* Añadido */
-  text-align: center; /* Añadido para centrar el texto */
+  border: 1px solid #ddd; 
+  text-align: center; 
 }
 
 .deletedposts .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
-  background-color: var(--color-primary); /* Añadido */
-  color: white; /* Añadido */
-  text-transform: uppercase; /* Añadido */
-  font-weight: bold; /* Añadido */
+  background-color: var(--color-primary); 
+  color: white; 
+  text-transform: uppercase; 
+  font-weight: bold; 
 }
 
 .deletedposts .table tbody + tbody {
@@ -1895,11 +1794,11 @@ a[href="/registrarse"]:hover {
 }
 
 .deletedposts .table tbody tr:nth-child(even) {
-  background: #f2f2f2; /* Añadido */
+  background: #f2f2f2; 
 }
 
 .deletedposts .table tbody tr:hover {
-  background: #eaeaea; /* Añadido */
+  background: #eaeaea; 
 }
 
 
@@ -1909,8 +1808,8 @@ a[href="/registrarse"]:hover {
   width: 100%;
   margin-bottom: 1rem;
   color: #212529;
-  border-collapse: separate; /* Cambiado de collapse a separate */
-  border-spacing: 0; /* Añadido */
+  border-collapse: separate; 
+  border-spacing: 0; 
 }
 
 .deletedteams table th:first-child {
@@ -1933,17 +1832,17 @@ a[href="/registrarse"]:hover {
 .deletedteams .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border: 1px solid #ddd; /* Añadido */
-  text-align: center; /* Añadido para centrar el texto */
+  border: 1px solid #ddd; 
+  text-align: center; 
 }
 
 .deletedteams .table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #dee2e6;
-  background-color: var(--color-primary); /* Añadido */
-  color: white; /* Añadido */
-  text-transform: uppercase; /* Añadido */
-  font-weight: bold; /* Añadido */
+  background-color: var(--color-primary); 
+  color: white; 
+  text-transform: uppercase; 
+  font-weight: bold; 
 }
 
 .deletedteams .table tbody + tbody {
@@ -1955,11 +1854,11 @@ a[href="/registrarse"]:hover {
 }
 
 .deletedteams .table tbody tr:nth-child(even) {
-  background: #f2f2f2; /* Añadido */
+  background: #f2f2f2; 
 }
 
 .deletedteams .table tbody tr:hover {
-  background: #eaeaea; /* Añadido */
+  background: #eaeaea; 
 }
 
 #showMore {
@@ -2032,16 +1931,16 @@ a[href="/registrarse"]:hover {
 
 .team-section-show .card .team-info .team-body {
   flex: 2;
-  margin-right: 40px; /* Ajusta este valor para cambiar el espacio entre el cuerpo del equipo y la insignia del equipo */
+  margin-right: 40px; 
   margin-left: 20px;
 }
 
 .team-section-show .card .team-info .team-badge {
-  flex: 1; /* Ajusta este valor para cambiar el tamaño de la insignia del equipo */
+  flex: 1; 
 }
 
 .team-section-show .card .team-info .team-badge img {
-  width: 100%; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  width: 100%; 
   height: auto;
   margin-right: 20px;
 }
@@ -2086,7 +1985,7 @@ a[href="/registrarse"]:hover {
 }
 
 .team-section-show .card .team-stats .stat-item .stat-icon {
-  width: 60px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  width: 60px; 
   height: auto;
   margin-right: 10px;
 }
@@ -2113,9 +2012,9 @@ a[href="/registrarse"]:hover {
 }
 
 .section-header-equipoicono .header-icon {
-  height: 60px; /* Ajusta este valor para cambiar el tamaño de la imagen */
+  height: 60px; 
   width: auto;
-  margin-left: 5px; /* Ajusta este valor para cambiar el espacio entre el título y la imagen */
+  margin-left: 5px; 
 }
 
 .tablausuarios table {
@@ -2126,7 +2025,6 @@ a[href="/registrarse"]:hover {
   font-size: 1em;
   color: #333;
   background: #fafafa;
-  /* border-radius: 20px; */
 }
 
 .tablausuarios table th:first-child {
@@ -2161,10 +2059,10 @@ a[href="/registrarse"]:hover {
 }
 
 .tablausuarios table th .header-icon {
-  height: 50px; /* Ajusta este valor para cambiar el tamaño de las imágenes */
+  height: 50px; 
   width: auto;
   vertical-align: middle;
-  margin-left: 5px; /* Ajusta este valor para cambiar el espacio entre el título y la imagen */
+  margin-left: 5px; 
   margin-bottom: 5px;
 }
 
@@ -2204,7 +2102,7 @@ a[href="/registrarse"]:hover {
   height: 10px;
   background-color: var(--color-primary);
   transition: width 2s ease-in-out;
-  width: 0%; /* Initial width */
+  width: 0%; 
 }
 
 .tablausuarios td .percentage {
@@ -2231,10 +2129,10 @@ a[href="/registrarse"]:hover {
 }
 
 .tablausuarios .percentage {
-  position: absolute; /* Añadido */
-  top: 50%; /* Añadido */
-  right: 5px; /* Añadido */
-  transform: translateY(-50%); /* Añadido */
+  position: absolute; 
+  top: 50%; 
+  right: 5px; 
+  transform: translateY(-50%); 
   color: #000;
   font-size: 12px;
   line-height: 20px;
@@ -2243,14 +2141,14 @@ a[href="/registrarse"]:hover {
 /* APARTADO PARA DONAR PUNTOS WALLET A OTROS USERS */
 .donation-form {
   width: 300px;
-  background-color: #ffffff; /* Tarjeta de color blanco */
+  background-color: #ffffff; 
   padding: 20px;
   margin-top: 20px;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
   color: var(--color-quintary);
-  display: flex; /* Añadido */
-  flex-direction: column; /* Añadido */
+  display: flex; 
+  flex-direction: column; 
 }
 
 .donation-form .form-group {
@@ -2324,7 +2222,7 @@ a[href="/registrarse"]:hover {
 
 .donation-form input[type="range"] {
   width: 100%;
-  height: 8px; /* Barra más estrecha */
+  height: 8px; 
   border-radius: 5px;
   background: var(--color-terciary);
   outline: none;
@@ -2334,8 +2232,8 @@ a[href="/registrarse"]:hover {
 .donation-form input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px; /* Círculo más sutil */
-  height: 18px; /* Círculo más sutil */
+  width: 18px; 
+  height: 18px; 
   border-radius: 50%;
   background: var(--color-primary);
   cursor: pointer;
@@ -2375,20 +2273,20 @@ a[href="/registrarse"]:hover {
   margin-top: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-  display: flex; /* Añadido */
-  flex-direction: column; /* Añadido */
+  display: flex; 
+  flex-direction: column; 
 }
 
 .inflate-form h3 {
   color: #b30000;
   margin-bottom: 10px;
-  font-size: 24px; /* Aumentado el tamaño de la fuente */
+  font-size: 24px; 
 }
 
 .inflate-form p {
   color: #333;
   margin-bottom: 20px;
-  font-size: 18px; /* Aumentado el tamaño de la fuente */
+  font-size: 18px; 
 }
 
 .inflate-form .inflate-button {
@@ -2402,7 +2300,7 @@ a[href="/registrarse"]:hover {
   font-size: 18px;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  margin-top: 25px; /* Añadido */
+  margin-top: 25px; 
 }
 
 .inflate-form .inflate-button:hover {
@@ -2417,7 +2315,7 @@ a[href="/registrarse"]:hover {
 }
 
 .donation-form {
-  width: 70%; /* 50% - 2% para dar un poco de espacio entre las tarjetas */
+  width: 70%; 
 }
 
 .donation-form .donarpuntos {
@@ -2463,7 +2361,7 @@ a[href="/registrarse"]:hover {
 .button-container-volverateams {
   display: flex;
   justify-content: center;
-  margin: 20px 0; /* Añadido para dar margen en la parte superior e inferior */
+  margin: 20px 0; 
 }
 
 .volverateams {
@@ -2490,14 +2388,12 @@ a[href="/registrarse"]:hover {
 }
 
 .post-section-show .vertical-card-posts1 {
-  /* Cambia el ancho de la tarjeta vertical aquí */
   width: 100%;
   min-height: 686px;
   transition: all 0.3s ease-in-out;
 }
 
 .post-section-show .horizontal-card-posts1 {
-  /* Cambia el ancho de la tarjeta horizontal aquí */
   width: 100%;
   transition: all 0.3s ease-in-out;
 }
@@ -2522,20 +2418,20 @@ a[href="/registrarse"]:hover {
 
 .post-section-show .card-content1 {
   display: flex;
-  flex-direction: column; /* Hace que el contenido de la tarjeta se apile verticalmente */
+  flex-direction: column; 
 }
 
 .post-section-show .card-image {
   width: 100%;
   height: auto;
-  border-radius: 10px; /* Hace que la imagen sea redonda */
-  margin-bottom: 30px; /* Agrega espacio debajo de la imagen */
+  border-radius: 10px; 
+  margin-bottom: 30px; 
 }
 
 .post-section-show .card-image img {
   width: 100%;
   height: auto;
-  border-radius: 5px; /* Hace que la imagen sea redonda */
+  border-radius: 5px; 
 }
 
 .post-section-show .card-info-posts1 {
@@ -2555,17 +2451,17 @@ a[href="/registrarse"]:hover {
 }
 
 .post-section-show .card-dates1 {
-  text-align: center; /* Centra el texto */
-  line-height: 1.5; /* Agrega espacio entre las líneas */
+  text-align: center; 
+  line-height: 1.5; 
 }
 
 .post-section-show .card-dates1 p {
-  font-size: 18px; /* Aumenta el tamaño de la fuente */
-  font-weight: bold; /* Hace que el texto sea más grueso */
-  color: black; /* Cambia el color del texto */
-  display: flex; /* Añade flexbox para alinear la imagen y el texto */
-  align-items: center; /* Centra verticalmente la imagen y el texto */
-  justify-content: center; /* Centra horizontalmente la imagen y el texto */
+  font-size: 18px; 
+  font-weight: bold; 
+  color: black; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
 }
 
 .post-section-show .card-dates1 i {
@@ -2574,29 +2470,29 @@ a[href="/registrarse"]:hover {
 }
 
 .post-section-show .card-dates1 img {
-  width: 45px; /* Ajusta el tamaño de la imagen */
-  height: 45px; /* Ajusta el tamaño de la imagen */
-  margin-right: 5px; /* Añade margen a la derecha de la imagen */
+  width: 45px; 
+  height: 45px; 
+  margin-right: 5px; 
 }
 
 .post-section-show .card-author {
-  text-align: center; /* Centra el texto */
-  font-size: 18px; /* Aumenta el tamaño de la fuente */
-  font-weight: bold; /* Hace que el texto sea más grueso */
-  color: black; /* Cambia el color del texto */
-  margin-top: 20px; /* Agrega espacio encima del bloque de autor */
+  text-align: center; 
+  font-size: 18px; 
+  font-weight: bold; 
+  color: black; 
+  margin-top: 20px; 
 }
 
 .post-section-show .card-author img {
-  width: 40px; /* Ajusta el tamaño de la imagen */
-  height: 40px; /* Ajusta el tamaño de la imagen */
-  margin-right: 5px; /* Añade margen a la derecha de la imagen */
+  width: 40px; 
+  height: 40px; 
+  margin-right: 5px; 
 }
 
 .post-section-show .detalles-user img {
-  width: 42px; /* Ajusta el tamaño de la imagen */
-  height: 42px; /* Ajusta el tamaño de la imagen */
-  margin-right: 5px; /* Añade margen a la derecha de la imagen */
+  width: 42px; 
+  height: 42px; 
+  margin-right: 5px;
 }
 
 .cardposts-reglasvotacion {
@@ -2630,29 +2526,29 @@ a[href="/registrarse"]:hover {
 .card-header-reglasvotacion {
   background-color: white;
   color: black;
-  font-size: 24px; /* Aumenta el tamaño de la fuente */
-  padding: 10px; /* Aumenta el padding */
+  font-size: 24px; 
+  padding: 10px; 
   border-radius: 5px 5px 0 0;
   margin-bottom: -5px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Alinea los elementos a los extremos */
-  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
+  justify-content: space-between; 
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; 
 }
 
 .card-header-reglasvotacion:hover {
-  transform: scale(1.1); /* Aumenta el tamaño del contenido en un 10% */
+  transform: scale(1.1); 
 }
 
 .card-header-reglasvotacion .header-icon {
-  width: 50px; /* Ajusta el tamaño de la imagen */
-  height: 50px; /* Ajusta el tamaño de la imagen */
+  width: 50px; 
+  height: 50px; 
 }
 
 .card-header-reglasvotacion h4 {
   margin-left: 11px;
   margin-right: 1px;
-  font-weight: bold; /* Hace que el texto sea más grueso */
+  font-weight: bold; 
 }
 
 .card-body-reglasvotacion {
@@ -2680,7 +2576,7 @@ a[href="/registrarse"]:hover {
 }
 
 .card-body-reglasvotacionespecial .icon-recompensas{
-  width: 40px; /* Ajusta el tamaño de la imagen */
+  width: 40px;
   height: 40px;
   margin-right: 11px;
 }
@@ -2690,7 +2586,7 @@ a[href="/registrarse"]:hover {
   width: 100%;
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
-  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; 
 }
 
 .card-body-reglasvotacionespecial p span {
@@ -2718,10 +2614,9 @@ a[href="/registrarse"]:hover {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  /* justify-content: space-between; */
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
-  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; /* Añade una transición */
+  transition: all 0.3s ease-in-out, transform 0.3s ease-in-out; 
 }
 
 .card-body-reglasvotacion p:last-child {
@@ -2729,9 +2624,9 @@ a[href="/registrarse"]:hover {
 }
 
 .card-body-reglasvotacion p span {
-  display: flex; /* Hace que el span sea un contenedor flexible */
-  align-items: center; /* Alinea los elementos al centro del eje transversal */
-  justify-content: flex-end; /* Alinea los elementos al final del eje principal */
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-end; 
   flex-grow: 1;
 }
 
@@ -2749,13 +2644,11 @@ a[href="/registrarse"]:hover {
 }
 
 .team-voting-details {
-  /* Cambia el ancho de la tarjeta de Team and Voting Details aquí */
   width: 100%;
   height: auto;
 }
 
 .rewards-penalties {
-  /* Cambia el ancho de la tarjeta de Rewards and Penalties aquí */
   width: 100%;
   height: auto;
 }
@@ -2872,14 +2765,6 @@ a[href="/registrarse"]:hover {
   transition: all 0.3s ease-in-out;
 }
 
-/* .user-voting-details .card-body-reglasvotacion p:last-child {
-  border-bottom: none;
-} */
-
-/* .user-voting-details .card-body-reglasvotacion p:hover {
-  background-color: #f9f9f9;
-} */
-
 .user-voting-details .card-body-reglasvotacion p i {
   margin-right: 10px;
   color: var(--color-primary);
@@ -2902,17 +2787,6 @@ a[href="/registrarse"]:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-/* .cardposts-votacionestado .card-right-side {
-  flex: 0 0 20%; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.cardposts-votacionestado .card-right-side img {
-  max-height: 100%;
-} */
-
 .voting-status {
   background: white;
   border-radius: 10px;
@@ -2923,7 +2797,6 @@ a[href="/registrarse"]:hover {
 }
 
 .voting-status .card-header {
-  /* background: linear-gradient(90deg, #535353, #000); */
   color: #fff;
   padding: 10px;
   border-radius: 10px;
@@ -2974,13 +2847,13 @@ a[href="/registrarse"]:hover {
 }
 
 .voting-status .card-body-votacionestado .card-right-side {
-  flex: 0 0 27%; /* Ajusta el tamaño a 25% */
+  flex: 0 0 27%; 
 }
 
 .voting-status .card-body-votacionestado .card-right-side img{
-  height: 260px; /* reducir a la mitad */
-  width: 260px; /* reducir a la mitad */
-  margin: 10px; /* agregar margen */
+  height: 260px; 
+  width: 260px; 
+  margin: 10px; 
   transition: transform 0.3s ease-in-out;
 }
 
@@ -3064,11 +2937,11 @@ a[href="/registrarse"]:hover {
 
 .race {
   position: relative;
-  height: auto; /* Ajusta la altura automáticamente */
+  height: auto; 
   background: #f8f9fa;
   border-radius: 20px;
   overflow: hidden;
-  padding: 20px; /* Añade un poco de espacio alrededor de las barras */
+  padding: 20px; 
   display: flex;
   flex-direction: column;
   margin-right: 45px;
@@ -3081,44 +2954,42 @@ a[href="/registrarse"]:hover {
   height: 40px;
   background: #e9ecef;
   border-radius: 5px;
-  margin-bottom: 20px; /* Añade espacio entre las barras */
-  /* flex: 1; */
+  margin-bottom: 20px; 
   overflow: hidden;
 }
 
 .race .progress-bar-container:last-child {
-  margin-top: 20px; /* Añade un margen superior a la última barra (abstenciones) */
+  margin-top: 20px; 
 }
 
 .race .progress-bar {
-  /* position: absolute; */
   height: 100%;
   transition: width 0.5s ease;
-  display: flex; /* Añade flex para centrar el texto */
-  align-items: center; /* Centra el texto verticalmente */
-  justify-content: center; /* Centra el texto horizontalmente */
-  color: white; /* Cambia el color del texto a blanco */
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: white; 
 }
 
 .race .progress-bar::after {
   content: "";
   position: absolute;
   top: 0;
-  right: -10px; /* adjust this value to position the arrow correctly */
+  right: -10px; 
   width: 0;
   height: 0;
-  border-top: 10px solid transparent; /* adjust this value to change the size of the arrow */
-  border-bottom: 10px solid transparent; /* adjust this value to change the size of the arrow */
-  border-left: 10px solid #27C628; /* adjust this value to change the size and color of the arrow */
+  border-top: 10px solid transparent; 
+  border-bottom: 10px solid transparent; 
+  border-left: 10px solid #27C628; 
 }
 
 .race .finish-line {
-  width: 40px; /* Ajusta el ancho para acomodar las 4 líneas */
+  width: 40px; 
   height: 100%;
   position: absolute;
   right: 0;
   top: -5px;
-  display: flex; /* Añade flex para alinear las líneas horizontalmente */
+  display: flex; 
 }
 
 .race .finish-line .line {
@@ -3140,7 +3011,7 @@ a[href="/registrarse"]:hover {
     #fff 5%, 
     #000 5%, 
     #000 10%
-  ); /* Invierte el patrón para las líneas pares */
+  ); 
 }
 
 .race .vote-for {
@@ -3155,16 +3026,16 @@ a[href="/registrarse"]:hover {
   background: #253b3b;
 }
 .race .vote-abstain {
-  position: relative; /* Añade posicionamiento relativo para posicionar el icono */
-  background: #ccc; /* Cambia el color de fondo a algo neutral */
+  position: relative; 
+  background: #ccc; 
 }
 
 .race .vote-abstain .fas {
-  position: absolute; /* Posiciona el icono absolutamente dentro de la barra */
-  top: 50%; /* Centra el icono verticalmente */
-  left: 50%; /* Centra el icono horizontalmente */
-  transform: translate(-50%, -50%); /* Ajusta la posición del icono para que esté perfectamente centrado */
-  opacity: 0.5; /* Ajusta la opacidad del icono para que sea semi-transparente */
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  opacity: 0.5; 
 }
 
 .card-body-votacionestado .spectators{
@@ -3174,13 +3045,13 @@ a[href="/registrarse"]:hover {
 
 .card-body-votacionestado .spectator-icon {
   opacity: 0.3;
-  color: #ccc; /* color of inactive icons */
-  font-size: 20px; /* adjust size as needed */
+  color: #ccc; 
+  font-size: 20px; 
 }
 
 .card-body-votacionestado .spectator-icon.active {
   opacity: 1;
-  color: #ffc107; /* color of active icons */
+  color: #ffc107; 
 }
 
 .card-body-votacionestado #spectators-icons {
@@ -3206,8 +3077,8 @@ a[href="/registrarse"]:hover {
 }
 
 .image-voting-section {
-  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
-  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+  flex: 0 0 30%;
+  max-width: 30%; 
 }
 
 .image-voting-section img {
@@ -3236,11 +3107,11 @@ a[href="/registrarse"]:hover {
 
 .voting-form-header h2 {
   text-align: center;
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
 }
 
 .voting-form-header img.voting-image {
-  width: 50px; /* Establece el tamaño de la imagen */
+  width: 50px; 
   margin-bottom: 15px;
 }
 
@@ -3255,8 +3126,8 @@ a[href="/registrarse"]:hover {
 }
 
 .image-voting-section-editar {
-  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
-  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+  flex: 0 0 30%; 
+  max-width: 30%; 
 }
 
 .image-voting-section-editar img {
@@ -3294,7 +3165,7 @@ a[href="/registrarse"]:hover {
 .voting-form-header-equip h2,
 .voting-form-header-vetado h2 {
   text-align: center;
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
   font-weight: bold;
   color: black;
 }
@@ -3304,7 +3175,7 @@ a[href="/registrarse"]:hover {
 .voting-form-header-ini img.voting-image-ini,
 .voting-form-header-equip img.voting-image-equip,
 .voting-form-header-vetado img.voting-image-vetado {
-  width: 50px; /* Establece el tamaño de la imagen */
+  width: 50px; 
   margin-bottom: 15px;
 }
 
@@ -3322,8 +3193,8 @@ a[href="/registrarse"]:hover {
 }
 
 .image-voting-section-fin {
-  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
-  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+  flex: 0 0 30%; 
+  max-width: 30%; 
 }
 
 .image-voting-section-fin img {
@@ -3353,13 +3224,13 @@ a[href="/registrarse"]:hover {
 
 .voting-form-header-fin h2 {
   text-align: center;
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
   font-weight: bold;
   color: black;
 }
 
 .voting-form-header-fin img.voting-image-editar {
-  width: 50px; /* Establece el tamaño de la imagen */
+  width: 50px; 
   margin-bottom: 15px;
 }
 
@@ -3374,8 +3245,8 @@ a[href="/registrarse"]:hover {
 }
 
 .image-voting-section-ini {
-  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
-  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+  flex: 0 0 30%; 
+  max-width: 30%; 
 }
 
 .image-voting-section-ini img {
@@ -3405,13 +3276,13 @@ a[href="/registrarse"]:hover {
 
 .voting-form-header-ini h2 {
   text-align: center;
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
   font-weight: bold;
   color: black;
 }
 
 .voting-form-header-ini img.voting-image-editar {
-  width: 50px; /* Establece el tamaño de la imagen */
+  width: 50px; 
   margin-bottom: 15px;
 }
 
@@ -3427,8 +3298,8 @@ a[href="/registrarse"]:hover {
 }
 
 .image-voting-section-equip {
-  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
-  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+  flex: 0 0 30%; 
+  max-width: 30%; 
 }
 
 .image-voting-section-equip img {
@@ -3458,13 +3329,13 @@ a[href="/registrarse"]:hover {
 
 .voting-form-header-equip h2 {
   text-align: center;
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
   font-weight: bold;
   color: black;
 }
 
 .voting-form-header-equip img.voting-image-editar {
-  width: 50px; /* Establece el tamaño de la imagen */
+  width: 50px; 
   margin-bottom: 15px;
 }
 
@@ -3478,8 +3349,8 @@ a[href="/registrarse"]:hover {
 }
 
 .image-voting-section-vetado {
-  flex: 0 0 30%; /* Esto hace que la imagen ocupe el 30% del ancho del contenedor */
-  max-width: 30%; /* Esto asegura que la imagen no se estire más allá del 30% */
+  flex: 0 0 30%; 
+  max-width: 30%; 
 }
 
 .image-voting-section-vetado img {
@@ -3509,13 +3380,13 @@ a[href="/registrarse"]:hover {
 
 .voting-form-header-vetado h2 {
   text-align: center;
-  margin-right: 10px; /* Añade un margen a la derecha del título para separarlo de la imagen */
+  margin-right: 10px; 
   font-weight: bold;
   color: black;
 }
 
 .voting-form-header-vetado img.voting-image-editar {
-  width: 50px; /* Establece el tamaño de la imagen */
+  width: 50px; 
   margin-bottom: 15px;
 }
 
@@ -3589,9 +3460,8 @@ a[href="/registrarse"]:hover {
   opacity: 0.7;
   transition: opacity .2s;
   border-radius: 60px;
-  /* Add a linear gradient for the track background */
   background: linear-gradient(yellow, var(--color-primary)) no-repeat var(--color-quintary);
-  background-size: 0% 100%; /* Start at 50% (change it with JavaScript) */
+  background-size: 0% 100%; 
   
 }
 
@@ -3620,7 +3490,6 @@ a[href="/registrarse"]:hover {
   cursor: pointer;
   border-radius: 50%;
   margin-top: -2.5px;
-  /* Add a box shadow for the glow effect */
   box-shadow: 0 0 20px yellow;
 }
 
@@ -3632,7 +3501,6 @@ a[href="/registrarse"]:hover {
   cursor: pointer;
   border-radius: 50%;
   margin-top: -2.5px;
-  /* Add a box shadow for the glow effect */
   box-shadow: 0 0 20px yellow;
 }
 
@@ -3648,7 +3516,7 @@ a[href="/registrarse"]:hover {
 .voting-form h2 {
   text-align: center;
   margin-bottom: 20px;
-  font-weight: bold; /* Hace el título en negrita */
+  font-weight: bold; 
   color: black;
 }
 
@@ -3669,65 +3537,59 @@ a[href="/registrarse"]:hover {
   transition: all 0.3s ease-in-out;
   background-color: #6c757d;
   display: block;
-  margin: 0 auto; /* Centra el botón */
+  margin: 0 auto; 
 }
 
 
 .change-vote-button:hover {
   transform: scale(1.05);
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4); /* Agrega sombra durante la animación */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4); 
 }
 
 .changevotesection {
   text-align: center;
   margin-bottom: 20px;
-  font-weight: bold; /* Hace el título en negrita */
+  font-weight: bold; 
   color: black;
 }
 
-/* Estilo para el mensaje cuando la votación ha finalizado */
 .votacionformulario .votacionfin {
-  color: #e60017; /* Rojo */
+  color: #e60017; 
   font-weight: bold;
   text-align: center;
   font-size: 20px;
 }
 
-/* Estilo para el mensaje cuando la votación aún no ha comenzado */
 .votacionformulario .votacionnoiniciada {
-  color: #ff4907; /* Amarillo */
+  color: #ff4907; 
   font-weight: bold;
   text-align: center;
   font-size: 20px;
 }
 
-/* Estilo para el mensaje cuando el usuario no pertenece al equipo */
 .votacionformulario .votacionnoequipo {
-  color: #0d1f2f; /* Gris */
+  color: #0d1f2f; 
   font-weight: bold;
   text-align: center;
   font-size: 20px;
 }
 
-/* Estilo para el mensaje cuando la propuesta ha sido vetada */
 .votacionformulario .votacioncalceladaveto {
-  color: #a80000; /* Verde */
+  color: #a80000; 
   font-weight: bold;
   text-align: center;
   font-size: 20px;
 }
 
-/* Estilo para el mensaje cuando el usuario no ha iniciado sesión */
 .votacionformulario .votacioniniciarses {
-  color: var(--color-primary); /* Azul */
+  color: var(--color-primary); 
   font-weight: bold;
   text-align: center;
   font-size: 20px;
 }
 
-/* Estilo para el mensaje cuando no se alcanzó el número mínimo de usuarios necesarios a votar */
 .votacionformulario .votacioninsuficientesusers {
-  color: #a80000; /* Rojo */
+  color: #a80000; 
   font-weight: bold;
   text-align: center;
   font-size: 20px;
@@ -3736,7 +3598,7 @@ a[href="/registrarse"]:hover {
 .button-container-volverapropuestas {
   display: flex;
   justify-content: center;
-  margin: 20px 0; /* Añadido para dar margen en la parte superior e inferior */
+  margin: 20px 0; 
 }
 
 .volveraposts {
@@ -3755,7 +3617,7 @@ a[href="/registrarse"]:hover {
 }
 
 .vetocard {
-  width: 650px; /* Ajusta este valor a tus necesidades */
+  width: 650px; 
   background-color: white;
   padding: 20px;
   margin: 20px auto;
@@ -3767,13 +3629,12 @@ a[href="/registrarse"]:hover {
 }
 
 .veto-content {
-  flex: 1; /* Ocupa todo el espacio disponible */
+  flex: 1; 
   margin-top: 20px;
   margin-left: 20px;
 }
 
 .veto-image {
-  /* Ajusta estos valores a tus necesidades */
   width: 250px;
   margin-left: 20px;
 }
@@ -3791,12 +3652,12 @@ a[href="/registrarse"]:hover {
   color: #b30000;
   margin-bottom: 10px;
   font-size: 24px;
-  text-align: center; /* Centra el texto */
-  font-weight: bold; /* Hace el texto en negrita */
+  text-align: center; 
+  font-weight: bold; 
 }
 
 .veto-button {
-  background-color: #f44336; /* Red */
+  background-color: #f44336; 
   color: white;
   border: none;
   padding: 10px;
@@ -3822,16 +3683,16 @@ a[href="/registrarse"]:hover {
 }
 
 .login-button-votacion {
-  display: block; /* Cambia a block para permitir el centrado horizontal con margin */
+  display: block; 
   background-color: var(--color-primary);
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 5px; /* Añade esquinas redondeadas */
-  margin: auto; /* Centra el botón horizontalmente */
-  width: fit-content; /* Asegura que el botón solo sea tan ancho como su contenido */
+  border-radius: 5px; 
+  margin: auto; 
+  width: fit-content; 
 }
 
 .login-button-votacion:hover {
@@ -3982,11 +3843,11 @@ a[href="/registrarse"]:hover {
   text-decoration: none;
   color: white;
   background-color: #003cff;
-  transition: background-color 0.3s ease; /* Asegúrate de que la transición del color de fondo está activada */
+  transition: background-color 0.3s ease; 
 }
 
 .card-profile .button-card a:hover {
-  background-color: #256cfa; /* Cambia a una versión más clara del color original */
+  background-color: #256cfa; 
 }
 
 .card-profile .button-card:nth-child(2) a {
@@ -3994,7 +3855,7 @@ a[href="/registrarse"]:hover {
 }
 
 .card-profile .button-card:nth-child(2) a:hover {
-  background-color: #eb0000; /* Cambia a una versión más clara del color original */
+  background-color: #eb0000; 
 }
 
 .card-profile .button-icon {
@@ -4081,12 +3942,12 @@ a[href="/registrarse"]:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 80%; /* Ajusta este valor según tus necesidades */
-  margin: 0 auto; /* Esto centra el contenedor horizontalmente */
+  width: 80%; 
+  margin: 0 auto; 
 }
 
 input[type="submit"] {
-  background-color: #3498db; /* Light Blue */
+  background-color: #3498db; 
   border: none;
   color: white;
   padding: 10px 20px;
@@ -4111,7 +3972,7 @@ input[type="submit"]:active {
 }
 
 .button-2-editprofile {
-  background-color: #e74c3c; /* Red */
+  background-color: #e74c3c; 
   border: none;
   color: white;
   padding: 10px 20px;
@@ -4147,27 +4008,27 @@ input[type="submit"]:active {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50%; /* Ajusta este valor según tus necesidades */
+  width: 50%; 
   margin: 0 auto;
 }
 
 .input-group-edituser label {
-  font-weight: bold; /* Hace que el texto de la etiqueta esté en negrita */
+  font-weight: bold; 
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
 .input-icon {
-  width: 50px; /* Ajusta este valor según tus necesidades */
+  width: 50px; 
   height: 50px;
 }
 
 .input-group-edituser input {
-  padding: 5px; /* Reduce el padding para hacer el input más pequeño */
-  border-radius: 10px; /* Aumenta el border-radius para esquinas más redondas */
+  padding: 5px; 
+  border-radius: 10px; 
   border: 1px solid #ccc;
-  width: 300px; /* Esto hará que el input tome todo el ancho de su contenedor */
+  width: 300px; 
 }
 
 .checkbox-group {
@@ -4178,7 +4039,7 @@ input[type="submit"]:active {
 }
 
 .checkbox-group label {
-  font-weight: bold; /* Hace que el texto de la etiqueta esté en negrita */
+  font-weight: bold; 
   display: flex;
   align-items: center;
   gap: 5px;
@@ -4187,7 +4048,7 @@ input[type="submit"]:active {
 .checkbox-group .checkbox {
   display: flex;
   align-items: center;
-  justify-content: center; /* Esto centrará los elementos del checkbox horizontalmente */
+  justify-content: center; 
   gap: 5px;
 }
 
@@ -4198,7 +4059,7 @@ input[type="submit"]:active {
 
 .button-group-editprofile {
   display: flex;
-  justify-content: space-between; /* Esto separará los botones */
+  justify-content: space-between; 
 }
 
 /* PANTALLA USUARIOS */
@@ -4209,12 +4070,12 @@ input[type="submit"]:active {
   border-spacing: 0;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Sombra inicial */
-  transition: box-shadow 0.3s ease; /* Transición suave de la sombra */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); 
+  transition: box-shadow 0.3s ease; 
 }
 
 .user-table-usersscreen:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); /* Sombra más oscura y más grande al pasar el ratón por encima */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5); 
 }
 
 .user-table-usersscreen th {
@@ -4231,40 +4092,40 @@ input[type="submit"]:active {
 .user-table-usersscreen td a {
   color: black;
   text-decoration: none;
-  padding: 5px 10px; /* Añade un poco de padding */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave de color y fondo */
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  transition: color 0.3s ease, background-color 0.3s ease; 
 }
 
 .user-table-usersscreen td a:hover {
-  color: #004288; /* Cambia esto al color que prefieras */
-  background-color: #62b1ff; /* Cambia esto al color de fondo que prefieras */
+  color: #004288; 
+  background-color: #62b1ff; 
 }
 
 .user-table-usersscreen td a.delete-link {
   color: black;
   text-decoration: none;
-  padding: 5px 10px; /* Añade un poco de padding */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave de color y fondo */
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  transition: color 0.3s ease, background-color 0.3s ease; 
 }
 
 .user-table-usersscreen td a.delete-link:hover {
-  color: #b90000; /* Cambia esto al color que prefieras */
-  background-color: #FFC0C0; /* Cambia esto al color de fondo que prefieras */
+  color: #b90000; 
+  background-color: #FFC0C0; 
 }
 
 .user-table-usersscreen td a.username-link {
   color: black;
   text-decoration: none;
-  padding: 5px 10px; /* Añade un poco de padding */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: color 0.3s ease, background-color 0.3s ease; /* Transición suave de color y fondo */
+  padding: 5px 10px; 
+  border-radius: 5px; 
+  transition: color 0.3s ease, background-color 0.3s ease; 
 }
 
 .user-table-usersscreen td a.username-link:hover {
-  color: #FFA500; /* Cambia esto al color que prefieras (este es un tono de naranja) */
-  background-color: #565656; /* Cambia esto al color de fondo que prefieras (este es un tono de gris oscuro) */
+  color: #FFA500; 
+  background-color: #565656; 
 }
 
 .user-table-usersscreen tr:nth-child(even) {
@@ -4280,12 +4141,12 @@ input[type="submit"]:active {
 }
 
 .user-table-usersscreen .header-icon {
-  width: 45px; /* Cambia esto al tamaño que prefieras */
+  width: 45px; 
 }
 
 .prohibido-icon-userssecreen {
-  width: 40px; /* Ajusta este valor a tu gusto */
-  height: 40px; /* Esto mantendrá la relación de aspecto de la imagen */
+  width: 40px; 
+  height: 40px; 
 }
 
 /* NUEVA PROPUESTA */
@@ -4311,13 +4172,13 @@ input[type="submit"]:active {
 }
 
 .newpost-card .inputOption textarea {
-  height: 30%; /* Adjust this value to your liking */
+  height: 30%; 
 }
 
 .newpost-card .inputOption input,
 .newpost-card .inputOption textarea,
 .newpost-card .inputOption select {
-  text-align: center; /* Center the text */
+  text-align: center; 
 }
 
 .newpost-card form h3 {
@@ -4377,19 +4238,19 @@ input[type="submit"]:active {
 
 .newpost-card form .buttonContainer input[type="submit"],
 .newpost-card form .buttonContainer a {
-  margin: 0 200px; /* Increase margin for more separation */
+  margin: 0 200px; 
   padding: 10px 20px;
   border-radius: 10px;
   text-decoration: none;
   color: white;
-  transition: all 0.3s ease; /* Add transition for smooth hover effect */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Add shadow */
-  width: 120px; /* Set a fixed width */
-  text-align: center; /* Center the text */
+  transition: all 0.3s ease; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); 
+  width: 120px; 
+  text-align: center; 
 }
 
 .newpost-card form .buttonContainer input[type="submit"] {
-  background-color: rgb(2, 125, 165); /* Change color to light blue */
+  background-color: rgb(2, 125, 165); 
   font-weight: bold;
 }
 
@@ -4400,19 +4261,19 @@ input[type="submit"]:active {
 
 
 .newpost-card form .buttonContainer a:hover {
-  transform: translateY(-2px); /* Move up when hovered */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); 
   background-color: rgb(255, 0, 0);
 }
 
 .newpost-card form .buttonContainer input[type="submit"]:hover {
-  transform: translateY(-2px); /* Move up when hovered */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); 
   background-color: rgb(51, 177, 219);
 }
 
 .newpost-card .label-icon {
-  width: 48px; /* Adjust this value to your liking */
+  width: 48px; 
   transition: transform 0.3s ease;
 }
 
@@ -4443,13 +4304,13 @@ input[type="submit"]:active {
 }
 
 .newteam-card .inputOption textarea {
-  height: 30%; /* Adjust this value to your liking */
+  height: 30%; 
 }
 
 .newteam-card .inputOption input,
 .newteam-card .inputOption textarea,
 .newteam-card .inputOption select {
-  text-align: center; /* Center the text */
+  text-align: center; 
 }
 
 .newteam-card form h3 {
@@ -4509,19 +4370,19 @@ input[type="submit"]:active {
 
 .newteam-card form .buttonContainer input[type="submit"],
 .newteam-card form .buttonContainer a {
-  margin: 0 200px; /* Increase margin for more separation */
+  margin: 0 200px; 
   padding: 10px 20px;
   border-radius: 10px;
   text-decoration: none;
   color: white;
-  transition: all 0.3s ease; /* Add transition for smooth hover effect */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); /* Add shadow */
-  width: 120px; /* Set a fixed width */
-  text-align: center; /* Center the text */
+  transition: all 0.3s ease; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); 
+  width: 120px; 
+  text-align: center; 
 }
 
 .newteam-card form .buttonContainer input[type="submit"] {
-  background-color: rgb(2, 125, 165); /* Change color to light blue */
+  background-color: rgb(2, 125, 165); 
   font-weight: bold;
 }
 
@@ -4531,19 +4392,19 @@ input[type="submit"]:active {
 }
 
 .newteam-card form .buttonContainer a:hover {
-  transform: translateY(-2px); /* Move up when hovered */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); 
   background-color: rgb(255, 0, 0);
 }
 
 .newteam-card form .buttonContainer input[type="submit"]:hover {
-  transform: translateY(-2px); /* Move up when hovered */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); /* Increase shadow when hovered */
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); 
   background-color: rgb(51, 177, 219);
 }
 
 .newteam-card .label-icon {
-  width: 48px; /* Adjust this value to your liking */
+  width: 48px; 
   transition: transform 0.3s ease;
 }
 
@@ -4565,7 +4426,7 @@ input[type="submit"]:active {
   flex-direction: column;
   align-items: center;
   margin-bottom:40px;
-  background-color: white; /* Añade un color de fondo suave */
+  background-color: white; 
 }
 
 .puntosscreen-card:hover {
@@ -4574,7 +4435,7 @@ input[type="submit"]:active {
 }
 
 .puntosscreen-card h3 {
-  color: black; /* Cambia el color del texto a un gris oscuro */
+  color: black; 
   margin-bottom: 20px;
   font-weight: bold;
   transition: transform 0.3s ease;
@@ -4589,38 +4450,38 @@ input[type="submit"]:active {
 }
 
 .puntosscreen-card ul {
-  list-style: none; /* Elimina los puntos de la lista */
-  padding: 0; /* Elimina el padding de la lista */
+  list-style: none; 
+  padding: 0; 
 }
 
 .puntosscreen-card li {
-  margin-bottom: 20px; /* Añade un margen inferior a cada elemento de la lista */
+  margin-bottom: 20px; 
   font-weight: bold;
 }
 .puntosscreen-card form {
-  display: flex; /* Alinea los elementos del formulario horizontalmente */
-  justify-content: space-between; /* Distribuye los elementos del formulario uniformemente */
-  align-items: center; /* Alinea verticalmente los elementos del formulario */
-  margin-bottom: 10px; /* Añade un margen inferior al formulario */
-  width: 100%; /* Asegura que el formulario ocupe todo el ancho disponible */
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 10px; 
+  width: 100%; 
 }
 
 .puntosscreen-card input[type="number"] {
-  margin-right: 10px; /* Añade un margen a la derecha del input */
-  padding: 5px; /* Añade padding al input */
-  border: 1px solid #ccc; /* Añade un borde al input */
-  border-radius: 5px; /* Redondea las esquinas del input */
-  flex: 1; /* Asegura que el input ocupe todo el espacio disponible */
+  margin-right: 10px; 
+  padding: 5px; 
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  flex: 1; 
 }
 
 .puntosscreen-card button {
-  padding: 5px 10px; /* Añade padding al botón */
-  border: none; /* Elimina el borde del botón */
-  border-radius: 5px; /* Redondea las esquinas del botón */
-  flex: 0; /* Evita que el botón se estire para ocupar espacio */
-  display: flex; /* Alinea los elementos del botón horizontalmente */
-  align-items: center; /* Alinea verticalmente los elementos del botón */
-  justify-content: center; /* Centra los elementos del botón */
+  padding: 5px 10px; 
+  border: none; 
+  border-radius: 5px; 
+  flex: 0; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
   transition: transform 0.3s ease;
 }
 
@@ -4629,49 +4490,49 @@ input[type="submit"]:active {
 }
 
 .puntosscreen-card button.sumar-puntosscreen:hover {
-  background-color: #00ff00; /* Un verde más claro */
+  background-color: #00ff00; 
 }
 
 .puntosscreen-card button.restar-puntosscreen:hover {
-  background-color: #ff0000; /* Un rojo más claro */
+  background-color: #ff0000; 
 }
 
 .puntosscreen-card .row {
-  display: flex; /* Hace que .row sea un contenedor flex */
-  flex-wrap: wrap; /* Permite que los elementos se envuelvan en varias líneas si no hay suficiente espacio */
-  justify-content: space-between; /* Añade espacio entre los elementos */
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between; 
 }
 
 .puntosscreen-card .col-md-6 {
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-  padding: 0 120px; /* Add horizontal padding */
+  box-sizing: border-box; 
+  padding: 0 120px; 
 }
 
 
 .puntosscreen-card button.sumar-puntosscreen {
-  background-color: #00d800; /* Cambia el color de fondo del botón de sumar a verde */
+  background-color: #00d800; 
   color:white;
   font-weight: bold;
 }
 
 .puntosscreen-card button.restar-puntosscreen {
-  background-color: #d20000; /* Cambia el color de fondo del botón de restar a rojo */
+  background-color: #d20000; 
   color:white;
   font-weight: bold;
 }
 
 .puntosscreen-card button:disabled {
-  background-color: #ccc; /* Cambia el color de fondo del botón cuando está deshabilitado */
-  cursor: not-allowed; /* Cambia el cursor cuando el botón está deshabilitado */
+  background-color: #ccc; 
+  cursor: not-allowed; 
 }
 
 .puntosscreen-card .label-icon {
-  width: 30px; /* Ajusta el tamaño de las imágenes */
-  height: 30px; /* Ajusta el tamaño de las imágenes */
+  width: 30px; 
+  height: 30px; 
   margin-left: 5px;
 }
 
 .puntosscreen-card .icon-title-puntos {
-  width: 50px; /* Ajusta el tamaño de las imágenes */
-  height: 50px; /* Ajusta el tamaño de las imágenes */
+  width: 50px; 
+  height: 50px; 
 }
