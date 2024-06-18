@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             validate: {notEmpty: {msg: "Password must not be empty."}},
             set(password) {
-                // Random String used as salt.
+                
                 this.salt = Math.round((new Date().valueOf() * Math.random())) + '';
                 this.setDataValue('password', crypt.encryptPassword(password, this.salt));
             }

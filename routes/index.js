@@ -3,8 +3,7 @@ var router = express.Router();
 const postController = require('../controllers/post');
 const sessionController = require('../controllers/session');
 const userController = require('../controllers/user');
-const teamController = require('../controllers/team');   
-// const reputationController = require('../controllers/reputation'); 
+const teamController = require('../controllers/team');  
 const tokenController = require('../controllers/token'); 
 const multer = require('multer');
 const storage = multer.memoryStorage();
@@ -17,7 +16,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Blog' });
 });
 
-// Pantalla Teams
+// Pantalla Equipos
 router.param('teamId', teamController.load);
 router.get('/teams/:teamId(\\d+)/attachment', teamController.attachment);
 router.get('/teams', teamController.index);
@@ -33,14 +32,7 @@ router.post('/teams/:teamId(\\d+)/donate', teamController.donate);
 router.post('/teams/:teamId(\\d+)/inflate', sessionController.adminRequired, teamController.inflate);
 router.post('/users/:id/claimdailyreward', teamController.claimDailyReward);
 
-// Pantalla Reputación
-// router.get('/reputation', reputationController.adminRequired , reputationController.index); 
-// router.post('/reputation/:userId(\\d+)/addPoint', reputationController.addPoint);
-
-// Pantalla Tockens
-// router.get('/tokens', tokenController.index); 
-// router.post('/tokens/:userId(\\d+)/addToken', tokenController.addToken);
-// router.post('/tokens/:userId(\\d+)/removeToken', tokenController.removeToken);
+// Pantalla Puntos
 router.get('/wallet', tokenController.adminOrTokenAdminRequired, tokenController.index); 
 router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/addPointWallet', tokenController.addWalletPoint);
 router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/removePointWallet', tokenController.removeWalletPoint);
@@ -51,7 +43,6 @@ router.post('/wallet/:userId(\\d+)/:teamId(\\d+)/removeTokenFromUser', tokenCont
 // Pantalla Propuestas
 router.param('postId', postController.load);
 router.get('/posts/:postId(\\d+)/attachment', postController.attachment);
-// router.get('/deletedPosts/:postId(\\d+)/attachment', postController.deletedPostAttachment);
 router.get('/posts', postController.index);
 router.get('/posts/:postId(\\d+)', postController.show);
 router.get('/posts/new', sessionController.loginRequired, postController.adminOrProposalAdminRequired, postController.new);
@@ -71,14 +62,15 @@ router.param('userId', userController.load);
 router.get('/users', userController.index);
 router.get('/users/:userId(\\d+)', userController.show);
 router.get('/users/new', sessionController.adminRequired, userController.new);
-// router.post('/users', sessionController.adminRequired, userController.create);
 router.post('/users', userController.create);
 router.get('/users/:userId(\\d+)/edit', sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.edit);
 router.put('/users/:userId(\\d+)', sessionController.adminOrMyselfRequired, userController.update);
 router.delete('/users/:userId(\\d+)', sessionController.loginRequired, sessionController.adminOrMyselfRequired, userController.destroy);
+
+// Pantalla Registrarse
 router.get('/registrarse', userController.registrarse);
 
-// Pantalla Login
+// Pantalla Iniciar Sesión
 router.get('/login',    sessionController.new);     
 router.post('/login',   sessionController.create);  
 router.delete('/login', sessionController.destroy); 

@@ -87,10 +87,6 @@ exports.create = async (req, res, next) => {
     }
 };
 
-// exports.edit = (req, res, next) => {
-//     const {user} = req.load;
-//     res.render('users/edit', {user});
-// };
 
 exports.edit = (req, res, next) => {
     const { user } = req.load;
@@ -98,39 +94,13 @@ exports.edit = (req, res, next) => {
     res.render('users/edit', { user, previousPage });
 };
 
-// exports.update = async (req, res, next) => {
-//     const {body} = req;
-//     const {user} = req.load;
-//     user.username = body.username;
-//     user.email = body.email;
-//     let fields_to_update = ["username", "email"];
-//     if (body.password) {
-//         console.log('Updating password');
-//         user.password = body.password;
-//         fields_to_update.push('salt');
-//         fields_to_update.push('password');
-//     }
-//     try {
-//         await user.save({fields: fields_to_update});
-//         console.log('Success: User updated successfully.');
-//         res.redirect('/users/' + user.id);
-//     } catch (error) {
-//         if (error instanceof Sequelize.ValidationError) {
-//             console.log('Error: There are errors in the form:');
-//             error.errors.forEach(({message}) => console.log('Error:', message));
-//             res.render('users/edit', {user});
-//         } else {
-//             next(error);
-//         }
-//     }
-// };
 
 exports.update = async (req, res, next) => {
     const { body } = req;
     const { user } = req.load;
     user.username = body.username;
     user.email = body.email;
-    user.isAdmin = !!body.isAdmin; // Convierte a booleano
+    user.isAdmin = !!body.isAdmin; 
     user.isAdminProposal = !!body.isAdminProposal;
     user.isAdminTeam = !!body.isAdminTeam;
     user.isAdminToken = !!body.isAdminToken;
@@ -158,18 +128,6 @@ exports.update = async (req, res, next) => {
     }
 };
 
-// exports.destroy = async (req, res, next) => {
-//     try {
-//         if (req.session.loginUser?.id === req.load.user.id) {
-//             delete req.session.loginUser;
-//         }
-//         await req.load.user.destroy()
-//         console.log('Success: User deleted successfully.');
-//         res.redirect('/users');
-//     } catch (error) {
-//         next(error);
-//     }
-// };
 
 exports.destroy = async (req, res, next) => {
     try {

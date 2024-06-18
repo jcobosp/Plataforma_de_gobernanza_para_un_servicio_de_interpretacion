@@ -40,7 +40,7 @@ exports.index = async (req, res, next) => {
         const teams = await allFindOptions;
         const deletedTeams = await models.DeletedTeam.findAll();
 
-        // Calculate the time until the next reward can be claimed
+        // Calcular el tiempo hasta la siguiente reclamación del premio diario
         if (req.session.loginUser) {
             const user = await models.User.findByPk(req.session.loginUser.id);
             if (user && user.lastDailyRewardClaimedAt) {

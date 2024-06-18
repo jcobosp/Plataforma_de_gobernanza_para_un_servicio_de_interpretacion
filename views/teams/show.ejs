@@ -1,7 +1,7 @@
 
 <div class="team-section-show">
 
-  <!-- ======= Breadcrumbs ======= -->
+  
   <div class="breadcrumbs">
     <nav>
     <div class="container">
@@ -11,11 +11,11 @@
     </div>
     </nav>
   </div>
-  <!-- End Breadcrumbs -->
+  
   
   <div class="section-header">
     <h2><%= team.title %></h2>
-    <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+    
   </div>
 
   <div class="unirseequipo">
@@ -108,17 +108,7 @@
     </div>
   </div>
 
-    <!-- <% if (locals.loginUser && !locals.isMember) { %> 
-    <form method="post" action="/teams/<%= team.id %>/join">
-      <button type="submit" class="btn">Join Team</button>
-    </form>
-    <% } %>
-
-    <% if (locals.loginUser && locals.isMember) { %> 
-      <form method="post" action="/teams/<%= team.id %>/leave">
-          <button type="submit" class="btn">Leave Team</button>
-      </form>
-    <% } %> -->
+    
   </div>
  
 
@@ -195,11 +185,7 @@
 
     <% if (locals.loginUser && locals.isMember && !locals.loginUser.isAdmin) { %> 
       <div class="card inflate-form">
-        <!-- <h3 class="inflaciontext">Inflación</h3>
-        <p>Al presionar este botón, los tokens de todos los miembros del equipo se reducirán en un 50%.</p>
-        <form method="post" action="/teams/<%= team.id %>/inflate">
-          <button type="submit" class="inflate-button">Aplicar</button>
-        </form> -->
+        
         <img src="/images/3D-icons/billetes-icon-2.PNG" alt="Descripción de la imagen">
 
       </div>

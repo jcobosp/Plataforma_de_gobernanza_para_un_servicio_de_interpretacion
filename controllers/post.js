@@ -9,7 +9,7 @@ exports.load = async (req, res, next, postId) =>
             { model: models.Team, as: 'team' } ]
         });
         if (post) {
-            req.load = {...req.load, post};
+            req.load = {...req.load, post}; 
             next();}   
         else {
             throw new Error ( 'No existe el post con el id=' + postId ) ;
@@ -318,21 +318,6 @@ exports.destroy = async (req, res, next) => {
     }
 };
 
-// exports.deletedPostAttachment = async (req, res, next) => {
-//     const deletedPost = await models.DeletedPost.findByPk(req.params.postId);
-//     const attachment = await deletedPost.getAttachment();
-//     if (!attachment) { res.redirect("/images/none.png") ; }
-//     else if (attachment.image) {
-//         res.type(attachment.mime);
-//         const buff = Buffer.from(attachment.image.toString(), 'base64' );
-//         res.send( buff);
-//     }
-//     else if (attachment.url) {     res.redirect(attachment.url) ; }
-//     else { 
-//         const imgNone = "/images/none.png";
-//         res.redirect(imgNone); } 
-
-// };
 
 exports.adminOrAuthorRequired = (req, res, next) => 
 {   const {post} = req.load;
@@ -375,7 +360,7 @@ exports.vote = async (req, res, next) => {
     const userId = req.session.loginUser.id;
 
     if (vote === 'abstain') {
-        votePoints = 1; // Si el voto es una abstención, establecemos votePoints a 1
+        votePoints = 1; 
     }
 
     try {
@@ -475,9 +460,6 @@ exports.changeVote = async (req, res, next) => {
 
         const lastvotedpoints = userPostVote.lastVotePoints;
         const originalVotePoints = userPostVote.originalVotePoints;
-        // const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
-        // const reputationFactor = 1 + (userTeamReputation / 100);
-        // const votePointsWithOutReputation = lastvotedpoints / reputationFactor;
         await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
         
         await post.decrement('usersVoted');
@@ -521,15 +503,9 @@ exports.veto = async (req, res, next) => {
             });
 
             const originalVotePoints = userVote.originalVotePoints;
-            // const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
-            // const reputationFactor = 1 + (userTeamReputation / 100);
-            // const votePointsWithOutReputation = lastVotePoints / reputationFactor;
             await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
         }
 
-        // post.votesFor = 0;
-        // post.votesAgainst = 0;
-        // post.abstentions = 0;
         post.vetoed = true;
         await post.save();
   
@@ -563,7 +539,6 @@ exports.calculateReputation = async () => {
             }
         }
 
-        // res.redirect('/posts');
     } catch (error) {
         console.error('Error al ejecutar calculateReputation:', error);
     }
@@ -689,9 +664,6 @@ exports.applyRewards = async () => {
                         });
 
                         const originalVotePoints = userVote.originalVotePoints;
-                        // const userTeamReputation = userTeam ? userTeam.reputation || 0 : 0;
-                        // const reputationFactor = 1 + (userTeamReputation / 100);
-                        // const votePointsWithOutReputation = lastVotePoints / reputationFactor;
                         await models.UserTeam.increment('wallet', { by: Math.round(originalVotePoints), where: { userId: userId, teamId: teamId } });
                     }
                 }
@@ -702,7 +674,6 @@ exports.applyRewards = async () => {
         // Para calcular o actualizar la reputación después de repartir las recompensas
         await exports.calculateReputation();
 
-        // res.redirect('/posts');
     } catch (error) {
         console.error('Error al ejecutar applyRewards:', error);
     }

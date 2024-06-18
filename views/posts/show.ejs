@@ -1,5 +1,5 @@
 <div>
-  <!-- ======= Breadcrumbs ======= -->
+  
   <div class="breadcrumbs">
     <nav>
     <div class="container">
@@ -9,12 +9,12 @@
     </div>
     </nav>
   </div>
-  <!-- End Breadcrumbs -->
+  
   <div class="post-section-show">
     
     <div class="section-header">
       <h2><%= post.title %></h2>
-      <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+      
     </div>
 
     <article class="postShow">
@@ -69,22 +69,7 @@
                   <p> <img class="icon-recompensas" src="/images/3D-icons/celebracion-icon-1.PNG" alt="Icono gonfeti"> <strong>Recompensa por votar:</strong><span><%= post.voting_reward %></span></p>
                   <p> <img class="icon-recompensas" src="/images/3D-icons/thumbdown-icon-1.PNG" alt="Icono pulgar abajo"> <strong>Penalización si la votación resulta contraria a tu voto:</strong><span><%= post.voting_failure_penalty %></span></p>
                   <p> <img class="icon-recompensas" src="/images/3D-icons/thumbup-icon-2.PNG" alt="Icono pulgar arriba"> <strong>Recompensa si la votación resulta a favor de tu voto:</strong><span><%= post.voting_success_reward %></span></p>
-                  <!-- <div class="balance">
-                    <div class="coin-animation-container">
-                      <div class="coin-container">
-                        <i class="fas fa-wallet coin-icon"></i>
-                        <i class="fas fa-ban penalty"></i>
-                        <i class="fas fa-gem coin-icon"></i>
-                        <i class="fas fa-bomb coin-icon penalty"></i>
-                        <i class="fas fa-money-bill-wave coin-icon"></i>
-                        <i class="fas fa-skull-crossbones penalty"></i>
-                        <i class="fas fa-euro-sign coin-icon"></i>
-                        <i class="fas fa-exclamation-triangle penalty"></i>
-                        <i class="fas fa-dollar-sign coin-icon"></i>
-                        <i class="fas fa-trash coin-icon penalty"></i>
-                      </div>
-                    </div>
-                  </div> -->
+                  
                 </div>
               </div>
             </div>
@@ -125,53 +110,7 @@
       </div>
     </article>
 
-    <!-- <div class="col-md-12">
-      <div class="cardposts-reglasvotacion voting-status">
-        <div class="card-header">
-          <h4 class="title-style"><i class="fas fa-chart-pie"></i> Estado de la Votación</h4>
-        </div>
-        <div class="card-body-reglasvotacion">
-          <div class="col-md-6">
-            <div class="vote-card vote-for">
-              <i class="fas fa-check-circle"></i>
-              <span>Votos a favor: <%= post.votesFor %></span>
-            </div>
-            <div class="vote-card vote-against">
-              <i class="fas fa-times-circle"></i>
-              <span>Votos en contra: <%= post.votesAgainst %></span>
-            </div>
-            <div class="vote-card vote-abstain">
-              <i class="fas fa-minus-circle"></i>
-              <span>Abstenciones: <%= post.abstentions %></span>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="race">
-              <div class="progress-bar-container" data-votes="<%= post.votesFor %>">
-                <div class="progress-bar vote-for">
-                  <span class="percentage"><%= post.votesFor %> %</span>
-                </div>
-              </div>
-              <div class="progress-bar-container" data-votes="<%= post.votesAgainst %>">
-                <div class="progress-bar vote-against">
-                  <span class="percentage"><%= post.votesAgainst %> %</span>
-                </div>
-              </div>
-              <div class="finish-line">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-              </div>
-            </div>
-            <div class="spectators" data-abstentions="<%= post.abstentions %>">
-              <div id="spectators-icons"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div> -->
+    
 
     <div class="col-md-12">
       <div class="cardposts-votacionestado voting-status">
@@ -229,18 +168,7 @@
       </div>
     </div>
 
-    <!-- <div class="row">
-      <div class="col-md-6">
-        <p>Votes For: <%= post.votesFor %>
-        </p>
-        <p>Votes Against: <%= post.votesAgainst %>
-        </p>
-        <p>Abstentions: <%= post.abstentions %>
-        </p>
-        <p>Team: <%= post.team %>
-        </p>
-      </div>
-    </div> -->
+    
 
     <div class="votacionformulario">
       <% if (isLoggedIn) { %>
@@ -371,12 +299,6 @@
     <% } %>
     
 
-      <!-- <div> 
-        <small id="author">
-          By <b><%= post.author ? post.author.username : "Anonymous" %></b>
-        </small>
-      </div> -->
-
       <div class="button-container-volverapropuestas">
         <a href="/posts" class="volveraposts">Volver</a>
       </div>
@@ -384,40 +306,14 @@
     </div>
   </div>
 
-  <!-- <div class="col-md-6">
-    <div class="card">
-      <div class="card-header">
-        <h3>Voting Details</h3>
-      </div>
-      <div class="card-body">
-        <p>Minimum Voting Score: <%= post.min_voting %></p>
-        <p>Maximum Voting: <%= post.max_voting %></p>
-        <p>Minimum Users Voted: <%= post.min_users_voted %></p>
-        <p>Voting Reward: <%= post.voting_reward %></p>
-        <p>Voting Failure Penalty: <%= post.voting_failure_penalty %></p>
-        <p>Voting Success Reward: <%= post.voting_success_reward %></p>
-        <p>User Wallet Points: <%= Math.round(post.userWalletPoints) %></p>
-        <p>Your Reputation: <%= post.userTeamReputation %>%</p>
-        <p>Your Vote Multiplier: <%= post.reputationFactor.toFixed(2) %></p>
-      </div>
-    </div>
-  </div> -->
+  
 
   </div>
   </article>
   </div>
 </div>
 
-<!-- <script>
-  document.addEventListener("DOMContentLoaded", function() {
-  var progressBarContainers = document.querySelectorAll('.progress-bar-container');
-  progressBarContainers.forEach(function(container) {
-    var votes = container.getAttribute('data-votes');
-    var progressBar = container.querySelector('.progress-bar');
-    progressBar.style.width = votes + '%';
-  });
-});
-</script> -->
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var progressBarContainers = document.querySelectorAll('.progress-bar-container');
@@ -432,20 +328,20 @@
       var progressBar = container.querySelector('.progress-bar');
       var percentage = (votes / totalVotes) * 100;
       progressBar.style.width = percentage + '%';
-      progressBar.style.borderRadius = '0 5px 5px 0'; // add border radius to the right side of the progress bar
+      progressBar.style.borderRadius = '0 5px 5px 0'; 
       progressBar.querySelector('.percentage').textContent = percentage.toFixed(2) + ' %';
     });
 
-    const totalVoters = 18; // replace with your total number of voters
+    const totalVoters = 18; 
     const spectators = document.querySelector('.spectators');
     let abstentions = parseInt(spectators.getAttribute('data-abstentions'));
-    abstentions = Math.min(abstentions, totalVoters); // limit the number of abstentions to the total number of voters
+    abstentions = Math.min(abstentions, totalVoters); 
     const spectatorsIcons = document.getElementById('spectators-icons');
 
     for (let i = 0; i < totalVoters; i++) {
       const icon = document.createElement('span');
       icon.className = 'spectator-icon'; 
-      icon.textContent = '👀'; // emoji de ojo
+      icon.textContent = '👀'; 
       if (i < abstentions) {
         icon.classList.add('active');
       }
@@ -458,7 +354,6 @@
   const range = document.querySelector('.voting-form input[type="range"]');
 range.addEventListener('input', () => {
   let value = ((range.value - range.min) / (range.max - range.min)) * 100;
-  // Add an offset to the value
   value = value - (10 / range.max * 100) + 15;
   range.style.backgroundSize = value + '% 100%';
 });

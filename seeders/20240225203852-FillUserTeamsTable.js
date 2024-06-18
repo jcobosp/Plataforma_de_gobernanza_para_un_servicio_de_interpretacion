@@ -4,11 +4,11 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('userTeams', [
       {
-          userId: 1, // ID del usuario
-          teamId: 7, // ID del equipo
-          tokens: 100, // Tokens del usuario en este equipo
-          wallet: 50, // Wallet del usuario en este equipo
-          reputation: 0, // Reputación del usuario en este equipo
+          userId: 1, 
+          teamId: 7, 
+          tokens: 100, 
+          wallet: 50, 
+          reputation: 0, 
           createdAt: new Date(), 
           updatedAt: new Date()
       },

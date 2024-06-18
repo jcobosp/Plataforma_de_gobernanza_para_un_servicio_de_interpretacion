@@ -6,27 +6,27 @@ module.exports = {
       {
           title: 'Interpretación',
           body: 'Primer equipo creado',
-          tokens: 0, // Nuevo campo tokens
-          numUsers: 0, // Nuevo campo numUsers
-          adminTeamId: null, // Nuevo campo adminTeamId
+          tokens: 0, 
+          numUsers: 0, 
+          adminTeamId: null, 
           createdAt: new Date(),
           updatedAt: new Date()
       },
       {
           title: 'Audio',
           body: 'Segundo equipo creado',
-          tokens: 0, // Nuevo campo tokens
-          numUsers: 0, // Nuevo campo numUsers
-          adminTeamId: null, // Nuevo campo adminTeamId
+          tokens: 0, 
+          numUsers: 0, 
+          adminTeamId: null, 
           createdAt: new Date(),
           updatedAt: new Date()
       },
       {
           title: 'Internet',
           body: 'Tercer equipo creado',
-          tokens: 0, // Nuevo campo tokens
-          numUsers: 0, // Nuevo campo numUsers
-          adminTeamId: null, // Nuevo campo adminTeamId
+          tokens: 0, 
+          numUsers: 0, 
+          adminTeamId: null, 
           createdAt: new Date(),
           updatedAt: new Date()
       }

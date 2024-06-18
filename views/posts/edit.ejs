@@ -1,7 +1,7 @@
 
 
 <div>
-    <!-- ======= Breadcrumbs ======= -->
+    
     <div class="breadcrumbs">
         <nav>
         <div class="container">
@@ -11,7 +11,7 @@
         </div>
         </nav>
     </div>
-    <!-- End Breadcrumbs -->
+    
 
     <div class="section-header">
       <h2>Editar propuesta</h2>
@@ -20,17 +20,7 @@
     <div class="newpost-card">
     <form method="post" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
         <h3>Rellena los siguientes datos para editar la propuesta</h3>
-        <!-- <div class="inputOption">
-            <h3>Titulo de la propuesta:</h3>
-            <input type="text" id="title" name="title" placeholder="Título de la propuesta" value="<%= post.title %>" required>
-        </div>
-        <div class="inputOption">
-            <h3>Descripcion de la propuesta:</h3>
-            <textarea id="body" name="body" placeholder="Descripcion de la propuesta" required><%= post.body %></textarea>
-        </div>
-        <div class="inputOption">
-            <input type="file" id="image" name="image">
-        </div> -->
+        
         <div class="inputOption">
             <label for="title">Título <img class="label-icon" src="/images/3D-icons/medalla-icono-1.PNG" alt="Icon"></label>
             <input type="text" id="title" name="title" value="<%= post.title %>" required>
@@ -112,16 +102,6 @@
 
     </form>
 </div>
-
-  <!-- <script>
-    document.getElementById('postForm').addEventListener('submit', function(event) {
-        const form = event.target;
-        if (!form.checkValidity()) {
-            event.preventDefault(); 
-            alert('Por favor, rellena todos los campos obligatorios.');
-        }
-    });
-</script> -->
 
 
 </div>

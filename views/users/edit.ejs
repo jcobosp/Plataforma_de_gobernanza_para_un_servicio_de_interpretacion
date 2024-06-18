@@ -1,44 +1,4 @@
-<!-- 
-<section>
-    <h2>Edit User:</h2>
-    <form method="post" action="/users/<%= user.id %>?_method=PUT">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="<%= user.username %>" required>
-        <br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<%= user.email %>" required>
-        <br>
-        <label for="password">New Password:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <% if(locals.loginUser.isAdmin) { %>
-            <label>User Roles:</label>
-            <br>
-            <input type="checkbox" id="isAdmin" name="isAdmin" <%= user.isAdmin ? 'checked' : '' %>>
-            <label for="isAdmin">Admin</label>
-            <br>
-            <input type="checkbox" id="isAdminProposal" name="isAdminProposal" <%= user.isAdminProposal ? 'checked' : '' %>>
-            <label for="isAdminProposal">Admin de Propuestas</label>
-            <br>
-            <input type="checkbox" id="isAdminTeam" name="isAdminTeam" <%= user.isAdminTeam ? 'checked' : '' %>>
-            <label for="isAdminTeam">Admin de Teams</label>
-            <br>
-            <input type="checkbox" id="isAdminToken" name="isAdminToken" <%= user.isAdminToken ? 'checked' : '' %>>
-            <label for="isAdminToken">Admin de Tokens</label>
-        <% } %>
-        <br>
-        <input type="submit" value="Save" onclick="return validPassword()">
-        
-        <% if (previousPage) { %>
-            <a href="/users/<%= user.id %>" class="button-2">Cancelar</a>
-        <% } else { %>
-            <a href="/users" class="button-2">Cancelar</a>
-        <% } %>
-    </form>
-</section> -->
 
-
-    <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
         <nav>
         <div class="container">
@@ -48,11 +8,11 @@
         </div>
         </nav>
     </div>
-    <!-- End Breadcrumbs -->
+    
 
     <div class="section-header">
     <h2>Editar perfil del usuario</h2>
-    <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+    
     </div>
 
 <div>

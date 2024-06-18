@@ -2,7 +2,6 @@
 
 <div>
 
-    <!-- ======= Breadcrumbs ======= -->
         <div class="breadcrumbs">
             <nav>
             <div class="container">
@@ -12,43 +11,13 @@
             </div>
             </nav>
         </div>
-    <!-- End Breadcrumbs -->
+    
 
     <div class="section-header">
         <h2>Perfil del usuario</h2>
-        <!-- <p>Encuentra los equipos que fueron eliminados</p> -->
+        
     </div>
 
-    <!-- <h2>User:</h2>
-    <ul>
-        <li>
-            <span>User name:<b>
-                    <%= user.username %>
-                </b></span>
-                <% if (user.isAdmin) { %>
-                    <span class="role-badge">Admin</span>
-                <% } %>
-                <% if (user.isAdminProposal) { %>
-                    <span class="role-badge">Admin de Propuestas</span>
-                <% } %>
-                <% if (user.isAdminTeam) { %>
-                    <span class="role-badge">Admin de Teams</span>
-                <% } %>
-                <% if (user.isAdminToken) { %>
-                    <span class="role-badge">Admin de Tokens</span>
-                <% } %>
-        </li>
-        <li>
-            <span>Email:<b>
-                    <%= user.email %>
-                </b></span>
-        </li>
-    </ul>
-    <% if(locals.loginUser?.isAdmin || locals.loginUser?.id===user.id){ %>
-        <a href="/users/<%= user.id %>/edit">Editar</a>
-        <a href="/users/<%= user.id %>?_method=DELETE"
-            onClick="return confirm('Delete user: <%= user.username %>');">Borrar</a>
-    <% } %> -->
 
     <div class="card-profile">
         <img src="<%= user.isAdmin ? '/images/3D-icons/admin-icon-2.PNG' : '/images/3D-icons/userperfil-icon-4.PNG' %>" alt="User Profile Icon" class="profile-icon">
@@ -60,7 +29,7 @@
               <h3>Contraseña</h3>
               <p>********</p>
             </div>
-            <!-- Repeat the above structure for each piece of user information -->
+            
             <div class="info-card">
               <img src="/images/3D-icons/admin-icon-1.PNG" alt="isAdmin Icon">
               <h3>Administrador</h3>

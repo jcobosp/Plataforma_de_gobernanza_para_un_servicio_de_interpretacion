@@ -1,5 +1,5 @@
 
-    <!-- ======= Breadcrumbs ======= -->
+    
     <div class="breadcrumbs">
       <nav>
       <div class="container">
@@ -8,8 +8,8 @@
           </ol>
       </div>
       </nav>
-  </div>
-  <!-- End Breadcrumbs -->
+    </div>
+  
   <div id="posts-section" class="posts-section">
 
     <div class="container" data-aos="fade-up">
@@ -28,7 +28,7 @@
 
         <!-- Filtro de propuestas -->
         <div class="filter-form">
-            <!-- <div class="col-md-6"> -->
+            
               <form method="GET" action="/posts/filter" class="form-inline">
                 <select class="form-control mr-2" name="filter" id="filter">
                     <option value="" <%= filterType === '' ? 'selected' : '' %>>Todas</option>
@@ -39,7 +39,7 @@
                 </select>
                 <button type="submit" class="btn btn-primary">Filtrar</button>
               </form>
-            <!-- </div> -->
+            
         </div>
       </div>
       <% if (!hasResults) { %>
@@ -49,10 +49,10 @@
         <div class="row">
           <% for (var i in posts) { %>
               <% var post = posts[i]; %>
-              <!-- <article class="postShow"> -->
+              
                 <div class="col-lg-4" data-aos="fade-up" data-aos-delay="<%= i*200 %>">
                   <div class="post-card">
-                    <!-- <h3 class="postTitle"><%= post.title %></h3> -->
+                    
                     <div class="post-img">
                       <%- include('../attachments/_attachment', { post: post }) %>
                     </div>
@@ -63,8 +63,7 @@
                     <h3 class="post-title"><%= post.title %></h3>
                     <p><%= post.body %></p>
                     <a href="/posts/<%= post.id %>" class="btn"><span>Más información</span></a>
-                    <!-- <div class="postOptions"> -->
-                        <!-- <a class="button-2" href="/posts/<%= post.id %>">Show</a> -->
+                    
                         <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>
                           <div class="edit-delete-buttons">
                             <a class="btn" href="/posts/<%= post.id %>/edit">Editar</a>
@@ -72,24 +71,18 @@
                           </div>
                         <% } %>
                     </div>
-                    <!-- <div>
-                        <small id="author">By <b><%= post.author?.username ?? "Anonymous" %></b> </small>
-                    </div> -->
+                    
                   </div>
-              <!-- </article> -->
+              
               <% if ((i+1) % 3 === 0) { %>
               </div>
               <div class="row">
             <% } %>
-                <!-- </div> -->
+                
           <% } %>
         </div>
 
-        <!-- <div>
-        <% if(locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>
-        <a href="/posts/new">Create New Post</a>
-        <% } %>
-        </div> -->
+        
 
           <!-- Registro de propuestas eliminadas -->
           <div class="deletedposts">
@@ -131,13 +124,6 @@
           </div>
 
       
-      <!-- <div class="col-md-6"></div>
-        <div>
-          <a href="/posts/calculate-reputation" class="button-2">Calcular Reputación</a>
-        </div>
-        <div>
-          <a href="/posts/apply-rewards" class="button-2">Aplicar Rewards de Votación</a>
-        </div>
-      </div> -->
+      
     </div>
   </div>

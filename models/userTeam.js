@@ -6,7 +6,7 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class UserTeam extends Model {
     static associate(models) {
-      // Asociaciones con otros modelos
+      
     }
   }
   UserTeam.init({
