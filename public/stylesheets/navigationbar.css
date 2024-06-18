@@ -1,4 +1,4 @@
-
+/* 
 :root {
     --primary: #ffb34f;
     --primary-dark: #f39325;
@@ -40,7 +40,6 @@ body {
     z-index: -1; 
 }
 
-/* El fondo de la barra de navegación que se mueve */
 .header {
     width: 100vw;
     border-bottom: 1px solid var(--gray-border);
@@ -72,12 +71,10 @@ body {
     margin-right: auto;
 }
 
-/* Tamaño logo barra de navegación */
 .logo img {
     height: 2rem;
 }
 
-/* Barra de navegación con nombre de diferentes pantallas */
 .navigation {
     margin-left: 2rem;
     display: flex;
@@ -166,7 +163,6 @@ body {
 }
 
 
-/* login sign-up buttons */
 
 .action-buttons {
     display: flex;
@@ -261,4 +257,4 @@ body {
 
 
 
-
+ */

@@ -1,4 +1,4 @@
-
+/* 
 .yellow-line {
   height: 2px; 
   background-color: #f39325; 
@@ -35,14 +35,14 @@ footer::before {
 footer > img {
   margin-top: 60px;
   /* margin-left: 20px; 
-  margin-right: 20px;  */
+  margin-right: 20px;  
   margin-bottom: 20px; 
 }
 
 @media (width >= 620px) {
   footer {
     /* margin: 0 auto;
-    max-width: 600px; */
+    max-width: 600px; 
     padding: 0;
   }
 }
@@ -121,4 +121,4 @@ footer.bottom .links > a {
     margin-right: 0;
     margin-bottom: 2px;
   }
-}
+} */

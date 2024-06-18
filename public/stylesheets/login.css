@@ -1,4 +1,4 @@
-
+/* 
 :root {
   --text-dark: hsl(240, 54%, 15%);
   --text-light: hsl(242, 18%, 64%);
@@ -30,7 +30,6 @@
   display: flex;
 }
 
-/* Imagen de la izquierda */
 .imagen-iniciar-sesion-section {
   width: 50%;
   position: relative;
@@ -80,7 +79,6 @@
   }
 }
 
-/* Formulario */
 .formulario-is-section {
   width: 50%;
   background-color: white;
@@ -319,4 +317,4 @@ input[type="checkbox"]:checked::before {
   .formulario-is-wrapper {
     width: 100%;
   }
-}
+} */
