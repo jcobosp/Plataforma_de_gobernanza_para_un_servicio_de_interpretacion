@@ -2227,6 +2227,7 @@ a[href="/registrarse"]:hover {
   background: var(--color-terciary);
   outline: none;
   -webkit-appearance: none;
+  appearance: none;
 }
 
 .donation-form input[type="range"]::-webkit-slider-thumb {
