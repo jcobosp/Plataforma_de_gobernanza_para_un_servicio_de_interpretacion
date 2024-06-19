@@ -67,7 +67,7 @@
                         <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>
                           <div class="edit-delete-buttons">
                             <a class="btn" href="/posts/<%= post.id %>/edit">Editar</a>
-                            <a class="btn" href="/posts/<%= post.id %>?_method=DELETE" onClick="return confirm('Delete: <%= post.title %>');">Borrar</a>
+                            <a class="btn" href="/posts/<%= post.id %>?_method=DELETE" onClick="return confirm('Delete: <%= post.title %>');">Eliminar</a>
                           </div>
                         <% } %>
                     </div>
