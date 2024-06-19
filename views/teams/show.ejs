@@ -21,13 +21,13 @@
   <div class="unirseequipo">
     <% if (locals.loginUser && !locals.isMember) { %> 
       <form method="post" action="/teams/<%= team.id %>/join">
-        <button type="submit" class="btn join-btn">Join Team</button>
+        <button type="submit" class="btn join-btn">Unirme al Equipo</button>
       </form>
     <% } %>
 
     <% if (locals.loginUser && locals.isMember) { %> 
       <form method="post" action="/teams/<%= team.id %>/leave">
-        <button type="submit" class="btn">Leave Team</button>
+        <button type="submit" class="btn">Abandonar Equipo</button>
       </form>
     <% } %>
   </div>

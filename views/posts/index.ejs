@@ -61,7 +61,7 @@
                       <span class="post-author"> / <%= post.author?.username ?? "Anonymous" %></span>
                     </div>
                     <h3 class="post-title"><%= post.title %></h3>
-                    <p><%= post.body %></p>
+                    <p class="limited-text"><%= post.body %></p>
                     <a href="/posts/<%= post.id %>" class="btn"><span>Más información</span></a>
                     
                         <% if(locals.loginUser?.id === post.authorId || locals.loginUser?.isAdmin || locals.loginUser?.isAdminProposal) {%>

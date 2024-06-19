@@ -1346,6 +1346,14 @@ a[href="/registrarse"]:hover {
   color: rgba(var(--color-secondary-dark-rgb), 0.7);
 }
 
+.recent-blog-posts .post-box .limited-text{
+  display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .recent-blog-posts .post-box:hover .post-title {
   color: var(--color-primary);
 }
@@ -1356,8 +1364,8 @@ a[href="/registrarse"]:hover {
 
 .recent-blog-posts .post-box .post-img img {
   transition: 0.5s;
-  max-height: 450px; 
-  object-fit: cover; 
+  max-height: 320px; 
+  max-width: 320px;
 }
 .recent-blog-posts .post-box .btn {
   display: inline-block;
@@ -1534,6 +1542,8 @@ a[href="/registrarse"]:hover {
 
 .posts-section .post-card .post-img img {
   transition: 0.5s;
+  max-height: 320px; 
+  max-width: 320px; 
 }
 
 .posts-section .post-card .meta {
@@ -1564,6 +1574,14 @@ a[href="/registrarse"]:hover {
 .posts-section .post-card p {
   margin: 15px 0 0 0;
   color: rgba(var(--color-secondary-dark-rgb), 0.7);
+}
+
+.posts-section .post-card .limited-text{
+  display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .posts-section .post-card:hover .post-title {
