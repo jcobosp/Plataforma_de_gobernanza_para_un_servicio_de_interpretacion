@@ -233,6 +233,13 @@ exports.destroy = async (req, res, next) =>
             }
         });
 
+        // Eliminar todas las entradas en UserTeamHistory que tienen el teamId del equipo que se está eliminando
+        await models.UserTeamHistory.destroy({
+            where: {
+                teamId: team.id
+            }
+        });
+
         // Buscar todos los posts con el TeamId del equipo
         const posts = await models.Post.findAll({
             where: {
@@ -273,9 +280,13 @@ exports.destroy = async (req, res, next) =>
             await post.destroy();
         }
 
+        // Si el equipo tiene un attachment, eliminarlo
+        if (attachment) {
+            await attachment.destroy();
+        }
         // Ahora eliminar el equipo
         await team.destroy();
-        attachment && await attachment.destroy();
+        // attachment && await attachment.destroy();
         const teams = '/teams';
         res.redirect(teams);
     } catch (error) { next(error); }
