@@ -48,64 +48,57 @@
   </div>
 
   <div class="card">
-    <div class="team-stats">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="stat-item">
-            <img class="stat-icon" src="/images/3D-icons/grupousers-icon-1.PNG">
-            <div class="stat-info">
-              <div class="stat-title">Número de usuarios</div>
-              <div class="stat-value"><%= team.numUsers %></div>
+      <div class="team-stats">
+        <div class="row top-row">
+          <div class="col-md-4">
+            <div class="stat-item">
+              <img class="stat-icon" src="/images/3D-icons/grupousers-icon-1.PNG">
+              <div class="stat-info">
+                <div class="stat-title">Miembros del equipo</div>
+                <div class="stat-value"><%= team.numUsers %></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-item">
+              <img class="stat-icon" src="/images/3D-icons/autor-icon-2.PNG">
+              <div class="stat-info">
+                <div class="stat-title">Autor</div>
+                <div class="stat-value"><%= team.author?.username ?? "Anonymous" %></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="stat-item">
+              <img class="stat-icon" src="/images/3D-icons/coins-icon-11.PNG">
+              <div class="stat-info">
+                <div class="stat-title">Número de tokens</div>
+                <div class="stat-value"><%= totalTokens %></div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="stat-item">
-            <img class="stat-icon" src="/images/3D-icons/autor-icon-2.PNG">
-            <div class="stat-info">
-              <div class="stat-title">Autor</div>
-              <div class="stat-value"><%= team.author?.username ?? "Anonymous" %></div>
+        <div class="bottom-row">
+          <div class="col-md-4 offset-md-2">
+            <div class="stat-item">
+              <img class="stat-icon" src="/images/3D-icons/calendar-icon-3.PNG">
+              <div class="stat-info">
+                <div class="stat-title">Fecha creación</div>
+                <div class="stat-value"><%= team.createdAt %></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="stat-item">
-            <img class="stat-icon" src="/images/3D-icons/admin-icon-3.PNG">
-            <div class="stat-info">
-              <div class="stat-title">Admin del equipo</div>
-              <div class="stat-value"><%= adminUser?.username ?? 'None' %></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="stat-item">
-            <img class="stat-icon" src="/images/3D-icons/calendar-icon-3.PNG">
-            <div class="stat-info">
-              <div class="stat-title">Fecha creación</div>
-              <div class="stat-value"><%= team.createdAt %></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="stat-item">
-            <img class="stat-icon" src="/images/3D-icons/coins-icon-11.PNG">
-            <div class="stat-info">
-              <div class="stat-title">Número de tokens</div>
-              <div class="stat-value"><%= totalTokens %></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="stat-item">
-            <img class="stat-icon" src="/images/3D-icons/lista-ico-5.PNG">
-            <div class="stat-info">
-              <div class="stat-title">Fecha última actualización</div>
-              <div class="stat-value"><%= team.updatedAt %></div>
+          <div class="col-md-4">
+            <div class="stat-item">
+              <img class="stat-icon" src="/images/3D-icons/lista-ico-5.PNG">
+              <div class="stat-info">
+                <div class="stat-title">Fecha última actualización</div>
+                <div class="stat-value"><%= team.updatedAt %></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   </div>
 
     

@@ -1989,13 +1989,18 @@ a[href="/registrarse"]:hover {
   border-radius: 10px;
 }
 
-.team-section-show .card .team-stats {
+.team-section-show .card .team-stats .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-left: 40px;
-  margin-right: 40px;
 }
+
+.team-section-show .card .team-stats .bottom-row {
+  display: flex;
+  align-items: center;
+}
+
 
 .team-section-show .card .team-stats .stat-item {
   display: flex;
