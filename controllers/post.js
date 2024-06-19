@@ -283,22 +283,12 @@ exports.destroy = async (req, res, next) => {
             }
         }
 
-        // Crea un nuevo adjunto con los mismos datos que el original
-        let newAttachmentId = null;
-        if (originalAttachment) {
-            const newAttachment = await models.Attachment.create({
-                mime: originalAttachment.mime,
-                image: originalAttachment.image,
-                url: originalAttachment.url
-            });
-            newAttachmentId = newAttachment.id;
-        }
 
         await models.DeletedPost.create({
             id: post.id,
             title: post.title,
             body: post.body,
-            attachmentId: newAttachmentId, 
+            attachmentId: null, 
             deletedAt: new Date(),
             deletedBy: req.session.loginUser.username, 
             createdAt: post.createdAt,
