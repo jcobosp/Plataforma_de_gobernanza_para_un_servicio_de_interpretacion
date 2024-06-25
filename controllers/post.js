@@ -50,9 +50,10 @@ exports.index = async (req, res, next) => {
         });
 
         const hasResults = posts.length > 0;
+        const isLoggedIn = req.session.loginUser;
 
         const postInd = 'posts/index.ejs';
-        res.render(postInd, {posts, deletedPosts, filterType: '', hasResults});
+        res.render(postInd, {posts, deletedPosts, filterType: '', hasResults, isLoggedIn});
     } 
     catch (error) {
         next(error);

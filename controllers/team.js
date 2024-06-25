@@ -57,9 +57,10 @@ exports.index = async (req, res, next) => {
                 }
             }
         }
+        const isLoggedIn = req.session.loginUser;
 
         const teamInd = 'teams/index.ejs';
-        res.render(teamInd, {teams, deletedTeams, timeUntilNextReward});
+        res.render(teamInd, {teams, deletedTeams, timeUntilNextReward, isLoggedIn});
     } 
     catch (error) {
         next(error);
