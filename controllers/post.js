@@ -704,6 +704,7 @@ exports.filter = async (req, res, next) => {
 
         // Verificar si hay resultados
         hasResults = posts.length > 0;
+        const isLoggedIn = req.session.loginUser;
 
         const deletedPosts = await models.DeletedPost.findAll({
             include: [
@@ -714,7 +715,7 @@ exports.filter = async (req, res, next) => {
             ]
         });
 
-        res.render('posts/index', { posts, filterType, deletedPosts, hasResults });
+        res.render('posts/index', { posts, filterType, deletedPosts, hasResults, isLoggedIn });
     } catch (error) {
         next(error);
     }
