@@ -63,9 +63,9 @@ app.use(function(req, res, next) {
 // Ejecución de applyRewards cada minuto
 setInterval(async () => {
   try {
-      console.log('Ejecutando applyRewards...');
+      
       await postsController.applyRewards();
-      console.log('applyRewards ejecutado exitosamente')
+      
   } catch (error) {
       console.error('Error al ejecutar applyRewards:', error);
   }
