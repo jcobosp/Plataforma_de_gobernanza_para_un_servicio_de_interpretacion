@@ -19,6 +19,39 @@ Antes de proceder con la instalación, asegúrese de tener instalados los siguie
 
 Además, para visualizar correctamente las vistas EJS en su editor de código, se recomienda instalar la extensión **EJS language support** en VS Code. Esta extensión proporciona soporte avanzado para el lenguaje EJS, facilitando la edición y la visualización de archivos EJS dentro de su entorno de desarrollo.
 
+## Entorno de Desarrollo
+
+Sistema Operativo: `Windows 10`
+Editor de Código: `Visual Studio Code`
+Navegador: `Google Chrome`
+
+## Versiones de Herramientas y Paquetes Utilizados
+
+Git: `2.45.2`
+Node.js: `20.9.0`
+VS Code: `1.90.2`
+Google Chrome: `126.0.6478.127`
+
+### Paquetes Extra Utilizados Dentro del Proyecto
+
+connect-flash: `^0.1.1`
+cookie-parser: `~1.4.4`
+debug: `~2.6.9`
+ejs: `~2.6.1`
+express: `~4.16.1`
+express-generator: `^4.16.1`
+express-partials: `^0.3.0`
+express-session: `^1.18.0`
+http-errors: `~1.6.3`
+method-override: `^3.0.0` 
+morgan: `~1.9.1`
+multer: `^1.4.5-lts.1`
+node-cron: `^3.0.3`
+sequelize: `^6.37.2`
+sequelize-cli: `^6.6.2`
+sqlite3: `^5.1.7`
+supervisor: `^0.12.0`
+
 ## Instalación
 
 ### Paso 1: Clonar el Repositorio
