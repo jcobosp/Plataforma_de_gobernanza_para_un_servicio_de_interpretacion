@@ -34,23 +34,25 @@ Además, para visualizar correctamente las vistas EJS en su editor de código, s
 
 ### Paquetes Extra Utilizados Dentro del Proyecto
 
-connect-flash: `^0.1.1`; 
-cookie-parser: `~1.4.4`: 
-debug: `~2.6.9`; 
-ejs: `~2.6.1`; 
-express: `~4.16.1`; 
-express-generator: `^4.16.1`; 
-express-partials: `^0.3.0`; 
-express-session: `^1.18.0`; 
-http-errors: `~1.6.3`; 
-method-override: `^3.0.0`; 
-morgan: `~1.9.1`; 
-multer: `^1.4.5-lts.1`; 
-node-cron: `^3.0.3`; 
-sequelize: `^6.37.2`; 
-sequelize-cli: `^6.6.2`; 
-sqlite3: `^5.1.7`; 
-supervisor: `^0.12.0`; 
+| Paquete           | Versión       |
+|-------------------|---------------|
+| connect-flash     | `^0.1.1`      |
+| cookie-parser     | `~1.4.4`      |
+| debug             | `~2.6.9`      |
+| ejs               | `~2.6.1`      |
+| express           | `~4.16.1`     |
+| express-generator | `^4.16.1`     |
+| express-partials  | `^0.3.0`      |
+| express-session   | `^1.18.0`     |
+| http-errors       | `~1.6.3`      |
+| method-override   | `^3.0.0`      |
+| morgan            | `~1.9.1`      |
+| multer            | `^1.4.5-lts.1`|
+| node-cron         | `^3.0.3`      |
+| sequelize         | `^6.37.2`     |
+| sequelize-cli     | `^6.6.2`      |
+| sqlite3           | `^5.1.7`      |
+| supervisor        | `^0.12.0`     |
 
 ## Instalación
 
