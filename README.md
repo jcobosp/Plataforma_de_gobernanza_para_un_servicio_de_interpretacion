@@ -56,7 +56,9 @@ Además, para visualizar correctamente las vistas EJS en su editor de código, s
 
 ## Instalación
 
-### Paso 1: Clonar el Repositorio
+Es preferible realizar los siguientes pasos desde Visual Studio Code (VS Code) para aprovechar sus herramientas y extensiones integradas.
+
+### Paso 1: Clonar el Repositorio 
 
 Abra una terminal y clone el repositorio desde GitHub utilizando el siguiente comando:
 
@@ -90,7 +92,7 @@ npm start
 
 ### Paso 5: Acceder a la Plataforma
 
-Abra su navegador web y visite la dirección:
+Abra su navegador web (preferiblemente Google Chrome) y visite la dirección:
 
 ```sh
 http://localhost:3000
