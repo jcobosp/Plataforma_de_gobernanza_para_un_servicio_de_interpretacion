@@ -11,11 +11,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         authorId: null,
-        TeamId: 1,  // Interpretación
+        TeamId: 37,  // Interpretación
         votingStartDate: new Date(),
         votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        applicationDate: new Date(),
-        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        applicationDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 7)),
         votesFor: 0,
         votesAgainst: 0,
         abstentions: 0,
@@ -27,7 +27,7 @@ module.exports = {
         voting_failure_penalty: 5,
         voting_success_reward: 15,
         votingRewardGiven: false,
-        usersVoted: ''
+        usersVoted: 0
       },
       {
         title: 'Mejora del Entorno de Trabajo y Bienestar del Personal',
@@ -36,11 +36,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         authorId: null,
-        TeamId: 2,  // Administración
+        TeamId: 38,  // Administración
         votingStartDate: new Date(),
         votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        applicationDate: new Date(),
-        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        applicationDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 7)),
         votesFor: 0,
         votesAgainst: 0,
         abstentions: 0,
@@ -52,7 +52,7 @@ module.exports = {
         voting_failure_penalty: 5,
         voting_success_reward: 15,
         votingRewardGiven: false,
-        usersVoted: ''
+        usersVoted: 0
       },
       {
         title: 'Desarrollo de una Aplicación Móvil para Clientes',
@@ -61,11 +61,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         authorId: null,
-        TeamId: 3,  // Investigación y Desarrollo (I+D)
+        TeamId: 39,  // Investigación y Desarrollo (I+D)
         votingStartDate: new Date(),
         votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        applicationDate: new Date(),
-        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        applicationDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 7)),
         votesFor: 0,
         votesAgainst: 0,
         abstentions: 0,
@@ -77,7 +77,7 @@ module.exports = {
         voting_failure_penalty: 5,
         voting_success_reward: 15,
         votingRewardGiven: false,
-        usersVoted: ''
+        usersVoted: 0
       },
       {
         title: 'Campaña de Marketing Digital en Redes Sociales',
@@ -86,11 +86,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         authorId: null,
-        TeamId: 4,  // Marketing
+        TeamId: 40,  // Marketing
         votingStartDate: new Date(),
         votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        applicationDate: new Date(),
-        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        applicationDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 7)),
         votesFor: 0,
         votesAgainst: 0,
         abstentions: 0,
@@ -102,7 +102,7 @@ module.exports = {
         voting_failure_penalty: 5,
         voting_success_reward: 15,
         votingRewardGiven: false,
-        usersVoted: ''
+        usersVoted: 0
       },
       {
         title: 'Implementación de una Herramienta de Gestión de Proyectos',
@@ -111,11 +111,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         authorId: null,
-        TeamId: 5,  // Coordinación
+        TeamId: 41,  // Coordinación
         votingStartDate: new Date(),
         votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        applicationDate: new Date(),
-        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        applicationDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 7)),
         votesFor: 0,
         votesAgainst: 0,
         abstentions: 0,
@@ -127,7 +127,7 @@ module.exports = {
         voting_failure_penalty: 5,
         voting_success_reward: 15,
         votingRewardGiven: false,
-        usersVoted: ''
+        usersVoted: 0
       },
       {
         title: 'Digitalización de Documentos y Archivos',
@@ -136,11 +136,11 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
         authorId: null,
-        TeamId: 6,  // Documentación y Gestión
+        TeamId: 42,  // Documentación y Gestión
         votingStartDate: new Date(),
         votingEndDate: new Date(new Date().setDate(new Date().getDate() + 7)),
-        applicationDate: new Date(),
-        vetoDate: new Date(new Date().setDate(new Date().getDate() + 14)),
+        applicationDate: new Date(new Date().setDate(new Date().getDate() + 7)),
+        vetoDate: new Date(new Date().setDate(new Date().getDate() + 7)),
         votesFor: 0,
         votesAgainst: 0,
         abstentions: 0,
@@ -152,7 +152,7 @@ module.exports = {
         voting_failure_penalty: 5,
         voting_success_reward: 15,
         votingRewardGiven: false,
-        usersVoted: ''
+        usersVoted: 0
       }
       
     ], {});
