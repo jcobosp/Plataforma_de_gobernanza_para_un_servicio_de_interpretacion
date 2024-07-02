@@ -19,6 +19,8 @@ Antes de proceder con la instalación, asegúrese de tener instalados los siguie
 
 Además, para visualizar correctamente las vistas EJS en su editor de código, se recomienda instalar la extensión **EJS language support** en VS Code. Esta extensión proporciona soporte avanzado para el lenguaje EJS, facilitando la edición y la visualización de archivos EJS dentro de su entorno de desarrollo.
 
+Se recomienda descargar también la extensión SQLite para Visual Studio Code para explorar y visualizar las tablas de la base de datos del proyecto (`blog.sqlite`). Puede instalarla desde la pestaña de Extensiones en VS Code buscando **SQLite** y seleccionando la extensión creada por `alexcvzz`.
+
 ## Entorno de Desarrollo
 
 - Sistema Operativo: `Windows 10`

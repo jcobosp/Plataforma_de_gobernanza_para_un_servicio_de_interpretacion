@@ -204,8 +204,8 @@
                     </div>
                     <form action="/posts/<%= post.id %>/vote" method="post">
                       <label for="votePoints">Cantidad de puntos <img class="icon-formulario-votacion" src="/images/3D-icons/billetes-icon-3.PNG" alt="Icono wallet points">:</label>
-                      <input type="range" id="votePoints" name="votePoints" min="1" max="<%= post.max_voting %>" value="1" oninput="amount.value=votePoints.value">
-                      <output id="amount">1</output>
+                      <input type="range" id="votePoints" name="votePoints" min="<%= post.min_voting %>" max="<%= post.max_voting %>" value="1" oninput="amount.value=votePoints.value">
+                      <output id="amount"><%= post.min_voting %></output>
                       <div class="button-container">
                         <button type="submit" class="vote-button" name="vote" value="for">Votar a favor </button>
                         <button type="submit" class="vote-button" name="vote" value="against">Votar en contra </button>
@@ -348,14 +348,5 @@
       spectatorsIcons.appendChild(icon);
     }
   });
-</script>
-
-<script>
-  const range = document.querySelector('.voting-form input[type="range"]');
-range.addEventListener('input', () => {
-  let value = ((range.value - range.min) / (range.max - range.min)) * 100;
-  value = value - (10 / range.max * 100) + 15;
-  range.style.backgroundSize = value + '% 100%';
-});
 </script>
 
