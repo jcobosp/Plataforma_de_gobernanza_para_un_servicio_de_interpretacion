@@ -1,7 +1,7 @@
 # Plataforma de Gobernanza para un Servicio de Interpretación 
 Desarrollo de una plataforma de gobernanza para un servicio de interpretación, Trabajo de Fin de Grado realizado por Jesús Cobos Pozo.
 
-![Portada](./public/images/portada1.png)
+![Portada](./public/images/portadafinal.png)
  
 ## Introducción
 
