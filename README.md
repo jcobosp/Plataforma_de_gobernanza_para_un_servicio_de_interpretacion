@@ -90,23 +90,7 @@ npm ci
 ```
 > Este comando instala exactamente las versiones definidas en `package-lock.json`, garantizando que el proyecto funcione igual en todos los entornos.
 
-### Paso 4: Inicializar la base de datos
-
-Ejecuta las migraciones y carga los datos iniciales según tu sistema operativo:
-
-Windows
-```sh
-npm run migrate_win
-npm run seed_win
-```
-
-Linux / macOS
-```sh
-npm run migrate
-npm run seed
-```
-
-### Paso 5: Ejecutar la Plataforma
+### Paso 4: Ejecutar la Plataforma
 
 Inicie el servidor de la plataforma con el comando:
 
