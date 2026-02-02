@@ -32,7 +32,8 @@ Se recomienda descargar también la extensión SQLite para Visual Studio Code pa
 ## Versiones de Herramientas y Paquetes Utilizados
 
 - Git: `2.45.2`
-- Node.js: `20.9.0`
+- Node.js: Versión **20.x (recomendado 20.9.0)**.
+- Si usas nvm: el repo incluye .nvmrc
 - VS Code: `1.90.2`
 - Google Chrome: `126.0.6478.127`
 
@@ -83,10 +84,27 @@ cd Plataforma_de_gobernanza_para_un_servicio_de_interpretacion
 Instale las dependencias del proyecto ejecutando el siguiente comando:
 
 ```sh
-npm install
+npm ci
+```
+> Este comando instala exactamente las versiones definidas en `package-lock.json`, garantizando que el proyecto funcione igual en todos los entornos.
+
+### Paso 4: Inicializar la base de datos
+
+Ejecuta las migraciones y carga los datos iniciales según tu sistema operativo:
+
+Windows
+```sh
+npm run migrate_win
+npm run seed_win
 ```
 
-### Paso 4: Ejecutar la Plataforma
+Linux / macOS
+```sh
+npm run migrate
+npm run seed
+```
+
+### Paso 5: Ejecutar la Plataforma
 
 Inicie el servidor de la plataforma con el comando:
 
@@ -94,7 +112,7 @@ Inicie el servidor de la plataforma con el comando:
 npm start
 ```
 
-### Paso 5: Acceder a la Plataforma
+### Paso 6: Acceder a la Plataforma
 
 Abra su navegador web (preferiblemente Google Chrome) y visite la dirección:
 
