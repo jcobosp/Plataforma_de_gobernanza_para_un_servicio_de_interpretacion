@@ -33,6 +33,8 @@ Se recomienda descargar también la extensión SQLite para Visual Studio Code pa
 
 - Git: `2.45.2`
 - Node.js: Versión **20.x (recomendado 20.9.0)**.
+> ⚠️ Node 22 no es compatible actualmente con este proyecto.
+> En Windows, usar Node 22 provoca errores al instalar `sqlite3`.
 - Si usas nvm: el repo incluye .nvmrc
 - VS Code: `1.90.2`
 - Google Chrome: `126.0.6478.127`
